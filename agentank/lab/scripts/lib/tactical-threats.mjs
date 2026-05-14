@@ -57,6 +57,10 @@ function manhattan(a, b) {
   return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
 }
 
+function travelTurns(distance, cellsPerTurn = 2) {
+  return Math.ceil(distance / cellsPerTurn);
+}
+
 export function createsImmediateFireThreat(map, enemy, target, options = {}) {
   if (!enemy || options.hasActiveBullet) return false;
   if (enemy.position[0] !== target[0] && enemy.position[1] !== target[1]) return false;
@@ -134,4 +138,24 @@ export function hiddenCorridorThreat({
   if (moveDir === "left") return target[1] === lastPosition[1] && target[0] < lastPosition[0];
   if (moveDir === "right") return target[1] === lastPosition[1] && target[0] > lastPosition[0];
   return distance <= 4 && (target[0] === lastPosition[0] || target[1] === lastPosition[1]);
+}
+
+export function reciprocalFireLosesRace(map, me, enemy, enemyBullet, options = {}) {
+  if (!me || !enemy || !enemyBullet) return false;
+  if (!losFrom(map, enemyBullet.position, enemyBullet.direction, me.position)) return false;
+  if (!losFrom(map, me.position, me.direction, enemy.position)) return false;
+
+  const enemyBulletTurns = travelTurns(manhattan(enemyBullet.position, me.position), options.bulletCellsPerTurn ?? 2);
+  const ourBulletTurns = travelTurns(manhattan(me.position, enemy.position), options.bulletCellsPerTurn ?? 2);
+  return enemyBulletTurns <= ourBulletTurns;
+}
+
+export function postTeleportLaneTrap(map, enemy, target, options = {}) {
+  if (!enemy) return false;
+  if (enemy.position[0] !== target[0] && enemy.position[1] !== target[1]) return false;
+  if (manhattan(enemy.position, target) > (options.maxDistance ?? 12)) return false;
+
+  const neededDirection = dirTo(enemy.position, target);
+  if (turnCost(enemy.direction, neededDirection) > (options.maxTurnCost ?? 1)) return false;
+  return losFrom(map, enemy.position, neededDirection, target);
 }

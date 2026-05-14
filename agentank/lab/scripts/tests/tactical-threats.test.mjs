@@ -4,6 +4,8 @@ import { test } from "node:test";
 import {
   createsImmediateFireThreat,
   hiddenCorridorThreat,
+  postTeleportLaneTrap,
+  reciprocalFireLosesRace,
   overloadThreatField,
   overloadShotThreat,
 } from "../lib/tactical-threats.mjs";
@@ -82,4 +84,24 @@ test("hidden corridor threat follows last seen cloak movement", () => {
     }),
     false,
   );
+});
+
+test("reciprocal fire is losing when enemy bullet reaches us first", () => {
+  const me = { position: [11, 2], direction: "right" };
+  const enemy = { position: [15, 2], direction: "left" };
+  const enemyBullet = { position: [13, 2], direction: "left" };
+
+  assert.equal(reciprocalFireLosesRace(openArena, me, enemy, enemyBullet), true);
+  assert.equal(
+    reciprocalFireLosesRace(openArena, me, enemy, { position: [4, 2], direction: "left" }),
+    false,
+  );
+});
+
+test("post-teleport lane trap catches long one-turn shooting lanes", () => {
+  const enemy = { position: [7, 10], direction: "right" };
+
+  assert.equal(postTeleportLaneTrap(openArena, enemy, [17, 10]), true);
+  assert.equal(postTeleportLaneTrap(openArena, enemy, [17, 8]), false);
+  assert.equal(postTeleportLaneTrap(openArena, { ...enemy, direction: "left" }, [17, 10]), false);
 });
