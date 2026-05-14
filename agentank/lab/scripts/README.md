@@ -85,6 +85,8 @@ Useful patterns:
 
 - Start with `--limit 20` or `--limit 40`, then analyze before scaling further.
 - Use `--tank freeze-main` or `--tank teleport-main` when testing a tank-specific counter.
+- For ladder climbing, prefer same-score to +120 `rankScore` targets. Wider gaps are counter-research, not score farming.
+- Stop a target after two same-map losses or after an after-snapshot shows negative `rankScore` movement.
 - Keep `--sleep-ms` at several seconds or higher to avoid hammering the API.
 
 Run logs are saved under `agentank/lab/data/challenge-runs/`. Replay files are saved under `agentank/lab/data/matches/`.

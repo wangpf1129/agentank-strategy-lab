@@ -40,5 +40,8 @@ Challenge plans should prefer reachable score neighborhoods first:
 - Same tier/division or adjacent division for reliable score movement.
 - Slightly higher ladder-score opponents for climb attempts.
 - Top-meta tanks only when testing a named counter, because the score gap can make challenges unavailable or strategically expensive.
+- Do not use越级挑战 as the climb plan. If AgentTank blocks or heavily limits score-gap challenges, treat that as a ladder-system rule and climb one score band at a time.
+- Default climb band: opponent `rankScore` from current score to current score +120. Wider gaps require a named counter experiment, not a scoring batch.
+- Stop a target immediately after two consecutive losses on the same map, or after an after-snapshot shows negative `rankScore` delta.
 
 This changes how we read historical reports: old ELO and win-rate notes remain evidence, but they are no longer the top-level objective.
