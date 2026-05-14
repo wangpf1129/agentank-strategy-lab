@@ -57,9 +57,25 @@ Files are saved under `agentank/lab/data/fleet/<codename>/` by default:
 
 Responses are sanitized before storage. Real tank keys must still stay outside the repository.
 
+## Run Real Challenge Batches
+
+Use this for controlled public match sampling after a candidate is published. Real challenges affect public records and ELO, so the script defaults to dry-run. Add `--execute` only when the opponent list, maps, repeat count, and limit are intentional.
+
+```bash
+node agentank/lab/scripts/run-real-challenges.mjs --opponents 829,913 --maps random,arena --repeat 2
+AGENTANK_FREEZE_KEY=<key> AGENTANK_TELEPORT_KEY=<key> node agentank/lab/scripts/run-real-challenges.mjs --opponents 829,913 --maps random,arena --repeat 2 --limit 20 --execute
+```
+
+Useful patterns:
+
+- Start with `--limit 20` or `--limit 40`, then analyze before scaling further.
+- Use `--tank freeze-main` or `--tank teleport-main` when testing a tank-specific counter.
+- Keep `--sleep-ms` at several seconds or higher to avoid hammering the API.
+
+Run logs are saved under `agentank/lab/data/challenge-runs/`. Replay files are saved under `agentank/lab/data/matches/`.
+
 ## Planned Next Scripts
 
-- Fetch recent own matches.
 - Classify death causes in batches.
 - Compare candidate versions.
 - Generate map heat reports.
