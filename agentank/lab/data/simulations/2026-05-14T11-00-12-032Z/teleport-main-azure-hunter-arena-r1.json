@@ -1,0 +1,2442 @@
+{
+  "opponentId": "azure-hunter",
+  "opponentName": "Azure Hunter",
+  "mapId": "arena",
+  "usedCandidateCode": true,
+  "resultReason": "star",
+  "winner": "me",
+  "replayData": {
+    "map": {
+      "id": "arena",
+      "name": "训练场",
+      "map": [
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ]
+      ],
+      "players": [
+        {
+          "direction": "left",
+          "position": [
+            13,
+            9
+          ]
+        },
+        {
+          "direction": "down",
+          "position": [
+            1,
+            9
+          ]
+        }
+      ],
+      "raw": "xxxxxxxxxxxxxxx|xa...........Bx|x.............x|x....ooooo....x|x.............x|x.....xxx.....x|x.............x|x....ooooo....x|x.............x|xC...........dx|xxxxxxxxxxxxxxx"
+    },
+    "replay": {
+      "meta": {
+        "players": [
+          {
+            "tank": {
+              "id": "a901374f",
+              "position": [
+                13,
+                9
+              ],
+              "direction": "left"
+            },
+            "runTime": 533
+          },
+          {
+            "tank": {
+              "id": "5288062f",
+              "position": [
+                1,
+                9
+              ],
+              "direction": "down"
+            },
+            "runTime": 10
+          }
+        ],
+        "result": {
+          "action": "end",
+          "reason": "star",
+          "type": "game",
+          "winner": 0
+        },
+        "excitementScore": 57,
+        "matchSeed": 2355399181671907000
+      },
+      "records": [
+        [
+          {
+            "action": "created",
+            "position": [
+              7,
+              3
+            ],
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "a901374f",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              13,
+              9
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "a901374f",
+            "targetObjectId": "a901374f",
+            "to": [
+              7,
+              3
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "770081eb",
+            "tank": {
+              "direction": "down",
+              "id": "5288062f",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "770081eb",
+            "order": 0,
+            "position": [
+              1,
+              10
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "5288062f",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "770081eb",
+            "tank": {
+              "direction": "down",
+              "id": "5288062f",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              8,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              8,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              5,
+              3
+            ],
+            "type": "star"
+          },
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              5,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              8,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              8,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              7,
+              2
+            ],
+            "type": "star"
+          },
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              2
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "5288062f",
+            "position": [
+              1,
+              8
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              2
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "5288062f",
+            "position": [
+              1,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              5,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              11,
+              3
+            ],
+            "type": "star"
+          },
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "a901374f",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              7,
+              4
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "a901374f",
+            "targetObjectId": "a901374f",
+            "to": [
+              11,
+              3
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              11,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              10,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              9,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              8,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              7,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              2,
+              6
+            ],
+            "type": "star"
+          },
+          {
+            "action": "go",
+            "objectId": "a901374f",
+            "position": [
+              5,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "a901374f",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "5288062f",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ]
+      ]
+    },
+    "names": [
+      "山大王",
+      "Azure Hunter"
+    ],
+    "excitementScore": 57,
+    "matchSeed": 2355399181671907000
+  },
+  "simulationAt": "2026-05-14T11:00:28.038684967Z",
+  "simulationCooldownSeconds": 2,
+  "nextSimulationAt": "2026-05-14T11:00:28.909574Z",
+  "trainingBots": [
+    {
+      "id": "nova-scout",
+      "name": "Nova Scout",
+      "description": "Balanced pathing bot for baseline tests."
+    },
+    {
+      "id": "azure-hunter",
+      "name": "Azure Hunter",
+      "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+    },
+    {
+      "id": "crimson-bastion",
+      "name": "Crimson Bastion",
+      "description": "Defensive control bot that contests stars and lanes."
+    }
+  ]
+}
