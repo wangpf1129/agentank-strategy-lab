@@ -23,3 +23,10 @@ Suggested workflow:
 6. Summarize results under `reports/`.
 7. Only then decide whether to patch the tank.
 
+First commands:
+
+```bash
+node --test agentank/lab/scripts/tests/*.test.mjs
+node agentank/lab/scripts/fetch-match.mjs mat_3hWOW9k5vPJKoS5Ea
+node agentank/lab/scripts/analyze-match.mjs agentank/lab/data/matches/mat_3hWOW9k5vPJKoS5Ea.json
+```
