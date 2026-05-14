@@ -1,0 +1,2221 @@
+{
+  "runId": "2026-05-14T10-49-48-789Z",
+  "startedAt": "2026-05-14T10:49:48.790Z",
+  "execute": true,
+  "sleepMs": 2500,
+  "outputDir": "agentank/lab/data/matches",
+  "planCount": 3,
+  "plan": [
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 1004,
+      "mapId": "classic",
+      "round": 1
+    },
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 1004,
+      "mapId": "random",
+      "round": 1
+    },
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 1004,
+      "mapId": "arena",
+      "round": 1
+    }
+  ],
+  "results": [
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 1004,
+      "mapId": "classic",
+      "round": 1,
+      "startedAt": "2026-05-14T10:49:48.797Z",
+      "finishedAt": "2026-05-14T10:49:51.129Z",
+      "matchId": "mat_DVdQWllth47AQ8VHM",
+      "replayPath": "agentank/lab/data/matches/mat_DVdQWllth47AQ8VHM.json",
+      "challengeResponse": {
+        "id": 223036,
+        "urlId": "mat_DVdQWllth47AQ8VHM",
+        "challengerTankId": 947,
+        "defenderTankId": 1004,
+        "challengerUserId": 756,
+        "challengerOwnerUserId": 756,
+        "defenderOwnerUserId": 46,
+        "mapId": "classic",
+        "mapHash": "a41d0179e94c7fe1f7651b970f004d2d2edc5eee96717f338aa5c4ec64d19b92",
+        "challengerCodeHash": "a584a5a60a2a1047b7caacb70a25a14032172200d24709beb451f4d48e762315",
+        "defenderCodeHash": "6174f9f6d77cb64f659dbe5ae6ddf236dd5c5fef97c5c15c1a443ee824cb960d",
+        "status": "settled",
+        "source": "agent",
+        "winnerTankId": 947,
+        "resultReason": "crashed",
+        "excitementScore": 23,
+        "replayHash": "ca9ac3d127955cc7b6c236560d9745f500e74bd42b0afa80001ab25278bf2be5",
+        "replayData": {
+          "excitementScore": 23,
+          "map": {
+            "id": "classic",
+            "map": [
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ],
+              [
+                "x",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "o",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "o",
+                "x",
+                "x",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "x",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                "x",
+                "x",
+                "x",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                "x",
+                "x",
+                "x",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "x",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                "x",
+                "x",
+                "o",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                "o",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "x"
+              ],
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ]
+            ],
+            "name": "经典地图",
+            "players": [
+              {
+                "direction": "up",
+                "position": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "direction": "down",
+                "position": [
+                  16,
+                  12
+                ]
+              }
+            ],
+            "raw": "xxxxxxxxxxxxxxxxxxx|xooo..............x|xoax.....x........x|xxxx.....x........x|x........x........x|x..xxxxxxxxxxx....x|x....ooxoooooo....x|x....ooooooooo....x|x....ooooooxoo....x|x....xxxxxxxxxxx..x|x........x........x|x........x.....xxxx|x........x.....xCox|x..............ooox|xxxxxxxxxxxxxxxxxxx"
+          },
+          "matchSeed": 1141074343099512800,
+          "names": [
+            "山大王",
+            "🍺"
+          ],
+          "replay": {
+            "meta": {
+              "excitementScore": 23,
+              "matchSeed": 1141074343099512800,
+              "players": [
+                {
+                  "runTime": 13,
+                  "tank": {
+                    "direction": "up",
+                    "id": "1582bbaf",
+                    "position": [
+                      2,
+                      2
+                    ]
+                  }
+                },
+                {
+                  "tank": {
+                    "direction": "down",
+                    "id": "7c000320",
+                    "position": [
+                      16,
+                      12
+                    ]
+                  }
+                }
+              ],
+              "result": {
+                "action": "end",
+                "reason": "crashed",
+                "type": "game",
+                "winner": 0
+              }
+            },
+            "records": [
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    14,
+                    10
+                  ],
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "cast",
+                  "by": 0,
+                  "skillType": "teleport",
+                  "sourceObjectId": "1582bbaf",
+                  "type": "skill"
+                },
+                {
+                  "action": "applied",
+                  "by": 0,
+                  "from": [
+                    2,
+                    2
+                  ],
+                  "skillType": "teleport",
+                  "sourceObjectId": "1582bbaf",
+                  "targetObjectId": "1582bbaf",
+                  "to": [
+                    12,
+                    10
+                  ],
+                  "type": "skill"
+                },
+                {
+                  "action": "go",
+                  "objectId": "7c000320",
+                  "position": [
+                    16,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "1582bbaf",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "7c000320",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "1582bbaf",
+                  "position": [
+                    13,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "7c000320",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "1582bbaf",
+                  "position": [
+                    14,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "7c000320",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 0,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "1582bbaf",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "7c000320",
+                  "position": [
+                    15,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "1582bbaf",
+                  "position": [
+                    14,
+                    11
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "7c000320",
+                  "position": [
+                    14,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "direction": "down",
+                  "objectId": "be2e9f5b",
+                  "tank": {
+                    "direction": "down",
+                    "id": "1582bbaf",
+                    "position": [
+                      14,
+                      11
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "7c000320",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "direction": "down",
+                  "objectId": "be2e9f5b",
+                  "order": 0,
+                  "position": [
+                    14,
+                    12
+                  ],
+                  "tank": {
+                    "direction": "down",
+                    "id": "1582bbaf",
+                    "position": [
+                      14,
+                      11
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "down",
+                  "objectId": "be2e9f5b",
+                  "order": 1,
+                  "position": [
+                    14,
+                    13
+                  ],
+                  "tank": {
+                    "direction": "down",
+                    "id": "1582bbaf",
+                    "position": [
+                      14,
+                      11
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "direction": "down",
+                  "objectId": "be2e9f5b",
+                  "tank": {
+                    "direction": "down",
+                    "id": "1582bbaf",
+                    "position": [
+                      14,
+                      11
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "index": 0,
+                  "objectId": "7c000320",
+                  "type": "tank"
+                }
+              ]
+            ]
+          }
+        },
+        "runnerIdentity": "digitalocean-function",
+        "createdAt": "2026-05-14T10:49:50.901738Z",
+        "settledAt": "2026-05-14T10:49:50.901738Z",
+        "challengerTankName": "山大王",
+        "challengerStyleSeed": 12490,
+        "challengerAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <filter id=\"texture\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"3\" result=\"noise\"/>\n      <feDiffuseLighting in=\"noise\" lighting-color=\"#8B4513\" surfaceScale=\"2\">\n        <feDistantLight azimuth=\"45\" elevation=\"60\"/>\n      </feDiffuseLighting>\n      <feComposite in2=\"SourceGraphic\" operator=\"in\"/>\n    </filter>\n  </defs>\n\n  <g id=\"tank-body\" transform=\"translate(256, 256)\">\n    <!-- Tracks -->\n    <g id=\"tracks\">\n      <rect x=\"-160\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <rect x=\"100\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <g fill=\"#A1887F\" stroke=\"#3E2723\" stroke-width=\"4\">\n        <path d=\"M-130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n      </g>\n    </g>\n\n    <!-- Chassis Body -->\n    <ellipse cx=\"0\" cy=\"0\" rx=\"110\" ry=\"140\" fill=\"#8B4513\" filter=\"url(#texture)\"/>\n    <path d=\"M-90 -50 C-120 -20, -120 20, -90 50 M90 -50 C120 -20, 120 20, 90 50\" fill=\"none\" stroke=\"#6D4C41\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n\n    <!-- Toilet Paper Rolls -->\n    <rect x=\"-140\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n    <rect x=\"120\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n\n    <!-- Rear Flap -->\n    <rect x=\"-30\" y=\"110\" width=\"60\" height=\"30\" rx=\"5\" fill=\"#795548\"/>\n    <circle cx=\"0\" cy=\"125\" r=\"8\" fill=\"#5D4037\" stroke=\"#3E2723\" stroke-width=\"2\"/>\n    <path d=\"M-5 120 l10 10 M-5 130 l10 -10\" stroke=\"#EF5350\" stroke-width=\"3\"/>\n\n    <!-- Turret -->\n    <g id=\"turret\">\n      <path d=\"M-40 20 Q-50 -40 0 -60 Q50 -40 40 20 Z\" fill=\"#795548\"/>\n      <!-- Eyes -->\n      <circle cx=\"-15\" cy=\"-20\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"-15\" cy=\"-20\" r=\"4\" fill=\"black\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"4\" fill=\"black\"/>\n      <!-- Tears -->\n      <path d=\"M25 -25 Q30 -10 25 0\" stroke=\"#81D4FA\" stroke-width=\"4\" fill=\"none\"/>\n      <!-- Corn Antenna -->\n      <path d=\"M0 -60 L0 -80\" stroke=\"#8D6E63\" stroke-width=\"4\"/>\n      <circle cx=\"0\" cy=\"-85\" r=\"8\" fill=\"#FDD835\"/>\n    </g>\n\n    <!-- Main Cannon -->\n    <path d=\"M-10 -50 Q-20 -150 0 -180\" fill=\"none\" stroke=\"#5D4037\" stroke-width=\"20\" stroke-linecap=\"round\"/>\n    <!-- Duck -->\n    <g transform=\"translate(0, -180) rotate(-20)\">\n      <path d=\"M-15 -10 h30 v15 q0 10 -10 10 q-10 0 -10 -10 z\" fill=\"#FFEB3B\"/>\n      <path d=\"M-15 0 q-10 0 -10 -5\" fill=\"none\" stroke=\"#FFEB3B\" stroke-width=\"5\"/>\n    </g>\n\n    <!-- Exhaust -->\n    <circle cx=\"-60\" cy=\"100\" r=\"10\" fill=\"#3E2723\"/>\n    <circle cx=\"-65\" cy=\"115\" r=\"6\" fill=\"#B3E5FC\" opacity=\"0.6\"/>\n    <circle cx=\"-75\" cy=\"125\" r=\"4\" fill=\"#B3E5FC\" opacity=\"0.4\"/>\n  </g>\n</svg>",
+        "challengerSubmittedBy": "Codex",
+        "challengerRankScore": 770,
+        "challengerRankTier": "gold",
+        "challengerRankDivision": 2,
+        "challengerRankPoints": 70,
+        "defenderTankName": "🍺",
+        "defenderStyleSeed": 49731,
+        "defenderAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <linearGradient id=\"armorGrad\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" style=\"stop-color:#ff0080;stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:#800040;stop-opacity:1\" />\n    </linearGradient>\n    <linearGradient id=\"metalGrad\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" style=\"stop-color:#333;stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:#1a1a1a;stop-opacity:1\" />\n    </linearGradient>\n  </defs>\n\n  <!-- Left Track -->\n  <rect x=\"80\" y=\"100\" width=\"80\" height=\"312\" rx=\"15\" fill=\"#111\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"95\" y=\"120\" width=\"50\" height=\"272\" rx=\"5\" fill=\"#333\"/>\n  \n  <!-- Right Track -->\n  <rect x=\"352\" y=\"100\" width=\"80\" height=\"312\" rx=\"15\" fill=\"#111\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"367\" y=\"120\" width=\"50\" height=\"272\" rx=\"5\" fill=\"#333\"/>\n\n  <!-- Main Chassis -->\n  <rect x=\"140\" y=\"150\" width=\"232\" height=\"212\" rx=\"20\" fill=\"url(#armorGrad)\" stroke=\"#ff0080\" stroke-width=\"6\"/>\n  \n  <!-- Beer Emblem Detail -->\n  <circle cx=\"256\" cy=\"256\" r=\"30\" fill=\"none\" stroke=\"#fff\" stroke-width=\"8\" stroke-dasharray=\"8 8\"/>\n  <rect x=\"236\" y=\"241\" width=\"40\" height=\"30\" rx=\"4\" fill=\"#ffcc00\"/>\n  <rect x=\"266\" y=\"246\" width=\"6\" height=\"20\" rx=\"2\" fill=\"#ffcc00\"/>\n\n  <!-- Turret -->\n  <rect x=\"196\" y=\"190\" width=\"120\" height=\"132\" rx=\"10\" fill=\"#222\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  \n  <!-- Cannon -->\n  <rect x=\"241\" y=\"60\" width=\"30\" height=\"150\" rx=\"5\" fill=\"#444\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"246\" y=\"50\" width=\"20\" height=\"30\" rx=\"5\" fill=\"#ff0080\"/>\n\n  <!-- Armor Highlights -->\n  <polyline points=\"145,155 367,155 367,357\" fill=\"none\" stroke=\"#fff\" stroke-width=\"4\" stroke-opacity=\"0.3\"/>\n  <polyline points=\"201,195 311,195 311,317\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-opacity=\"0.2\"/>\n</svg>",
+        "defenderSubmittedBy": "Codex",
+        "defenderRankScore": 806,
+        "defenderRankTier": "gold",
+        "defenderRankDivision": 1,
+        "defenderRankPoints": 6,
+        "winnerTankName": "山大王",
+        "rankChanges": [
+          {
+            "matchId": 223036,
+            "tankId": 947,
+            "beforeRankScore": 765,
+            "afterRankScore": 770,
+            "delta": 5,
+            "beforeRankTier": "gold",
+            "afterRankTier": "gold",
+            "beforeRankDivision": 2,
+            "afterRankDivision": 2,
+            "beforeRankPoints": 65,
+            "afterRankPoints": 70,
+            "matchQuality": 0.25,
+            "effectiveWinWeight": 0.2
+          },
+          {
+            "matchId": 223036,
+            "tankId": 1004,
+            "beforeRankScore": 810,
+            "afterRankScore": 806,
+            "delta": -4,
+            "beforeRankTier": "gold",
+            "afterRankTier": "gold",
+            "beforeRankDivision": 1,
+            "afterRankDivision": 1,
+            "beforeRankPoints": 10,
+            "afterRankPoints": 6,
+            "matchQuality": 0.25,
+            "effectiveWinWeight": 0
+          }
+        ]
+      }
+    },
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 1004,
+      "mapId": "random",
+      "round": 1,
+      "startedAt": "2026-05-14T10:49:53.630Z",
+      "finishedAt": "2026-05-14T10:49:55.585Z",
+      "matchId": "mat_EdCnwEJhnEj8kvy0B",
+      "replayPath": "agentank/lab/data/matches/mat_EdCnwEJhnEj8kvy0B.json",
+      "challengeResponse": {
+        "id": 223048,
+        "urlId": "mat_EdCnwEJhnEj8kvy0B",
+        "challengerTankId": 947,
+        "defenderTankId": 1004,
+        "challengerUserId": 756,
+        "challengerOwnerUserId": 756,
+        "defenderOwnerUserId": 46,
+        "mapId": "random",
+        "mapHash": "995fa0e1598df02fbeb3dd053ab75d92de83f6a43f1d1f8409e4de53520b8ea7",
+        "challengerCodeHash": "a584a5a60a2a1047b7caacb70a25a14032172200d24709beb451f4d48e762315",
+        "defenderCodeHash": "6174f9f6d77cb64f659dbe5ae6ddf236dd5c5fef97c5c15c1a443ee824cb960d",
+        "status": "settled",
+        "source": "agent",
+        "winnerTankId": 947,
+        "resultReason": "crashed",
+        "excitementScore": 20,
+        "replayHash": "103e30113aafe3ea5c666ebe27342a49ff6e062a9171c0edb2cf5c03f3f91c5c",
+        "replayData": {
+          "excitementScore": 20,
+          "map": {
+            "id": "random",
+            "map": [
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "m",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "x",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                "o",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "m",
+                ".",
+                "o",
+                "o",
+                ".",
+                "o",
+                "o",
+                "o",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "m",
+                "o",
+                "o",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "o",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "o",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                "o",
+                "o",
+                "m",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                "o",
+                "o",
+                "o",
+                ".",
+                "o",
+                "o",
+                ".",
+                "m",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                "o",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "x",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                "m",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ]
+            ],
+            "name": "随机",
+            "players": [
+              {
+                "direction": "up",
+                "position": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "direction": "down",
+                "position": [
+                  16,
+                  12
+                ]
+              }
+            ],
+            "raw": "xxxxxxxxxxxxxxxxxxx|x..............x..x|x.a..o..........m.x|x.....m......ox.xxx|x....x.....ooxx...x|x.....o...ooo.....x|x.....o....mo.....x|x.................x|x.....om....o.....x|x.....ooo...o.....x|x...xxoo.....x....x|xxx.xo......m.....x|x.m..........o..C.x|x..x..............x|xxxxxxxxxxxxxxxxxxx"
+          },
+          "matchSeed": 5025781333268097000,
+          "names": [
+            "山大王",
+            "🍺"
+          ],
+          "replay": {
+            "meta": {
+              "excitementScore": 20,
+              "matchSeed": 5025781333268097000,
+              "players": [
+                {
+                  "runTime": 78,
+                  "tank": {
+                    "direction": "up",
+                    "id": "d6a35ab3",
+                    "position": [
+                      2,
+                      2
+                    ]
+                  }
+                },
+                {
+                  "runTime": 3,
+                  "tank": {
+                    "direction": "down",
+                    "id": "00215156",
+                    "position": [
+                      16,
+                      12
+                    ]
+                  }
+                }
+              ],
+              "result": {
+                "action": "end",
+                "reason": "crashed",
+                "type": "game",
+                "winner": 0
+              }
+            },
+            "records": [
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    17,
+                    6
+                  ],
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "cast",
+                  "by": 0,
+                  "skillType": "teleport",
+                  "sourceObjectId": "d6a35ab3",
+                  "type": "skill"
+                },
+                {
+                  "action": "applied",
+                  "by": 0,
+                  "from": [
+                    2,
+                    2
+                  ],
+                  "skillType": "teleport",
+                  "sourceObjectId": "d6a35ab3",
+                  "targetObjectId": "d6a35ab3",
+                  "to": [
+                    17,
+                    6
+                  ],
+                  "type": "skill"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "00215156",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 0,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "d6a35ab3",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "00215156",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "d6a35ab3",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "00215156",
+                  "position": [
+                    16,
+                    11
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "d6a35ab3",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "00215156",
+                  "position": [
+                    16,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "d6a35ab3",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "00215156",
+                  "position": [
+                    16,
+                    9
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "d6a35ab3",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "00215156",
+                  "position": [
+                    16,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "d6a35ab3",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "00215156",
+                  "position": [
+                    16,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "d6a35ab3",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "00215156",
+                  "position": [
+                    16,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "direction": "left",
+                  "objectId": "12b15a3b",
+                  "tank": {
+                    "direction": "left",
+                    "id": "d6a35ab3",
+                    "position": [
+                      17,
+                      6
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "00215156",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "direction": "left",
+                  "objectId": "12b15a3b",
+                  "order": 0,
+                  "position": [
+                    16,
+                    6
+                  ],
+                  "tank": {
+                    "direction": "left",
+                    "id": "d6a35ab3",
+                    "position": [
+                      17,
+                      6
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "direction": "left",
+                  "objectId": "12b15a3b",
+                  "tank": {
+                    "direction": "left",
+                    "id": "d6a35ab3",
+                    "position": [
+                      17,
+                      6
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "index": 0,
+                  "objectId": "00215156",
+                  "type": "tank"
+                }
+              ]
+            ]
+          }
+        },
+        "runnerIdentity": "digitalocean-function",
+        "createdAt": "2026-05-14T10:49:55.34234Z",
+        "settledAt": "2026-05-14T10:49:55.34234Z",
+        "challengerTankName": "山大王",
+        "challengerStyleSeed": 12490,
+        "challengerAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <filter id=\"texture\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"3\" result=\"noise\"/>\n      <feDiffuseLighting in=\"noise\" lighting-color=\"#8B4513\" surfaceScale=\"2\">\n        <feDistantLight azimuth=\"45\" elevation=\"60\"/>\n      </feDiffuseLighting>\n      <feComposite in2=\"SourceGraphic\" operator=\"in\"/>\n    </filter>\n  </defs>\n\n  <g id=\"tank-body\" transform=\"translate(256, 256)\">\n    <!-- Tracks -->\n    <g id=\"tracks\">\n      <rect x=\"-160\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <rect x=\"100\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <g fill=\"#A1887F\" stroke=\"#3E2723\" stroke-width=\"4\">\n        <path d=\"M-130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n      </g>\n    </g>\n\n    <!-- Chassis Body -->\n    <ellipse cx=\"0\" cy=\"0\" rx=\"110\" ry=\"140\" fill=\"#8B4513\" filter=\"url(#texture)\"/>\n    <path d=\"M-90 -50 C-120 -20, -120 20, -90 50 M90 -50 C120 -20, 120 20, 90 50\" fill=\"none\" stroke=\"#6D4C41\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n\n    <!-- Toilet Paper Rolls -->\n    <rect x=\"-140\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n    <rect x=\"120\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n\n    <!-- Rear Flap -->\n    <rect x=\"-30\" y=\"110\" width=\"60\" height=\"30\" rx=\"5\" fill=\"#795548\"/>\n    <circle cx=\"0\" cy=\"125\" r=\"8\" fill=\"#5D4037\" stroke=\"#3E2723\" stroke-width=\"2\"/>\n    <path d=\"M-5 120 l10 10 M-5 130 l10 -10\" stroke=\"#EF5350\" stroke-width=\"3\"/>\n\n    <!-- Turret -->\n    <g id=\"turret\">\n      <path d=\"M-40 20 Q-50 -40 0 -60 Q50 -40 40 20 Z\" fill=\"#795548\"/>\n      <!-- Eyes -->\n      <circle cx=\"-15\" cy=\"-20\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"-15\" cy=\"-20\" r=\"4\" fill=\"black\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"4\" fill=\"black\"/>\n      <!-- Tears -->\n      <path d=\"M25 -25 Q30 -10 25 0\" stroke=\"#81D4FA\" stroke-width=\"4\" fill=\"none\"/>\n      <!-- Corn Antenna -->\n      <path d=\"M0 -60 L0 -80\" stroke=\"#8D6E63\" stroke-width=\"4\"/>\n      <circle cx=\"0\" cy=\"-85\" r=\"8\" fill=\"#FDD835\"/>\n    </g>\n\n    <!-- Main Cannon -->\n    <path d=\"M-10 -50 Q-20 -150 0 -180\" fill=\"none\" stroke=\"#5D4037\" stroke-width=\"20\" stroke-linecap=\"round\"/>\n    <!-- Duck -->\n    <g transform=\"translate(0, -180) rotate(-20)\">\n      <path d=\"M-15 -10 h30 v15 q0 10 -10 10 q-10 0 -10 -10 z\" fill=\"#FFEB3B\"/>\n      <path d=\"M-15 0 q-10 0 -10 -5\" fill=\"none\" stroke=\"#FFEB3B\" stroke-width=\"5\"/>\n    </g>\n\n    <!-- Exhaust -->\n    <circle cx=\"-60\" cy=\"100\" r=\"10\" fill=\"#3E2723\"/>\n    <circle cx=\"-65\" cy=\"115\" r=\"6\" fill=\"#B3E5FC\" opacity=\"0.6\"/>\n    <circle cx=\"-75\" cy=\"125\" r=\"4\" fill=\"#B3E5FC\" opacity=\"0.4\"/>\n  </g>\n</svg>",
+        "challengerSubmittedBy": "Codex",
+        "challengerRankScore": 788,
+        "challengerRankTier": "gold",
+        "challengerRankDivision": 2,
+        "challengerRankPoints": 88,
+        "defenderTankName": "🍺",
+        "defenderStyleSeed": 49731,
+        "defenderAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <linearGradient id=\"armorGrad\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" style=\"stop-color:#ff0080;stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:#800040;stop-opacity:1\" />\n    </linearGradient>\n    <linearGradient id=\"metalGrad\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" style=\"stop-color:#333;stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:#1a1a1a;stop-opacity:1\" />\n    </linearGradient>\n  </defs>\n\n  <!-- Left Track -->\n  <rect x=\"80\" y=\"100\" width=\"80\" height=\"312\" rx=\"15\" fill=\"#111\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"95\" y=\"120\" width=\"50\" height=\"272\" rx=\"5\" fill=\"#333\"/>\n  \n  <!-- Right Track -->\n  <rect x=\"352\" y=\"100\" width=\"80\" height=\"312\" rx=\"15\" fill=\"#111\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"367\" y=\"120\" width=\"50\" height=\"272\" rx=\"5\" fill=\"#333\"/>\n\n  <!-- Main Chassis -->\n  <rect x=\"140\" y=\"150\" width=\"232\" height=\"212\" rx=\"20\" fill=\"url(#armorGrad)\" stroke=\"#ff0080\" stroke-width=\"6\"/>\n  \n  <!-- Beer Emblem Detail -->\n  <circle cx=\"256\" cy=\"256\" r=\"30\" fill=\"none\" stroke=\"#fff\" stroke-width=\"8\" stroke-dasharray=\"8 8\"/>\n  <rect x=\"236\" y=\"241\" width=\"40\" height=\"30\" rx=\"4\" fill=\"#ffcc00\"/>\n  <rect x=\"266\" y=\"246\" width=\"6\" height=\"20\" rx=\"2\" fill=\"#ffcc00\"/>\n\n  <!-- Turret -->\n  <rect x=\"196\" y=\"190\" width=\"120\" height=\"132\" rx=\"10\" fill=\"#222\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  \n  <!-- Cannon -->\n  <rect x=\"241\" y=\"60\" width=\"30\" height=\"150\" rx=\"5\" fill=\"#444\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"246\" y=\"50\" width=\"20\" height=\"30\" rx=\"5\" fill=\"#ff0080\"/>\n\n  <!-- Armor Highlights -->\n  <polyline points=\"145,155 367,155 367,357\" fill=\"none\" stroke=\"#fff\" stroke-width=\"4\" stroke-opacity=\"0.3\"/>\n  <polyline points=\"201,195 311,195 311,317\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-opacity=\"0.2\"/>\n</svg>",
+        "defenderSubmittedBy": "Codex",
+        "defenderRankScore": 791,
+        "defenderRankTier": "gold",
+        "defenderRankDivision": 2,
+        "defenderRankPoints": 91,
+        "winnerTankName": "山大王",
+        "rankChanges": [
+          {
+            "matchId": 223048,
+            "tankId": 947,
+            "beforeRankScore": 770,
+            "afterRankScore": 788,
+            "delta": 18,
+            "beforeRankTier": "gold",
+            "afterRankTier": "gold",
+            "beforeRankDivision": 2,
+            "afterRankDivision": 2,
+            "beforeRankPoints": 70,
+            "afterRankPoints": 88,
+            "matchQuality": 1,
+            "effectiveWinWeight": 1
+          },
+          {
+            "matchId": 223048,
+            "tankId": 1004,
+            "beforeRankScore": 806,
+            "afterRankScore": 791,
+            "delta": -15,
+            "beforeRankTier": "gold",
+            "afterRankTier": "gold",
+            "beforeRankDivision": 1,
+            "afterRankDivision": 2,
+            "beforeRankPoints": 6,
+            "afterRankPoints": 91,
+            "matchQuality": 1,
+            "effectiveWinWeight": 0
+          }
+        ]
+      }
+    },
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 1004,
+      "mapId": "arena",
+      "round": 1,
+      "startedAt": "2026-05-14T10:49:58.087Z",
+      "finishedAt": "2026-05-14T10:50:00.020Z",
+      "matchId": "mat_5j1x99z2EYZ3EMSuC",
+      "replayPath": "agentank/lab/data/matches/mat_5j1x99z2EYZ3EMSuC.json",
+      "challengeResponse": {
+        "id": 223064,
+        "urlId": "mat_5j1x99z2EYZ3EMSuC",
+        "challengerTankId": 947,
+        "defenderTankId": 1004,
+        "challengerUserId": 756,
+        "challengerOwnerUserId": 756,
+        "defenderOwnerUserId": 46,
+        "mapId": "arena",
+        "mapHash": "4b23f0cc66daed3f7d4157ae17bcab9f3ca91708b63a22e2c221d58bb2f43352",
+        "challengerCodeHash": "a584a5a60a2a1047b7caacb70a25a14032172200d24709beb451f4d48e762315",
+        "defenderCodeHash": "6174f9f6d77cb64f659dbe5ae6ddf236dd5c5fef97c5c15c1a443ee824cb960d",
+        "status": "settled",
+        "source": "agent",
+        "winnerTankId": 947,
+        "resultReason": "star",
+        "excitementScore": 28,
+        "replayHash": "c2ba3fec3a8144fa86bda994cccf038483acbc50c51e3f98640bae7a116a8ac8",
+        "replayData": {
+          "excitementScore": 28,
+          "map": {
+            "id": "arena",
+            "map": [
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "o",
+                ".",
+                ".",
+                ".",
+                "o",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "o",
+                ".",
+                "x",
+                ".",
+                "o",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "o",
+                ".",
+                "x",
+                ".",
+                "o",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "o",
+                ".",
+                "x",
+                ".",
+                "o",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "o",
+                ".",
+                ".",
+                ".",
+                "o",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ]
+            ],
+            "name": "训练场",
+            "players": [
+              {
+                "direction": "left",
+                "position": [
+                  13,
+                  9
+                ]
+              },
+              {
+                "direction": "down",
+                "position": [
+                  1,
+                  9
+                ]
+              }
+            ],
+            "raw": "xxxxxxxxxxxxxxx|xa...........Bx|x.............x|x....ooooo....x|x.............x|x.....xxx.....x|x.............x|x....ooooo....x|x.............x|xC...........dx|xxxxxxxxxxxxxxx"
+          },
+          "matchSeed": 7635513746952340000,
+          "names": [
+            "山大王",
+            "🍺"
+          ],
+          "replay": {
+            "meta": {
+              "excitementScore": 28,
+              "matchSeed": 7635513746952340000,
+              "players": [
+                {
+                  "runTime": 22,
+                  "tank": {
+                    "direction": "left",
+                    "id": "3bd9cbe4",
+                    "position": [
+                      13,
+                      9
+                    ]
+                  }
+                },
+                {
+                  "runTime": 4,
+                  "tank": {
+                    "direction": "down",
+                    "id": "03f87c2b",
+                    "position": [
+                      1,
+                      9
+                    ]
+                  }
+                }
+              ],
+              "result": {
+                "action": "end",
+                "reason": "star",
+                "type": "game",
+                "winner": 0
+              }
+            },
+            "records": [
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    8,
+                    4
+                  ],
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "cast",
+                  "by": 0,
+                  "skillType": "teleport",
+                  "sourceObjectId": "3bd9cbe4",
+                  "type": "skill"
+                },
+                {
+                  "action": "applied",
+                  "by": 0,
+                  "from": [
+                    13,
+                    9
+                  ],
+                  "skillType": "teleport",
+                  "sourceObjectId": "3bd9cbe4",
+                  "targetObjectId": "3bd9cbe4",
+                  "to": [
+                    8,
+                    4
+                  ],
+                  "type": "skill"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "03f87c2b",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 0,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "3bd9cbe4",
+                  "position": [
+                    7,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "03f87c2b",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "3bd9cbe4",
+                  "position": [
+                    6,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "03f87c2b",
+                  "position": [
+                    1,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "3bd9cbe4",
+                  "position": [
+                    5,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "03f87c2b",
+                  "position": [
+                    1,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "3bd9cbe4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "03f87c2b",
+                  "position": [
+                    1,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "3bd9cbe4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "03f87c2b",
+                  "position": [
+                    1,
+                    5
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "3bd9cbe4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "03f87c2b",
+                  "position": [
+                    1,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "3bd9cbe4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "03f87c2b",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "direction": "left",
+                  "objectId": "044c166f",
+                  "tank": {
+                    "direction": "left",
+                    "id": "3bd9cbe4",
+                    "position": [
+                      5,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "created",
+                  "direction": "right",
+                  "objectId": "fac35267",
+                  "tank": {
+                    "direction": "right",
+                    "id": "03f87c2b",
+                    "position": [
+                      1,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "left",
+                  "objectId": "044c166f",
+                  "order": 0,
+                  "position": [
+                    4,
+                    4
+                  ],
+                  "tank": {
+                    "direction": "left",
+                    "id": "3bd9cbe4",
+                    "position": [
+                      5,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "left",
+                  "objectId": "044c166f",
+                  "order": 1,
+                  "position": [
+                    3,
+                    4
+                  ],
+                  "tank": {
+                    "direction": "left",
+                    "id": "3bd9cbe4",
+                    "position": [
+                      5,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "fac35267",
+                  "order": 0,
+                  "position": [
+                    2,
+                    4
+                  ],
+                  "tank": {
+                    "direction": "right",
+                    "id": "03f87c2b",
+                    "position": [
+                      1,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "fac35267",
+                  "order": 1,
+                  "position": [
+                    3,
+                    4
+                  ],
+                  "tank": {
+                    "direction": "right",
+                    "id": "03f87c2b",
+                    "position": [
+                      1,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "3bd9cbe4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "direction": "left",
+                  "objectId": "044c166f",
+                  "order": 0,
+                  "position": [
+                    2,
+                    4
+                  ],
+                  "tank": {
+                    "direction": "up",
+                    "id": "3bd9cbe4",
+                    "position": [
+                      5,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "left",
+                  "objectId": "044c166f",
+                  "order": 1,
+                  "position": [
+                    1,
+                    4
+                  ],
+                  "tank": {
+                    "direction": "up",
+                    "id": "3bd9cbe4",
+                    "position": [
+                      5,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "direction": "left",
+                  "objectId": "044c166f",
+                  "tank": {
+                    "direction": "up",
+                    "id": "3bd9cbe4",
+                    "position": [
+                      5,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "index": 0,
+                  "objectId": "03f87c2b",
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "fac35267",
+                  "order": 0,
+                  "position": [
+                    4,
+                    4
+                  ],
+                  "tank": {
+                    "crashed": true,
+                    "direction": "right",
+                    "id": "03f87c2b",
+                    "position": [
+                      1,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "fac35267",
+                  "order": 1,
+                  "position": [
+                    5,
+                    4
+                  ],
+                  "tank": {
+                    "crashed": true,
+                    "direction": "right",
+                    "id": "03f87c2b",
+                    "position": [
+                      1,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "direction": "right",
+                  "objectId": "fac35267",
+                  "tank": {
+                    "crashed": true,
+                    "direction": "right",
+                    "id": "03f87c2b",
+                    "position": [
+                      1,
+                      4
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "index": 1,
+                  "objectId": "3bd9cbe4",
+                  "type": "tank"
+                }
+              ]
+            ]
+          }
+        },
+        "runnerIdentity": "digitalocean-function",
+        "createdAt": "2026-05-14T10:49:59.651139Z",
+        "settledAt": "2026-05-14T10:49:59.651139Z",
+        "challengerTankName": "山大王",
+        "challengerStyleSeed": 12490,
+        "challengerAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <filter id=\"texture\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"3\" result=\"noise\"/>\n      <feDiffuseLighting in=\"noise\" lighting-color=\"#8B4513\" surfaceScale=\"2\">\n        <feDistantLight azimuth=\"45\" elevation=\"60\"/>\n      </feDiffuseLighting>\n      <feComposite in2=\"SourceGraphic\" operator=\"in\"/>\n    </filter>\n  </defs>\n\n  <g id=\"tank-body\" transform=\"translate(256, 256)\">\n    <!-- Tracks -->\n    <g id=\"tracks\">\n      <rect x=\"-160\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <rect x=\"100\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <g fill=\"#A1887F\" stroke=\"#3E2723\" stroke-width=\"4\">\n        <path d=\"M-130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n      </g>\n    </g>\n\n    <!-- Chassis Body -->\n    <ellipse cx=\"0\" cy=\"0\" rx=\"110\" ry=\"140\" fill=\"#8B4513\" filter=\"url(#texture)\"/>\n    <path d=\"M-90 -50 C-120 -20, -120 20, -90 50 M90 -50 C120 -20, 120 20, 90 50\" fill=\"none\" stroke=\"#6D4C41\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n\n    <!-- Toilet Paper Rolls -->\n    <rect x=\"-140\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n    <rect x=\"120\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n\n    <!-- Rear Flap -->\n    <rect x=\"-30\" y=\"110\" width=\"60\" height=\"30\" rx=\"5\" fill=\"#795548\"/>\n    <circle cx=\"0\" cy=\"125\" r=\"8\" fill=\"#5D4037\" stroke=\"#3E2723\" stroke-width=\"2\"/>\n    <path d=\"M-5 120 l10 10 M-5 130 l10 -10\" stroke=\"#EF5350\" stroke-width=\"3\"/>\n\n    <!-- Turret -->\n    <g id=\"turret\">\n      <path d=\"M-40 20 Q-50 -40 0 -60 Q50 -40 40 20 Z\" fill=\"#795548\"/>\n      <!-- Eyes -->\n      <circle cx=\"-15\" cy=\"-20\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"-15\" cy=\"-20\" r=\"4\" fill=\"black\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"4\" fill=\"black\"/>\n      <!-- Tears -->\n      <path d=\"M25 -25 Q30 -10 25 0\" stroke=\"#81D4FA\" stroke-width=\"4\" fill=\"none\"/>\n      <!-- Corn Antenna -->\n      <path d=\"M0 -60 L0 -80\" stroke=\"#8D6E63\" stroke-width=\"4\"/>\n      <circle cx=\"0\" cy=\"-85\" r=\"8\" fill=\"#FDD835\"/>\n    </g>\n\n    <!-- Main Cannon -->\n    <path d=\"M-10 -50 Q-20 -150 0 -180\" fill=\"none\" stroke=\"#5D4037\" stroke-width=\"20\" stroke-linecap=\"round\"/>\n    <!-- Duck -->\n    <g transform=\"translate(0, -180) rotate(-20)\">\n      <path d=\"M-15 -10 h30 v15 q0 10 -10 10 q-10 0 -10 -10 z\" fill=\"#FFEB3B\"/>\n      <path d=\"M-15 0 q-10 0 -10 -5\" fill=\"none\" stroke=\"#FFEB3B\" stroke-width=\"5\"/>\n    </g>\n\n    <!-- Exhaust -->\n    <circle cx=\"-60\" cy=\"100\" r=\"10\" fill=\"#3E2723\"/>\n    <circle cx=\"-65\" cy=\"115\" r=\"6\" fill=\"#B3E5FC\" opacity=\"0.6\"/>\n    <circle cx=\"-75\" cy=\"125\" r=\"4\" fill=\"#B3E5FC\" opacity=\"0.4\"/>\n  </g>\n</svg>",
+        "challengerSubmittedBy": "Codex",
+        "challengerRankScore": 793,
+        "challengerRankTier": "gold",
+        "challengerRankDivision": 2,
+        "challengerRankPoints": 93,
+        "defenderTankName": "🍺",
+        "defenderStyleSeed": 49731,
+        "defenderAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <linearGradient id=\"armorGrad\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" style=\"stop-color:#ff0080;stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:#800040;stop-opacity:1\" />\n    </linearGradient>\n    <linearGradient id=\"metalGrad\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" style=\"stop-color:#333;stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:#1a1a1a;stop-opacity:1\" />\n    </linearGradient>\n  </defs>\n\n  <!-- Left Track -->\n  <rect x=\"80\" y=\"100\" width=\"80\" height=\"312\" rx=\"15\" fill=\"#111\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"95\" y=\"120\" width=\"50\" height=\"272\" rx=\"5\" fill=\"#333\"/>\n  \n  <!-- Right Track -->\n  <rect x=\"352\" y=\"100\" width=\"80\" height=\"312\" rx=\"15\" fill=\"#111\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"367\" y=\"120\" width=\"50\" height=\"272\" rx=\"5\" fill=\"#333\"/>\n\n  <!-- Main Chassis -->\n  <rect x=\"140\" y=\"150\" width=\"232\" height=\"212\" rx=\"20\" fill=\"url(#armorGrad)\" stroke=\"#ff0080\" stroke-width=\"6\"/>\n  \n  <!-- Beer Emblem Detail -->\n  <circle cx=\"256\" cy=\"256\" r=\"30\" fill=\"none\" stroke=\"#fff\" stroke-width=\"8\" stroke-dasharray=\"8 8\"/>\n  <rect x=\"236\" y=\"241\" width=\"40\" height=\"30\" rx=\"4\" fill=\"#ffcc00\"/>\n  <rect x=\"266\" y=\"246\" width=\"6\" height=\"20\" rx=\"2\" fill=\"#ffcc00\"/>\n\n  <!-- Turret -->\n  <rect x=\"196\" y=\"190\" width=\"120\" height=\"132\" rx=\"10\" fill=\"#222\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  \n  <!-- Cannon -->\n  <rect x=\"241\" y=\"60\" width=\"30\" height=\"150\" rx=\"5\" fill=\"#444\" stroke=\"#ff0080\" stroke-width=\"4\"/>\n  <rect x=\"246\" y=\"50\" width=\"20\" height=\"30\" rx=\"5\" fill=\"#ff0080\"/>\n\n  <!-- Armor Highlights -->\n  <polyline points=\"145,155 367,155 367,357\" fill=\"none\" stroke=\"#fff\" stroke-width=\"4\" stroke-opacity=\"0.3\"/>\n  <polyline points=\"201,195 311,195 311,317\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-opacity=\"0.2\"/>\n</svg>",
+        "defenderSubmittedBy": "Codex",
+        "defenderRankScore": 787,
+        "defenderRankTier": "gold",
+        "defenderRankDivision": 2,
+        "defenderRankPoints": 87,
+        "winnerTankName": "山大王",
+        "rankChanges": [
+          {
+            "matchId": 223064,
+            "tankId": 947,
+            "beforeRankScore": 788,
+            "afterRankScore": 793,
+            "delta": 5,
+            "beforeRankTier": "gold",
+            "afterRankTier": "gold",
+            "beforeRankDivision": 2,
+            "afterRankDivision": 2,
+            "beforeRankPoints": 88,
+            "afterRankPoints": 93,
+            "matchQuality": 0.25,
+            "effectiveWinWeight": 0.2
+          },
+          {
+            "matchId": 223064,
+            "tankId": 1004,
+            "beforeRankScore": 791,
+            "afterRankScore": 787,
+            "delta": -4,
+            "beforeRankTier": "gold",
+            "afterRankTier": "gold",
+            "beforeRankDivision": 2,
+            "afterRankDivision": 2,
+            "beforeRankPoints": 91,
+            "afterRankPoints": 87,
+            "matchQuality": 0.25,
+            "effectiveWinWeight": 0
+          }
+        ]
+      }
+    }
+  ],
+  "finishedAt": "2026-05-14T10:50:00.021Z"
+}
