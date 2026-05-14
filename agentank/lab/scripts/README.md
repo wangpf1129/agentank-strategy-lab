@@ -57,6 +57,17 @@ Files are saved under `agentank/lab/data/fleet/<codename>/` by default:
 
 Responses are sanitized before storage. Real tank keys must still stay outside the repository.
 
+## Simulate Candidate Code
+
+Use this before publishing. It sends private simulations with candidate code and stores sanitized replay JSON under `agentank/lab/data/simulations/<run-id>/`.
+
+```bash
+AGENTANK_FREEZE_KEY=<key> AGENTANK_TELEPORT_KEY=<key> \
+  node agentank/lab/scripts/simulate-candidates.mjs \
+  --code freeze-main=agentank/tank-captain-freeze-control-v7-candidate.js \
+  --code teleport-main=agentank/teleport-main-v6-candidate.js
+```
+
 ## Run Real Challenge Batches
 
 Use this for controlled public match sampling after a candidate is published. Real challenges affect public records and ELO, so the script defaults to dry-run. Add `--execute` only when the opponent list, maps, repeat count, and limit are intentional.

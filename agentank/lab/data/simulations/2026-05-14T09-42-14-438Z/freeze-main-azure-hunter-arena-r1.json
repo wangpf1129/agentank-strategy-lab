@@ -1,0 +1,872 @@
+{
+  "opponentId": "azure-hunter",
+  "opponentName": "Azure Hunter",
+  "mapId": "arena",
+  "usedCandidateCode": true,
+  "resultReason": "crashed",
+  "winner": "me",
+  "replayData": {
+    "map": {
+      "id": "arena",
+      "name": "训练场",
+      "map": [
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ]
+      ],
+      "players": [
+        {
+          "direction": "left",
+          "position": [
+            13,
+            9
+          ]
+        },
+        {
+          "direction": "down",
+          "position": [
+            1,
+            9
+          ]
+        }
+      ],
+      "raw": "xxxxxxxxxxxxxxx|xa...........Bx|x.............x|x....ooooo....x|x.............x|x.....xxx.....x|x.............x|x....ooooo....x|x.............x|xC...........dx|xxxxxxxxxxxxxxx"
+    },
+    "replay": {
+      "meta": {
+        "players": [
+          {
+            "tank": {
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ],
+              "direction": "left"
+            },
+            "runTime": 37
+          },
+          {
+            "tank": {
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ],
+              "direction": "down"
+            }
+          }
+        ],
+        "result": {
+          "action": "end",
+          "reason": "crashed",
+          "type": "game",
+          "winner": 0
+        },
+        "excitementScore": 27,
+        "matchSeed": 3612683934921473000
+      },
+      "records": [
+        [
+          {
+            "action": "created",
+            "position": [
+              2,
+              1
+            ],
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "freeze",
+            "sourceObjectId": "9366d884",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "durationFrames": 2,
+            "skillType": "freeze",
+            "sourceObjectId": "9366d884",
+            "targetObjectId": "8b2bc16d",
+            "type": "skill"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "tank": {
+              "direction": "left",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 0,
+            "position": [
+              12,
+              9
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 1,
+            "position": [
+              11,
+              9
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "expired",
+            "by": 1,
+            "skillType": "freeze",
+            "targetObjectId": "8b2bc16d",
+            "type": "skill"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "9366d884",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "774d7fb4",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 0,
+            "position": [
+              10,
+              9
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 1,
+            "position": [
+              9,
+              9
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "774d7fb4",
+            "order": 0,
+            "position": [
+              1,
+              10
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "774d7fb4",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "9366d884",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "9e1134c9",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 0,
+            "position": [
+              8,
+              9
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 1,
+            "position": [
+              7,
+              9
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "9e1134c9",
+            "order": 0,
+            "position": [
+              1,
+              10
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "9e1134c9",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "9366d884",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "32dbc50b",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 0,
+            "position": [
+              6,
+              9
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 1,
+            "position": [
+              5,
+              9
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "32dbc50b",
+            "order": 0,
+            "position": [
+              1,
+              10
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "32dbc50b",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "9366d884",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "bde47a7b",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 0,
+            "position": [
+              4,
+              9
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 1,
+            "position": [
+              3,
+              9
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "bde47a7b",
+            "order": 0,
+            "position": [
+              1,
+              10
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "bde47a7b",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "9366d884",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "fa3cbd53",
+            "tank": {
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 0,
+            "position": [
+              2,
+              9
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "order": 1,
+            "position": [
+              1,
+              9
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "left",
+            "objectId": "ff61a34b",
+            "tank": {
+              "direction": "up",
+              "id": "9366d884",
+              "position": [
+                13,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "index": 0,
+            "objectId": "8b2bc16d",
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "fa3cbd53",
+            "order": 0,
+            "position": [
+              1,
+              10
+            ],
+            "tank": {
+              "crashed": true,
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "fa3cbd53",
+            "tank": {
+              "crashed": true,
+              "direction": "down",
+              "id": "8b2bc16d",
+              "position": [
+                1,
+                9
+              ]
+            },
+            "type": "bullet"
+          }
+        ]
+      ]
+    },
+    "names": [
+      "坦克队长",
+      "Azure Hunter"
+    ],
+    "excitementScore": 27,
+    "matchSeed": 3612683934921473000
+  },
+  "simulationAt": "2026-05-14T09:42:49.607024348Z",
+  "simulationCooldownSeconds": 2,
+  "nextSimulationAt": "2026-05-14T09:42:51.158199Z",
+  "trainingBots": [
+    {
+      "id": "nova-scout",
+      "name": "Nova Scout",
+      "description": "Balanced pathing bot for baseline tests."
+    },
+    {
+      "id": "azure-hunter",
+      "name": "Azure Hunter",
+      "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+    },
+    {
+      "id": "crimson-bastion",
+      "name": "Crimson Bastion",
+      "description": "Defensive control bot that contests stars and lanes."
+    }
+  ]
+}

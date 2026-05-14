@@ -4,10 +4,11 @@ import { test } from "node:test";
 import {
   createsImmediateFireThreat,
   hiddenCorridorThreat,
+  overloadThreatField,
   overloadShotThreat,
 } from "../lib/tactical-threats.mjs";
 
-const openArena = Array.from({ length: 16 }, () => Array.from({ length: 11 }, () => "."));
+const openArena = Array.from({ length: 18 }, () => Array.from({ length: 18 }, () => "."));
 
 test("overload shot threatens same lane and adjacent offset lane", () => {
   const enemy = { position: [2, 2], direction: "right" };
@@ -15,6 +16,32 @@ test("overload shot threatens same lane and adjacent offset lane", () => {
   assert.equal(overloadShotThreat(openArena, enemy, [12, 2], 6), true);
   assert.equal(overloadShotThreat(openArena, enemy, [12, 3], 6), true);
   assert.equal(overloadShotThreat(openArena, enemy, [12, 4], 6), false);
+});
+
+test("active overload threatens delayed adjacent-lane setups even after turning", () => {
+  const enemy = { position: [16, 12], direction: "up" };
+
+  assert.equal(
+    overloadThreatField(openArena, enemy, [8, 13], { active: true, maxFrames: 5 }),
+    true,
+  );
+  assert.equal(
+    overloadThreatField(openArena, enemy, [8, 15], { active: true, maxFrames: 5 }),
+    false,
+  );
+});
+
+test("bounded overload setup catches the #001 opener without banning longer star lanes", () => {
+  const enemy = { position: [16, 12], direction: "down" };
+
+  assert.equal(
+    overloadThreatField(openArena, enemy, [8, 13], { active: true, maxFrames: 4 }),
+    true,
+  );
+  assert.equal(
+    overloadThreatField(openArena, enemy, [7, 13], { active: true, maxFrames: 4 }),
+    false,
+  );
 });
 
 test("immediate fire threat includes one-turn aim when no bullet is active", () => {

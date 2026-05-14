@@ -90,6 +90,31 @@ export function overloadShotThreat(map, enemy, target, maxFrames = 4) {
   return false;
 }
 
+function laneThreatFrom(map, source, facing, target, maxCells) {
+  if (!facing || !DELTA[facing]) return false;
+  if (!losFrom(map, source, facing, target)) return false;
+  return manhattan(source, target) <= maxCells;
+}
+
+export function overloadThreatField(map, enemy, target, options = {}) {
+  if (!enemy) return false;
+  if (!options.active) return overloadShotThreat(map, enemy, target, options.maxFrames ?? 4);
+
+  const maxCells = (options.maxFrames ?? 5) * 2;
+  for (const direction of DIRS) {
+    const [dx, dy] = DELTA[direction];
+    if (laneThreatFrom(map, enemy.position, direction, target, maxCells)) return true;
+
+    const sideOffsets = dx !== 0 ? [[0, -1], [0, 1]] : [[-1, 0], [1, 0]];
+    for (const [ox, oy] of sideOffsets) {
+      const shiftedSource = [enemy.position[0] + ox, enemy.position[1] + oy];
+      if (blocked(map, shiftedSource[0], shiftedSource[1])) continue;
+      if (laneThreatFrom(map, shiftedSource, direction, target, maxCells)) return true;
+    }
+  }
+  return false;
+}
+
 export function hiddenCorridorThreat({
   currentFrame,
   lastSeenFrame,
