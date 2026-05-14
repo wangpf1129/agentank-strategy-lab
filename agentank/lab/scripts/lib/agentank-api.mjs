@@ -14,6 +14,16 @@ export function buildMatchUrl(input) {
   return `${AGENTANK_BASE_URL}/api/matches/${matchId}/agent.json`;
 }
 
+export function buildAgentApiUrl(path, params = {}) {
+  const url = new URL(path, AGENTANK_BASE_URL);
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== null) {
+      url.searchParams.set(key, String(value));
+    }
+  }
+  return url.toString();
+}
+
 export function safeTimestamp(date = new Date()) {
   return date.toISOString().replace(/:/g, "-").replace(".", "-");
 }
@@ -21,4 +31,20 @@ export function safeTimestamp(date = new Date()) {
 export function authHeaders(key = "") {
   const value = String(key).trim();
   return value ? { Authorization: `Bearer ${value}` } : {};
+}
+
+function isSensitiveKey(key) {
+  return /(key|token|secret|authorization|password)/i.test(key);
+}
+
+export function sanitizeForStorage(value) {
+  if (Array.isArray(value)) return value.map((item) => sanitizeForStorage(item));
+  if (!value || typeof value !== "object") return value;
+
+  return Object.fromEntries(
+    Object.entries(value).map(([key, nested]) => [
+      key,
+      isSensitiveKey(key) ? "[REDACTED]" : sanitizeForStorage(nested),
+    ]),
+  );
 }

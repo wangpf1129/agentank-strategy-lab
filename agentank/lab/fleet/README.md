@@ -6,10 +6,10 @@ Do not store tank keys in this repository. Use environment variables when a scri
 
 ## Primary Tanks
 
-| Codename | Skill | Role | Environment variable |
-| --- | --- | --- | --- |
-| `freeze-main` | Freeze | Control, tempo denial, star safety, anti-overload discipline | `AGENTANK_FREEZE_KEY` |
-| `teleport-main` | Teleport | Star theft, map tempo, surprise positioning, opening pressure | `AGENTANK_TELEPORT_KEY` |
+| Codename | Tank | Tank id | Skill | Role | Environment variable |
+| --- | --- | ---: | --- | --- | --- |
+| `freeze-main` | 坦克队长 | 941 | Freeze | Control, tempo denial, star safety, anti-overload discipline | `AGENTANK_FREEZE_KEY` |
+| `teleport-main` | 山大王 | 947 | Teleport | Star theft, map tempo, surprise positioning, opening pressure | `AGENTANK_TELEPORT_KEY` |
 
 ## Fleet Goals
 
@@ -47,4 +47,3 @@ Primary research themes:
 - Teleport target validation.
 - Post-teleport fire lock awareness.
 - Star-theft routes that do not turn into direct-line deaths.
-

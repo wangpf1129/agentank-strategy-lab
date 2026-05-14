@@ -1,0 +1,87 @@
+{
+  "tank": {
+    "id": 947,
+    "urlId": "tnk_ChPX0u2wrUnJMQFct",
+    "ownerUserId": 756,
+    "ownerDisplayName": "Wangpf",
+    "ownerAvatarUri": "https://avatars.githubusercontent.com/u/66075776?v=4",
+    "name": "山大王",
+    "styleSeed": 12490,
+    "appearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <filter id=\"texture\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"3\" result=\"noise\"/>\n      <feDiffuseLighting in=\"noise\" lighting-color=\"#8B4513\" surfaceScale=\"2\">\n        <feDistantLight azimuth=\"45\" elevation=\"60\"/>\n      </feDiffuseLighting>\n      <feComposite in2=\"SourceGraphic\" operator=\"in\"/>\n    </filter>\n  </defs>\n\n  <g id=\"tank-body\" transform=\"translate(256, 256)\">\n    <!-- Tracks -->\n    <g id=\"tracks\">\n      <rect x=\"-160\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <rect x=\"100\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <g fill=\"#A1887F\" stroke=\"#3E2723\" stroke-width=\"4\">\n        <path d=\"M-130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n      </g>\n    </g>\n\n    <!-- Chassis Body -->\n    <ellipse cx=\"0\" cy=\"0\" rx=\"110\" ry=\"140\" fill=\"#8B4513\" filter=\"url(#texture)\"/>\n    <path d=\"M-90 -50 C-120 -20, -120 20, -90 50 M90 -50 C120 -20, 120 20, 90 50\" fill=\"none\" stroke=\"#6D4C41\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n\n    <!-- Toilet Paper Rolls -->\n    <rect x=\"-140\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n    <rect x=\"120\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n\n    <!-- Rear Flap -->\n    <rect x=\"-30\" y=\"110\" width=\"60\" height=\"30\" rx=\"5\" fill=\"#795548\"/>\n    <circle cx=\"0\" cy=\"125\" r=\"8\" fill=\"#5D4037\" stroke=\"#3E2723\" stroke-width=\"2\"/>\n    <path d=\"M-5 120 l10 10 M-5 130 l10 -10\" stroke=\"#EF5350\" stroke-width=\"3\"/>\n\n    <!-- Turret -->\n    <g id=\"turret\">\n      <path d=\"M-40 20 Q-50 -40 0 -60 Q50 -40 40 20 Z\" fill=\"#795548\"/>\n      <!-- Eyes -->\n      <circle cx=\"-15\" cy=\"-20\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"-15\" cy=\"-20\" r=\"4\" fill=\"black\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"4\" fill=\"black\"/>\n      <!-- Tears -->\n      <path d=\"M25 -25 Q30 -10 25 0\" stroke=\"#81D4FA\" stroke-width=\"4\" fill=\"none\"/>\n      <!-- Corn Antenna -->\n      <path d=\"M0 -60 L0 -80\" stroke=\"#8D6E63\" stroke-width=\"4\"/>\n      <circle cx=\"0\" cy=\"-85\" r=\"8\" fill=\"#FDD835\"/>\n    </g>\n\n    <!-- Main Cannon -->\n    <path d=\"M-10 -50 Q-20 -150 0 -180\" fill=\"none\" stroke=\"#5D4037\" stroke-width=\"20\" stroke-linecap=\"round\"/>\n    <!-- Duck -->\n    <g transform=\"translate(0, -180) rotate(-20)\">\n      <path d=\"M-15 -10 h30 v15 q0 10 -10 10 q-10 0 -10 -10 z\" fill=\"#FFEB3B\"/>\n      <path d=\"M-15 0 q-10 0 -10 -5\" fill=\"none\" stroke=\"#FFEB3B\" stroke-width=\"5\"/>\n    </g>\n\n    <!-- Exhaust -->\n    <circle cx=\"-60\" cy=\"100\" r=\"10\" fill=\"#3E2723\"/>\n    <circle cx=\"-65\" cy=\"115\" r=\"6\" fill=\"#B3E5FC\" opacity=\"0.6\"/>\n    <circle cx=\"-75\" cy=\"125\" r=\"4\" fill=\"#B3E5FC\" opacity=\"0.4\"/>\n  </g>\n</svg>",
+    "battleMode": "default",
+    "codeVersion": 1,
+    "codeHash": "8c636d258b88c8349cfe367ada05ba806228fe65d5bb3b4df01fc1e0c8bb5bc1",
+    "isActive": true,
+    "isPublic": true,
+    "elo": 1242,
+    "wins": 8,
+    "losses": 6,
+    "draws": 0,
+    "skillType": "teleport",
+    "hasAgentKey": "[REDACTED]",
+    "agentKeyMasked": "[REDACTED]",
+    "agentGuideUrl": "/agent-guide",
+    "createdAt": "2026-05-14T06:50:24.001611Z",
+    "updatedAt": "2026-05-14T07:34:45.415536Z"
+  },
+  "skill": {
+    "type": "teleport",
+    "name": "Teleport",
+    "hasSkill": true
+  },
+  "latestCode": "function onIdle(me, enemy, game) {\n  var myPos = me.tank.position;\n  var myDir = me.tank.direction;\n  var enemyTank = enemy.tank;\n\n  if (enemyTank && canShoot(myPos, enemyTank.position, game.map)) {\n    faceOrFire(me, myDir, directionTo(myPos, enemyTank.position));\n    return;\n  }\n\n  var target = game.star || (enemyTank && enemyTank.position);\n  var next = target && nextStep(myPos, target, game.map);\n  if (next) {\n    moveToward(me, myDir, myPos, next);\n    return;\n  }\n\n  patrol(me, myDir, myPos, game.map);\n}\n\nfunction faceOrFire(me, currentDir, targetDir) {\n  if (currentDir === targetDir) {\n    me.fire();\n  } else {\n    me.turn(targetDir);\n  }\n}\n\nfunction moveToward(me, currentDir, from, to) {\n  var dir = directionTo(from, to);\n  if (currentDir === dir) {\n    me.go();\n  } else {\n    me.turn(dir);\n  }\n}\n\nfunction patrol(me, currentDir, position, map) {\n  var forward = add(position, delta(currentDir));\n  if (isOpen(forward, map)) {\n    me.go();\n  } else {\n    me.turn(\"right\");\n  }\n}\n\nfunction nextStep(start, goal, map) {\n  var queue = [{ pos: start, first: null }];\n  var seen = {};\n  seen[key(start)] = true;\n\n  for (var head = 0; head < queue.length; head++) {\n    var item = queue[head];\n    if (samePos(item.pos, goal)) return item.first;\n\n    var dirs = [\"up\", \"right\", \"down\", \"left\"];\n    for (var i = 0; i < dirs.length; i++) {\n      var next = add(item.pos, delta(dirs[i]));\n      var k = key(next);\n      if (seen[k] || !isOpen(next, map)) continue;\n      seen[k] = true;\n      queue.push({ pos: next, first: item.first || next });\n    }\n  }\n  return null;\n}\n\nfunction canShoot(a, b, map) {\n  if (a[0] !== b[0] && a[1] !== b[1]) return false;\n  var dir = directionTo(a, b);\n  var step = delta(dir);\n  var pos = add(a, step);\n  while (!samePos(pos, b)) {\n    if (!isOpen(pos, map)) return false;\n    pos = add(pos, step);\n  }\n  return true;\n}\n\nfunction directionTo(a, b) {\n  if (b[0] > a[0]) return \"right\";\n  if (b[0] < a[0]) return \"left\";\n  if (b[1] > a[1]) return \"down\";\n  return \"up\";\n}\n\nfunction delta(dir) {\n  if (dir === \"up\") return [0, -1];\n  if (dir === \"right\") return [1, 0];\n  if (dir === \"down\") return [0, 1];\n  return [-1, 0];\n}\n\nfunction add(pos, d) {\n  return [pos[0] + d[0], pos[1] + d[1]];\n}\n\nfunction isOpen(pos, map) {\n  return map[pos[0]] && map[pos[0]][pos[1]] && map[pos[0]][pos[1]] !== \"x\";\n}\n\nfunction samePos(a, b) {\n  return a[0] === b[0] && a[1] === b[1];\n}\n\nfunction key(pos) {\n  return pos[0] + \",\" + pos[1];\n}",
+  "agentGuideUrl": "https://agentank.ai/agent-guide",
+  "maps": [
+    {
+      "id": "random",
+      "name": "随机",
+      "source": "system"
+    },
+    {
+      "id": "classic",
+      "name": "经典地图",
+      "source": "official"
+    },
+    {
+      "id": "arena",
+      "name": "训练场",
+      "source": "official"
+    },
+    {
+      "id": "public-map-6",
+      "name": "躲猫猫",
+      "source": "community",
+      "battleCount": 1193
+    },
+    {
+      "id": "public-map-1",
+      "name": "smile",
+      "source": "community",
+      "battleCount": 864
+    }
+  ],
+  "trainingBots": [
+    {
+      "id": "nova-scout",
+      "name": "Nova Scout",
+      "description": "Balanced pathing bot for baseline tests."
+    },
+    {
+      "id": "azure-hunter",
+      "name": "Azure Hunter",
+      "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+    },
+    {
+      "id": "crimson-bastion",
+      "name": "Crimson Bastion",
+      "description": "Defensive control bot that contests stars and lanes."
+    }
+  ],
+  "standing": {
+    "rank": 87,
+    "totalPublic": 908,
+    "isRanked": true,
+    "visibleOnTop": false
+  },
+  "simulationCooldownSeconds": 2
+}
