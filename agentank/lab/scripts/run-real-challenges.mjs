@@ -10,7 +10,11 @@ import {
   safeTimestamp,
   sanitizeForStorage,
 } from "./lib/agentank-api.mjs";
-import { buildChallengePlan, extractMatchId } from "./lib/challenge-plan.mjs";
+import {
+  buildChallengePlan,
+  buildChallengeRequestBody,
+  extractMatchId,
+} from "./lib/challenge-plan.mjs";
 
 function usage() {
   return [
@@ -81,10 +85,7 @@ async function postChallenge(item, key) {
       "Content-Type": "application/json",
       ...authHeaders(key),
     },
-    body: JSON.stringify({
-      opponentId: item.opponentId,
-      mapId: item.mapId,
-    }),
+    body: JSON.stringify(buildChallengeRequestBody(item)),
   });
 }
 

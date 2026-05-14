@@ -1,0 +1,741 @@
+{
+  "generatedAt": "2026-05-14T08:57:02.97052672Z",
+  "match": {
+    "agentReplayUrl": "https://agentank.ai/api/matches/mat_J43L3qvMaff0yA63Z/agent.json",
+    "createdAt": "2026-05-14T08:57:02.80032Z",
+    "excitementScore": 28,
+    "humanReplayUrl": "https://agentank.ai/history/mat_J43L3qvMaff0yA63Z",
+    "id": 202747,
+    "mapHash": "4b23f0cc66daed3f7d4157ae17bcab9f3ca91708b63a22e2c221d58bb2f43352",
+    "mapId": "arena",
+    "mapName": "训练场",
+    "resultReason": "crashed",
+    "settledAt": "2026-05-14T08:57:02.80032Z",
+    "status": "settled",
+    "urlId": "mat_J43L3qvMaff0yA63Z",
+    "winnerRole": "challenger",
+    "winnerTankId": 947,
+    "winnerTankName": "山大王"
+  },
+  "participants": {
+    "challenger": {
+      "codeHash": "3de45d64b85592fa102a80e0d1b5a3a04072f6ca9866218366554458fb5dc4f2",
+      "ownerUserId": 756,
+      "styleSeed": 12490,
+      "tankId": 947,
+      "tankName": "山大王"
+    },
+    "defender": {
+      "codeHash": "72bdd36717622801894934a5de5d98f9ff496e4eb792ccb602bd417ed1eb5b72",
+      "ownerUserId": 275,
+      "styleSeed": 34012,
+      "tankId": 315,
+      "tankName": "m"
+    }
+  },
+  "replayData": {
+    "excitementScore": 28,
+    "map": {
+      "id": "arena",
+      "map": [
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          "x",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          ".",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ]
+      ],
+      "name": "训练场",
+      "players": [
+        {
+          "direction": "left",
+          "position": [
+            13,
+            9
+          ]
+        },
+        {
+          "direction": "down",
+          "position": [
+            1,
+            9
+          ]
+        }
+      ],
+      "raw": "xxxxxxxxxxxxxxx|xa...........Bx|x.............x|x....ooooo....x|x.............x|x.....xxx.....x|x.............x|x....ooooo....x|x.............x|xC...........dx|xxxxxxxxxxxxxxx"
+    },
+    "matchSeed": 7145249119994510000,
+    "names": [
+      "山大王",
+      "m"
+    ],
+    "replay": {
+      "meta": {
+        "excitementScore": 28,
+        "matchSeed": 7145249119994510000,
+        "players": [
+          {
+            "runTime": 15,
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                13,
+                9
+              ]
+            }
+          },
+          {
+            "runTime": 18,
+            "tank": {
+              "direction": "down",
+              "id": "65a1f424",
+              "position": [
+                1,
+                9
+              ]
+            }
+          }
+        ],
+        "result": {
+          "action": "end",
+          "reason": "crashed",
+          "type": "game",
+          "winner": 0
+        }
+      },
+      "records": [
+        [
+          {
+            "action": "created",
+            "position": [
+              11,
+              2
+            ],
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "87fdd1c6",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              13,
+              9
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "87fdd1c6",
+            "targetObjectId": "87fdd1c6",
+            "to": [
+              11,
+              2
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "65a1f424",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "87fdd1c6",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "up",
+            "objectId": "65a1f424",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "87fdd1c6",
+            "position": [
+              11,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "65a1f424",
+            "position": [
+              1,
+              8
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "87fdd1c6",
+            "position": [
+              11,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "65a1f424",
+            "position": [
+              1,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "87fdd1c6",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "65a1f424",
+            "position": [
+              1,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "87fdd1c6",
+            "position": [
+              10,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "65a1f424",
+            "position": [
+              1,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "87fdd1c6",
+            "position": [
+              9,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "65a1f424",
+            "position": [
+              1,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "left",
+            "objectId": "74671718",
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                9,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "65a1f424",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "74671718",
+            "order": 0,
+            "position": [
+              8,
+              4
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                9,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "74671718",
+            "order": 1,
+            "position": [
+              7,
+              4
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                9,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "87fdd1c6",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "cast",
+            "by": 1,
+            "skillType": "cloak",
+            "sourceObjectId": "65a1f424",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 1,
+            "durationFrames": 8,
+            "skillType": "cloak",
+            "sourceObjectId": "65a1f424",
+            "targetObjectId": "65a1f424",
+            "type": "skill"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "74671718",
+            "order": 0,
+            "position": [
+              6,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "87fdd1c6",
+              "position": [
+                9,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "74671718",
+            "order": 1,
+            "position": [
+              5,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "87fdd1c6",
+              "position": [
+                9,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "87fdd1c6",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "up",
+            "objectId": "65a1f424",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "74671718",
+            "order": 0,
+            "position": [
+              4,
+              4
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                9,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "74671718",
+            "order": 1,
+            "position": [
+              3,
+              4
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                9,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              3,
+              9
+            ],
+            "type": "star"
+          },
+          {
+            "action": "go",
+            "objectId": "87fdd1c6",
+            "position": [
+              8,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "65a1f424",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "74671718",
+            "order": 0,
+            "position": [
+              2,
+              4
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                8,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "left",
+            "objectId": "74671718",
+            "order": 1,
+            "position": [
+              1,
+              4
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                8,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "left",
+            "objectId": "74671718",
+            "tank": {
+              "direction": "left",
+              "id": "87fdd1c6",
+              "position": [
+                8,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "index": 0,
+            "objectId": "65a1f424",
+            "type": "tank"
+          }
+        ]
+      ]
+    }
+  },
+  "schemaNotes": [
+    "replayData.map.map is indexed as map[x][y].",
+    "replayData.replay.records is an array of frames; each frame contains ordered events.",
+    "replayData.replay.meta.players contains final runtime and debug logs for each participant.",
+    "tank code is not included; codeHash identifies the exact version used in this battle."
+  ],
+  "type": "agenttank.match_replay",
+  "version": 1
+}

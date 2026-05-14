@@ -97,6 +97,13 @@ export function buildChallengePlan({
   return plan;
 }
 
+export function buildChallengeRequestBody(item) {
+  return {
+    opponentTankId: item.opponentId,
+    mapId: item.mapId,
+  };
+}
+
 export function extractMatchId(value) {
   if (typeof value === "string") {
     const match = value.match(/mat_[A-Za-z0-9]+/);

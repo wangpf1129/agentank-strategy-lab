@@ -3,6 +3,7 @@ import { test } from "node:test";
 
 import {
   buildChallengePlan,
+  buildChallengeRequestBody,
   extractMatchId,
   resolveTankConfigs,
 } from "../lib/challenge-plan.mjs";
@@ -42,6 +43,13 @@ test("builds a bounded real challenge plan across tanks, opponents, maps, and re
     "arena",
     "random",
   ]);
+});
+
+test("builds challenge request body with AgentTank's targeted opponent field", () => {
+  assert.deepEqual(
+    buildChallengeRequestBody({ opponentId: 70, mapId: "arena" }),
+    { opponentTankId: 70, mapId: "arena" },
+  );
 });
 
 test("extracts match ids from nested challenge responses", () => {
