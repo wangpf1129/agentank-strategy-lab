@@ -6,6 +6,7 @@ import {
   buildAgentApiUrl,
   buildMatchUrl,
   parseMatchId,
+  readJsonResponse,
   sanitizeForStorage,
   safeTimestamp,
 } from "../lib/agentank-api.mjs";
@@ -66,4 +67,16 @@ test("sanitizes sensitive fields recursively before storage", () => {
       ],
     },
   });
+});
+
+test("preserves non-json error response text", async () => {
+  const response = new Response("opponent rate limited", {
+    status: 429,
+    statusText: "Too Many Requests",
+  });
+
+  await assert.rejects(
+    readJsonResponse("https://agentank.ai/api/agent/tank/challenge", response, "POST"),
+    /Failed POST .*429 Too Many Requests opponent rate limited/,
+  );
 });

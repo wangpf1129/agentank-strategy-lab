@@ -6,6 +6,7 @@ import path from "node:path";
 import {
   authHeaders,
   buildAgentApiUrl,
+  readJsonResponse,
   safeTimestamp,
   sanitizeForStorage,
 } from "./lib/agentank-api.mjs";
@@ -114,17 +115,7 @@ function sleep(ms) {
 
 async function fetchJson(url, options = {}) {
   const response = await fetch(url, options);
-  const text = await response.text();
-  let body;
-  try {
-    body = text ? JSON.parse(text) : null;
-  } catch (error) {
-    throw new Error(`Failed to parse JSON from ${url}: ${error.message}`);
-  }
-  if (!response.ok) {
-    throw new Error(`Failed ${options.method ?? "GET"} ${url}: ${response.status} ${response.statusText} ${text}`);
-  }
-  return body;
+  return readJsonResponse(url, response, options.method ?? "GET");
 }
 
 function resultBucket(result) {

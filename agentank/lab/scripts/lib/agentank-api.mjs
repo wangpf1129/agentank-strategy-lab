@@ -33,6 +33,19 @@ export function authHeaders(key = "") {
   return value ? { Authorization: `Bearer ${value}` } : {};
 }
 
+export async function readJsonResponse(url, response, method = "GET") {
+  const text = await response.text();
+  if (!response.ok) {
+    throw new Error(`Failed ${method} ${url}: ${response.status} ${response.statusText} ${text}`);
+  }
+
+  try {
+    return text ? JSON.parse(text) : null;
+  } catch (error) {
+    throw new Error(`Failed to parse JSON from ${url}: ${error.message}`);
+  }
+}
+
 function isSensitiveKey(key) {
   return /(key|token|secret|authorization|password)/i.test(key);
 }

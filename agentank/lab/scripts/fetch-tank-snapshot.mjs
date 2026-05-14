@@ -6,6 +6,7 @@ import path from "node:path";
 import {
   authHeaders,
   buildAgentApiUrl,
+  readJsonResponse,
   sanitizeForStorage,
 } from "./lib/agentank-api.mjs";
 
@@ -22,10 +23,7 @@ function usage() {
 
 async function fetchJson(url, key) {
   const response = await fetch(url, { headers: authHeaders(key) });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${url}: ${response.status} ${response.statusText}`);
-  }
-  return response.json();
+  return readJsonResponse(url, response);
 }
 
 const codename = process.argv[2];
