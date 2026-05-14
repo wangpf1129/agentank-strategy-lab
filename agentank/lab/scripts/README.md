@@ -23,7 +23,7 @@ node agentank/lab/scripts/analyze-directory.mjs
 node agentank/lab/scripts/analyze-directory.mjs agentank/lab/data/matches defender
 ```
 
-The output aggregates win rate, result categories, maps, and opponents. Use `challenger` or `defender` depending on which side your tank played.
+The output aggregates diagnostic match signals: win/loss, result categories, maps, and opponents. Use `challenger` or `defender` depending on which side your tank played.
 
 ## Fetch A Public Match
 
@@ -42,6 +42,8 @@ AGENTANK_KEY=<key> node agentank/lab/scripts/fetch-leaderboard.mjs
 
 Files are saved to `agentank/lab/data/leaderboards/` by default.
 
+Leaderboard rows include the current public ladder fields: `rankScore`, `rankTier`, `rankDivision`, `rankPoints`, and public `rank`. Use those as the primary metric for experiment summaries.
+
 Do not hard-code tank keys in scripts. Read credentials from environment variables.
 
 ## Fetch Tank Snapshot
@@ -57,6 +59,8 @@ Files are saved under `agentank/lab/data/fleet/<codename>/` by default:
 
 Responses are sanitized before storage. Real tank keys must still stay outside the repository.
 
+Tank snapshots include the same ladder fields. Compare snapshots before and after real challenges to judge whether a strategy moved the tank upward.
+
 ## Simulate Candidate Code
 
 Use this before publishing. It sends private simulations with candidate code and stores sanitized replay JSON under `agentank/lab/data/simulations/<run-id>/`.
@@ -70,7 +74,7 @@ AGENTANK_FREEZE_KEY=<key> AGENTANK_TELEPORT_KEY=<key> \
 
 ## Run Real Challenge Batches
 
-Use this for controlled public match sampling after a candidate is published. Real challenges affect public records and ELO, so the script defaults to dry-run. Add `--execute` only when the opponent list, maps, repeat count, and limit are intentional.
+Use this for controlled public match sampling after a candidate is published. Real challenges affect public ladder score, tier, rank, and records, so the script defaults to dry-run. Add `--execute` only when the opponent list, maps, repeat count, and limit are intentional.
 
 ```bash
 node agentank/lab/scripts/run-real-challenges.mjs --opponents 829,913 --maps random,arena --repeat 2
@@ -88,5 +92,6 @@ Run logs are saved under `agentank/lab/data/challenge-runs/`. Replay files are s
 ## Planned Next Scripts
 
 - Classify death causes in batches.
+- Compare ladder-score snapshots.
 - Compare candidate versions.
 - Generate map heat reports.

@@ -1,4 +1,4 @@
-# Win-Rate Knowledge Base
+# Ladder-Score Knowledge Base
 
 This knowledge base is not a general AI reading list. It only keeps ideas that can improve the two primary AgentTank bots.
 
@@ -6,6 +6,7 @@ Every useful idea must connect to at least one of:
 - Strategy rule.
 - Experiment hypothesis.
 - Replay metric.
+- Ladder-score metric.
 - Candidate-code change.
 - Opponent or map playbook.
 
@@ -33,10 +34,9 @@ Do not copy an external method blindly. Translate it into the AgentTank runtime:
 ## Reading Order
 
 1. `agentank-mechanics.md`
-2. `win-rate-methods.md`
+2. `ladder-score-methods.md`
 3. `cards/value-functions.md`
 4. `cards/partial-observability.md`
 5. `cards/league-training.md`
 6. `cards/exploiter-agents.md`
 7. `cards/self-play.md`
-

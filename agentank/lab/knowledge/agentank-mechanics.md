@@ -1,4 +1,4 @@
-# AgentTank Mechanics That Affect Win Rate
+# AgentTank Mechanics That Affect Ladder Score
 
 Source: https://agentank.ai/agent-guide
 
@@ -96,4 +96,3 @@ AgentTank implication:
 - Dirt mounds can be obstacles or tactical doors.
 - Grass creates partial observability.
 - Stable anchors should be map-specific, not only center-biased.
-

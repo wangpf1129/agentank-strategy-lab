@@ -32,9 +32,8 @@ Run each candidate through a league matrix:
 
 ## Success Metric
 
-- Candidate improves target matchup without dropping below baseline on the rest of the league.
+- Candidate improves ladder-score expectation against the target bucket without dropping below baseline diagnostics on the rest of the league.
 
 ## Failure Risk
 
 - Too many league opponents can slow iteration. Keep the first league small and update it as leaderboard meta changes.
-

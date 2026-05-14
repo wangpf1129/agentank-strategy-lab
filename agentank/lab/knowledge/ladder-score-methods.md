@@ -1,6 +1,8 @@
-# Win-Rate Methods For AgentTank
+# Ladder-Score Methods For AgentTank
 
 The repository borrows from successful game AI systems only when the method can be turned into AgentTank experiments.
+
+AgentTank's current public objective is ladder movement: `rankScore`, tier/division/points, and public rank. Win/loss, star tempo, kills, deaths, and runtime are still important, but they are diagnostics that explain why ladder score moved.
 
 ## 1. Value Function
 
@@ -84,4 +86,3 @@ Use for:
 - Grass maps.
 - Cloak opponents.
 - Teleport ambush prevention.
-

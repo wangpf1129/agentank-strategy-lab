@@ -2,7 +2,7 @@
 
 This directory keeps the research trail for AgentTank strategy work.
 
-Primary objective: improve the win rate and public visibility of the user's two main tanks:
+Primary objective: improve the ladder score, tier, public rank, and visibility of the user's two main tanks:
 - `freeze-main`: freeze skill, control and tempo denial.
 - `teleport-main`: teleport skill, star theft and map tempo.
 
@@ -16,6 +16,7 @@ Goals:
 Rules:
 - Do not store tank keys here. Use environment variables or local shell history for API auth.
 - Every strategy change should start from a hypothesis and end with measured results.
+- Use match wins, losses, star scores, kills, and runtime as diagnostics. The primary public metric is ladder movement: `rankScore`, tier/division/points, and public rank.
 - Prefer many small experiments over one large mixed change.
 - Keep published tank source files in `../`; keep analysis, data, and reports here.
 
@@ -38,6 +39,6 @@ node agentank/lab/scripts/analyze-match.mjs agentank/lab/data/matches/mat_3hWOW9
 
 Key sections:
 - `fleet/`: primary tank roles and safe environment variable names.
-- `knowledge/`: win-rate-focused game AI ideas translated to AgentTank.
+- `knowledge/`: ladder-score-focused game AI ideas translated to AgentTank.
 - `playbooks/`: practical matchup and two-tank roadmap.
 - `scripts/`: replay and leaderboard tooling.

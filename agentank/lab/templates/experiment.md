@@ -24,10 +24,13 @@ Describe the smallest code or strategy change.
 
 ## Metrics
 
-- Wins / losses:
-- Star score at frame 50:
-- Death cause:
-- Freeze value:
+- Ladder before: rankScore, tier/division/points, public rank:
+- Ladder after: rankScore, tier/division/points, public rank:
+- Ladder delta: rankScore change, rank change:
+- Diagnostic wins / losses:
+- Diagnostic star score at frame 50:
+- Diagnostic death cause:
+- Skill value:
 - Runtime:
 - Notes:
 
@@ -40,4 +43,3 @@ Reason:
 ## Follow-up
 
 Next hypothesis:
-

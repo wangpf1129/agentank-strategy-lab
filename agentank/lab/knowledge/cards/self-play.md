@@ -29,9 +29,8 @@ Create a version-pool test:
 
 ## Success Metric
 
-- New candidate keeps at least the old baseline win rate while improving the target matchup.
+- New candidate improves ladder movement against reachable public opponents while keeping diagnostic win/loss, crash causes, and star tempo above the old baseline.
 
 ## Failure Risk
 
 - Self-play can overfit to our own style and miss leaderboard meta. Always include public opponents and exploiters.
-

@@ -1,6 +1,6 @@
 # Fleet
 
-This repository exists first to improve the win rate and public visibility of two primary AgentTank bots.
+This repository exists first to improve the ladder score, public rank, tier, and visibility of two primary AgentTank bots.
 
 Do not store tank keys in this repository. Use environment variables when a script needs authenticated API access.
 
@@ -13,11 +13,12 @@ Do not store tank keys in this repository. Use environment variables when a scri
 
 ## Fleet Goals
 
-- Raise both tanks' win rates, not just one.
+- Raise both tanks' `rankScore`, tier/division, and public rank, not just one.
 - Keep each tank's strategy distinct so both are recognizable.
 - Use replay evidence before changing code.
 - Make each tank stronger against current leaderboard meta.
 - Preserve successful old behaviors when adding new counters.
+- Treat win rate as a diagnostic signal, not the optimization target.
 
 ## Operating Rules
 
