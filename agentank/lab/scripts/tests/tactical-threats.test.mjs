@@ -135,6 +135,25 @@ test("lead protection activates only after a real star lead develops", () => {
   );
 });
 
+test("lead protection starts at plus one against boost tempo threats", () => {
+  assert.equal(
+    leadProtectionActive({
+      frame: 51,
+      me: { stars: 2 },
+      enemy: { stars: 1, skillType: "boost" },
+    }),
+    true,
+  );
+  assert.equal(
+    leadProtectionActive({
+      frame: 51,
+      me: { stars: 2 },
+      enemy: { stars: 1, skillType: "shield" },
+    }),
+    false,
+  );
+});
+
 test("high-tier star races switch to the fast route when safety routing loses tempo", () => {
   assert.equal(
     starRaceNeedsFastRoute({

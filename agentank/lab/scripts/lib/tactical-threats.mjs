@@ -168,7 +168,9 @@ function starsOf(actor) {
 }
 
 export function leadProtectionActive({ frame = 0, me, enemy, minLead = 2, minFrame = 35 } = {}) {
-  return frame >= minFrame && starsOf(me) - starsOf(enemy) >= minLead;
+  const enemySkill = enemy?.skillType ?? enemy?.skill?.type;
+  const requiredLead = enemySkill === "boost" ? Math.min(minLead, 1) : minLead;
+  return frame >= minFrame && starsOf(me) - starsOf(enemy) >= requiredLead;
 }
 
 export function starRaceNeedsFastRoute({

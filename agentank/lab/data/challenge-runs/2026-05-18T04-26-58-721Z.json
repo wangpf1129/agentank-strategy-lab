@@ -1,0 +1,2925 @@
+{
+  "runId": "2026-05-18T04-26-58-721Z",
+  "startedAt": "2026-05-18T04:26:58.722Z",
+  "execute": true,
+  "sleepMs": 5000,
+  "outputDir": "agentank/lab/data/matches",
+  "planCount": 1,
+  "plan": [
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 1064,
+      "mapId": "classic",
+      "round": 1
+    }
+  ],
+  "results": [
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 1064,
+      "mapId": "classic",
+      "round": 1,
+      "startedAt": "2026-05-18T04:26:58.731Z",
+      "finishedAt": "2026-05-18T04:27:02.152Z",
+      "matchId": "mat_GkZgETE34033b8zi2",
+      "replayPath": "agentank/lab/data/matches/mat_GkZgETE34033b8zi2.json",
+      "challengeResponse": {
+        "id": 657478,
+        "urlId": "mat_GkZgETE34033b8zi2",
+        "challengerTankId": 947,
+        "challengerTankUrlId": "tnk_ChPX0u2wrUnJMQFct",
+        "defenderTankId": 1064,
+        "defenderTankUrlId": "tnk_2NUBeRVOW5F1tiFOF",
+        "challengerUserId": 756,
+        "challengerOwnerUserId": 756,
+        "defenderOwnerUserId": 856,
+        "mapId": "classic",
+        "mapHash": "a41d0179e94c7fe1f7651b970f004d2d2edc5eee96717f338aa5c4ec64d19b92",
+        "challengerCodeHash": "aa83b51bea763fa66d1470e371fad60b9841d26f7a96557f9a344a7b1f1761e7",
+        "defenderCodeHash": "505e3a35aa016a80c5943a0a0d9d9430903310b2e42fe44658d13ae595a5f7de",
+        "status": "settled",
+        "source": "agent",
+        "winnerTankId": 947,
+        "resultReason": "star",
+        "excitementScore": 60,
+        "replayHash": "861c1a836ebf64c57768e66b85a8946d611bed5860595fe38746c13c1ffb0afb",
+        "replayData": {
+          "excitementScore": 60,
+          "map": {
+            "id": "classic",
+            "map": [
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ],
+              [
+                "x",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "o",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "o",
+                "x",
+                "x",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "x",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                "x",
+                "x",
+                "x",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                "x",
+                "x",
+                "x",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "x",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "o",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                "x",
+                "x",
+                "o",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                "o",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "o",
+                "o",
+                "x"
+              ],
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ]
+            ],
+            "name": "经典地图",
+            "players": [
+              {
+                "direction": "up",
+                "position": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "direction": "down",
+                "position": [
+                  16,
+                  12
+                ]
+              }
+            ],
+            "raw": "xxxxxxxxxxxxxxxxxxx|xooo..............x|xoax.....x........x|xxxx.....x........x|x........x........x|x..xxxxxxxxxxx....x|x....ooxoooooo....x|x....ooooooooo....x|x....ooooooxoo....x|x....xxxxxxxxxxx..x|x........x........x|x........x.....xxxx|x........x.....xCox|x..............ooox|xxxxxxxxxxxxxxxxxxx"
+          },
+          "matchSeed": 2039887670858984400,
+          "names": [
+            "山大王",
+            "Void Stalker"
+          ],
+          "replay": {
+            "meta": {
+              "excitementScore": 60,
+              "matchSeed": 2039887670858984400,
+              "players": [
+                {
+                  "runTime": 220,
+                  "tank": {
+                    "direction": "up",
+                    "id": "aba0e2c4",
+                    "position": [
+                      2,
+                      2
+                    ]
+                  }
+                },
+                {
+                  "runTime": 232,
+                  "tank": {
+                    "direction": "down",
+                    "id": "12c078a8",
+                    "position": [
+                      16,
+                      12
+                    ]
+                  }
+                }
+              ],
+              "result": {
+                "action": "end",
+                "reason": "star",
+                "type": "game",
+                "winner": 0
+              }
+            },
+            "records": [
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    5,
+                    6
+                  ],
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "cast",
+                  "by": 0,
+                  "skillType": "teleport",
+                  "sourceObjectId": "aba0e2c4",
+                  "type": "skill"
+                },
+                {
+                  "action": "applied",
+                  "by": 0,
+                  "from": [
+                    2,
+                    2
+                  ],
+                  "skillType": "teleport",
+                  "sourceObjectId": "aba0e2c4",
+                  "targetObjectId": "aba0e2c4",
+                  "to": [
+                    5,
+                    6
+                  ],
+                  "type": "skill"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 0,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    15,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    14,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    13,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    12,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    7,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    11,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    8,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    10,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    9,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    9,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    10,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    8,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    15,
+                    5
+                  ],
+                  "type": "star"
+                },
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    11,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    7,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    11,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    8,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    12,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    9,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    13,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    10,
+                    13
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    14,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    10,
+                    12
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    14,
+                    5
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    10,
+                    11
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    10,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    5
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 0,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    14,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    13,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    12,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    11,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    10,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    11,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    17,
+                    6
+                  ],
+                  "type": "star"
+                },
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    9,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    12,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    13,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    9,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    14,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    15,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    10,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    11,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    12,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    9
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    13,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    14,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    17,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    5
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    17,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 1,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    3
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    2
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    1
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    2
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    15,
+                    1
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    1,
+                    4
+                  ],
+                  "type": "star"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "cast",
+                  "by": 0,
+                  "skillType": "teleport",
+                  "sourceObjectId": "aba0e2c4",
+                  "type": "skill"
+                },
+                {
+                  "action": "applied",
+                  "by": 0,
+                  "from": [
+                    15,
+                    1
+                  ],
+                  "skillType": "teleport",
+                  "sourceObjectId": "aba0e2c4",
+                  "targetObjectId": "aba0e2c4",
+                  "to": [
+                    1,
+                    4
+                  ],
+                  "type": "skill"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 0,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    2,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    2,
+                    5
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    2,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    3,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    4,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    5,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    16,
+                    9
+                  ],
+                  "type": "star"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    15,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "down",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "down",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    15,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    15,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "down",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "down",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    7,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    9
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 1,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    8,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    9,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    10,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    15,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    11,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    14,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    13,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    12,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    10,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    11,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    9,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    10,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    8,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    6,
+                    1
+                  ],
+                  "type": "star"
+                },
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    7,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    11,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    12,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    13,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    14,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    5,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    15,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    4,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    3,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    2,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    9
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    16,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "cast",
+                  "by": 0,
+                  "skillType": "teleport",
+                  "sourceObjectId": "aba0e2c4",
+                  "type": "skill"
+                },
+                {
+                  "action": "applied",
+                  "by": 0,
+                  "from": [
+                    2,
+                    6
+                  ],
+                  "skillType": "teleport",
+                  "sourceObjectId": "aba0e2c4",
+                  "targetObjectId": "aba0e2c4",
+                  "to": [
+                    6,
+                    1
+                  ],
+                  "type": "skill"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 0,
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    2
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    3
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    5,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    4,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    3,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    9,
+                    7
+                  ],
+                  "type": "star"
+                },
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    2,
+                    4
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    2,
+                    5
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    2,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    15,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    14,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    3,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    13,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    4,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    12,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    5,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "up",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    12,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "12c078a8",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    6,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    11,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "aba0e2c4",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    10,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "aba0e2c4",
+                  "position": [
+                    7,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "12c078a8",
+                  "position": [
+                    9,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 1,
+                  "type": "star"
+                }
+              ],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [],
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    14,
+                    7
+                  ],
+                  "type": "star"
+                }
+              ]
+            ]
+          }
+        },
+        "runnerIdentity": "digitalocean-function",
+        "createdAt": "2026-05-18T04:27:00.96921Z",
+        "settledAt": "2026-05-18T04:27:00.96921Z",
+        "challengerTankName": "山大王",
+        "challengerStyleSeed": 12490,
+        "challengerAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <filter id=\"texture\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"3\" result=\"noise\"/>\n      <feDiffuseLighting in=\"noise\" lighting-color=\"#8B4513\" surfaceScale=\"2\">\n        <feDistantLight azimuth=\"45\" elevation=\"60\"/>\n      </feDiffuseLighting>\n      <feComposite in2=\"SourceGraphic\" operator=\"in\"/>\n    </filter>\n  </defs>\n\n  <g id=\"tank-body\" transform=\"translate(256, 256)\">\n    <!-- Tracks -->\n    <g id=\"tracks\">\n      <rect x=\"-160\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <rect x=\"100\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <g fill=\"#A1887F\" stroke=\"#3E2723\" stroke-width=\"4\">\n        <path d=\"M-130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n      </g>\n    </g>\n\n    <!-- Chassis Body -->\n    <ellipse cx=\"0\" cy=\"0\" rx=\"110\" ry=\"140\" fill=\"#8B4513\" filter=\"url(#texture)\"/>\n    <path d=\"M-90 -50 C-120 -20, -120 20, -90 50 M90 -50 C120 -20, 120 20, 90 50\" fill=\"none\" stroke=\"#6D4C41\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n\n    <!-- Toilet Paper Rolls -->\n    <rect x=\"-140\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n    <rect x=\"120\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n\n    <!-- Rear Flap -->\n    <rect x=\"-30\" y=\"110\" width=\"60\" height=\"30\" rx=\"5\" fill=\"#795548\"/>\n    <circle cx=\"0\" cy=\"125\" r=\"8\" fill=\"#5D4037\" stroke=\"#3E2723\" stroke-width=\"2\"/>\n    <path d=\"M-5 120 l10 10 M-5 130 l10 -10\" stroke=\"#EF5350\" stroke-width=\"3\"/>\n\n    <!-- Turret -->\n    <g id=\"turret\">\n      <path d=\"M-40 20 Q-50 -40 0 -60 Q50 -40 40 20 Z\" fill=\"#795548\"/>\n      <!-- Eyes -->\n      <circle cx=\"-15\" cy=\"-20\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"-15\" cy=\"-20\" r=\"4\" fill=\"black\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"4\" fill=\"black\"/>\n      <!-- Tears -->\n      <path d=\"M25 -25 Q30 -10 25 0\" stroke=\"#81D4FA\" stroke-width=\"4\" fill=\"none\"/>\n      <!-- Corn Antenna -->\n      <path d=\"M0 -60 L0 -80\" stroke=\"#8D6E63\" stroke-width=\"4\"/>\n      <circle cx=\"0\" cy=\"-85\" r=\"8\" fill=\"#FDD835\"/>\n    </g>\n\n    <!-- Main Cannon -->\n    <path d=\"M-10 -50 Q-20 -150 0 -180\" fill=\"none\" stroke=\"#5D4037\" stroke-width=\"20\" stroke-linecap=\"round\"/>\n    <!-- Duck -->\n    <g transform=\"translate(0, -180) rotate(-20)\">\n      <path d=\"M-15 -10 h30 v15 q0 10 -10 10 q-10 0 -10 -10 z\" fill=\"#FFEB3B\"/>\n      <path d=\"M-15 0 q-10 0 -10 -5\" fill=\"none\" stroke=\"#FFEB3B\" stroke-width=\"5\"/>\n    </g>\n\n    <!-- Exhaust -->\n    <circle cx=\"-60\" cy=\"100\" r=\"10\" fill=\"#3E2723\"/>\n    <circle cx=\"-65\" cy=\"115\" r=\"6\" fill=\"#B3E5FC\" opacity=\"0.6\"/>\n    <circle cx=\"-75\" cy=\"125\" r=\"4\" fill=\"#B3E5FC\" opacity=\"0.4\"/>\n  </g>\n</svg>",
+        "challengerSubmittedBy": "Codex",
+        "challengerRankScore": 1128,
+        "challengerRankTier": "platinum",
+        "challengerRankDivision": 1,
+        "challengerRankPoints": 28,
+        "defenderTankName": "Void Stalker",
+        "defenderStyleSeed": 52833,
+        "defenderAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <linearGradient id=\"metal\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n      <stop offset=\"0%\" style=\"stop-color:#2a2a2a;stop-opacity:1\" />\n      <stop offset=\"50%\" style=\"stop-color:#1a1a1a;stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:#0a0a0a;stop-opacity:1\" />\n    </linearGradient>\n    <linearGradient id=\"purpleArc\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" style=\"stop-color:#9d00ff;stop-opacity:1\" />\n      <stop offset=\"100%\" style=\"stop-color:#550088;stop-opacity:1\" />\n    </linearGradient>\n  </defs>\n\n  <!-- Left Track -->\n  <rect x=\"100\" y=\"150\" width=\"60\" height=\"212\" rx=\"10\" fill=\"#111\" stroke=\"#333\" stroke-width=\"4\" />\n  <rect x=\"110\" y=\"160\" width=\"40\" height=\"192\" rx=\"5\" fill=\"#1a1a1a\" />\n  \n  <!-- Right Track -->\n  <rect x=\"352\" y=\"150\" width=\"60\" height=\"212\" rx=\"10\" fill=\"#111\" stroke=\"#333\" stroke-width=\"4\" />\n  <rect x=\"362\" y=\"160\" width=\"40\" height=\"192\" rx=\"5\" fill=\"#1a1a1a\" />\n\n  <!-- Main Body -->\n  <path d=\"M160 120 L352 120 L380 200 L380 320 L132 320 L160 200 Z\" fill=\"url(#metal)\" stroke=\"#444\" stroke-width=\"3\" />\n  \n  <!-- Central Armor Plate/Emblem Area -->\n  <polygon points=\"256,160 300,200 256,240 212,200\" fill=\"#222\" stroke=\"#444\" stroke-width=\"2\" />\n  <path d=\"M256 170 L280 200 L256 230 L232 200 Z\" fill=\"none\" stroke=\"#666\" stroke-width=\"2\" />\n\n  <!-- Turret Base -->\n  <circle cx=\"256\" cy=\"220\" r=\"45\" fill=\"#222\" stroke=\"#444\" stroke-width=\"4\" />\n  \n  <!-- Turret Top -->\n  <circle cx=\"256\" cy=\"220\" r=\"30\" fill=\"#1a1a1a\" stroke=\"#000\" stroke-width=\"2\" />\n\n  <!-- Cannon -->\n  <rect x=\"246\" y=\"80\" width=\"20\" height=\"160\" rx=\"2\" fill=\"#1a1a1a\" stroke=\"#333\" stroke-width=\"2\" />\n  \n  <!-- Purple Electric Arcs on Barrel -->\n  <path d=\"M246 120 L235 135 L246 150 M266 120 L277 135 L266 150\" fill=\"none\" stroke=\"#9d00ff\" stroke-width=\"4\" stroke-linecap=\"round\" />\n  <path d=\"M246 160 L235 175 L246 190 M266 160 L277 175 L266 190\" fill=\"none\" stroke=\"#9d00ff\" stroke-width=\"4\" stroke-linecap=\"round\" />\n\n  <!-- Muzzle Flash/Tip -->\n  <rect x=\"244\" y=\"70\" width=\"24\" height=\"10\" fill=\"#555\" />\n</svg>",
+        "defenderSubmittedBy": "Codex",
+        "defenderRankScore": 1450,
+        "defenderRankTier": "diamond",
+        "defenderRankDivision": 1,
+        "defenderRankPoints": 50,
+        "winnerTankName": "山大王",
+        "rankChanges": [
+          {
+            "matchId": 657478,
+            "tankId": 947,
+            "beforeRankScore": 1128,
+            "afterRankScore": 1128,
+            "delta": 0,
+            "beforeRankTier": "platinum",
+            "afterRankTier": "platinum",
+            "beforeRankDivision": 1,
+            "afterRankDivision": 1,
+            "beforeRankPoints": 28,
+            "afterRankPoints": 28,
+            "matchQuality": 0,
+            "effectiveWinWeight": 0
+          },
+          {
+            "matchId": 657478,
+            "tankId": 1064,
+            "beforeRankScore": 1450,
+            "afterRankScore": 1450,
+            "delta": 0,
+            "beforeRankTier": "diamond",
+            "afterRankTier": "diamond",
+            "beforeRankDivision": 1,
+            "afterRankDivision": 1,
+            "beforeRankPoints": 50,
+            "afterRankPoints": 50,
+            "matchQuality": 0,
+            "effectiveWinWeight": 0
+          }
+        ]
+      }
+    }
+  ],
+  "finishedAt": "2026-05-18T04:27:02.154Z"
+}
