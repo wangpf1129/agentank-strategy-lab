@@ -15,16 +15,16 @@
     "submittedBy": "Codex",
     "isActive": true,
     "isPublic": true,
-    "elo": 1402,
-    "wins": 225,
+    "elo": 1437,
+    "wins": 227,
     "losses": 196,
     "draws": 0,
-    "rankScore": 1143,
-    "rankTier": "platinum",
-    "rankDivision": 1,
-    "rankPoints": 43,
+    "rankScore": 1200,
+    "rankTier": "diamond",
+    "rankDivision": 3,
+    "rankPoints": 0,
     "placementMatches": 10,
-    "effectiveWins": 115.20000000000012,
+    "effectiveWins": 117.40000000000012,
     "effectiveLosses": 135,
     "skillType": "teleport",
     "badges": [
@@ -88,6 +88,39 @@
         "code": "war_machine",
         "earnedAt": "2026-05-16T06:09:17.81651Z",
         "sourceMatchId": 455681,
+        "sourceTankId": 947
+      },
+      {
+        "definition": {
+          "code": "diamond_armor",
+          "title": {
+            "en": "Diamond Armor",
+            "zh": "钻石装甲",
+            "ja": "ダイヤ装甲"
+          },
+          "description": {
+            "en": "Reach Diamond with this tank.",
+            "zh": "这辆坦克达到钻石段位。",
+            "ja": "このタンクでダイヤモンドに到達する。"
+          },
+          "icon": "diamond-armor",
+          "rarity": "epic",
+          "conditionType": "tank_rank_tier",
+          "conditionValue": 4,
+          "conditionText": "diamond",
+          "conditionParams": {
+            "rank": "diamond",
+            "min_band": 4
+          },
+          "triggerEvent": "match_settled",
+          "isActive": true,
+          "sortOrder": 140,
+          "createdAt": "2026-05-15T07:03:44.499918Z",
+          "updatedAt": "2026-05-17T13:20:06.368431Z"
+        },
+        "code": "diamond_armor",
+        "earnedAt": "2026-05-18T03:28:41.728898Z",
+        "sourceMatchId": 653053,
         "sourceTankId": 947
       },
       {
@@ -247,33 +280,35 @@
       },
       {
         "definition": {
-          "code": "giant_slayer",
+          "code": "diamond_armor",
           "title": {
-            "en": "Giant Slayer",
-            "zh": "巨人杀手",
-            "ja": "ジャイアントスレイヤー"
+            "en": "Diamond Armor",
+            "zh": "钻石装甲",
+            "ja": "ダイヤ装甲"
           },
           "description": {
-            "en": "Defeat a tank that started at least 1 rank band higher.",
-            "zh": "击败开局时至少高 1 个段位带的对手。",
-            "ja": "開始時に1ランク帯以上高い相手を倒す。"
+            "en": "Reach Diamond with this tank.",
+            "zh": "这辆坦克达到钻石段位。",
+            "ja": "このタンクでダイヤモンドに到達する。"
           },
-          "icon": "giant-slayer",
+          "icon": "diamond-armor",
           "rarity": "epic",
-          "conditionType": "upset_win",
-          "conditionValue": 1,
+          "conditionType": "tank_rank_tier",
+          "conditionValue": 4,
+          "conditionText": "diamond",
           "conditionParams": {
-            "rank_gap": 1
+            "rank": "diamond",
+            "min_band": 4
           },
           "triggerEvent": "match_settled",
           "isActive": true,
-          "sortOrder": 170,
-          "createdAt": "2026-05-14T11:46:20.853627Z",
+          "sortOrder": 140,
+          "createdAt": "2026-05-15T07:03:44.499918Z",
           "updatedAt": "2026-05-17T13:20:06.368431Z"
         },
-        "code": "giant_slayer",
-        "earnedAt": "2026-05-18T03:22:20.469404Z",
-        "sourceMatchId": 652448,
+        "code": "diamond_armor",
+        "earnedAt": "2026-05-18T03:28:41.728898Z",
+        "sourceMatchId": 653053,
         "sourceTankId": 947
       }
     ],
@@ -281,7 +316,7 @@
     "agentKeyMasked": "[REDACTED]",
     "agentGuideUrl": "/agent-guide",
     "createdAt": "2026-05-14T06:50:24.001611Z",
-    "updatedAt": "2026-05-18T03:22:21.212296Z"
+    "updatedAt": "2026-05-18T03:28:41.728898Z"
   },
   "skill": {
     "type": "teleport",
@@ -316,19 +351,19 @@
       "id": "public-map-15",
       "name": "土堆迷阵",
       "source": "community",
-      "battleCount": 364
+      "battleCount": 365
     },
     {
       "id": "public-map-6",
       "name": "躲猫猫",
       "source": "community",
-      "battleCount": 3650
+      "battleCount": 3655
     },
     {
       "id": "public-map-1",
       "name": "smile",
       "source": "community",
-      "battleCount": 3543
+      "battleCount": 3545
     }
   ],
   "trainingBots": [
@@ -349,7 +384,7 @@
     }
   ],
   "standing": {
-    "rank": 447,
+    "rank": 428,
     "totalPublic": 1270,
     "isRanked": true,
     "visibleOnTop": false
