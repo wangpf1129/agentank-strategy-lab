@@ -1,0 +1,794 @@
+{
+  "opponentId": "crimson-bastion",
+  "opponentName": "Crimson Bastion",
+  "mapId": "public-map-15",
+  "usedCandidateCode": true,
+  "resultReason": "crashed",
+  "winner": "me",
+  "replayData": {
+    "map": {
+      "id": "public-map-15",
+      "name": "土堆迷阵",
+      "map": [
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "m",
+          ".",
+          ".",
+          ".",
+          "x",
+          "o",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "m",
+          ".",
+          ".",
+          ".",
+          "o",
+          "m",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          "m",
+          "m",
+          "m",
+          ".",
+          ".",
+          "o",
+          "x",
+          "o",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          "x",
+          "o",
+          "m",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          "x",
+          "x",
+          "x",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          "o",
+          "m",
+          "o",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          "x",
+          "x",
+          "x",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          "o",
+          "m",
+          "o",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          "x",
+          "x",
+          "x",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          "m",
+          "o",
+          "x",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "o",
+          "x",
+          "o",
+          ".",
+          ".",
+          "m",
+          "m",
+          "m",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "m",
+          "o",
+          ".",
+          ".",
+          ".",
+          "m",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "o",
+          "x",
+          ".",
+          ".",
+          ".",
+          "m",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ]
+      ],
+      "players": [
+        {
+          "direction": "up",
+          "position": [
+            2,
+            2
+          ]
+        },
+        {
+          "direction": "up",
+          "position": [
+            12,
+            8
+          ]
+        }
+      ],
+      "raw": "xxxxxxxxxxxxxxx|x..m.......xoxx|x.am.......omox|xmmm..ooo.oxoxx|x...xxoxoxmo..x|x...oxmxmxo...x|x..omxoxoxx...x|xxoxo.ooo..mmmx|xomo.......mA.x|xxox.......m..x|xxxxxxxxxxxxxxx"
+    },
+    "replay": {
+      "meta": {
+        "players": [
+          {
+            "tank": {
+              "id": "62138053",
+              "position": [
+                2,
+                2
+              ],
+              "direction": "up"
+            },
+            "runTime": 23
+          },
+          {
+            "tank": {
+              "id": "6366bfeb",
+              "position": [
+                12,
+                8
+              ],
+              "direction": "up"
+            }
+          }
+        ],
+        "result": {
+          "action": "end",
+          "reason": "crashed",
+          "type": "game",
+          "winner": 0
+        },
+        "excitementScore": 28,
+        "matchSeed": 2019874735017786000
+      },
+      "records": [
+        [
+          {
+            "action": "created",
+            "position": [
+              8,
+              7
+            ],
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "62138053",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              2,
+              2
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "62138053",
+            "targetObjectId": "62138053",
+            "to": [
+              7,
+              7
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "6366bfeb",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "62138053",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "6366bfeb",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "62138053",
+            "position": [
+              8,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "6366bfeb",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "62138053",
+            "position": [
+              9,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "6366bfeb",
+            "position": [
+              13,
+              8
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "62138053",
+            "position": [
+              10,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "f4dd020c",
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                10,
+                7
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "f4dd020c",
+            "order": 0,
+            "position": [
+              11,
+              7
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                10,
+                7
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "destroyed",
+            "position": [
+              11,
+              7
+            ],
+            "tile": "m",
+            "type": "map"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "f4dd020c",
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                10,
+                7
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "62138053",
+            "position": [
+              11,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "7143f567",
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                11,
+                7
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "7143f567",
+            "order": 0,
+            "position": [
+              12,
+              7
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                11,
+                7
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "destroyed",
+            "position": [
+              12,
+              7
+            ],
+            "tile": "m",
+            "type": "map"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "7143f567",
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                11,
+                7
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "62138053",
+            "position": [
+              12,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "6c55f25a",
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                12,
+                7
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "6c55f25a",
+            "order": 0,
+            "position": [
+              13,
+              7
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                12,
+                7
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "destroyed",
+            "position": [
+              13,
+              7
+            ],
+            "tile": "m",
+            "type": "map"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "6c55f25a",
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                12,
+                7
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "62138053",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "62138053",
+            "position": [
+              12,
+              8
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              1,
+              6
+            ],
+            "type": "star"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "62138053",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "d250e035",
+            "tank": {
+              "direction": "right",
+              "id": "6366bfeb",
+              "position": [
+                13,
+                8
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d250e035",
+            "order": 0,
+            "position": [
+              14,
+              8
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "6366bfeb",
+              "position": [
+                13,
+                8
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "d250e035",
+            "tank": {
+              "direction": "right",
+              "id": "6366bfeb",
+              "position": [
+                13,
+                8
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "5e502d1b",
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                12,
+                8
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "bbc4d497",
+            "tank": {
+              "direction": "right",
+              "id": "6366bfeb",
+              "position": [
+                13,
+                8
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "5e502d1b",
+            "order": 0,
+            "position": [
+              13,
+              8
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                12,
+                8
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "5e502d1b",
+            "tank": {
+              "direction": "right",
+              "id": "62138053",
+              "position": [
+                12,
+                8
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "index": 0,
+            "objectId": "6366bfeb",
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "bbc4d497",
+            "order": 0,
+            "position": [
+              14,
+              8
+            ],
+            "tank": {
+              "crashed": true,
+              "direction": "right",
+              "id": "6366bfeb",
+              "position": [
+                13,
+                8
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "bbc4d497",
+            "tank": {
+              "crashed": true,
+              "direction": "right",
+              "id": "6366bfeb",
+              "position": [
+                13,
+                8
+              ]
+            },
+            "type": "bullet"
+          }
+        ]
+      ]
+    },
+    "names": [
+      "山大王",
+      "Crimson Bastion"
+    ],
+    "excitementScore": 28,
+    "matchSeed": 2019874735017786000
+  },
+  "simulationAt": "2026-05-18T03:45:51.210707531Z",
+  "simulationCooldownSeconds": 2,
+  "nextSimulationAt": "2026-05-18T03:45:52.997283Z",
+  "trainingBots": [
+    {
+      "id": "nova-scout",
+      "name": "Nova Scout",
+      "description": "Balanced pathing bot for baseline tests."
+    },
+    {
+      "id": "azure-hunter",
+      "name": "Azure Hunter",
+      "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+    },
+    {
+      "id": "crimson-bastion",
+      "name": "Crimson Bastion",
+      "description": "Defensive control bot that contests stars and lanes."
+    }
+  ]
+}

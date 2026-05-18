@@ -4,8 +4,10 @@ import { test } from "node:test";
 import {
   createsImmediateFireThreat,
   hiddenCorridorThreat,
+  leadProtectionActive,
   postTeleportLaneTrap,
   reciprocalFireLosesRace,
+  starRaceNeedsFastRoute,
   overloadThreatField,
   overloadShotThreat,
 } from "../lib/tactical-threats.mjs";
@@ -104,4 +106,64 @@ test("post-teleport lane trap catches long one-turn shooting lanes", () => {
   assert.equal(postTeleportLaneTrap(openArena, enemy, [17, 10]), true);
   assert.equal(postTeleportLaneTrap(openArena, enemy, [17, 8]), false);
   assert.equal(postTeleportLaneTrap(openArena, { ...enemy, direction: "left" }, [17, 10]), false);
+});
+
+test("lead protection activates only after a real star lead develops", () => {
+  assert.equal(
+    leadProtectionActive({
+      frame: 56,
+      me: { stars: 3 },
+      enemy: { stars: 1 },
+    }),
+    true,
+  );
+  assert.equal(
+    leadProtectionActive({
+      frame: 20,
+      me: { stars: 3 },
+      enemy: { stars: 1 },
+    }),
+    false,
+  );
+  assert.equal(
+    leadProtectionActive({
+      frame: 80,
+      me: { stars: 2 },
+      enemy: { stars: 2 },
+    }),
+    false,
+  );
+});
+
+test("high-tier star races switch to the fast route when safety routing loses tempo", () => {
+  assert.equal(
+    starRaceNeedsFastRoute({
+      lead: 0,
+      strictDistance: 7,
+      fastDistance: 4,
+      enemyDistance: 4,
+      enemySkill: "shield",
+    }),
+    true,
+  );
+  assert.equal(
+    starRaceNeedsFastRoute({
+      lead: 2,
+      strictDistance: 7,
+      fastDistance: 4,
+      enemyDistance: 4,
+      enemySkill: "shield",
+    }),
+    false,
+  );
+  assert.equal(
+    starRaceNeedsFastRoute({
+      lead: 0,
+      strictDistance: 5,
+      fastDistance: 4,
+      enemyDistance: 9,
+      enemySkill: "shield",
+    }),
+    false,
+  );
 });

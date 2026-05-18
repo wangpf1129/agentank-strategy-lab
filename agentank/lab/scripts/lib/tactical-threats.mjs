@@ -159,3 +159,28 @@ export function postTeleportLaneTrap(map, enemy, target, options = {}) {
   if (turnCost(enemy.direction, neededDirection) > (options.maxTurnCost ?? 1)) return false;
   return losFrom(map, enemy.position, neededDirection, target);
 }
+
+function starsOf(actor) {
+  if (!actor) return 0;
+  if (typeof actor.stars === "number") return actor.stars;
+  if (typeof actor.score === "number") return actor.score;
+  return 0;
+}
+
+export function leadProtectionActive({ frame = 0, me, enemy, minLead = 2, minFrame = 35 } = {}) {
+  return frame >= minFrame && starsOf(me) - starsOf(enemy) >= minLead;
+}
+
+export function starRaceNeedsFastRoute({
+  lead = 0,
+  strictDistance = 999,
+  fastDistance = 999,
+  enemyDistance = 999,
+  enemySkill,
+} = {}) {
+  if (lead >= 2) return false;
+  if (fastDistance >= strictDistance || fastDistance >= 999 || enemyDistance >= 999) return false;
+  if (strictDistance <= enemyDistance + 1) return false;
+  if (fastDistance > enemyDistance + 1) return false;
+  return ["shield", "boost", "teleport", "cloak"].includes(enemySkill) || enemyDistance <= strictDistance;
+}
