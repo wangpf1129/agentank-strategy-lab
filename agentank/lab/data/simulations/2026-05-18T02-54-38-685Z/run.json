@@ -1,0 +1,61 @@
+{
+  "runId": "2026-05-18T02-54-38-685Z",
+  "startedAt": "2026-05-18T02:54:38.687Z",
+  "sleepMs": 2200,
+  "planCount": 2,
+  "plan": [
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "arena",
+      "round": 1
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "random",
+      "round": 1
+    }
+  ],
+  "results": [
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "arena",
+      "round": 1,
+      "file": "teleport-main-azure-hunter-arena-r1.json",
+      "winner": "me",
+      "resultReason": "star"
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "random",
+      "round": 1,
+      "file": "teleport-main-azure-hunter-random-r1.json",
+      "winner": "me",
+      "resultReason": "star"
+    }
+  ],
+  "summary": {
+    "teleport-main": {
+      "wins": 2,
+      "losses": 0,
+      "draws": 0,
+      "total": 2
+    }
+  },
+  "finishedAt": "2026-05-18T02:54:46.824Z"
+}
