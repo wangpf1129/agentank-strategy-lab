@@ -78,6 +78,7 @@ Use this for controlled public match sampling after a candidate is published. Re
 
 ```bash
 node agentank/lab/scripts/run-real-challenges.mjs --opponents 829,913 --maps random,arena --repeat 2
+node agentank/lab/scripts/run-real-challenges.mjs --tank teleport-main --random-opponent --maps random --limit 1
 AGENTANK_FREEZE_KEY=<key> AGENTANK_TELEPORT_KEY=<key> node agentank/lab/scripts/run-real-challenges.mjs --opponents 829,913 --maps random,arena --repeat 2 --limit 20 --execute
 ```
 
@@ -85,6 +86,7 @@ Useful patterns:
 
 - Start with `--limit 20` or `--limit 40`, then analyze before scaling further.
 - Use `--tank freeze-main` or `--tank teleport-main` when testing a tank-specific counter.
+- Use `--random-opponent` only for small exploratory batches when AgentTank has no eligible targeted-opponent list.
 - For ladder climbing, prefer same-score to +120 `rankScore` targets. Wider gaps are counter-research, not score farming.
 - Stop a target after two same-map losses or after an after-snapshot shows negative `rankScore` movement.
 - Keep `--sleep-ms` at several seconds or higher to avoid hammering the API.

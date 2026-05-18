@@ -4,7 +4,7 @@ Date: 2026-05-18
 
 Tank: 山大王 / teleport-main / teleport skill
 
-Status: v14 candidate passed the private training gate. It has not been published yet in this report.
+Status: v14 passed the private training gate, was published to AgentTank as code version 12, and has early public ladder validation.
 
 ## Live Environment
 
@@ -23,6 +23,15 @@ The persisted follow-up snapshot later in the same session showed:
 - Public rank: 529 / 1270
 - Published code version: 11
 - Files: `agentank/lab/data/fleet/teleport-main/tank.json`, `agentank/lab/data/fleet/teleport-main/matches.json`
+
+After publishing v14 and running early public validation, the latest saved snapshot showed:
+
+- Rank score: 1072
+- Tier: platinum II +72
+- Public rank: 515 / 1270
+- Published code version: 12
+- Published code hash: `ef771904cb8c03ff590eb2131046321cab7441c67378c27d90518e218ca2f1b7`
+- Record: 219 wins, 195 losses
 
 ## Loss Pattern
 
@@ -104,22 +113,26 @@ Training bots:
 
 - `agentank/lab/data/simulations/2026-05-18T02-27-20-072Z` was a sandbox-network failed first attempt and has no simulation result.
 - `agentank/lab/data/simulations/2026-05-18T02-45-24-015Z` confirmed that `/api/agent/tank/simulate` only accepts training bots; public leaderboard opponents must be tested through real challenges after publishing.
+- The post-publish eligible-opponents endpoint returned an empty opponent list for 山大王, so `run-real-challenges.mjs` now supports `--random-opponent` for controlled small-batch public sampling when targeted challenges are unavailable.
 
-## Publish Plan
+## Public Validation
 
-v14 is publishable from the training gate perspective.
+v14 was published as AgentTank code version 12 with code hash `ef771904cb8c03ff590eb2131046321cab7441c67378c27d90518e218ca2f1b7`.
 
-Recommended rollout:
+Small-batch public validation so far:
 
-1. Publish `agentank/teleport-main-v14-candidate.js` to 山大王.
-2. Immediately fetch a post-publish tank snapshot and confirm the published code version increments from 11.
-3. Run only two to four real challenges first.
-4. Prefer maps where the recent loss pattern is now directly covered:
-   - `classic`
-   - `random`
-   - `arena`
-5. Stop real challenges on the first score drop or repeated crash loss, then inspect replays before continuing.
+| Match | Opponent | Map | Result | Score | Note |
+| --- | --- | --- | --- | --- | --- |
+| `mat_6EFssEaD7XuGdf733` | 蜗牛的大坦克 | random | win by stars | 4-1 | 山大王 collected stars at frames 1, 18, 39, and 119. |
+| `mat_33YdaaVLLG42ceArj` | ading | random | loss by stars | 1-3 | 山大王 avoided a dangerous same-column race line and lost the final star by one tempo beat. |
+| `mat_04hUrFa1C2L6Kqw0r` | Neo.X | random | win by stars | 4-2 | This appeared in the latest match feed after v14 publication; replay was not part of the controlled two-match run. |
+
+Observed ladder movement in this session:
+
+- Pre-publish follow-up snapshot: rank score 1050, platinum II +50, public rank 529 / 1270.
+- Latest post-validation snapshot: rank score 1072, platinum II +72, public rank 515 / 1270.
+- Net movement: +22 rank score and +14 public-rank positions.
 
 ## Current Risk
 
-The strategy now balances lane caution and star pickup better than v11 in training, but public ladder opponents are not available through the private simulation endpoint. Real challenge validation is still required before aggressive ladder pushing.
+The strategy now balances lane caution and star pickup better than v11 in training, and the first public sample is net-positive on rank score. The `ading` loss shows the next improvement target: when 山大王 is racing a star but strict lane safety forces a slower route, it needs a contest action such as earlier interception, firing, or a more aggressive route only when the score swing justifies the risk.

@@ -52,6 +52,40 @@ test("builds challenge request body with AgentTank's targeted opponent field", (
   );
 });
 
+test("builds random-opponent real challenge plans and request bodies", () => {
+  const plan = buildChallengePlan({
+    tanks: "teleport-main",
+    randomOpponent: true,
+    maps: "random,classic",
+    limit: 2,
+  });
+
+  assert.deepEqual(plan, [
+    {
+      tankCodename: "teleport-main",
+      tankId: 947,
+      skill: "teleport",
+      envName: "AGENTANK_TELEPORT_KEY",
+      randomOpponent: true,
+      mapId: "random",
+      round: 1,
+    },
+    {
+      tankCodename: "teleport-main",
+      tankId: 947,
+      skill: "teleport",
+      envName: "AGENTANK_TELEPORT_KEY",
+      randomOpponent: true,
+      mapId: "classic",
+      round: 1,
+    },
+  ]);
+  assert.deepEqual(buildChallengeRequestBody(plan[0]), {
+    randomOpponent: true,
+    mapId: "random",
+  });
+});
+
 test("extracts match ids from nested challenge responses", () => {
   assert.equal(
     extractMatchId({ data: { match: { id: "mat_abc123XYZ" } } }),

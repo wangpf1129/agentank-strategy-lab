@@ -61,12 +61,13 @@ function parseOpponentIds(value) {
 export function buildChallengePlan({
   tanks = "all",
   opponents,
+  randomOpponent = false,
   maps = "random",
   repeat = 1,
   limit,
 } = {}) {
   const tankConfigs = resolveTankConfigs(tanks);
-  const opponentIds = parseOpponentIds(opponents);
+  const opponentIds = randomOpponent ? [null] : parseOpponentIds(opponents);
   const mapIds = parseList(maps, "maps");
   if (!mapIds.length) throw new Error("At least one map id is required");
 
@@ -85,7 +86,7 @@ export function buildChallengePlan({
             tankId: tank.tankId,
             skill: tank.skill,
             envName: tank.envName,
-            opponentId,
+            ...(randomOpponent ? { randomOpponent: true } : { opponentId }),
             mapId,
             round,
           });
@@ -98,6 +99,12 @@ export function buildChallengePlan({
 }
 
 export function buildChallengeRequestBody(item) {
+  if (item.randomOpponent) {
+    return {
+      randomOpponent: true,
+      mapId: item.mapId,
+    };
+  }
   return {
     opponentTankId: item.opponentId,
     mapId: item.mapId,

@@ -21,10 +21,12 @@ function usage() {
   return [
     "Usage:",
     "  node agentank/lab/scripts/run-real-challenges.mjs --opponents <ids> [options]",
+    "  node agentank/lab/scripts/run-real-challenges.mjs --random-opponent [options]",
     "",
     "Options:",
     "  --tank <codename|all>       Tank to run: freeze-main, teleport-main, or all. Default: all",
-    "  --opponents <ids>           Comma-separated public opponent tank ids. Required.",
+    "  --opponents <ids>           Comma-separated public opponent tank ids. Required unless --random-opponent is set.",
+    "  --random-opponent           Ask AgentTank to choose a random eligible public opponent.",
     "  --maps <ids>                Comma-separated map ids. Default: random",
     "  --repeat <n>                Rounds per opponent/map/tank combination. Default: 1",
     "  --limit <n>                 Maximum challenges in this run. Default: 20",
@@ -102,9 +104,11 @@ if (argv.includes("--help") || argv.includes("-h")) {
 }
 
 const execute = argv.includes("--execute");
+const randomOpponent = argv.includes("--random-opponent");
 const plan = buildChallengePlan({
   tanks: readOption(argv, "--tank", "all"),
   opponents: readOption(argv, "--opponents"),
+  randomOpponent,
   maps: readOption(argv, "--maps", "random"),
   repeat: readPositiveInteger(argv, "--repeat", 1),
   limit: readPositiveInteger(argv, "--limit", 20),
@@ -132,7 +136,7 @@ console.log(`Planned challenges: ${plan.length}`);
 if (!execute) {
   for (const [index, item] of plan.entries()) {
     console.log(
-      `${index + 1}. ${item.tankCodename} -> opponent ${item.opponentId} on ${item.mapId} round ${item.round}`,
+      `${index + 1}. ${item.tankCodename} -> ${item.randomOpponent ? "random opponent" : `opponent ${item.opponentId}`} on ${item.mapId} round ${item.round}`,
     );
   }
   console.log("Add --execute to send real challenges.");
@@ -146,7 +150,7 @@ for (const [index, item] of plan.entries()) {
   }
 
   console.log(
-    `${index + 1}/${plan.length}: ${item.tankCodename} -> opponent ${item.opponentId} on ${item.mapId}`,
+    `${index + 1}/${plan.length}: ${item.tankCodename} -> ${item.randomOpponent ? "random opponent" : `opponent ${item.opponentId}`} on ${item.mapId}`,
   );
   const startedAt = new Date().toISOString();
   const response = await postChallenge(item, key);
