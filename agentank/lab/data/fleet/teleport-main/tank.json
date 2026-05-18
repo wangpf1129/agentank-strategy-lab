@@ -15,19 +15,50 @@
     "submittedBy": "Codex",
     "isActive": true,
     "isPublic": true,
-    "elo": 1388,
-    "wins": 220,
-    "losses": 195,
+    "elo": 1402,
+    "wins": 225,
+    "losses": 196,
     "draws": 0,
-    "rankScore": 1090,
+    "rankScore": 1143,
     "rankTier": "platinum",
-    "rankDivision": 2,
-    "rankPoints": 90,
+    "rankDivision": 1,
+    "rankPoints": 43,
     "placementMatches": 10,
-    "effectiveWins": 111.20000000000012,
-    "effectiveLosses": 134,
+    "effectiveWins": 115.20000000000012,
+    "effectiveLosses": 135,
     "skillType": "teleport",
     "badges": [
+      {
+        "definition": {
+          "code": "rank_breaker",
+          "title": {
+            "en": "Rank Breaker",
+            "zh": "越级击穿",
+            "ja": "ランクブレイカー"
+          },
+          "description": {
+            "en": "Defeat a tank that started at least 2 rank bands higher.",
+            "zh": "击败开局时至少高 2 个段位带的对手。",
+            "ja": "開始時に2ランク帯以上高い相手を倒す。"
+          },
+          "icon": "rank-breaker",
+          "rarity": "legendary",
+          "conditionType": "upset_win",
+          "conditionValue": 2,
+          "conditionParams": {
+            "rank_gap": 2
+          },
+          "triggerEvent": "match_settled",
+          "isActive": true,
+          "sortOrder": 180,
+          "createdAt": "2026-05-15T07:03:44.499918Z",
+          "updatedAt": "2026-05-17T13:20:06.368431Z"
+        },
+        "code": "rank_breaker",
+        "earnedAt": "2026-05-18T03:22:20.469404Z",
+        "sourceMatchId": 652448,
+        "sourceTankId": 947
+      },
       {
         "definition": {
           "code": "war_machine",
@@ -57,6 +88,37 @@
         "code": "war_machine",
         "earnedAt": "2026-05-16T06:09:17.81651Z",
         "sourceMatchId": 455681,
+        "sourceTankId": 947
+      },
+      {
+        "definition": {
+          "code": "giant_slayer",
+          "title": {
+            "en": "Giant Slayer",
+            "zh": "巨人杀手",
+            "ja": "ジャイアントスレイヤー"
+          },
+          "description": {
+            "en": "Defeat a tank that started at least 1 rank band higher.",
+            "zh": "击败开局时至少高 1 个段位带的对手。",
+            "ja": "開始時に1ランク帯以上高い相手を倒す。"
+          },
+          "icon": "giant-slayer",
+          "rarity": "epic",
+          "conditionType": "upset_win",
+          "conditionValue": 1,
+          "conditionParams": {
+            "rank_gap": 1
+          },
+          "triggerEvent": "match_settled",
+          "isActive": true,
+          "sortOrder": 170,
+          "createdAt": "2026-05-14T11:46:20.853627Z",
+          "updatedAt": "2026-05-17T13:20:06.368431Z"
+        },
+        "code": "giant_slayer",
+        "earnedAt": "2026-05-18T03:22:20.469404Z",
+        "sourceMatchId": 652448,
         "sourceTankId": 947
       },
       {
@@ -123,6 +185,37 @@
     "featuredBadges": [
       {
         "definition": {
+          "code": "rank_breaker",
+          "title": {
+            "en": "Rank Breaker",
+            "zh": "越级击穿",
+            "ja": "ランクブレイカー"
+          },
+          "description": {
+            "en": "Defeat a tank that started at least 2 rank bands higher.",
+            "zh": "击败开局时至少高 2 个段位带的对手。",
+            "ja": "開始時に2ランク帯以上高い相手を倒す。"
+          },
+          "icon": "rank-breaker",
+          "rarity": "legendary",
+          "conditionType": "upset_win",
+          "conditionValue": 2,
+          "conditionParams": {
+            "rank_gap": 2
+          },
+          "triggerEvent": "match_settled",
+          "isActive": true,
+          "sortOrder": 180,
+          "createdAt": "2026-05-15T07:03:44.499918Z",
+          "updatedAt": "2026-05-17T13:20:06.368431Z"
+        },
+        "code": "rank_breaker",
+        "earnedAt": "2026-05-18T03:22:20.469404Z",
+        "sourceMatchId": 652448,
+        "sourceTankId": 947
+      },
+      {
+        "definition": {
           "code": "war_machine",
           "title": {
             "en": "War Machine",
@@ -154,62 +247,33 @@
       },
       {
         "definition": {
-          "code": "iron_veteran",
+          "code": "giant_slayer",
           "title": {
-            "en": "Iron Veteran",
-            "zh": "铁甲老兵",
-            "ja": "鉄甲の古参"
+            "en": "Giant Slayer",
+            "zh": "巨人杀手",
+            "ja": "ジャイアントスレイヤー"
           },
           "description": {
-            "en": "Complete 100 battles with this tank.",
-            "zh": "这辆坦克完成 100 场战斗。",
-            "ja": "このタンクで100戦する。"
+            "en": "Defeat a tank that started at least 1 rank band higher.",
+            "zh": "击败开局时至少高 1 个段位带的对手。",
+            "ja": "開始時に1ランク帯以上高い相手を倒す。"
           },
-          "icon": "iron-veteran",
+          "icon": "giant-slayer",
           "rarity": "epic",
-          "conditionType": "tank_matches",
-          "conditionValue": 100,
+          "conditionType": "upset_win",
+          "conditionValue": 1,
           "conditionParams": {
-            "count": 100
+            "rank_gap": 1
           },
           "triggerEvent": "match_settled",
           "isActive": true,
-          "sortOrder": 100,
-          "createdAt": "2026-05-15T07:03:44.499918Z",
+          "sortOrder": 170,
+          "createdAt": "2026-05-14T11:46:20.853627Z",
           "updatedAt": "2026-05-17T13:20:06.368431Z"
         },
-        "code": "iron_veteran",
-        "earnedAt": "2026-05-15T07:05:45.564087Z",
-        "sourceTankId": 947
-      },
-      {
-        "definition": {
-          "code": "ace_100",
-          "title": {
-            "en": "Hundred-Win Core",
-            "zh": "百胜核心",
-            "ja": "百勝コア"
-          },
-          "description": {
-            "en": "Win 100 battles with this tank.",
-            "zh": "这辆坦克赢得 100 场战斗。",
-            "ja": "このタンクで100勝する。"
-          },
-          "icon": "ace-100",
-          "rarity": "epic",
-          "conditionType": "tank_wins",
-          "conditionValue": 100,
-          "conditionParams": {
-            "count": 100
-          },
-          "triggerEvent": "match_settled",
-          "isActive": true,
-          "sortOrder": 120,
-          "createdAt": "2026-05-15T07:03:44.499918Z",
-          "updatedAt": "2026-05-17T13:20:06.368431Z"
-        },
-        "code": "ace_100",
-        "earnedAt": "2026-05-15T07:05:45.564087Z",
+        "code": "giant_slayer",
+        "earnedAt": "2026-05-18T03:22:20.469404Z",
+        "sourceMatchId": 652448,
         "sourceTankId": 947
       }
     ],
@@ -217,7 +281,7 @@
     "agentKeyMasked": "[REDACTED]",
     "agentGuideUrl": "/agent-guide",
     "createdAt": "2026-05-14T06:50:24.001611Z",
-    "updatedAt": "2026-05-18T03:17:11.81316Z"
+    "updatedAt": "2026-05-18T03:22:21.212296Z"
   },
   "skill": {
     "type": "teleport",
@@ -246,25 +310,25 @@
       "id": "public-map-16",
       "name": "Zen",
       "source": "community",
-      "battleCount": 365
+      "battleCount": 371
     },
     {
       "id": "public-map-15",
       "name": "土堆迷阵",
       "source": "community",
-      "battleCount": 362
+      "battleCount": 364
     },
     {
       "id": "public-map-6",
       "name": "躲猫猫",
       "source": "community",
-      "battleCount": 3648
+      "battleCount": 3650
     },
     {
       "id": "public-map-1",
       "name": "smile",
       "source": "community",
-      "battleCount": 3535
+      "battleCount": 3543
     }
   ],
   "trainingBots": [
@@ -285,7 +349,7 @@
     }
   ],
   "standing": {
-    "rank": 497,
+    "rank": 447,
     "totalPublic": 1270,
     "isRanked": true,
     "visibleOnTop": false
