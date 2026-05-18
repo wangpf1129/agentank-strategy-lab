@@ -72,6 +72,14 @@ AGENTANK_FREEZE_KEY=<key> AGENTANK_TELEPORT_KEY=<key> \
   --code teleport-main=agentank/teleport-main-v6-candidate.js
 ```
 
+## Publish Candidate Code
+
+Use this only after a candidate passes its private gate and the report explains why it should replace the current published code.
+
+```bash
+AGENTANK_TELEPORT_KEY=<key> node agentank/lab/scripts/publish-tank-code.mjs agentank/teleport-main-v15-candidate.js AGENTANK_TELEPORT_KEY "v15: star-race pressure gate"
+```
+
 ## Run Real Challenge Batches
 
 Use this for controlled public match sampling after a candidate is published. Real challenges affect public ladder score, tier, rank, and records, so the script defaults to dry-run. Add `--execute` only when the opponent list, maps, repeat count, and limit are intentional.
