@@ -160,6 +160,18 @@ export function postTeleportLaneTrap(map, enemy, target, options = {}) {
   return losFrom(map, enemy.position, neededDirection, target);
 }
 
+export function boostLeadLaneTrap(map, enemy, target, options = {}) {
+  if (!enemy || options.lead < 1) return false;
+  const enemySkill = enemy.skillType ?? enemy.skill?.type;
+  if (enemySkill !== "boost") return false;
+  if (enemy.position[0] !== target[0] && enemy.position[1] !== target[1]) return false;
+  if (manhattan(enemy.position, target) > (options.maxDistance ?? 14)) return false;
+
+  const neededDirection = dirTo(enemy.position, target);
+  if (turnCost(enemy.direction, neededDirection) > (options.maxTurnCost ?? 2)) return false;
+  return losFrom(map, enemy.position, neededDirection, target);
+}
+
 function starsOf(actor) {
   if (!actor) return 0;
   if (typeof actor.stars === "number") return actor.stars;

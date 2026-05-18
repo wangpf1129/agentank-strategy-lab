@@ -1,0 +1,1864 @@
+{
+  "opponentId": "nova-scout",
+  "opponentName": "Nova Scout",
+  "mapId": "public-map-15",
+  "usedCandidateCode": true,
+  "resultReason": "star",
+  "winner": "me",
+  "replayData": {
+    "map": {
+      "id": "public-map-15",
+      "name": "土堆迷阵",
+      "map": [
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "m",
+          ".",
+          ".",
+          ".",
+          "x",
+          "o",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "m",
+          ".",
+          ".",
+          ".",
+          "o",
+          "m",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          "m",
+          "m",
+          "m",
+          ".",
+          ".",
+          "o",
+          "x",
+          "o",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          "x",
+          "o",
+          "m",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          "x",
+          "x",
+          "x",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          "o",
+          "m",
+          "o",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          "x",
+          "x",
+          "x",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          "o",
+          "m",
+          "o",
+          "o",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          ".",
+          "x",
+          "x",
+          "x",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          ".",
+          "o",
+          "m",
+          "o",
+          "x",
+          ".",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "o",
+          "x",
+          "o",
+          ".",
+          ".",
+          "m",
+          "m",
+          "m",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "m",
+          "o",
+          ".",
+          ".",
+          ".",
+          "m",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "o",
+          "x",
+          ".",
+          ".",
+          ".",
+          "m",
+          ".",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ]
+      ],
+      "players": [
+        {
+          "direction": "up",
+          "position": [
+            2,
+            2
+          ]
+        },
+        {
+          "direction": "up",
+          "position": [
+            12,
+            8
+          ]
+        }
+      ],
+      "raw": "xxxxxxxxxxxxxxx|x..m.......xoxx|x.am.......omox|xmmm..ooo.oxoxx|x...xxoxoxmo..x|x...oxmxmxo...x|x..omxoxoxx...x|xxoxo.ooo..mmmx|xomo.......mA.x|xxox.......m..x|xxxxxxxxxxxxxxx"
+    },
+    "replay": {
+      "meta": {
+        "players": [
+          {
+            "tank": {
+              "id": "13db4992",
+              "position": [
+                2,
+                2
+              ],
+              "direction": "up"
+            },
+            "runTime": 908
+          },
+          {
+            "tank": {
+              "id": "676ca9c6",
+              "position": [
+                12,
+                8
+              ],
+              "direction": "up"
+            },
+            "runTime": 6
+          }
+        ],
+        "result": {
+          "action": "end",
+          "reason": "star",
+          "type": "game",
+          "winner": 0
+        },
+        "excitementScore": 67,
+        "matchSeed": 7295632282315359000
+      },
+      "records": [
+        [
+          {
+            "action": "created",
+            "position": [
+              5,
+              2
+            ],
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "13db4992",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              2,
+              2
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "13db4992",
+            "targetObjectId": "13db4992",
+            "to": [
+              5,
+              2
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              2
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              2
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              7,
+              7
+            ],
+            "type": "star"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "b8470b69",
+            "tank": {
+              "direction": "down",
+              "id": "13db4992",
+              "position": [
+                6,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "b8470b69",
+            "order": 0,
+            "position": [
+              6,
+              5
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "13db4992",
+              "position": [
+                6,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "destroyed",
+            "position": [
+              6,
+              5
+            ],
+            "tile": "m",
+            "type": "map"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "b8470b69",
+            "tank": {
+              "direction": "down",
+              "id": "13db4992",
+              "position": [
+                6,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              7,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              12,
+              1
+            ],
+            "type": "star"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "13db4992",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              6,
+              3
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "13db4992",
+            "targetObjectId": "13db4992",
+            "to": [
+              10,
+              1
+            ],
+            "type": "skill"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              10,
+              2
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              10,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "68cf052c",
+            "tank": {
+              "direction": "down",
+              "id": "13db4992",
+              "position": [
+                10,
+                3
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "68cf052c",
+            "order": 0,
+            "position": [
+              10,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "13db4992",
+              "position": [
+                10,
+                3
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "destroyed",
+            "position": [
+              10,
+              4
+            ],
+            "tile": "m",
+            "type": "map"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "68cf052c",
+            "tank": {
+              "direction": "down",
+              "id": "13db4992",
+              "position": [
+                10,
+                3
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              9,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              8,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              7,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "13db4992",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              6,
+              7
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "13db4992",
+            "targetObjectId": "13db4992",
+            "to": [
+              10,
+              1
+            ],
+            "type": "skill"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              10,
+              2
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              10,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              9,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              8,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              7,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              3
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              6,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "13db4992",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              6,
+              7
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "13db4992",
+            "targetObjectId": "13db4992",
+            "to": [
+              10,
+              1
+            ],
+            "type": "skill"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "13db4992",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "13db4992",
+            "position": [
+              10,
+              2
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ]
+      ]
+    },
+    "names": [
+      "山大王",
+      "Nova Scout"
+    ],
+    "excitementScore": 67,
+    "matchSeed": 7295632282315359000
+  },
+  "simulationAt": "2026-05-18T04:50:06.038381129Z",
+  "simulationCooldownSeconds": 2,
+  "nextSimulationAt": "2026-05-18T04:50:06.548406Z",
+  "trainingBots": [
+    {
+      "id": "nova-scout",
+      "name": "Nova Scout",
+      "description": "Balanced pathing bot for baseline tests."
+    },
+    {
+      "id": "azure-hunter",
+      "name": "Azure Hunter",
+      "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+    },
+    {
+      "id": "crimson-bastion",
+      "name": "Crimson Bastion",
+      "description": "Defensive control bot that contests stars and lanes."
+    }
+  ]
+}

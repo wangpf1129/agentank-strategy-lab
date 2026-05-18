@@ -3,6 +3,7 @@ import { test } from "node:test";
 
 import {
   createsImmediateFireThreat,
+  boostLeadLaneTrap,
   hiddenCorridorThreat,
   leadProtectionActive,
   postTeleportLaneTrap,
@@ -106,6 +107,18 @@ test("post-teleport lane trap catches long one-turn shooting lanes", () => {
   assert.equal(postTeleportLaneTrap(openArena, enemy, [17, 10]), true);
   assert.equal(postTeleportLaneTrap(openArena, enemy, [17, 8]), false);
   assert.equal(postTeleportLaneTrap(openArena, { ...enemy, direction: "left" }, [17, 10]), false);
+});
+
+test("boost lead lane trap blocks star routes through a long enemy firing lane", () => {
+  const enemy = { position: [2, 2], direction: "right", skillType: "boost" };
+
+  assert.equal(boostLeadLaneTrap(openArena, enemy, [11, 2], { lead: 1 }), true);
+  assert.equal(boostLeadLaneTrap(openArena, enemy, [11, 3], { lead: 1 }), false);
+  assert.equal(boostLeadLaneTrap(openArena, enemy, [11, 2], { lead: 0 }), false);
+  assert.equal(
+    boostLeadLaneTrap(openArena, { ...enemy, skillType: "shield" }, [11, 2], { lead: 1 }),
+    false,
+  );
 });
 
 test("lead protection activates only after a real star lead develops", () => {
