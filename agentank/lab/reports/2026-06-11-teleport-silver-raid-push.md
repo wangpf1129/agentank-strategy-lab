@@ -1,0 +1,720 @@
+# Teleport Silver Raid Push
+
+Date: 2026-06-11
+
+Tank: `947` / 山大王
+
+## Live Baseline
+
+- Live tank confirmed on 2026-06-11:
+  - `rankScore` `354`
+  - `silver III +54`
+  - `codeVersion` `24`
+  - `codeHash` `80d1847c0c97bb8af2423df14f7547daa3324abfe17da81aa83017e5eacf532a`
+
+## Version Trail
+
+- `v25`
+  - `codeVersion` `25`
+  - `codeHash` `fd4a4de73a9c29790a4ae0510e3223264e62d80ad0f88fa9070ff666de72b9bf`
+  - strategy: first teleport can hold a short ambush lane, then pivot back to star race
+- `v26`
+  - `codeVersion` `26`
+  - `codeHash` `ddb93488ed88c22e65a5033bbc339c78b1b6c95f3bce13bb7de083419da13d40`
+  - strategy add-on: if the first star is enemy-favored and no direct star landing exists, teleport forward to pressure instead of walking
+- `v27`
+  - not kept as final live climb version
+  - added frame-local caches for `laneDangerAt`, `safeCell`, and `pathInfo`
+  - moved `pressureAnchor` route prediction out of the cell loop to cut runtime cost
+- `v28`
+  - `codeVersion` `28`
+  - `codeHash` `553e9184e2d86c48d77dca7c6d196075946cfa7cf3c02e5915c6a98ea4bfeea9`
+  - added two live-bug fixes:
+    - do not repeat the same teleport landing for the same uncollected star
+    - if the enemy is effectively dormant, stop posturing and force the star route
+- `v29`
+  - `codeVersion` `29`
+  - `codeHash` `086508d2762cb9539e07728b40343b4f14d02a93c7435f7959fcea1b764e65b4`
+  - strategy add-on: anti-mirror opening; in teleport mirrors, score landings by actual frames-to-star and force immediate mirror-star conversion
+- `v30`
+  - `codeVersion` `30`
+  - `codeHash` `f732ef49477b1cf762da8f7f066fcbaf1844ef6321b931d81c688ac99677a6d3`
+  - not kept as stable climb version
+  - strategy add-on: short mirror-recovery window after contested teleport stars, with second-star staging and more direct star-race follow-through
+- `v31`
+  - `codeVersion` `31`
+  - `codeHash` `bf83d30339b5d0047014ebce5195061b2c35b39654fa10cb73a2875a15f11078`
+  - strategy add-on: keep the mirror-recovery window, but reject mirror landings that collect a star and remain pinned in an enemy one-turn crash lane
+
+## Verification
+
+- `node --check teleport-main-v19-candidate.js`
+- `node --test lab/scripts/tests/*.test.mjs`
+- Training simulations:
+  - `v26` random-only retest: `6-0`
+  - `v28` random-only sanity retest: `3-0`
+  - `v29` random-only sanity retest: `3-0`
+  - `v30` random-only sanity retest: `3-0`
+  - `v31` random-only sanity retest: `3-0`
+
+## Live Findings
+
+- `v25` first burst was profitable:
+  - `mat_6vbOjJ7ifVG88wzI5` win `+20`
+  - `mat_1SzKVDwQeAk4yNo8z` win `+20`
+  - `mat_JkGxvO37UQ0621J8r` win `+20`
+- `v25` then dropped star-race games to the same simple runner archetype:
+  - `mat_1Vax4UG6kUM5LSqbQ` loss by `star`
+  - `mat_IAfnapINwNd4DeZIs` loss by `star`
+- `v26` exposed two real issues:
+  - `mat_2pnsi3Nf2wyClF2Ek` loss by `runTime`
+  - `mat_DXeXqxeiafmITdyOx` loss by `runTime`, but the replay showed a worse bug: against a dormant opponent, our tank kept teleporting back to the same landing and never converted the star
+- `v28` recovery run:
+  - `mat_5z7PXncQG0nLdxbT5` win by `star` vs tank `9`, `+22`
+  - `mat_8RxBHqFlfW7BOLTFH` win by `star` vs tank `691`, `+19`
+  - `mat_FcBplGDnD9S1tzxBT` win by `crashed` vs tank `1083`, `+19`
+  - `mat_HTDotEykQFoKiFSQI` win by `crashed` vs tank `9`, `+18`
+- `v28` mixed 18-match public batch on 2026-06-11:
+  - target pool: `9, 691, 1083, 3460, 664, 3764`
+  - sample size: `18`
+  - result: `10 wins / 8 losses`, net `-14`
+  - score path:
+    - `412 -> 430 -> 443 -> 417 -> 396 -> 416 -> 393 -> 411 -> 425 -> 401 -> 382 -> 401 -> 420 -> 433 -> 445 -> 422 -> 403 -> 421 -> 398`
+  - per-opponent net:
+    - `9`: `3-0`, `+49`
+    - `664`: `3-0`, `+57`
+    - `691`: `3-0`, `+39`
+    - `1083`: `0-3`, `-73`
+    - `3460`: `0-3`, `-59`
+    - `3764`: `1-2`, `-27`
+- `v29` targeted `Olu` retest on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-02-43-939Z.json`
+  - result: `1-2`, net `-16`
+  - score path: `398 -> 379 -> 402 -> 382`
+  - mirror-opening evidence improved:
+    - all three games started with first-star pressure or first-star conversion
+    - the old "mirror first star is stolen immediately" failure was reduced
+  - remaining issue:
+    - second and third stars during the shared teleport cooldown were still too weak, including one `3-3` runtime loss
+- `v30` targeted `Olu` retest on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-12-42-760Z.json`
+  - result: `1-2`, net `-12`
+  - score path: `382 -> 364 -> 388 -> 370`
+  - new failure:
+    - `mat_KxBdiRq6PNjFmedJt` became a bad opening mirror case: first star was collected, but the landing stayed pinned in Olu's one-turn shot lane and crashed on frame `4`
+- `v31` targeted `Olu` retest on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-17-21-588Z.json`
+  - result: `3-0`, net `+64`
+  - score path: `370 -> 394 -> 415 -> 434`
+  - wins:
+    - `mat_6vvu4qQV7lB5pQ8H7` win by `star`, `+24`
+    - `mat_6gJSSDnF4lBJGl4gF` win by `crashed`, `+21`
+    - `mat_3sXl39kCBjRJqgdHH` win by `star`, `+19`
+  - key tactical read:
+    - the mirror crash guard removed the worst `v30` opening suicide
+    - the mirror-recovery window then had room to flip later stars instead of throwing the first conversion away
+- `v31` broad mixed public batch started on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-26-45-237Z.json`
+  - planned sample: `36`
+  - completed before API stop: `19`
+  - stop reason: challenge API returned `400 opponent rank is too high for this tank` mid-batch when target `301` moved out of the allowed challenge band
+  - completed result: `6 wins / 13 losses`, net `-135`
+  - score path during the completed portion: `434 -> 299`
+  - per-opponent completed net:
+    - `9`: `2-0`, `+30`
+    - `691`: `2-0`, `+29`
+    - `301`: `1-0`, `+23`
+    - `664`: `1-1`, `-8`
+    - `4155`: `0-1`, `-15`
+    - `3679`: `0-1`, `-15`
+    - `519`: `0-1`, `-17`
+    - `2476`: `0-1`, `-18`
+    - `2770`: `0-2`, `-30`
+    - `3460`: `0-2`, `-33`
+    - `3764`: `0-2`, `-37`
+    - `1083`: `0-2`, `-44`
+  - broad-batch conclusion:
+    - `v31` is not a generally safe blind mixed-ladder farmer yet
+    - the version still needs target selection; widening to many fresh low-sample tanks was strongly negative
+- Ad hoc recovery probe after the failed broad batch:
+  - matches:
+    - `mat_Io7BKAD455D1C5Yd3` vs `9`, win by `star`, `+19`
+    - `mat_87AsDX6Q004AX54bJ` vs `691`, win by `star`, `+18`
+    - `mat_3pnj07GHOrzHNvvvA` vs `1083`, win by `star`, `+24`
+  - score path: `299 -> 360`
+  - note:
+    - the challenge endpoint has no dry-run, so challengeability checks should be treated as real matches
+- `v31` recovery batch on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-30-57-344Z.json`
+  - target pool: `9, 691`
+  - sample size: `12`
+  - result: `11 wins / 1 loss`, net `+114`
+  - score path: `360 -> 474`
+  - per-opponent net:
+    - `9`: `6-0`, `+76`
+    - `691`: `5-1`, `+38`
+  - recovery conclusion:
+    - `v31` can still climb hard when the target pool stays inside its proven profitable matchups
+- `v31` continued pure score push on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-36-27-706Z.json`
+  - target pool: `9, 691`
+  - planned sample size: `30`
+  - completed before API stop: `12`
+  - stop reason: after the score jumped upward, the challenge API rejected the next `9` match with `400 opponent rank score is too far from this tank`
+  - completed result: `12 wins / 0 losses`, net `+87`
+  - score path: `474 -> 561`
+  - per-opponent net:
+    - `9`: `6-0`, `+41`
+    - `691`: `6-0`, `+46`
+  - pure-push conclusion:
+    - `v31` still farms the known profitable pool cleanly, but that pool disappears once our rank score rises too far above it
+- `v31` next-band extension test on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-38-47-275Z.json`
+  - target pool: `2707, 2790`
+  - sample size: `8`
+  - result: `1 win / 7 losses`, net `-82`
+  - score path: `561 -> 479`
+  - per-opponent net:
+    - `2707`: `1-3`, `-31`
+    - `2790`: `0-4`, `-51`
+  - tactical failure pattern:
+    - most losses were early `crashed` games, not long star-race losses
+    - both opponents mostly won without relying on their skill timing
+    - the repeated pattern was: 山大王 took the first star, then stayed or rotated back into a plain horizontal gun lane and got punished by ordinary shots a few frames later
+    - representative losses:
+      - `mat_Ls5GkjmAJi13bq4uh` vs `2707`: first star at frame `6`, crash at frame `17`
+      - `mat_DWloBT2nGLqHYn6IP` vs `2790`: first star at frame `4`, crash at frame `15`
+      - `mat_EDrvlgAgBpW5VjNvS` vs `2790`: first star at frame `4`, crash at frame `24`
+  - extension conclusion:
+    - unchanged `v31` does not yet generalize from the low-silver farm pool into the next-band `boost/overload` pressure pool
+    - the current weakness is post-first-star lane discipline, not mirror-star conversion
+- `v31` post-analysis recovery batch on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-41-14-223Z.json`
+  - target pool: `9, 691`
+  - sample size: `8`
+  - result: `8 wins / 0 losses`, net `+51`
+  - score path: `479 -> 530`
+  - per-opponent net:
+    - `9`: `4-0`, `+25`
+    - `691`: `4-0`, `+26`
+  - recovery conclusion:
+    - after the failed next-band extension, unchanged `v31` could still immediately resume profitable farming on the proven pool
+- `v31` same-band fresh-pool sweep on 2026-06-11:
+  - run: `lab/data/challenge-runs/2026-06-11T07-45-23-931Z.json`
+  - target pool: `1767, 1880, 3365, 2419, 3995, 730, 402`
+  - sample size: `7`
+  - result: `1 win / 6 losses`, net `-84`
+  - score path: `530 -> 446`
+  - per-opponent net:
+    - `3365`: `1-0`, `+23`
+    - `402`: `0-1`, `-15`
+    - `730`: `0-1`, `-16`
+    - `3995`: `0-1`, `-18`
+    - `1880`: `0-1`, `-19`
+    - `2419`: `0-1`, `-19`
+    - `1767`: `0-1`, `-20`
+  - tactical failure pattern:
+    - `6` losses were all early `crashed` games
+    - the problem repeated across overload, shield, poison, and stun targets, so it is not a single-skill counter issue
+    - with unchanged `v31`, once the easy farm pool disappears, same-band fresh opponents still punish post-star lane exposure fast enough to erase the gains
+
+## Current Live State
+
+- Confirmed live snapshot after the same-band fresh-pool sweep:
+  - `rankScore` `446`
+  - `silver II +46`
+  - `codeVersion` `31`
+  - `codeHash` `bf83d30339b5d0047014ebce5195061b2c35b39654fa10cb73a2875a15f11078`
+- Score path for the `v28` recovery burst before batch testing:
+  - `334 -> 356 -> 375 -> 394 -> 412`
+- Net for the initial `v28` recovery burst:
+  - `+78`
+- Net after the broader mixed public batch:
+  - `412 -> 398`, net `-14`
+- Net after the `v29` targeted `Olu` batch:
+  - `398 -> 382`, net `-16`
+- Net after the `v30` targeted `Olu` batch:
+  - `382 -> 370`, net `-12`
+- Net after the `v31` targeted `Olu` batch:
+  - `370 -> 434`, net `+64`
+- Net after the completed portion of the broad mixed batch:
+  - `434 -> 299`, net `-135`
+- Net after the ad hoc recovery probe:
+  - `299 -> 360`, net `+61`
+- Net after the `v31` recovery batch:
+  - `360 -> 474`, net `+114`
+- Net after the continued pure-push batch:
+  - `474 -> 561`, net `+87`
+- Net after the next-band extension test:
+  - `561 -> 479`, net `-82`
+- Net after the post-analysis recovery batch:
+  - `479 -> 530`, net `+51`
+- Net after the same-band fresh-pool sweep:
+  - `530 -> 446`, net `-84`
+
+## Operating Note
+
+- Current profitable pattern is still targeted batching, but the anti-mirror line now has a usable live version.
+- `v31` is now profitable into `1083` / `Olu`, which was the worst hole in the prior mixed batch.
+- Current strongest score-farming pool is narrow and confirmed:
+  - `9`
+  - `691`
+- Current broad-pool avoid list is also clear from live data:
+  - `3460`
+  - `3764`
+  - fresh low-sample silver placement tanks unless revalidated first
+- Current pure-push edge is two-layered:
+  - layer 1:
+    - `9`
+    - `691`
+    - these can be farmed cleanly until score-gap rules remove them
+  - layer 2:
+    - `2707`
+    - `2790`
+    - these are not ready for blind farming with unchanged `v31`
+- Current same-band fresh-pool avoid list with unchanged `v31`:
+  - `1767`
+  - `1880`
+  - `2419`
+  - `3995`
+  - `402`
+  - `730`
+  - likely any similar fresh silver-I gunline pool until the post-first-star lane issue is fixed
+- Most recent empirical score-push sample with unchanged `v31`:
+  - total: `35` matches
+  - result: `22 wins / 13 losses`, net `-28`
+  - breakdown:
+    - `9`: `10-0`, `+66`
+    - `691`: `10-0`, `+72`
+    - `3365`: `1-0`, `+23`
+    - `2707`: `1-3`, `-31`
+    - `2790`: `0-4`, `-51`
+    - `1767`: `0-1`, `-20`
+    - `1880`: `0-1`, `-19`
+    - `2419`: `0-1`, `-19`
+    - `3995`: `0-1`, `-18`
+    - `730`: `0-1`, `-16`
+    - `402`: `0-1`, `-15`
+- If widening again, do it as a staircase:
+  - add one new target at a time beside `9/691`
+  - stop immediately when the aggregate pool turns negative instead of forcing another full mixed batch
+
+## Late Recovery Addendum
+
+- Live state was rechecked on 2026-06-11 before the strengthen attempt:
+  - actual live version had drifted back to `codeVersion` `29`
+  - actual live score at that check was `382`
+  - that means the earlier `v31` push note was stale as current live state, even though the code path was still preserved locally
+- `v32`
+  - `codeVersion` `32`
+  - `codeHash` `a78b9e7cb3df0744f4a7494e8e8ee23e50ee7123667ada3ad94b41d95712b5c4`
+  - change:
+    - added a dedicated post-first-star lead-drift branch
+    - scored post-pickup exits in teleport landing selection
+  - result:
+    - too negative in live public sampling
+    - representative loss vs tank `52`: `mat_2du0xXPsy5m5TpEc5`
+    - tactical read:
+      - the old opening raid branch still over-triggered and spent too many frames turning instead of cashing a free first star
+- `v33`
+  - `codeVersion` `33`
+  - `codeHash` `2f25771c2bcb61f6bbef4f0cdc08a2bd1940ec842a813cc5c1bfce758c96b5ff`
+  - change:
+    - tightened opening-raid activation so easy first-star pickups should not be sacrificed for an ambush hold
+  - result:
+    - it removed the worst turn-in-place opener, but the overall strengthen branch still stayed negative
+    - representative retest vs tank `52`: `mat_ERGw4AQlxjU2SXNdx`
+    - tactical read:
+      - the opener was cleaner, but broad public performance still did not justify keeping the branch live
+- failed or invalid sampling notes during the strengthen attempt:
+  - target `3632` challenge returned `400 battle function failed`
+  - this was treated as an opponent-or-server-side execution failure, not as usable ladder evidence
+- strengthen branch public batch before rollback:
+  - run: `lab/data/challenge-runs/2026-06-11T10-21-43-044Z.json`
+  - completed matches before API stop: `5`
+  - stop reason on the sixth planned challenge: `400 opponent rank is too high for this tank`
+  - result: `0 wins / 5 losses`, net `-94`
+  - score path during that batch: `392 -> 298`
+  - conclusion:
+    - the strengthen branch was structurally worse than the prior baseline and had to be removed immediately
+- `v34`
+  - `codeVersion` `34`
+  - `codeHash` `bf83d30339b5d0047014ebce5195061b2c35b39654fa10cb73a2875a15f11078`
+  - action:
+    - rolled live code back to the pre-strengthen baseline hash
+  - recovery batch 1:
+    - run: `lab/data/challenge-runs/2026-06-11T10-23-44-421Z.json`
+    - target pool: `9, 691`
+    - sample size: `6`
+    - result: `5 wins / 1 loss`, net `+63`
+    - score path: `298 -> 361`
+  - recovery batch 2:
+    - run: `lab/data/challenge-runs/2026-06-11T10-24-40-188Z.json`
+    - target pool: `9, 691`
+    - sample size: `6`
+    - result: `6 wins / 0 losses`, net `+61`
+    - score path: `361 -> 422`
+- current live state after rollback recovery:
+  - confirmed on 2026-06-11
+  - `rankScore` `422`
+  - `silver II +22`
+  - `codeVersion` `34`
+  - `codeHash` `bf83d30339b5d0047014ebce5195061b2c35b39654fa10cb73a2875a15f11078`
+- late-cycle conclusion:
+  - the aggressive strengthen branch is currently rejected by live evidence
+  - the rollback baseline immediately resumed profitable farming on `9/691`
+  - for now, score recovery should stay on the narrow proven pool instead of reopening broad same-band tests blindly
+
+## Same-Day Continuation After Recovery
+
+- recovery extension on the last proven farm pool:
+  - run: `lab/data/challenge-runs/2026-06-11T10-31-43-359Z.json`
+  - target pool: `9, 691`
+  - sample size: `16`
+  - result: `15 wins / 1 loss`, net `+62`
+  - score path: `422 -> 484`
+  - stop reason on the next planned challenge:
+    - `400 opponent rank score is too far from this tank`
+  - tactical read:
+    - `9/691` was still profitable, but the score-gap gate started closing as soon as the rollback baseline climbed back toward upper silver
+- same-band staircase probe after the score-gap stop:
+  - run: `lab/data/challenge-runs/2026-06-11T10-36-08-089Z.json`
+  - target pool: `52, 2627`
+  - sample size: `4`
+  - result: `4 wins / 0 losses`, net `+75`
+  - score path in recorded settlements: `483 -> 558`
+  - breakdown:
+    - `52`: `2-0`, `+39`
+    - `2627`: `2-0`, `+36`
+  - tactical read:
+    - the micro-sample looked clean enough to justify a controlled expansion, but this was only a probe and not yet a validated farming pool
+- widened same-band push failed:
+  - run: `lab/data/challenge-runs/2026-06-11T10-36-52-012Z.json`
+  - target pool: `52, 2627`
+  - planned size: `20`
+  - recorded settlements before the process stop: `12`
+  - recorded result: `5 wins / 7 losses`, net `-79`
+  - score path in recorded settlements: `558 -> 479`
+  - recorded breakdown:
+    - `52`: `3-3`, `-12`
+    - `2627`: `2-4`, `-67`
+  - tactical read:
+    - `2627` is a confirmed hole and should be treated as rejected at this live version
+    - `52` lost its early edge once the sample widened and cannot be treated as a clean ladder farm
+- interrupted-batch tail settlement:
+  - the killed expansion batch had one in-flight challenge that settled after the stop and was not written back into the interrupted run log
+  - replay: `mat_52F5dPWTbHL0fDRKe`
+  - target: `52`
+  - result: win, `+20`
+  - score path: `479 -> 499`
+  - note:
+    - this explains why the live score after the stop was higher than the interrupted run log's final recorded score
+- `52` single-target retest:
+  - run: `lab/data/challenge-runs/2026-06-11T10-38-38-197Z.json`
+  - target pool: `52`
+  - sample size: `2`
+  - result: `1 win / 1 loss`, net `-6`
+  - score path: `499 -> 493`
+  - replays:
+    - `mat_IFiGeIwtFLLIv3Qki`: win, `+18`
+    - `mat_D0KfzyzyCsr5WKYDJ`: loss, `-24`
+  - tactical read:
+    - once isolated, `52` still failed to hold positive expectation, so there is no reason to keep burning score on it right now
+- current live state after the continuation sample:
+  - confirmed on `2026-06-11`
+  - `rankScore` `493`
+  - `silver II +93`
+  - `elo` `1193`
+  - `codeVersion` `34`
+  - `codeHash` `bf83d30339b5d0047014ebce5195061b2c35b39654fa10cb73a2875a15f11078`
+- continuation conclusion at this checkpoint:
+  - the only clearly proven positive pool remains `9/691`
+  - that pool is now effectively closed by score-gap rules at the current silver score
+  - `691` currently surfaces at `bronze II 157`, which matches the gating problem
+  - `2627` is rejected
+  - `52` is now too volatile and no longer qualifies as a verified positive pool
+  - with unchanged `v34`, there is no currently verified same-band pool that justifies blind continued ladder grinding
+
+## Fast Rescan And Recovery
+
+- fast same-band rescan after the `52/2627` rejection:
+  - run: `lab/data/challenge-runs/2026-06-11T10-46-13-124Z.json`
+  - target pool: `2476, 2770, 3602, 3320, 2302`
+  - sample size: `5`
+  - result: `1 win / 4 losses`, net `-54`
+  - score path: `493 -> 439`
+  - breakdown:
+    - `2476`: loss, `-22`
+    - `2770`: loss, `-20`
+    - `3602`: loss, `-19`
+    - `3320`: loss, `-17`
+    - `2302`: win, `+24`
+  - tactical read:
+    - blind same-band quick scans remain dangerous on unchanged `v34`
+    - `2476 / 2770 / 3602 / 3320` should all be treated as rejected for the current live build
+- isolated follow-up on the only winner from that scan:
+  - run: `lab/data/challenge-runs/2026-06-11T10-47-20-762Z.json`
+  - target pool: `2302`
+  - sample size: `2`
+  - result: `1 win / 1 loss`, net `+1`
+  - score path: `439 -> 440`
+  - tactical read:
+    - `2302` did not collapse immediately, but the edge was too thin to justify blind scaling
+- final quick scan before stopping the same-band experiments:
+  - run: `lab/data/challenge-runs/2026-06-11T10-48-16-882Z.json`
+  - target pool: `3629, 3679, 3695`
+  - sample size: `3`
+  - result: `2 wins / 1 loss`, net `+18`
+  - score path: `440 -> 458`
+  - breakdown:
+    - `3629`: win, `+18`
+    - `3679`: win, `+20`
+    - `3695`: loss, `-20`
+  - tactical read:
+    - this looked like a possible replacement pool, but still needed confirmation before scaling
+- confirmation batch rejected that replacement pool:
+  - run: `lab/data/challenge-runs/2026-06-11T10-48-55-586Z.json`
+  - target pool: `3629, 3679`
+  - sample size: `4`
+  - result: `0 wins / 4 losses`, net `-79`
+  - score path: `458 -> 379`
+  - breakdown:
+    - `3629`: `0-2`, `-44`
+    - `3679`: `0-2`, `-35`
+  - tactical read:
+    - `3629` and `3679` were false positives from a tiny sample and must be rejected
+    - `3695` is also rejected with the current build
+- low-score gate reopened the old strong pool:
+  - run: `lab/data/challenge-runs/2026-06-11T10-49-54-243Z.json`
+  - target pool: `691`
+  - sample size: `1`
+  - result: `1 win / 0 losses`, net `+10`
+  - score path: `379 -> 389`
+  - tactical read:
+    - once score dropped back into lower silver, `691` became challengeable again and immediately returned to positive behavior
+- recovery batch on the reopened strong pool:
+  - run: `lab/data/challenge-runs/2026-06-11T10-50-20-558Z.json`
+  - target pool: `691`
+  - planned size: `6`
+  - settled matches before the gate reclosed: `5`
+  - settled result: `5 wins / 0 losses`, net `+30`
+  - score path in settled matches: `421 -> 451`
+  - stop reason on the sixth planned challenge:
+    - `400 opponent rank score is too far from this tank`
+  - tactical read:
+    - `691` is still a real recovery pool when the ladder score is low enough
+    - the edge decays as score rises, but the pool remains profitable until the gate closes again
+- combined recovery after the false-positive detour:
+  - `691` reopen probe plus recovery batch:
+    - total settled sample: `6`
+    - result: `6 wins / 0 losses`
+    - net: `+40`
+    - score path: `379 -> 451`
+- current live state after the recovery:
+  - confirmed on `2026-06-11`
+  - `rankScore` `451`
+  - `silver II +51`
+  - `elo` `1186`
+  - `codeVersion` `34`
+  - `codeHash` `bf83d30339b5d0047014ebce5195061b2c35b39654fa10cb73a2875a15f11078`
+- recovery conclusion:
+  - unchanged `v34` can still recover score only when the old low-score rails reopen
+  - that is not enough for a real silver-to-master climb, so the next acceptable change must improve same-band pressure instead of just reusing `691`
+
+## v35 Stall-Break Pressure Patch
+
+- `v35`
+  - `codeVersion` `35`
+  - `codeHash` `9dab3f13957a63acbe42b5b885e1b0d99ee3e07ee68223a031eccb0966a5ef14`
+  - source file:
+    - `teleport-main-v19-candidate.js`
+  - change set:
+    - added star-pursuit stall tracking so repeated non-progress around a live star is detected across frames
+    - added `tryStarBreakout` so urgent star races stop falling into turn-in-place fallback loops
+    - widened attack logic from direct-fire only into proactive lane pressure:
+      - pre-aim current tile lanes
+      - one-step move into firing lanes
+      - allow same-direction pressure fire instead of idle facing
+    - added a simple near-home face-enemy fallback so idle frames bias toward pressure instead of blind turning
+
+## v35 Verification
+
+- static checks on 2026-06-11:
+  - `node --check teleport-main-v19-candidate.js`
+  - `node --test lab/scripts/tests/*.test.mjs`
+- private simulation batch before publish:
+  - run dir: `agentank/lab/data/simulations/2026-06-11T13-18-25-055Z`
+  - sample size: `9`
+  - result: `8 wins / 1 loss`
+  - note:
+    - this was used only as a regression gate before live publish, not as ladder evidence
+
+## v35 Live Push
+
+- live publish confirmed on 2026-06-11:
+  - previous live snapshot before publish:
+    - `rankScore` `339`
+    - `silver III +39`
+    - `codeVersion` `34`
+    - `codeHash` `bf83d30339b5d0047014ebce5195061b2c35b39654fa10cb73a2875a15f11078`
+  - published live snapshot:
+    - `codeVersion` `35`
+    - `codeHash` `9dab3f13957a63acbe42b5b885e1b0d99ee3e07ee68223a031eccb0966a5ef14`
+- first adaptive same-day live batch:
+  - run: `lab/data/challenge-runs/2026-06-11T13-19-57-947Z.json`
+  - settled sample: `12`
+  - result: `9 wins / 3 losses`, net `+72`
+  - score path: `339 -> 411`
+  - tactical read:
+    - the old low-score recovery rails still worked
+    - more importantly, new same-band targets such as `1265`, `3913`, and `3691` were now profitable instead of immediately flipping negative
+- second adaptive live batch:
+  - run: `lab/data/challenge-runs/2026-06-11T13-22-26-965Z.json`
+  - settled sample: `12`
+  - result: `10 wins / 2 losses`, net `+143`
+  - score path: `411 -> 554`
+  - tactical read:
+    - `v35` clearly pushed the profitable window upward into upper silver
+    - validated winners in this batch:
+      - `1992`
+      - `2920`
+      - `3358`
+      - `4155`
+      - `4008`
+    - losses still existed, but they no longer erased the whole climb immediately
+- high-band continuation after the two profitable batches:
+  - latest recorded matches on 2026-06-11:
+    - `mat_DVrdJG3gysN7F7yVX` vs `2941`, win `+20`
+    - `mat_BtET7MIvJPvDeeNvE` vs `2941`, win `+18`
+    - `mat_LcgBn5NacwbGCSiwM` vs `2941`, loss `-24`
+    - `mat_K38RYGNGQh62V1olm` vs `989`, loss `-20`
+    - `mat_3l43ok8nEAY8JrN7e` vs `3644`, win `+20`
+    - `mat_92z04cgCdwnIleCHL` vs `3644`, loss `-23`
+    - `mat_7dOU2RduXFw3eZXyv` vs `37`, win `+20`
+    - `mat_0doh7aIGNvhLAqWMl` vs `1585`, loss `-22`
+    - `mat_H2bWanN12wGBAR8eM` vs `1952`, loss `-21`
+  - settled sample before stop: `9`
+  - result: `4 wins / 5 losses`, net `-32`
+  - score path: `554 -> 522`
+  - tactical read:
+    - `v35` solved the lower-silver climb problem, but not the upper-silver hold problem
+    - high-band repeats and fresh same-band crash-lane tanks still punish the version once score passes roughly the mid-`500s`
+
+## v35 Current Live State
+
+- confirmed live snapshot on 2026-06-11 after the high-band continuation stop:
+  - `rankScore` `522`
+  - `silver I +22`
+  - `elo` `1270`
+  - `wins` `1143`
+  - `losses` `1152`
+  - `codeVersion` `35`
+  - `codeHash` `9dab3f13957a63acbe42b5b885e1b0d99ee3e07ee68223a031eccb0966a5ef14`
+
+## v35 Conclusion
+
+- `v35` is the first same-day version in this cycle that produced a real broad live climb:
+  - `339 -> 554` in two profitable adaptive batches
+  - net gain before high-band continuation failure: `+215`
+- current accepted read:
+  - `v35` is strong enough to break out of `silver III` and reach `silver I`
+  - the remaining bottleneck is no longer “can it climb at all”
+  - the remaining bottleneck is “can it defend score above roughly `550` against fresh same-band crash-lane opponents”
+- next optimization direction is now concrete:
+  - stop repeating a high-band target after the first negative flip
+  - add explicit anti-crash discipline against `2941 / 989 / 3644 / 1585 / 1952` style lanes
+  - preserve the new stall-break and proactive pressure layer; those are what unlocked the climb in the first place
+  - unchanged `v34` still does not support blind same-band widening
+  - when score falls enough, `691` reopens and remains a reliable recovery rail
+  - operationally, the safest push pattern is:
+    - avoid fresh same-band expansion unless the probe is followed by immediate confirmation
+    - when score is low enough and the gate allows it, fall back to `691` for deterministic recovery
+
+## Adaptive Hard-Push Audit
+
+- operational change:
+  - added an adaptive runner instead of hand-curated micro-batches
+  - files:
+    - `lab/scripts/grind-adaptive-real.mjs`
+    - `lab/scripts/lib/adaptive-grind.mjs`
+    - `lab/scripts/tests/adaptive-grind.test.mjs`
+  - behavior:
+    - refresh leaderboard each loop
+    - keep hitting current winners
+    - drop a target for the rest of the run after a loss or gate error
+- first adaptive hard-push batch:
+  - run: `lab/data/challenge-runs/2026-06-11T12-55-38-094Z.json`
+  - settled sample: `15`
+  - score path: `451 -> 422`
+  - result: net `-29`
+  - notable positives:
+    - `9`: `2-0`, `+12`, then gated
+    - `798`: `2-1`, `+12`
+    - `678`: `3-0`, `+55`
+  - notable negatives:
+    - `519`: `1-1`, `-2`
+    - `2920`: `0-1`, `-21`
+    - `3674`: `0-1`, `-21`
+    - `4229`: `0-1`, `-21`
+    - `3311`: `0-1`, `-21`
+    - `1992`: `0-1`, `-22`
+- second adaptive hard-push batch:
+  - run: `lab/data/challenge-runs/2026-06-11T12-58-01-379Z.json`
+  - settled sample: `12`
+  - score path: `422 -> 479`
+  - result: net `+57`
+  - notable positives:
+    - `798`: `2-1`, `+10`
+    - `691`: `3-0`, `+18`
+    - `9`: `3-0`, `+18`
+    - `1778`: `2-0`, `+38`
+  - tactical read:
+    - this was the strongest proof that brute-force adaptation can find temporary rails, but the rails were still highly score-sensitive
+- third adaptive hard-push batch:
+  - run: `lab/data/challenge-runs/2026-06-11T12-59-36-247Z.json`
+  - settled sample: `12`
+  - score path: `479 -> 335`
+  - result: net `-144`
+  - tactical read:
+    - once the temporary rails disappeared, same-band fallback searching collapsed immediately
+    - `1778` flipped from `2-0` to an immediate loss
+    - `9` and `691` were gated at the higher score
+- mixed low-score recovery batch:
+  - run: `lab/data/challenge-runs/2026-06-11T13-00-55-834Z.json`
+  - settled sample: `12`
+  - score path: `335 -> 288`
+  - result: net `-47`
+  - tactical read:
+    - low-score rails existed, but as soon as the runner exhausted `691/9` and widened into fresh bronze/silver targets, the gains were given back
+- focused `691/9` recovery:
+  - run: `lab/data/challenge-runs/2026-06-11T13-02-15-963Z.json`
+  - settled sample: `10`
+  - score path: `288 -> 332`
+  - result: net `+44`
+  - critical finding:
+    - `691` is not a safe unconditional rail
+    - after three wins, one single loss at `315` score caused `-33`
+    - `9` was cleaner and carried most of the recovery back upward
+- focused `9` continuation:
+  - run: `lab/data/challenge-runs/2026-06-11T13-03-58-165Z.json`
+  - settled sample: `8`
+  - score path: `332 -> 339`
+  - result: net `+7`
+  - tactical read:
+    - `9` remains the cleanest low-score recovery rail
+    - once `9` gated, automatic fallback into fresh same-band targets again turned unstable
+- combined hard-push audit summary:
+  - adaptive settled sample: `69`
+  - score path: `451 -> 339`
+  - net: `-112`
+  - conclusion:
+    - the requested brute-force approach was fully tested with live evidence
+    - the bottleneck is not opponent-pool conservatism anymore
+    - the current `v34` code has recovery-only pockets, but does not have a stable same-band climbing edge
+- current live state after the audit:
+  - confirmed on `2026-06-11`
+  - `rankScore` `339`
+  - `silver III +39`
+  - `elo` `1163`
+  - `codeVersion` `34`
+  - `codeHash` `bf83d30339b5d0047014ebce5195061b2c35b39654fa10cb73a2875a15f11078`

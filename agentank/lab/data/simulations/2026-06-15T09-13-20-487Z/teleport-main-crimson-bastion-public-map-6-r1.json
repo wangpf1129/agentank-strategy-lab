@@ -1,0 +1,5331 @@
+{
+  "opponentId": "crimson-bastion",
+  "opponentName": "Crimson Bastion",
+  "mapId": "public-map-6",
+  "usedCandidateCode": true,
+  "resultReason": "star",
+  "winner": "me",
+  "replayData": {
+    "map": {
+      "id": "public-map-6",
+      "name": "躲猫猫",
+      "map": [
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "x",
+          "x",
+          ".",
+          "x",
+          ".",
+          "x",
+          "x",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "x",
+          "x",
+          ".",
+          "x",
+          ".",
+          "x",
+          "x",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ]
+      ],
+      "players": [
+        {
+          "direction": "down",
+          "position": [
+            1,
+            1
+          ]
+        },
+        {
+          "direction": "up",
+          "position": [
+            14,
+            9
+          ]
+        }
+      ],
+      "raw": "xxxxxxxxxxxxxxxx|xco...oooo...o.x|xoxoxooooooxoxox|xoxoxoxxxxoxoxox|xoxo.oooooo.oxox|xoxoxooooooxoxox|xoxo.oooooo.oxox|xoxoxoxxxxoxoxox|xoxoxooooooxoxox|x.o...oooo...oAx|xxxxxxxxxxxxxxxx"
+    },
+    "replay": {
+      "meta": {
+        "players": [
+          {
+            "tank": {
+              "id": "b4409124",
+              "position": [
+                1,
+                1
+              ],
+              "direction": "down"
+            },
+            "runTime": 333
+          },
+          {
+            "tank": {
+              "id": "b1739903",
+              "position": [
+                14,
+                9
+              ],
+              "direction": "up"
+            }
+          }
+        ],
+        "result": {
+          "action": "end",
+          "reason": "star",
+          "type": "game",
+          "winner": 0
+        },
+        "excitementScore": 77,
+        "matchSeed": 3586306162868038000
+      },
+      "records": [
+        [
+          {
+            "action": "created",
+            "position": [
+              5,
+              6
+            ],
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "b4409124",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              1,
+              1
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "b4409124",
+            "targetObjectId": "b4409124",
+            "to": [
+              6,
+              6
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                6,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "order": 0,
+            "position": [
+              7,
+              6
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                6,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "order": 1,
+            "position": [
+              8,
+              6
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                6,
+                6
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "order": 0,
+            "position": [
+              9,
+              6
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                6,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "order": 1,
+            "position": [
+              10,
+              6
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                6,
+                6
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "order": 0,
+            "position": [
+              11,
+              6
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                6,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "order": 1,
+            "position": [
+              12,
+              6
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                6,
+                6
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              5,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "order": 0,
+            "position": [
+              13,
+              6
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                5,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "1b7472d9",
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                5,
+                6
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              5,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              6,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              7,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              8,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              9,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              10,
+              5
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "position": [
+              9,
+              4
+            ],
+            "type": "star"
+          },
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              10,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "90109c5c",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "90109c5c",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "90109c5c",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "90109c5c",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "90109c5c",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "b647eec5",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b647eec5",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b647eec5",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b647eec5",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "b647eec5",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "93ef42e6",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "93ef42e6",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "93ef42e6",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "93ef42e6",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "93ef42e6",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "d946d3d9",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d946d3d9",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d946d3d9",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d946d3d9",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "d946d3d9",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "538accff",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "538accff",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "538accff",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "538accff",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "538accff",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "8f0db9f8",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "8f0db9f8",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "8f0db9f8",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "8f0db9f8",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "8f0db9f8",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "55890450",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "55890450",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "55890450",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "55890450",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "55890450",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "abc45863",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "abc45863",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "abc45863",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "b4409124",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              10,
+              4
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "b4409124",
+            "targetObjectId": "b4409124",
+            "to": [
+              12,
+              4
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "abc45863",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "abc45863",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "5bff12e6",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "5bff12e6",
+            "order": 0,
+            "position": [
+              12,
+              5
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "5bff12e6",
+            "order": 1,
+            "position": [
+              12,
+              6
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "5bff12e6",
+            "order": 0,
+            "position": [
+              12,
+              7
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "5bff12e6",
+            "order": 1,
+            "position": [
+              12,
+              8
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              11,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "5bff12e6",
+            "order": 0,
+            "position": [
+              12,
+              9
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                11,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "5bff12e6",
+            "order": 1,
+            "position": [
+              12,
+              10
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                11,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "5bff12e6",
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                11,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              10,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "79f8455a",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "79f8455a",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "79f8455a",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "79f8455a",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "79f8455a",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "da6c6792",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "da6c6792",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "da6c6792",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "da6c6792",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "da6c6792",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "27fb5e74",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "27fb5e74",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "27fb5e74",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "27fb5e74",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "27fb5e74",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "7a7189b6",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "7a7189b6",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "7a7189b6",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "7a7189b6",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "7a7189b6",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "d14ea849",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d14ea849",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d14ea849",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d14ea849",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "d14ea849",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "6f90b04e",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "6f90b04e",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "6f90b04e",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "6f90b04e",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "6f90b04e",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "9a975d64",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "9a975d64",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "9a975d64",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "9a975d64",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "9a975d64",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "c4123947",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "c4123947",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "c4123947",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "c4123947",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "c4123947",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "483372e5",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "483372e5",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "483372e5",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "483372e5",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "483372e5",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "d42d5697",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d42d5697",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d42d5697",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "d42d5697",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "d42d5697",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "04ef46ef",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "04ef46ef",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "04ef46ef",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "04ef46ef",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "04ef46ef",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "21158972",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "21158972",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "21158972",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "b4409124",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              10,
+              4
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "b4409124",
+            "targetObjectId": "b4409124",
+            "to": [
+              12,
+              3
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "21158972",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                12,
+                3
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "21158972",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                12,
+                3
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                12,
+                3
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "order": 0,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                12,
+                3
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "order": 1,
+            "position": [
+              12,
+              5
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                12,
+                3
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              12,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "order": 0,
+            "position": [
+              12,
+              6
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "order": 1,
+            "position": [
+              12,
+              7
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "order": 0,
+            "position": [
+              12,
+              8
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "order": 1,
+            "position": [
+              12,
+              9
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              11,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "order": 0,
+            "position": [
+              12,
+              10
+            ],
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                11,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "down",
+            "objectId": "a21b8a43",
+            "tank": {
+              "direction": "left",
+              "id": "b4409124",
+              "position": [
+                11,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "b4409124",
+            "position": [
+              10,
+              4
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "0652a003",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "0652a003",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "0652a003",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "0652a003",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "0652a003",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "f4245201",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "f4245201",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "f4245201",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "f4245201",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "f4245201",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "b569126a",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b569126a",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b569126a",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b569126a",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "b569126a",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "ca90e0c9",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "ca90e0c9",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "ca90e0c9",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "ca90e0c9",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "ca90e0c9",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "b4c4391e",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b4c4391e",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b4c4391e",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "b4c4391e",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "b4c4391e",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "fba34540",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "fba34540",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "fba34540",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "fba34540",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "fba34540",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "3f45f800",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "3f45f800",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "3f45f800",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "3f45f800",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "3f45f800",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "261b64df",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "261b64df",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "261b64df",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "261b64df",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "261b64df",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "c098ef6d",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "c098ef6d",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "c098ef6d",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "c098ef6d",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "c098ef6d",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "7f36401e",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "7f36401e",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "7f36401e",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "7f36401e",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "7f36401e",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "8b1660ba",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "8b1660ba",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "8b1660ba",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "8b1660ba",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "8b1660ba",
+            "tank": {
+              "direction": "down",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b4409124",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "created",
+            "direction": "right",
+            "objectId": "e1b05a17",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "e1b05a17",
+            "order": 0,
+            "position": [
+              11,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "e1b05a17",
+            "order": 1,
+            "position": [
+              12,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                10,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "b4409124",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              10,
+              4
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "b4409124",
+            "targetObjectId": "b4409124",
+            "to": [
+              12,
+              4
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "b1739903",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "right",
+            "objectId": "e1b05a17",
+            "order": 0,
+            "position": [
+              13,
+              4
+            ],
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "right",
+            "objectId": "e1b05a17",
+            "tank": {
+              "direction": "right",
+              "id": "b4409124",
+              "position": [
+                12,
+                4
+              ]
+            },
+            "type": "bullet"
+          }
+        ]
+      ]
+    },
+    "names": [
+      "山大王",
+      "Crimson Bastion"
+    ],
+    "excitementScore": 77,
+    "matchSeed": 3586306162868038000
+  },
+  "simulationAt": "2026-06-15T09:14:12.057532429Z",
+  "simulationCooldownSeconds": 2,
+  "nextSimulationAt": "2026-06-15T09:14:13.512167Z",
+  "trainingBots": [
+    {
+      "id": "nova-scout",
+      "name": "Nova Scout",
+      "description": "Balanced pathing bot for baseline tests."
+    },
+    {
+      "id": "azure-hunter",
+      "name": "Azure Hunter",
+      "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+    },
+    {
+      "id": "crimson-bastion",
+      "name": "Crimson Bastion",
+      "description": "Defensive control bot that contests stars and lanes."
+    }
+  ]
+}

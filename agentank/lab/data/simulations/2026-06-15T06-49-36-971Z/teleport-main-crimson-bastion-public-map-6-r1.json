@@ -1,0 +1,552 @@
+{
+  "opponentId": "crimson-bastion",
+  "opponentName": "Crimson Bastion",
+  "mapId": "public-map-6",
+  "usedCandidateCode": true,
+  "resultReason": "crashed",
+  "winner": "training-bot",
+  "replayData": {
+    "map": {
+      "id": "public-map-6",
+      "name": "躲猫猫",
+      "map": [
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "x",
+          "x",
+          ".",
+          "x",
+          ".",
+          "x",
+          "x",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "o",
+          "x",
+          "o",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "x",
+          "x",
+          ".",
+          "x",
+          ".",
+          "x",
+          "x",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "o",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "o",
+          "x"
+        ],
+        [
+          "x",
+          ".",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          "o",
+          ".",
+          "x"
+        ],
+        [
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x",
+          "x"
+        ]
+      ],
+      "players": [
+        {
+          "direction": "down",
+          "position": [
+            1,
+            1
+          ]
+        },
+        {
+          "direction": "up",
+          "position": [
+            14,
+            9
+          ]
+        }
+      ],
+      "raw": "xxxxxxxxxxxxxxxx|xco...oooo...o.x|xoxoxooooooxoxox|xoxoxoxxxxoxoxox|xoxo.oooooo.oxox|xoxoxooooooxoxox|xoxo.oooooo.oxox|xoxoxoxxxxoxoxox|xoxoxooooooxoxox|x.o...oooo...oAx|xxxxxxxxxxxxxxxx"
+    },
+    "replay": {
+      "meta": {
+        "players": [
+          {
+            "tank": {
+              "id": "98fa3b0c",
+              "position": [
+                1,
+                1
+              ],
+              "direction": "down"
+            },
+            "runTime": 11
+          },
+          {
+            "tank": {
+              "id": "db5e721f",
+              "position": [
+                14,
+                9
+              ],
+              "direction": "up"
+            }
+          }
+        ],
+        "result": {
+          "action": "end",
+          "reason": "crashed",
+          "type": "game",
+          "winner": 1
+        },
+        "excitementScore": 23,
+        "matchSeed": 2835193651644855300
+      },
+      "records": [
+        [
+          {
+            "action": "created",
+            "position": [
+              14,
+              1
+            ],
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "cast",
+            "by": 0,
+            "skillType": "teleport",
+            "sourceObjectId": "98fa3b0c",
+            "type": "skill"
+          },
+          {
+            "action": "applied",
+            "by": 0,
+            "from": [
+              1,
+              1
+            ],
+            "skillType": "teleport",
+            "sourceObjectId": "98fa3b0c",
+            "targetObjectId": "98fa3b0c",
+            "to": [
+              13,
+              1
+            ],
+            "type": "skill"
+          },
+          {
+            "action": "go",
+            "objectId": "db5e721f",
+            "position": [
+              14,
+              8
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "98fa3b0c",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "db5e721f",
+            "position": [
+              14,
+              7
+            ],
+            "reverse": false,
+            "type": "tank"
+          }
+        ],
+        [
+          {
+            "action": "go",
+            "objectId": "98fa3b0c",
+            "position": [
+              14,
+              1
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "objectId": "db5e721f",
+            "position": [
+              14,
+              6
+            ],
+            "reverse": false,
+            "type": "tank"
+          },
+          {
+            "action": "collected",
+            "by": 0,
+            "type": "star"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "98fa3b0c",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "created",
+            "direction": "up",
+            "objectId": "e585dc37",
+            "tank": {
+              "direction": "up",
+              "id": "db5e721f",
+              "position": [
+                14,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "up",
+            "objectId": "e585dc37",
+            "order": 0,
+            "position": [
+              14,
+              5
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "db5e721f",
+              "position": [
+                14,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "up",
+            "objectId": "e585dc37",
+            "order": 1,
+            "position": [
+              14,
+              4
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "db5e721f",
+              "position": [
+                14,
+                6
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "left",
+            "objectId": "98fa3b0c",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "up",
+            "objectId": "e585dc37",
+            "order": 0,
+            "position": [
+              14,
+              3
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "db5e721f",
+              "position": [
+                14,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "go",
+            "direction": "up",
+            "objectId": "e585dc37",
+            "order": 1,
+            "position": [
+              14,
+              2
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "db5e721f",
+              "position": [
+                14,
+                6
+              ]
+            },
+            "type": "bullet"
+          }
+        ],
+        [
+          {
+            "action": "turn",
+            "direction": "right",
+            "objectId": "98fa3b0c",
+            "stunReversed": false,
+            "type": "tank"
+          },
+          {
+            "action": "go",
+            "direction": "up",
+            "objectId": "e585dc37",
+            "order": 0,
+            "position": [
+              14,
+              1
+            ],
+            "tank": {
+              "direction": "up",
+              "id": "db5e721f",
+              "position": [
+                14,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "direction": "up",
+            "objectId": "e585dc37",
+            "tank": {
+              "direction": "up",
+              "id": "db5e721f",
+              "position": [
+                14,
+                6
+              ]
+            },
+            "type": "bullet"
+          },
+          {
+            "action": "crashed",
+            "by": 1,
+            "index": 0,
+            "objectId": "98fa3b0c",
+            "type": "tank"
+          }
+        ]
+      ]
+    },
+    "names": [
+      "山大王",
+      "Crimson Bastion"
+    ],
+    "excitementScore": 23,
+    "matchSeed": 2835193651644855300
+  },
+  "simulationAt": "2026-06-15T06:50:09.464460919Z",
+  "simulationCooldownSeconds": 2,
+  "nextSimulationAt": "2026-06-15T06:50:11.234658Z",
+  "trainingBots": [
+    {
+      "id": "nova-scout",
+      "name": "Nova Scout",
+      "description": "Balanced pathing bot for baseline tests."
+    },
+    {
+      "id": "azure-hunter",
+      "name": "Azure Hunter",
+      "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+    },
+    {
+      "id": "crimson-bastion",
+      "name": "Crimson Bastion",
+      "description": "Defensive control bot that contests stars and lanes."
+    }
+  ]
+}

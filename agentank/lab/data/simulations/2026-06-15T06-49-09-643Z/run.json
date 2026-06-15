@@ -1,0 +1,145 @@
+{
+  "runId": "2026-06-15T06-49-09-643Z",
+  "startedAt": "2026-06-15T06:49:09.645Z",
+  "sleepMs": 2200,
+  "planCount": 6,
+  "plan": [
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "nova-scout",
+      "mapId": "random",
+      "round": 1
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "random",
+      "round": 1
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "crimson-bastion",
+      "mapId": "random",
+      "round": 1
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "nova-scout",
+      "mapId": "random",
+      "round": 2
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "random",
+      "round": 2
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "crimson-bastion",
+      "mapId": "random",
+      "round": 2
+    }
+  ],
+  "results": [
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "nova-scout",
+      "mapId": "random",
+      "round": 1,
+      "file": "teleport-main-nova-scout-random-r1.json",
+      "winner": "me",
+      "resultReason": "crashed"
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "random",
+      "round": 1,
+      "file": "teleport-main-azure-hunter-random-r1.json",
+      "winner": "me",
+      "resultReason": "crashed"
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "crimson-bastion",
+      "mapId": "random",
+      "round": 1,
+      "file": "teleport-main-crimson-bastion-random-r1.json",
+      "winner": "me",
+      "resultReason": "crashed"
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "nova-scout",
+      "mapId": "random",
+      "round": 2,
+      "file": "teleport-main-nova-scout-random-r2.json",
+      "winner": "me",
+      "resultReason": "crashed"
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "random",
+      "round": 2,
+      "file": "teleport-main-azure-hunter-random-r2.json",
+      "winner": "me",
+      "resultReason": "crashed"
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "crimson-bastion",
+      "mapId": "random",
+      "round": 2,
+      "file": "teleport-main-crimson-bastion-random-r2.json",
+      "winner": "me",
+      "resultReason": "star"
+    }
+  ],
+  "summary": {
+    "teleport-main": {
+      "wins": 6,
+      "losses": 0,
+      "draws": 0,
+      "total": 6
+    }
+  },
+  "finishedAt": "2026-06-15T06:49:25.721Z"
+}

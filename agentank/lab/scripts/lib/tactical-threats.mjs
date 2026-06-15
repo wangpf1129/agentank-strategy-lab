@@ -160,41 +160,25 @@ export function postTeleportLaneTrap(map, enemy, target, options = {}) {
   return losFrom(map, enemy.position, neededDirection, target);
 }
 
-export function boostLeadLaneTrap(map, enemy, target, options = {}) {
-  if (!enemy || options.lead < 1) return false;
-  const enemySkill = enemy.skillType ?? enemy.skill?.type;
-  if (enemySkill !== "boost") return false;
-  if (enemy.position[0] !== target[0] && enemy.position[1] !== target[1]) return false;
-  if (manhattan(enemy.position, target) > (options.maxDistance ?? 14)) return false;
+export function nextStepFireThreat(map, enemy, target, options = {}) {
+  if (!enemy || options.hasActiveBullet) return false;
+  const maxDistance = options.maxDistance ?? 5;
+  const maxTurnCost = options.maxTurnCost ?? 2;
+  const starts = [enemy.position];
 
-  const neededDirection = dirTo(enemy.position, target);
-  if (turnCost(enemy.direction, neededDirection) > (options.maxTurnCost ?? 2)) return false;
-  return losFrom(map, enemy.position, neededDirection, target);
-}
+  for (const direction of DIRS) {
+    const [dx, dy] = DELTA[direction];
+    const next = [enemy.position[0] + dx, enemy.position[1] + dy];
+    if (!blocked(map, next[0], next[1])) starts.push(next);
+  }
 
-function starsOf(actor) {
-  if (!actor) return 0;
-  if (typeof actor.stars === "number") return actor.stars;
-  if (typeof actor.score === "number") return actor.score;
-  return 0;
-}
+  for (const source of starts) {
+    if (source[0] !== target[0] && source[1] !== target[1]) continue;
+    if (manhattan(source, target) > maxDistance) continue;
+    const neededDirection = dirTo(source, target);
+    if (turnCost(enemy.direction, neededDirection) > maxTurnCost) continue;
+    if (losFrom(map, source, neededDirection, target)) return true;
+  }
 
-export function leadProtectionActive({ frame = 0, me, enemy, minLead = 2, minFrame = 35 } = {}) {
-  const enemySkill = enemy?.skillType ?? enemy?.skill?.type;
-  const requiredLead = enemySkill === "boost" ? Math.min(minLead, 1) : minLead;
-  return frame >= minFrame && starsOf(me) - starsOf(enemy) >= requiredLead;
-}
-
-export function starRaceNeedsFastRoute({
-  lead = 0,
-  strictDistance = 999,
-  fastDistance = 999,
-  enemyDistance = 999,
-  enemySkill,
-} = {}) {
-  if (lead >= 2) return false;
-  if (fastDistance >= strictDistance || fastDistance >= 999 || enemyDistance >= 999) return false;
-  if (strictDistance <= enemyDistance + 1) return false;
-  if (fastDistance > enemyDistance + 1) return false;
-  return ["shield", "boost", "teleport", "cloak"].includes(enemySkill) || enemyDistance <= strictDistance;
+  return false;
 }

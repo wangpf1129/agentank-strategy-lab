@@ -72,21 +72,12 @@ AGENTANK_FREEZE_KEY=<key> AGENTANK_TELEPORT_KEY=<key> \
   --code teleport-main=agentank/teleport-main-v6-candidate.js
 ```
 
-## Publish Candidate Code
-
-Use this only after a candidate passes its private gate and the report explains why it should replace the current published code.
-
-```bash
-AGENTANK_TELEPORT_KEY=<key> node agentank/lab/scripts/publish-tank-code.mjs agentank/teleport-main-v15-candidate.js AGENTANK_TELEPORT_KEY "v15: star-race pressure gate"
-```
-
 ## Run Real Challenge Batches
 
 Use this for controlled public match sampling after a candidate is published. Real challenges affect public ladder score, tier, rank, and records, so the script defaults to dry-run. Add `--execute` only when the opponent list, maps, repeat count, and limit are intentional.
 
 ```bash
 node agentank/lab/scripts/run-real-challenges.mjs --opponents 829,913 --maps random,arena --repeat 2
-node agentank/lab/scripts/run-real-challenges.mjs --tank teleport-main --random-opponent --maps random --limit 1
 AGENTANK_FREEZE_KEY=<key> AGENTANK_TELEPORT_KEY=<key> node agentank/lab/scripts/run-real-challenges.mjs --opponents 829,913 --maps random,arena --repeat 2 --limit 20 --execute
 ```
 
@@ -94,12 +85,31 @@ Useful patterns:
 
 - Start with `--limit 20` or `--limit 40`, then analyze before scaling further.
 - Use `--tank freeze-main` or `--tank teleport-main` when testing a tank-specific counter.
-- Use `--random-opponent` only for small exploratory batches when AgentTank has no eligible targeted-opponent list.
 - For ladder climbing, prefer same-score to +120 `rankScore` targets. Wider gaps are counter-research, not score farming.
 - Stop a target after two same-map losses or after an after-snapshot shows negative `rankScore` movement.
 - Keep `--sleep-ms` at several seconds or higher to avoid hammering the API.
 
 Run logs are saved under `agentank/lab/data/challenge-runs/`. Replay files are saved under `agentank/lab/data/matches/`.
+
+## Adaptive Hard-Push Runner
+
+Use this when the goal is to brute-force ladder movement instead of proving one fixed pool ahead of time. It refreshes the leaderboard every loop, prefers current winners and seed opponents, and drops an opponent for the rest of the run after a loss or gate error.
+
+```bash
+AGENTANK_TELEPORT_KEY=<key> node lab/scripts/grind-adaptive-real.mjs \
+  --tank teleport-main \
+  --opponents 691,9,2302,2476,2770,3320,3602,3629,3679,3695 \
+  --seed-opponents 691,9 \
+  --limit 20 \
+  --max-per-opponent 2 \
+  --execute
+```
+
+Useful patterns:
+
+- Keep a broad fallback list in `--opponents`; the script will stop repeating a loser by itself.
+- Put known recovery rails into `--seed-opponents` so they reopen automatically when score drops low enough.
+- Read the run log errors section for `too_far` gates and the results section for hard-loss opponents that should be analyzed next.
 
 ## Planned Next Scripts
 

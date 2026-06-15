@@ -1,0 +1,82 @@
+{
+  "runId": "2026-06-11T10-15-50-740Z",
+  "startedAt": "2026-06-11T10:15:50.742Z",
+  "sleepMs": 1800,
+  "planCount": 3,
+  "plan": [
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "nova-scout",
+      "mapId": "random",
+      "round": 1
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "random",
+      "round": 1
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "crimson-bastion",
+      "mapId": "random",
+      "round": 1
+    }
+  ],
+  "results": [
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "nova-scout",
+      "mapId": "random",
+      "round": 1,
+      "file": "teleport-main-nova-scout-random-r1.json",
+      "winner": "me",
+      "resultReason": "star"
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "azure-hunter",
+      "mapId": "random",
+      "round": 1,
+      "file": "teleport-main-azure-hunter-random-r1.json",
+      "winner": "me",
+      "resultReason": "star"
+    },
+    {
+      "codename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": "crimson-bastion",
+      "mapId": "random",
+      "round": 1,
+      "file": "teleport-main-crimson-bastion-random-r1.json",
+      "winner": "me",
+      "resultReason": "star"
+    }
+  ],
+  "summary": {
+    "teleport-main": {
+      "wins": 3,
+      "losses": 0,
+      "draws": 0,
+      "total": 3
+    }
+  },
+  "finishedAt": "2026-06-11T10:16:56.026Z"
+}

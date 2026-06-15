@@ -1,0 +1,2039 @@
+{
+  "runId": "2026-06-15T08-06-04-834Z",
+  "startedAt": "2026-06-15T08:06:04.835Z",
+  "execute": true,
+  "tankCodename": "teleport-main",
+  "tankId": 947,
+  "startScore": 588,
+  "sleepMs": 2200,
+  "mapIds": [
+    "random"
+  ],
+  "explicitOpponentIds": [
+    2887
+  ],
+  "seedOpponentIds": [],
+  "config": {
+    "limit": 1,
+    "maxPerOpponent": 1,
+    "maxWinsPerOpponent": 2,
+    "lowerWindow": 300,
+    "upperWindow": 300,
+    "maxCandidates": 5,
+    "drawdownStop": 25,
+    "explicitOnly": true,
+    "useRunHistory": true,
+    "historySince": "2026-06-15T08:03:29.000Z",
+    "stopOnLoss": true
+  },
+  "state": {
+    "currentScore": 608,
+    "peakScore": 608,
+    "blockedIds": [],
+    "gatedIds": [],
+    "lossIds": [
+      1268,
+      1767,
+      2504,
+      3424
+    ],
+    "attemptsByOpponent": {
+      "322": 1,
+      "706": 1,
+      "1002": 2,
+      "1268": 1,
+      "1767": 1,
+      "2504": 1,
+      "2887": 2,
+      "3424": 1
+    },
+    "winsByOpponent": {
+      "322": 1,
+      "706": 1,
+      "1002": 2,
+      "2887": 2
+    },
+    "historyLoaded": {
+      "blockedIds": 0,
+      "gatedIds": 0,
+      "lossIds": 4,
+      "attempts": 8,
+      "winners": 4
+    }
+  },
+  "snapshots": {
+    "start": {
+      "tank": {
+        "id": 947,
+        "urlId": "tnk_ChPX0u2wrUnJMQFct",
+        "ownerUserId": 756,
+        "ownerDisplayName": "Wangpf",
+        "ownerAvatarUri": "https://avatars.githubusercontent.com/u/66075776?v=4",
+        "name": "山大王",
+        "styleSeed": 12490,
+        "appearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <filter id=\"texture\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"3\" result=\"noise\"/>\n      <feDiffuseLighting in=\"noise\" lighting-color=\"#8B4513\" surfaceScale=\"2\">\n        <feDistantLight azimuth=\"45\" elevation=\"60\"/>\n      </feDiffuseLighting>\n      <feComposite in2=\"SourceGraphic\" operator=\"in\"/>\n    </filter>\n  </defs>\n\n  <g id=\"tank-body\" transform=\"translate(256, 256)\">\n    <!-- Tracks -->\n    <g id=\"tracks\">\n      <rect x=\"-160\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <rect x=\"100\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <g fill=\"#A1887F\" stroke=\"#3E2723\" stroke-width=\"4\">\n        <path d=\"M-130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n      </g>\n    </g>\n\n    <!-- Chassis Body -->\n    <ellipse cx=\"0\" cy=\"0\" rx=\"110\" ry=\"140\" fill=\"#8B4513\" filter=\"url(#texture)\"/>\n    <path d=\"M-90 -50 C-120 -20, -120 20, -90 50 M90 -50 C120 -20, 120 20, 90 50\" fill=\"none\" stroke=\"#6D4C41\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n\n    <!-- Toilet Paper Rolls -->\n    <rect x=\"-140\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n    <rect x=\"120\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n\n    <!-- Rear Flap -->\n    <rect x=\"-30\" y=\"110\" width=\"60\" height=\"30\" rx=\"5\" fill=\"#795548\"/>\n    <circle cx=\"0\" cy=\"125\" r=\"8\" fill=\"#5D4037\" stroke=\"#3E2723\" stroke-width=\"2\"/>\n    <path d=\"M-5 120 l10 10 M-5 130 l10 -10\" stroke=\"#EF5350\" stroke-width=\"3\"/>\n\n    <!-- Turret -->\n    <g id=\"turret\">\n      <path d=\"M-40 20 Q-50 -40 0 -60 Q50 -40 40 20 Z\" fill=\"#795548\"/>\n      <!-- Eyes -->\n      <circle cx=\"-15\" cy=\"-20\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"-15\" cy=\"-20\" r=\"4\" fill=\"black\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"4\" fill=\"black\"/>\n      <!-- Tears -->\n      <path d=\"M25 -25 Q30 -10 25 0\" stroke=\"#81D4FA\" stroke-width=\"4\" fill=\"none\"/>\n      <!-- Corn Antenna -->\n      <path d=\"M0 -60 L0 -80\" stroke=\"#8D6E63\" stroke-width=\"4\"/>\n      <circle cx=\"0\" cy=\"-85\" r=\"8\" fill=\"#FDD835\"/>\n    </g>\n\n    <!-- Main Cannon -->\n    <path d=\"M-10 -50 Q-20 -150 0 -180\" fill=\"none\" stroke=\"#5D4037\" stroke-width=\"20\" stroke-linecap=\"round\"/>\n    <!-- Duck -->\n    <g transform=\"translate(0, -180) rotate(-20)\">\n      <path d=\"M-15 -10 h30 v15 q0 10 -10 10 q-10 0 -10 -10 z\" fill=\"#FFEB3B\"/>\n      <path d=\"M-15 0 q-10 0 -10 -5\" fill=\"none\" stroke=\"#FFEB3B\" stroke-width=\"5\"/>\n    </g>\n\n    <!-- Exhaust -->\n    <circle cx=\"-60\" cy=\"100\" r=\"10\" fill=\"#3E2723\"/>\n    <circle cx=\"-65\" cy=\"115\" r=\"6\" fill=\"#B3E5FC\" opacity=\"0.6\"/>\n    <circle cx=\"-75\" cy=\"125\" r=\"4\" fill=\"#B3E5FC\" opacity=\"0.4\"/>\n  </g>\n</svg>",
+        "appearanceUrl": "/api/tank-appearance/tnk_ChPX0u2wrUnJMQFct.svg?v=1781510752",
+        "allowRename": true,
+        "battleMode": "active",
+        "rankChangeEmail": false,
+        "codeVersion": 42,
+        "codeHash": "18d3e06a7a887ab68f6459f8e66e99a827bdb21c8d1324f603e4d4cc321c788e",
+        "submittedBy": "Codex",
+        "isActive": true,
+        "isPublic": true,
+        "elo": 1238,
+        "wins": 1311,
+        "losses": 1270,
+        "draws": 0,
+        "rankScore": 588,
+        "rankTier": "silver",
+        "rankDivision": 1,
+        "rankPoints": 88,
+        "placementMatches": 10,
+        "effectiveWins": 946.2000000000038,
+        "effectiveLosses": 953,
+        "skillType": "teleport",
+        "bulletCosmeticId": "ember_comet",
+        "bulletVisualKey": "[REDACTED]",
+        "spawnEffectId": "drop_pod",
+        "spawnVisualKey": "[REDACTED]",
+        "needsFix": false,
+        "badges": [
+          {
+            "definition": {
+              "code": "champion_mark",
+              "title": {
+                "en": "Champion Mark",
+                "zh": "冠军刻印",
+                "ja": "チャンピオン刻印"
+              },
+              "description": {
+                "en": "Reach Champion with this tank.",
+                "zh": "这辆坦克达到冠军段位。",
+                "ja": "このタンクでチャンピオンに到達する。"
+              },
+              "icon": "champion-mark",
+              "rarity": "legendary",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 6,
+              "conditionText": "champion",
+              "conditionParams": {
+                "rank": "champion",
+                "min_band": 6
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 160,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "champion_mark",
+            "earnedAt": "2026-05-21T04:28:50.876381Z",
+            "sourceMatchId": 1043799,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "master_core",
+              "title": {
+                "en": "Master Core",
+                "zh": "大师核心",
+                "ja": "マスターコア"
+              },
+              "description": {
+                "en": "Reach Master with this tank.",
+                "zh": "这辆坦克达到大师段位。",
+                "ja": "このタンクでマスターに到達する。"
+              },
+              "icon": "master-core",
+              "rarity": "legendary",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 5,
+              "conditionText": "master",
+              "conditionParams": {
+                "rank": "master",
+                "min_band": 5
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 150,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "master_core",
+            "earnedAt": "2026-05-19T16:20:23.908524Z",
+            "sourceMatchId": 826171,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "ace_300",
+              "title": {
+                "en": "Triple-Century Ace",
+                "zh": "三百胜王牌",
+                "ja": "三百勝エース"
+              },
+              "description": {
+                "en": "Win 300 battles with this tank.",
+                "zh": "这辆坦克赢得 300 场战斗。",
+                "ja": "このタンクで300勝する。"
+              },
+              "icon": "ace-300",
+              "rarity": "legendary",
+              "conditionType": "tank_wins",
+              "conditionValue": 300,
+              "conditionParams": {
+                "count": 300
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 130,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "ace_300",
+            "earnedAt": "2026-05-19T07:23:46.653359Z",
+            "sourceMatchId": 763475,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "rank_breaker",
+              "title": {
+                "en": "Rank Breaker",
+                "zh": "越级击穿",
+                "ja": "ランクブレイカー"
+              },
+              "description": {
+                "en": "Defeat a tank that started at least 2 rank bands higher.",
+                "zh": "击败开局时至少高 2 个段位带的对手。",
+                "ja": "開始時に2ランク帯以上高い相手を倒す。"
+              },
+              "icon": "rank-breaker",
+              "rarity": "legendary",
+              "conditionType": "upset_win",
+              "conditionValue": 2,
+              "conditionParams": {
+                "rank_gap": 2
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 180,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "rank_breaker",
+            "earnedAt": "2026-05-18T03:22:20.469404Z",
+            "sourceMatchId": 652448,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "war_machine",
+              "title": {
+                "en": "War Machine",
+                "zh": "战争机器",
+                "ja": "ウォーマシン"
+              },
+              "description": {
+                "en": "Complete 300 battles with this tank.",
+                "zh": "这辆坦克完成 300 场战斗。",
+                "ja": "このタンクで300戦する。"
+              },
+              "icon": "war-machine",
+              "rarity": "legendary",
+              "conditionType": "tank_matches",
+              "conditionValue": 300,
+              "conditionParams": {
+                "count": 300
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 110,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "war_machine",
+            "earnedAt": "2026-05-16T06:09:17.81651Z",
+            "sourceMatchId": 455681,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "diamond_armor",
+              "title": {
+                "en": "Diamond Armor",
+                "zh": "钻石装甲",
+                "ja": "ダイヤ装甲"
+              },
+              "description": {
+                "en": "Reach Diamond with this tank.",
+                "zh": "这辆坦克达到钻石段位。",
+                "ja": "このタンクでダイヤモンドに到達する。"
+              },
+              "icon": "diamond-armor",
+              "rarity": "epic",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 4,
+              "conditionText": "diamond",
+              "conditionParams": {
+                "rank": "diamond",
+                "min_band": 4
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 140,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "diamond_armor",
+            "earnedAt": "2026-05-18T03:28:41.728898Z",
+            "sourceMatchId": 653053,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "giant_slayer",
+              "title": {
+                "en": "Giant Slayer",
+                "zh": "巨人杀手",
+                "ja": "ジャイアントスレイヤー"
+              },
+              "description": {
+                "en": "Defeat a tank that started at least 1 rank band higher.",
+                "zh": "击败开局时至少高 1 个段位带的对手。",
+                "ja": "開始時に1ランク帯以上高い相手を倒す。"
+              },
+              "icon": "giant-slayer",
+              "rarity": "epic",
+              "conditionType": "upset_win",
+              "conditionValue": 1,
+              "conditionParams": {
+                "rank_gap": 1
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 170,
+              "createdAt": "2026-05-14T11:46:20.853627Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "giant_slayer",
+            "earnedAt": "2026-05-18T03:22:20.469404Z",
+            "sourceMatchId": 652448,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "iron_veteran",
+              "title": {
+                "en": "Iron Veteran",
+                "zh": "铁甲老兵",
+                "ja": "鉄甲の古参"
+              },
+              "description": {
+                "en": "Complete 100 battles with this tank.",
+                "zh": "这辆坦克完成 100 场战斗。",
+                "ja": "このタンクで100戦する。"
+              },
+              "icon": "iron-veteran",
+              "rarity": "epic",
+              "conditionType": "tank_matches",
+              "conditionValue": 100,
+              "conditionParams": {
+                "count": 100
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 100,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "iron_veteran",
+            "earnedAt": "2026-05-15T07:05:45.564087Z",
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "ace_100",
+              "title": {
+                "en": "Hundred-Win Core",
+                "zh": "百胜核心",
+                "ja": "百勝コア"
+              },
+              "description": {
+                "en": "Win 100 battles with this tank.",
+                "zh": "这辆坦克赢得 100 场战斗。",
+                "ja": "このタンクで100勝する。"
+              },
+              "icon": "ace-100",
+              "rarity": "epic",
+              "conditionType": "tank_wins",
+              "conditionValue": 100,
+              "conditionParams": {
+                "count": 100
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 120,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "ace_100",
+            "earnedAt": "2026-05-15T07:05:45.564087Z",
+            "sourceTankId": 947
+          }
+        ],
+        "featuredBadges": [
+          {
+            "definition": {
+              "code": "champion_mark",
+              "title": {
+                "en": "Champion Mark",
+                "zh": "冠军刻印",
+                "ja": "チャンピオン刻印"
+              },
+              "description": {
+                "en": "Reach Champion with this tank.",
+                "zh": "这辆坦克达到冠军段位。",
+                "ja": "このタンクでチャンピオンに到達する。"
+              },
+              "icon": "champion-mark",
+              "rarity": "legendary",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 6,
+              "conditionText": "champion",
+              "conditionParams": {
+                "rank": "champion",
+                "min_band": 6
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 160,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "champion_mark",
+            "earnedAt": "2026-05-21T04:28:50.876381Z",
+            "sourceMatchId": 1043799,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "master_core",
+              "title": {
+                "en": "Master Core",
+                "zh": "大师核心",
+                "ja": "マスターコア"
+              },
+              "description": {
+                "en": "Reach Master with this tank.",
+                "zh": "这辆坦克达到大师段位。",
+                "ja": "このタンクでマスターに到達する。"
+              },
+              "icon": "master-core",
+              "rarity": "legendary",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 5,
+              "conditionText": "master",
+              "conditionParams": {
+                "rank": "master",
+                "min_band": 5
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 150,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "master_core",
+            "earnedAt": "2026-05-19T16:20:23.908524Z",
+            "sourceMatchId": 826171,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "ace_300",
+              "title": {
+                "en": "Triple-Century Ace",
+                "zh": "三百胜王牌",
+                "ja": "三百勝エース"
+              },
+              "description": {
+                "en": "Win 300 battles with this tank.",
+                "zh": "这辆坦克赢得 300 场战斗。",
+                "ja": "このタンクで300勝する。"
+              },
+              "icon": "ace-300",
+              "rarity": "legendary",
+              "conditionType": "tank_wins",
+              "conditionValue": 300,
+              "conditionParams": {
+                "count": 300
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 130,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "ace_300",
+            "earnedAt": "2026-05-19T07:23:46.653359Z",
+            "sourceMatchId": 763475,
+            "sourceTankId": 947
+          }
+        ],
+        "hasAgentKey": "[REDACTED]",
+        "agentKeyMasked": "[REDACTED]",
+        "agentGuideUrl": "/agent-guide",
+        "createdAt": "2026-05-14T06:50:24.001611Z",
+        "updatedAt": "2026-06-15T08:05:52.006389Z"
+      },
+      "skill": {
+        "type": "teleport",
+        "name": "Teleport",
+        "hasSkill": true
+      },
+      "latestCode": "var _lastX = -1, _lastY = -1, _stuck = 0;\nvar _lastEX = -1, _lastEY = -1, _lastEDir = null, _eMoveDir = null, _lastSeen = -99;\nvar _homeEX = -1, _homeEY = -1;\nvar _lastESkill = null;\nvar _myStars = 0, _enemyStars = 0, _lastStarX = -1, _lastStarY = -1;\nvar _pursuitStarX = -1, _pursuitStarY = -1, _pursuitDist = 999, _pursuitStall = 0;\nvar _raidUntil = -1, _raidStarX = -1, _raidStarY = -1, _raidDir = null;\nvar _lastTeleportX = -1, _lastTeleportY = -1, _lastTeleportStarX = -1, _lastTeleportStarY = -1, _lastTeleportAt = -99;\nvar _mirrorRecoverUntil = -1, _mirrorRecoverStarX = -1, _mirrorRecoverStarY = -1;\n\nfunction onIdle(me, enemy, game) {\n  var myPos = me.tank.position;\n  var px = myPos[0], py = myPos[1];\n  var dir = me.tank.direction;\n  var frame = game.frames || 0;\n  var dirs = [\"up\", \"right\", \"down\", \"left\"];\n  var dv = { up: [0, -1], right: [1, 0], down: [0, 1], left: [-1, 0] };\n  var w = game.map.length;\n  var h = game.map[0] ? game.map[0].length : 0;\n  var _laneDangerCache = {};\n  var _safeCellCache = {};\n  var _pathCache = {};\n\n  if (px === _lastX && py === _lastY) _stuck++;\n  else _stuck = 0;\n  _lastX = px; _lastY = py;\n\n  var enemyTank = enemy && enemy.tank;\n  var ex = enemyTank ? enemyTank.position[0] : -1;\n  var ey = enemyTank ? enemyTank.position[1] : -1;\n  var eDir = enemyTank ? enemyTank.direction : null;\n  if (enemy && enemy.skill && enemy.skill.type) _lastESkill = enemy.skill.type;\n  if (enemyTank) {\n    if (_homeEX < 0) { _homeEX = ex; _homeEY = ey; }\n    if (_lastEX >= 0) {\n      var emx = ex - _lastEX, emy = ey - _lastEY;\n      _eMoveDir = emx > 0 ? \"right\" : emx < 0 ? \"left\" : emy > 0 ? \"down\" : emy < 0 ? \"up\" : _eMoveDir;\n    }\n    _lastEX = ex; _lastEY = ey; _lastEDir = eDir; _lastSeen = frame;\n  } else if (_lastEX >= 0) {\n    ex = _lastEX; ey = _lastEY; eDir = _lastEDir || _eMoveDir;\n  }\n\n  if (_lastStarX >= 0 && (!game.star || game.star[0] !== _lastStarX || game.star[1] !== _lastStarY)) {\n    if (px === _lastStarX && py === _lastStarY) {\n      _myStars++;\n      if (enemySkillIs(\"teleport\") &&\n        me.skill && me.skill.type === \"teleport\" && me.skill.remainingCooldownFrames >= 18 &&\n        enemy.skill && enemy.skill.remainingCooldownFrames >= 18) {\n        _mirrorRecoverUntil = frame + 18;\n        _mirrorRecoverStarX = _lastStarX;\n        _mirrorRecoverStarY = _lastStarY;\n      }\n    } else if (enemyTank && ex === _lastStarX && ey === _lastStarY) {\n      _enemyStars++;\n      if (enemySkillIs(\"teleport\") &&\n        me.skill && me.skill.type === \"teleport\" && me.skill.remainingCooldownFrames >= 18 &&\n        enemy.skill && enemy.skill.remainingCooldownFrames >= 18) {\n        _mirrorRecoverUntil = frame + 18;\n        _mirrorRecoverStarX = _lastStarX;\n        _mirrorRecoverStarY = _lastStarY;\n      }\n    }\n    _lastStarX = -1; _lastStarY = -1;\n  }\n  if (game.star) {\n    _lastStarX = game.star[0];\n    _lastStarY = game.star[1];\n    var visibleStarDist = pathDist(myPos, game.star);\n    if (_pursuitStarX !== game.star[0] || _pursuitStarY !== game.star[1]) {\n      _pursuitStarX = game.star[0];\n      _pursuitStarY = game.star[1];\n      _pursuitDist = visibleStarDist;\n      _pursuitStall = 0;\n    } else if (visibleStarDist + 1 < _pursuitDist) {\n      _pursuitDist = visibleStarDist;\n      _pursuitStall = 0;\n    } else if (visibleStarDist > _pursuitDist + 1) {\n      _pursuitDist = visibleStarDist;\n      _pursuitStall++;\n    } else if (visibleStarDist === _pursuitDist && !(px === game.star[0] && py === game.star[1])) {\n      _pursuitStall++;\n    } else {\n      _pursuitDist = visibleStarDist;\n      if (_pursuitStall > 0) _pursuitStall--;\n    }\n  } else {\n    _pursuitStarX = -1;\n    _pursuitStarY = -1;\n    _pursuitDist = 999;\n    _pursuitStall = 0;\n  }\n  if (frame > _raidUntil) {\n    _raidUntil = -1;\n    _raidStarX = -1;\n    _raidStarY = -1;\n    _raidDir = null;\n  }\n  if (frame > _mirrorRecoverUntil) {\n    _mirrorRecoverUntil = -1;\n    _mirrorRecoverStarX = -1;\n    _mirrorRecoverStarY = -1;\n  }\n\n  function tile(x, y) {\n    var col = game.map[x];\n    return col ? (col[y] || \"x\") : \"x\";\n  }\n\n  function blocked(x, y) {\n    var t = tile(x, y);\n    return t === \"x\" || t === \"m\";\n  }\n\n  function open(x, y) {\n    return !blocked(x, y);\n  }\n\n  function dist(ax, ay, bx, by) {\n    return Math.abs(ax - bx) + Math.abs(ay - by);\n  }\n\n  function delta(d) {\n    return dv[d] || [0, -1];\n  }\n\n  function add(p, d) {\n    return [p[0] + d[0], p[1] + d[1]];\n  }\n\n  function same(a, b) {\n    return a && b && a[0] === b[0] && a[1] === b[1];\n  }\n\n  function dirTo(a, b) {\n    var dx = b[0] - a[0], dy = b[1] - a[1];\n    if (Math.abs(dx) >= Math.abs(dy) && dx !== 0) return dx > 0 ? \"right\" : \"left\";\n    if (dy !== 0) return dy > 0 ? \"down\" : \"up\";\n    return dir;\n  }\n\n  function turnCost(from, to) {\n    var a = dirs.indexOf(from), b = dirs.indexOf(to);\n    if (a < 0 || b < 0) return 9;\n    return Math.min((b - a + 4) % 4, (a - b + 4) % 4);\n  }\n\n  function turnTo(want) {\n    if (dir === want) return false;\n    if (bulletActionTrap(want) || immediateEnemyShotAt(px, py)) return false;\n    var a = dirs.indexOf(dir), b = dirs.indexOf(want);\n    var diff = (b - a + 4) % 4;\n    me.turn(diff <= 2 ? \"right\" : \"left\");\n    return true;\n  }\n\n  function moveDir(want) {\n    if (!want) return false;\n    if (bulletActionTrap(want)) return false;\n    if (dir === want) me.go();\n    else turnTo(want);\n    return true;\n  }\n\n  function teleportReady() {\n    return me.skill && me.skill.type === \"teleport\" && me.skill.remainingCooldownFrames === 0;\n  }\n\n  function enemySkillIs(type) {\n    return enemy && enemy.skill && enemy.skill.type === type;\n  }\n\n  function enemySkillReady(type, grace) {\n    if (!enemySkillIs(type)) return false;\n    var cd = enemy.skill.remainingCooldownFrames;\n    return typeof cd !== \"number\" || cd <= grace;\n  }\n\n  function enemyDebuffed() {\n    return !!(enemyTank && enemy.status && (enemy.status.frozen || enemy.status.stunned || enemy.status.poisoned));\n  }\n\n  function enemyOverloadArmed() {\n    if (!enemySkillIs(\"overload\")) return false;\n    if (enemy.status && enemy.status.overloaded) return true;\n    var cd = enemy.skill && enemy.skill.remainingCooldownFrames;\n    return typeof cd === \"number\" && cd > 0;\n  }\n\n  function starsOf(actor) {\n    if (!actor) return 0;\n    if (typeof actor.stars === \"number\") return actor.stars;\n    if (typeof actor.score === \"number\") return actor.score;\n    if (actor === me) return _myStars;\n    if (actor === enemy) return _enemyStars;\n    return 0;\n  }\n\n  function losFrom(sx, sy, facing, tx, ty) {\n    if (!facing || !dv[facing]) return false;\n    var step = dv[facing];\n    var dx = tx - sx, dy = ty - sy;\n    if (step[0] !== 0) {\n      if (dy !== 0) return false;\n      if ((step[0] > 0 && dx <= 0) || (step[0] < 0 && dx >= 0)) return false;\n      for (var x = sx + step[0]; x !== tx; x += step[0]) if (blocked(x, sy)) return false;\n      return true;\n    }\n    if (dx !== 0) return false;\n    if ((step[1] > 0 && dy <= 0) || (step[1] < 0 && dy >= 0)) return false;\n    for (var y = sy + step[1]; y !== ty; y += step[1]) if (blocked(sx, y)) return false;\n    return true;\n  }\n\n  function canShoot(a, b) {\n    var want = dirTo(a, b);\n    return (a[0] === b[0] || a[1] === b[1]) && losFrom(a[0], a[1], want, b[0], b[1]);\n  }\n\n  function bulletThreatAt(x, y, horizon) {\n    if (!enemy || !enemy.bullet) return false;\n    var bp = enemy.bullet.position;\n    var bd = enemy.bullet.direction;\n    if (!bd || !dv[bd]) return false;\n    var step = dv[bd];\n    var bx = bp[0], by = bp[1];\n    for (var i = 0; i <= horizon; i++) {\n      if (bx === x && by === y) return true;\n      bx += step[0]; by += step[1];\n      if (blocked(bx, by)) return false;\n    }\n    return false;\n  }\n\n  function bulletCrossesTile(x, y, horizon) {\n    if (!enemy || !enemy.bullet) return false;\n    var bp = enemy.bullet.position;\n    var bd = enemy.bullet.direction;\n    if (!bd || !dv[bd]) return false;\n    var step = dv[bd];\n    var bx = bp[0], by = bp[1];\n    for (var i = 0; i <= horizon; i++) {\n      if (bx === x && by === y) return true;\n      bx += step[0]; by += step[1];\n      if (blocked(bx, by)) return false;\n    }\n    return false;\n  }\n\n  function bulletActionTrap(want) {\n    if (!enemy || !enemy.bullet || !want || !dv[want]) return false;\n    if (want !== dir) return bulletCrossesTile(px, py, 4);\n    var step = dv[want];\n    var nx = px + step[0], ny = py + step[1];\n    if (!open(nx, ny)) return true;\n    return bulletCrossesTile(nx, ny, 4);\n  }\n\n  function immediateEnemyShotAt(x, y) {\n    if (!enemyTank || enemyDebuffed() || (enemy && enemy.bullet)) return false;\n    if (x !== ex && y !== ey) return false;\n    var want = dirTo([ex, ey], [x, y]);\n    if (turnCost(eDir, want) !== 0) return false;\n    return losFrom(ex, ey, want, x, y);\n  }\n\n  function tryImmediateLaneEscape() {\n    if (!immediateEnemyShotAt(px, py)) return false;\n    var step = delta(dir);\n    var nx = px + step[0], ny = py + step[1];\n    if (!open(nx, ny)) return false;\n    if (enemyTank && nx === ex && ny === ey) return false;\n    if (bulletThreatAt(nx, ny, 4) || overloadThreatAt(nx, ny)) return false;\n    me.go();\n    return true;\n  }\n\n  function laneThreatFrom(sx, sy, facing, tx, ty, maxCells) {\n    if (!facing || !dv[facing]) return false;\n    var step = dv[facing];\n    var dx = tx - sx, dy = ty - sy;\n    if (step[0] !== 0) {\n      if (dy !== 0) return false;\n      if ((step[0] > 0 && dx <= 0) || (step[0] < 0 && dx >= 0)) return false;\n      if (Math.abs(dx) > maxCells) return false;\n      for (var x = sx + step[0]; x !== tx; x += step[0]) if (blocked(x, sy)) return false;\n      return true;\n    }\n    if (dx !== 0) return false;\n    if ((step[1] > 0 && dy <= 0) || (step[1] < 0 && dy >= 0)) return false;\n    if (Math.abs(dy) > maxCells) return false;\n    for (var y = sy + step[1]; y !== ty; y += step[1]) if (blocked(sx, y)) return false;\n    return true;\n  }\n\n  function overloadThreatAt(x, y) {\n    if (!enemyTank || !enemySkillIs(\"overload\") || enemyDebuffed()) return false;\n    var armed = enemyOverloadArmed();\n    var readySoon = enemySkillReady(\"overload\", 2);\n    if (!armed && !readySoon) return false;\n    var maxCells = armed ? 12 : 8;\n    var maxTurnCost = armed ? 2 : 1;\n    for (var i = 0; i < 4; i++) {\n      var fireDir = dirs[i];\n      var cost = turnCost(eDir, fireDir);\n      if (cost > maxTurnCost) continue;\n      if (laneThreatFrom(ex, ey, fireDir, x, y, maxCells)) return true;\n      var sideOffsets = (fireDir === \"left\" || fireDir === \"right\") ? [[0, -1], [0, 1]] : [[-1, 0], [1, 0]];\n      for (var j = 0; j < sideOffsets.length; j++) {\n        var ox = sideOffsets[j][0], oy = sideOffsets[j][1];\n        var sx = ex + ox, sy = ey + oy;\n        if (!open(sx, sy)) continue;\n        if (laneThreatFrom(sx, sy, fireDir, x, y, maxCells)) return true;\n      }\n    }\n    return false;\n  }\n\n  function grassMaze() {\n    return w === 16 && h === 11;\n  }\n\n  function hiddenLaneAt(x, y) {\n    if (enemyTank) return false;\n    var memory = grassMaze() ? 34 : 18;\n    if (_lastEX < 0 || frame - _lastSeen > memory) return false;\n    var gap = dist(_lastEX, _lastEY, x, y);\n    if (gap > (grassMaze() ? 13 : 9)) return false;\n    if (_eMoveDir === \"down\" && x === _lastEX && y > _lastEY) return true;\n    if (_eMoveDir === \"up\" && x === _lastEX && y < _lastEY) return true;\n    if (_eMoveDir === \"right\" && y === _lastEY && x > _lastEX) return true;\n    if (_eMoveDir === \"left\" && y === _lastEY && x < _lastEX) return true;\n    if (enemySkillIs(\"cloak\") && frame - _lastSeen <= 10 && gap <= 4) return true;\n    return gap <= 4 && (x === _lastEX || y === _lastEY);\n  }\n\n  function cloakedAmbushAt(x, y) {\n    if (enemyTank) return false;\n    var cloakRecent = enemySkillIs(\"cloak\") || _lastESkill === \"cloak\" ||\n      !!(enemy && enemy.status && enemy.status.cloaked);\n    if (!cloakRecent || _lastEX < 0 || frame - _lastSeen > 9) return false;\n    var maxSteps = Math.max(1, Math.min(8, frame - _lastSeen + 1));\n    var queue = [{ x: _lastEX, y: _lastEY, d: 0 }];\n    var seen = {};\n    seen[_lastEX + \",\" + _lastEY] = true;\n    for (var head = 0; head < queue.length && queue.length < 120; head++) {\n      var item = queue[head];\n      if ((item.x === x || item.y === y) && dist(item.x, item.y, x, y) <= 12) {\n        var need = item.x === x ? (y < item.y ? \"up\" : \"down\") : (x < item.x ? \"left\" : \"right\");\n        if (losFrom(item.x, item.y, need, x, y)) return true;\n      }\n      if (item.d >= maxSteps) continue;\n      for (var i = 0; i < 4; i++) {\n        var step = delta(dirs[i]);\n        var nx = item.x + step[0], ny = item.y + step[1];\n        var key = nx + \",\" + ny;\n        if (seen[key] || !open(nx, ny)) continue;\n        seen[key] = true;\n        queue.push({ x: nx, y: ny, d: item.d + 1 });\n      }\n    }\n    return false;\n  }\n\n  function quickAimAt(x, y) {\n    if (!enemyTank || dist(ex, ey, x, y) > 6) return false;\n    if (ex !== x && ey !== y) return false;\n    var need = ex === x ? (y < ey ? \"up\" : \"down\") : (x < ex ? \"left\" : \"right\");\n    return turnCost(eDir, need) <= 1 && losFrom(ex, ey, need, x, y);\n  }\n\n  function longLaneAimAt(x, y) {\n    if (!enemyTank || (enemy && enemy.bullet) || dist(ex, ey, x, y) > 14) return false;\n    if (ex !== x && ey !== y) return false;\n    var need = ex === x ? (y < ey ? \"up\" : \"down\") : (x < ex ? \"left\" : \"right\");\n    return turnCost(eDir, need) <= 1 && losFrom(ex, ey, need, x, y);\n  }\n\n  function oneStepAimAt(x, y) {\n    if (!enemyTank || (enemy && enemy.bullet) || enemyDebuffed()) return false;\n    var starts = [[ex, ey]];\n    var step = delta(eDir);\n    var mx = ex + step[0], my = ey + step[1];\n    if (open(mx, my)) starts.push([mx, my]);\n    for (var i = 0; i < starts.length; i++) {\n      var sx = starts[i][0], sy = starts[i][1];\n      if (sx !== x && sy !== y) continue;\n      if (dist(sx, sy, x, y) > 8) continue;\n      var need = sx === x ? (y < sy ? \"up\" : \"down\") : (x < sx ? \"left\" : \"right\");\n      if (turnCost(eDir, need) <= 1 && losFrom(sx, sy, need, x, y)) return true;\n    }\n    return false;\n  }\n\n  function movingEnemyFireSetupAt(x, y) {\n    if (!enemyTank || !_eMoveDir || !dv[_eMoveDir]) return false;\n    if (enemy.status && (enemy.status.frozen || enemy.status.stunned)) return false;\n    var sx = ex, sy = ey;\n    for (var stepCount = 0; stepCount <= 1; stepCount++) {\n      if (sx === x && sy === y) return true;\n      if ((sx === x || sy === y) && dist(sx, sy, x, y) <= 5) {\n        var need = sx === x ? (y < sy ? \"up\" : \"down\") : (x < sx ? \"left\" : \"right\");\n        if (turnCost(eDir, need) <= 1 && losFrom(sx, sy, need, x, y)) return true;\n      }\n      var move = dv[_eMoveDir];\n      var nx = sx + move[0], ny = sy + move[1];\n      if (!open(nx, ny)) break;\n      sx = nx; sy = ny;\n    }\n    return false;\n  }\n\n  function freezeTrapAt(x, y) {\n    if (!enemyTank || enemyDebuffed()) return false;\n    var freezeThreat = enemySkillIs(\"freeze\") || _lastESkill === \"freeze\";\n    if (!freezeThreat || !enemySkillReady(\"freeze\", 3)) return false;\n    if (ex !== x && ey !== y) return false;\n    if (dist(ex, ey, x, y) > 9) return false;\n    var need = ex === x ? (y < ey ? \"up\" : \"down\") : (x < ex ? \"left\" : \"right\");\n    return turnCost(eDir, need) <= 1 && losFrom(ex, ey, need, x, y);\n  }\n\n  function adjacentPursuitTrapAt(x, y) {\n    if (!enemyTank || enemyDebuffed()) return false;\n    if (starsOf(me) - starsOf(enemy) < 1) return false;\n    if (dist(px, py, ex, ey) > 4 && dist(x, y, ex, ey) > 4) return false;\n    var starts = [[ex, ey]];\n    var forward = delta(eDir);\n    var fx = ex + forward[0], fy = ey + forward[1];\n    if (open(fx, fy)) starts.push([fx, fy]);\n    if (_eMoveDir && dv[_eMoveDir]) {\n      var chase = delta(_eMoveDir);\n      var cx = ex + chase[0], cy = ey + chase[1];\n      if (open(cx, cy)) starts.push([cx, cy]);\n    }\n    for (var i = 0; i < starts.length; i++) {\n      var sx = starts[i][0], sy = starts[i][1];\n      if (sx !== x && sy !== y) continue;\n      var gap = dist(sx, sy, x, y);\n      if (gap < 1 || gap > 4) continue;\n      var need = sx === x ? (y < sy ? \"up\" : \"down\") : (x < sx ? \"left\" : \"right\");\n      if (turnCost(eDir, need) <= 2 && losFrom(sx, sy, need, x, y)) return true;\n    }\n    return false;\n  }\n\n  function boostLeadLaneTrapAt(x, y) {\n    if (starsOf(me) - starsOf(enemy) < 1) return false;\n    var boostTempo = enemySkillIs(\"boost\") || _lastESkill === \"boost\" ||\n      !!(enemy && enemy.status && enemy.status.boosted);\n    if (!boostTempo) return false;\n    var sx = enemyTank ? ex : _lastEX;\n    var sy = enemyTank ? ey : _lastEY;\n    var facing = enemyTank ? eDir : (_lastEDir || _eMoveDir);\n    if (sx < 0 || sy < 0 || frame - _lastSeen > 10) return false;\n    if (sx !== x && sy !== y) return false;\n    if (dist(sx, sy, x, y) > 14) return false;\n    var need = sx === x ? (y < sy ? \"up\" : \"down\") : (x < sx ? \"left\" : \"right\");\n    if (turnCost(facing, need) > 2) return false;\n    return losFrom(sx, sy, need, x, y);\n  }\n\n  function rememberedSpawnThreatAt(x, y) {\n    if (enemyTank || _homeEX < 0) return false;\n    var gap = dist(_homeEX, _homeEY, x, y);\n    if (gap <= 1) return true;\n    if (_homeEX !== x && _homeEY !== y) return false;\n    if (gap > 14) return false;\n    if (gap < 11) return false;\n    var need = _homeEX === x ? (y < _homeEY ? \"up\" : \"down\") : (x < _homeEX ? \"left\" : \"right\");\n    return losFrom(_homeEX, _homeEY, need, x, y);\n  }\n\n  function laneDangerAt(x, y) {\n    var key = x + \",\" + y;\n    if (Object.prototype.hasOwnProperty.call(_laneDangerCache, key)) return _laneDangerCache[key];\n    var danger = false;\n    if (quickAimAt(x, y)) danger = true;\n    else if (longLaneAimAt(x, y)) danger = true;\n    else if (oneStepAimAt(x, y)) danger = true;\n    else if (movingEnemyFireSetupAt(x, y)) danger = true;\n    else if (freezeTrapAt(x, y)) danger = true;\n    else if (adjacentPursuitTrapAt(x, y)) danger = true;\n    else if (boostLeadLaneTrapAt(x, y)) danger = true;\n    else if (cloakedAmbushAt(x, y)) danger = true;\n    else if (hiddenLaneAt(x, y)) danger = true;\n    else if (rememberedSpawnThreatAt(x, y)) danger = true;\n    _laneDangerCache[key] = danger;\n    return danger;\n  }\n\n  function safeCell(x, y, strict) {\n    var key = x + \",\" + y + \"|\" + (strict ? 1 : 0);\n    if (Object.prototype.hasOwnProperty.call(_safeCellCache, key)) return _safeCellCache[key];\n    var safe = true;\n    if (!open(x, y)) safe = false;\n    else if (enemyTank && x === ex && y === ey) safe = false;\n    else if (bulletThreatAt(x, y, strict ? 10 : 6)) safe = false;\n    else if (overloadThreatAt(x, y)) safe = false;\n    else if (strict && laneDangerAt(x, y)) safe = false;\n    _safeCellCache[key] = safe;\n    return safe;\n  }\n\n  function farStarPickupAt(x, y) {\n    return game.star && x === game.star[0] && y === game.star[1] &&\n      enemyTank && dist(ex, ey, x, y) > 8;\n  }\n\n  function fatalStepAt(x, y) {\n    var farStarPickup = farStarPickupAt(x, y);\n    if (!open(x, y)) return true;\n    if (enemyTank && x === ex && y === ey) return true;\n    if (bulletThreatAt(x, y, 6)) return true;\n    if (!farStarPickup && laneDangerAt(x, y)) return true;\n    if (overloadThreatAt(x, y)) return true;\n    return false;\n  }\n\n  function tryAdjacentStarPickup(star) {\n    if (!star || dist(px, py, star[0], star[1]) !== 1) return false;\n    if (starsOf(me) + 1 - starsOf(enemy) >= 2 &&\n      (bulletThreatAt(star[0], star[1], 8) || quickAimAt(star[0], star[1]) ||\n        oneStepAimAt(star[0], star[1]) || movingEnemyFireSetupAt(star[0], star[1]) ||\n        freezeTrapAt(star[0], star[1]) || cloakedAmbushAt(star[0], star[1]) ||\n        hiddenLaneAt(star[0], star[1]))) return false;\n    if (fatalStepAt(star[0], star[1]) && !farStarPickupAt(star[0], star[1])) return false;\n    return moveDir(dirTo(myPos, star));\n  }\n\n  function validTeleport(x, y) {\n    if (!safeCell(x, y, true)) return false;\n    if (enemy && enemy.bullet && enemy.bullet.position[0] === x && enemy.bullet.position[1] === y) return false;\n    if (enemyTank) {\n      var ed = dist(x, y, ex, ey);\n      if (ed <= 4) return false;\n      if ((x === ex || y === ey) && ed <= (frame < 20 ? 7 : 9)) return false;\n    }\n    return true;\n  }\n\n  function repeatedStarTeleport(x, y, star) {\n    return !!(star &&\n      x === _lastTeleportX && y === _lastTeleportY &&\n      star[0] === _lastTeleportStarX && star[1] === _lastTeleportStarY &&\n      frame - _lastTeleportAt <= 45);\n  }\n\n  function castTeleport(target, star) {\n    _lastTeleportX = target[0];\n    _lastTeleportY = target[1];\n    _lastTeleportStarX = star ? star[0] : -1;\n    _lastTeleportStarY = star ? star[1] : -1;\n    _lastTeleportAt = frame;\n    me.teleport(target[0], target[1]);\n  }\n\n  function pathInfo(start, goal, avoid) {\n    if (!goal || !open(goal[0], goal[1])) return null;\n    if (same(start, goal)) return { first: null, dist: 0 };\n    var cacheKey = start[0] + \",\" + start[1] + \">\" + goal[0] + \",\" + goal[1] + \"|\" + (avoid ? 1 : 0);\n    if (Object.prototype.hasOwnProperty.call(_pathCache, cacheKey)) {\n      return _pathCache[cacheKey] || null;\n    }\n    var queue = [{ pos: start, first: null, dist: 0 }];\n    var seen = {};\n    seen[start[0] + \",\" + start[1]] = true;\n    for (var head = 0; head < queue.length && queue.length < 420; head++) {\n      var item = queue[head];\n      for (var i = 0; i < 4; i++) {\n        var d = dirs[i];\n        var next = add(item.pos, delta(d));\n        var k = next[0] + \",\" + next[1];\n        if (seen[k] || !open(next[0], next[1])) continue;\n        if (avoid && item.dist < 4 && !safeCell(next[0], next[1], true)) continue;\n        var first = item.first || d;\n        if (same(next, goal)) {\n          var found = { first: first, dist: item.dist + 1 };\n          _pathCache[cacheKey] = found;\n          return found;\n        }\n        seen[k] = true;\n        queue.push({ pos: next, first: first, dist: item.dist + 1 });\n      }\n    }\n    _pathCache[cacheKey] = false;\n    return null;\n  }\n\n  function pathDist(a, b) {\n    var p = pathInfo(a, b, false);\n    return p ? p.dist : 999;\n  }\n\n  function approachFramesFrom(start, facing, target) {\n    var p = pathInfo(start, target, false);\n    if (!p) return 999;\n    if (!p.first) return 0;\n    return p.dist + turnCost(facing || dir, p.first);\n  }\n\n  function enemyMirrorArrival(star) {\n    if (!enemyTank || !enemySkillIs(\"teleport\") || !star) return null;\n    var facing = eDir || _lastEDir || \"up\";\n    var best = null, bestScore = -9999;\n    for (var x = star[0] - 2; x <= star[0] + 2; x++) {\n      for (var y = star[1] - 2; y <= star[1] + 2; y++) {\n        if (dist(x, y, star[0], star[1]) > 2) continue;\n        if (!open(x, y)) continue;\n        var framesToStar = approachFramesFrom([x, y], facing, star);\n        if (framesToStar >= 999) continue;\n        var score = 170 - framesToStar * 42 - dist(x, y, star[0], star[1]) * 12;\n        if (x === star[0] && y === star[1]) score += 40;\n        if (x === ex && y === ey) score -= 8;\n        if (score > bestScore) {\n          bestScore = score;\n          best = { landing: [x, y], frames: framesToStar };\n        }\n      }\n    }\n    return best;\n  }\n\n  function mirrorPickupTrap(landing, star, mirrorEnemy) {\n    if (!landing || !star || !mirrorEnemy || !mirrorEnemy.landing) return false;\n    var mx = mirrorEnemy.landing[0], my = mirrorEnemy.landing[1];\n    if (mx !== star[0] && my !== star[1]) return false;\n    var laneDir = mx === star[0] ? (star[1] < my ? \"up\" : \"down\") : (star[0] < mx ? \"left\" : \"right\");\n    if (!losFrom(mx, my, laneDir, star[0], star[1])) return false;\n    var laneGap = dist(mx, my, star[0], star[1]);\n    if (laneGap > 4) return false;\n\n    var postDir = dir;\n    var approach = pathInfo(landing, star, false);\n    if (approach && approach.first) postDir = approach.first;\n\n    var escapeDirs = mx === star[0] ? [\"left\", \"right\"] : [\"up\", \"down\"];\n    for (var i = 0; i < escapeDirs.length; i++) {\n      var escapeDir = escapeDirs[i];\n      var step = delta(escapeDir);\n      var nx = star[0] + step[0], ny = star[1] + step[1];\n      if (!open(nx, ny)) continue;\n      if (turnCost(postDir, escapeDir) === 0) return false;\n    }\n\n    if (laneGap <= 1) return true;\n    var facing = eDir || _lastEDir || \"up\";\n    return laneGap <= 2 && turnCost(facing, laneDir) <= 1;\n  }\n\n  function mirrorContestActive(star) {\n    if (!star || !enemyTank || !enemySkillIs(\"teleport\")) return false;\n    if (dist(px, py, star[0], star[1]) > 2) return false;\n    if (dist(ex, ey, star[0], star[1]) > 2) return false;\n    return true;\n  }\n\n  function tryMirrorContest(star) {\n    if (!mirrorContestActive(star)) return false;\n    if (dist(px, py, star[0], star[1]) <= 1) return moveTowardForce(star);\n    var p = pathInfo(myPos, star, false);\n    if (p && p.first) return moveDir(p.first);\n    return false;\n  }\n\n  function mirrorRecoveryActive() {\n    return _mirrorRecoverUntil >= frame &&\n      enemySkillIs(\"teleport\") &&\n      me.skill && me.skill.type === \"teleport\" && me.skill.remainingCooldownFrames > 0 &&\n      enemy.skill && enemy.skill.remainingCooldownFrames > 0;\n  }\n\n  function openNeighborCount(x, y) {\n    var count = 0;\n    for (var i = 0; i < 4; i++) {\n      var n = add([x, y], delta(dirs[i]));\n      if (open(n[0], n[1])) count++;\n    }\n    return count;\n  }\n\n  function grassAmbushMap(star) {\n    if (!star) return false;\n    var grass = 0, nearStar = 0;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (tile(x, y) !== \"o\") continue;\n        grass++;\n        if (dist(x, y, star[0], star[1]) <= 4) nearStar++;\n      }\n    }\n    return nearStar > 0 && (grass >= 8 || nearStar >= 3);\n  }\n\n  function bestGrassAmbush(star, myDist, enemyDist) {\n    if (!grassAmbushMap(star) || !enemyTank) return null;\n    if (_myStars < _enemyStars && enemyDist <= myDist + 1) return null;\n    if (myDist <= 2) return null;\n    var enemyRoute = predictRoute([ex, ey], star, 6);\n    var best = null, bestScore = -9999;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (tile(x, y) !== \"o\") continue;\n        var starGap = dist(x, y, star[0], star[1]);\n        if (starGap < 1 || starGap > 4) continue;\n        if (!validTeleport(x, y)) continue;\n        var score = 260 - starGap * 30 - dist(px, py, x, y) * 3;\n        score += openNeighborCount(x, y) * 9;\n        if (canShoot([x, y], star)) score += 44;\n        if (pathDist([x, y], star) <= 3) score += 20;\n        if (x !== star[0] && y !== star[1]) score += 12;\n        if (enemyTank) {\n          var ed = dist(x, y, ex, ey);\n          if (ed <= 4) continue;\n          score += Math.min(ed, 8) * 4;\n          if ((x === ex || y === ey) && ed <= 10) score -= 70;\n          if (enemyDist <= starGap + 1) score += 18;\n        }\n        for (var i = 0; i < enemyRoute.length; i++) {\n          if (canShoot([x, y], enemyRoute[i])) score += 34 - i * 4;\n          if (dist(x, y, enemyRoute[i][0], enemyRoute[i][1]) <= 2) score += 10;\n        }\n        if (score > bestScore) {\n          bestScore = score;\n          best = [x, y];\n        }\n      }\n    }\n    return bestScore >= 160 ? best : null;\n  }\n\n  function tryGrassAmbushFire(star, enemyDist) {\n    if (!star || !enemyTank || tile(px, py) !== \"o\") return false;\n    if (dist(px, py, star[0], star[1]) > 4) return false;\n    if (me.bullet || me.status.fireLocked) return false;\n    if (bulletThreatAt(px, py, 4) || overloadThreatAt(px, py)) return false;\n    var targets = [[ex, ey]].concat(predictRoute([ex, ey], star, 5));\n    for (var i = 0; i < targets.length; i++) {\n      var target = targets[i];\n      if (!canShoot(myPos, target)) continue;\n      var gap = dist(px, py, target[0], target[1]);\n      if (gap < 2 || gap > 10) continue;\n      var want = dirTo(myPos, target);\n      if (dir === want) me.fire();\n      else turnTo(want);\n      return true;\n    }\n    if (enemyDist <= 6 && canShoot(myPos, star)) {\n      var guard = dirTo(myPos, star);\n      if (dir !== guard) {\n        turnTo(guard);\n        return true;\n      }\n    }\n    return false;\n  }\n\n  function tryGrassAmbushSetup(star, myDist, enemyDist) {\n    if (!star || !enemyTank) return false;\n    if (!teleportReady()) return tryGrassAmbushFire(star, enemyDist);\n    var target = bestGrassAmbush(star, myDist, enemyDist);\n    if (!target) return tryGrassAmbushFire(star, enemyDist);\n    if (same(myPos, target)) return tryGrassAmbushFire(star, enemyDist);\n    if (repeatedStarTeleport(target[0], target[1], star)) return false;\n    if (dist(px, py, target[0], target[1]) > 2) {\n      castTeleport(target, star);\n      return true;\n    }\n    var route = pathInfo(myPos, target, true);\n    if (route && route.first) return moveDir(route.first);\n    return false;\n  }\n\n  function mirrorRecoveryAnchor() {\n    var cx = Math.floor(w / 2), cy = Math.floor(h / 2);\n    var currentCenterGap = dist(px, py, cx, cy);\n    var best = null, bestScore = -9999;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (!safeCell(x, y, true)) continue;\n        var centerGap = dist(x, y, cx, cy);\n        var score = 260 - centerGap * 20;\n        score += openNeighborCount(x, y) * 7;\n        if (tile(x, y) === \"o\") score += 3;\n        if (centerGap > currentCenterGap) score -= (centerGap - currentCenterGap) * 12;\n        if (_mirrorRecoverStarX >= 0) {\n          var oldStarGap = dist(x, y, _mirrorRecoverStarX, _mirrorRecoverStarY);\n          score += Math.min(oldStarGap, 6) * 5;\n          if (oldStarGap <= 2) score -= 28;\n        }\n        if (enemyTank) {\n          var ed = dist(x, y, ex, ey);\n          if (ed < 4) continue;\n          score -= Math.abs(ed - 6) * 5;\n          if (x === ex || y === ey) score -= 18;\n        }\n        if (score > bestScore) {\n          bestScore = score;\n          best = [x, y];\n        }\n      }\n    }\n    return best || anchor();\n  }\n\n  function tryMirrorRecoveryMove() {\n    if (game.star || !mirrorRecoveryActive()) return false;\n    var target = mirrorRecoveryAnchor();\n    if (!target || same(target, myPos)) return false;\n    var safe = pathInfo(myPos, target, true);\n    var raw = pathInfo(myPos, target, false);\n    var pick = safe || raw;\n    if (!pick || !pick.first) return false;\n    if (safe && raw && safe.first !== raw.first) {\n      var cx = Math.floor(w / 2), cy = Math.floor(h / 2);\n      var safeNext = add(myPos, delta(safe.first));\n      var rawNext = add(myPos, delta(raw.first));\n      if (!fatalStepAt(rawNext[0], rawNext[1]) &&\n        dist(rawNext[0], rawNext[1], cx, cy) < dist(safeNext[0], safeNext[1], cx, cy) &&\n        (!enemyTank || dist(rawNext[0], rawNext[1], ex, ey) >= 4)) {\n        pick = raw;\n      }\n    }\n    return moveDir(pick.first);\n  }\n\n  function predictRoute(start, goal, steps) {\n    if (!start || !goal || steps < 1) return [];\n    var pos = [start[0], start[1]];\n    var route = [];\n    for (var i = 0; i < steps; i++) {\n      var next = pathInfo(pos, goal, false);\n      if (!next || !next.first) break;\n      pos = add(pos, delta(next.first));\n      route.push([pos[0], pos[1]]);\n      if (same(pos, goal)) break;\n    }\n    return route;\n  }\n\n  function raidTarget() {\n    if (_raidStarX >= 0 && _raidStarY >= 0) return [_raidStarX, _raidStarY];\n    return game.star || myPos;\n  }\n\n  function openingRaidPlanFrom(startPos, target) {\n    if (!enemyTank || !startPos || !target) return null;\n    var candidates = [[ex, ey]].concat(predictRoute([ex, ey], target, 8));\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < candidates.length; i++) {\n      var aimAt = candidates[i];\n      if (!canShoot(startPos, aimAt)) continue;\n      var want = dirTo(startPos, aimAt);\n      var gap = dist(startPos[0], startPos[1], aimAt[0], aimAt[1]);\n      if (gap < 3 || gap > 10) continue;\n      var score = 170 - i * 24 - gap * 4 - turnCost(dir, want) * 16;\n      if (want === dir) score += 18;\n      if (target && dist(startPos[0], startPos[1], target[0], target[1]) <= 1) score += 12;\n      if (aimAt[0] === ex && aimAt[1] === ey) score += 20;\n      if (score > bestScore) {\n        bestScore = score;\n        best = { dir: want, step: i, score: score, aimAt: aimAt };\n      }\n    }\n    return best;\n  }\n\n  function bestStarTeleport(star) {\n    if (!teleportReady() || !star) return null;\n    var mirrorEnemy = enemyMirrorArrival(star);\n    var best = null, bestScore = -9999;\n    for (var x = star[0] - 2; x <= star[0] + 2; x++) {\n      for (var y = star[1] - 2; y <= star[1] + 2; y++) {\n        if (dist(x, y, star[0], star[1]) > 2) continue;\n        if (!validTeleport(x, y)) continue;\n        var score = 140 - dist(x, y, star[0], star[1]) * 35;\n        var myFramesToStar = approachFramesFrom([x, y], dir, star);\n        if (x === star[0] && y === star[1]) score += 70;\n        if (enemyTank) {\n          var ed = dist(x, y, ex, ey);\n          if (ed <= 5) continue;\n          if ((x === ex || y === ey) && ed <= 10) continue;\n          if (x === ex || y === ey) score -= 30;\n          score += Math.min(ed, 8) * 3;\n        }\n        if (enemySkillIs(\"teleport\") && myFramesToStar < 999) {\n          score -= myFramesToStar * 42;\n          if (myFramesToStar <= 1) score += 28;\n          else if (myFramesToStar === 2) score += 12;\n          if (mirrorEnemy) {\n            if (myFramesToStar < mirrorEnemy.frames) score += 64;\n            else if (myFramesToStar === mirrorEnemy.frames) score += 10;\n            else score -= 84 + (myFramesToStar - mirrorEnemy.frames) * 18;\n            if (mirrorPickupTrap([x, y], star, mirrorEnemy)) score -= 140;\n          }\n        }\n        if (quickAimAt(x, y)) score -= 80;\n        if (score > bestScore) { bestScore = score; best = [x, y]; }\n      }\n    }\n    return best;\n  }\n\n  // Hold the first teleport lane for a few frames when it creates a real ambush line.\n  function tryOpeningRaid() {\n    if (game.star && mirrorContestActive(game.star)) return false;\n    if (_raidUntil < frame || !enemyTank) return false;\n    if (bulletThreatAt(px, py, 4) || overloadThreatAt(px, py) || laneDangerAt(px, py)) return false;\n    var plan = openingRaidPlanFrom(myPos, raidTarget());\n    if (!plan || plan.step > 6 || plan.score < 110) return false;\n    _raidDir = plan.dir;\n    if (canShoot(myPos, [ex, ey]) && dist(px, py, ex, ey) <= 7 && !me.bullet && !me.status.fireLocked) {\n      if (dir === plan.dir) me.fire();\n      else turnTo(plan.dir);\n      return true;\n    }\n    if (dir !== plan.dir) {\n      turnTo(plan.dir);\n      return true;\n    }\n    if (plan.step <= 3) return true;\n    return false;\n  }\n\n  function tryDodge() {\n    if (!bulletThreatAt(px, py, 10) && !overloadThreatAt(px, py) && !laneDangerAt(px, py)) return false;\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < 4; i++) {\n      var d = dirs[i];\n      var n = add(myPos, delta(d));\n      if (!safeCell(n[0], n[1], true)) continue;\n      if (bulletActionTrap(d)) continue;\n      var score = 20 - turnCost(dir, d) * 4;\n      if (game.star) score -= dist(n[0], n[1], game.star[0], game.star[1]);\n      if (score > bestScore) { bestScore = score; best = d; }\n    }\n    if (best && moveDir(best)) return true;\n    if (teleportReady()) {\n      var safe = bestStarTeleport(game.star) || anchor();\n      if (safe && validTeleport(safe[0], safe[1])) {\n        castTeleport(safe, game.star);\n        return true;\n      }\n    }\n    return false;\n  }\n\n  function tryClearMound(target) {\n    if (!target || me.bullet || me.status.fireLocked) return false;\n    var f = delta(dir);\n    if (tile(px + f[0], py + f[1]) === \"m\") {\n      me.fire();\n      return true;\n    }\n    if (px !== target[0] && py !== target[1]) return false;\n    var want = dirTo(myPos, target);\n    var step = delta(want);\n    var x = px + step[0], y = py + step[1];\n    while (x !== target[0] || y !== target[1]) {\n      var t = tile(x, y);\n      if (t === \"x\") return false;\n      if (t === \"m\") {\n        if (dir === want) me.fire();\n        else turnTo(want);\n        return true;\n      }\n      x += step[0]; y += step[1];\n    }\n    return false;\n  }\n\n  function moveToward(target, avoid) {\n    var p = pathInfo(myPos, target, avoid);\n    if (p && p.first) {\n      var n = add(myPos, delta(p.first));\n      if (!avoid && fatalStepAt(n[0], n[1])) return false;\n      return moveDir(p.first);\n    }\n    if (tryClearMound(target)) return true;\n    return false;\n  }\n\n  function moveTowardForce(target) {\n    var p = pathInfo(myPos, target, false);\n    if (p && p.first) return moveDir(p.first);\n    if (tryClearMound(target)) return true;\n    return false;\n  }\n\n  function tryStarBreakout(star, myDist, enemyDist) {\n    if (!star) return false;\n    var allowLoose = _pursuitStall >= 2 || _stuck >= 2;\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < 4; i++) {\n      var d = dirs[i];\n      var next = add(myPos, delta(d));\n      if (!open(next[0], next[1])) continue;\n      if (enemyTank && next[0] === ex && next[1] === ey) continue;\n      if (bulletActionTrap(d)) continue;\n      if (!safeCell(next[0], next[1], !allowLoose)) continue;\n      var nextDist = pathDist(next, star);\n      if (nextDist >= 999) continue;\n      var score = 180 - nextDist * 32 - turnCost(dir, d) * 8;\n      if (nextDist < myDist) score += 36;\n      else if (nextDist === myDist) score -= 6;\n      else score -= 34;\n      if (d === dir) score += 10;\n      if (next[0] === star[0] && next[1] === star[1]) score += 70;\n      if (enemyTank) {\n        var enemyGap = dist(next[0], next[1], ex, ey);\n        if (next[0] === ex || next[1] === ey) score -= 16;\n        if (enemyGap <= 2) score -= 28;\n        else score += Math.min(enemyGap, 6) * 3;\n        if (enemyDist < nextDist) score -= 12;\n      }\n      if (score > bestScore) {\n        bestScore = score;\n        best = d;\n      }\n    }\n    return best ? moveDir(best) : false;\n  }\n\n  function aimDangerHere() {\n    if (!enemyTank || dist(px, py, ex, ey) > 14) return false;\n    if (enemy && enemy.bullet) return false;\n    if (ex !== px && ey !== py) return false;\n    var need = ex === px ? (py < ey ? \"up\" : \"down\") : (px < ex ? \"left\" : \"right\");\n    if (!losFrom(ex, ey, need, px, py)) return false;\n    return turnCost(eDir, need) <= 1;\n  }\n\n  function escapeAimDir() {\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < 4; i++) {\n      var d = dirs[i];\n      var n = add(myPos, delta(d));\n      if (!safeCell(n[0], n[1], true)) continue;\n      if (enemyTank && (n[0] === ex || n[1] === ey)) continue;\n      var score = 50 + dist(n[0], n[1], ex, ey) * 2 - turnCost(dir, d) * 8;\n      if (game.star) score -= dist(n[0], n[1], game.star[0], game.star[1]);\n      if (d === dir) score += 12;\n      if (score > bestScore) { bestScore = score; best = d; }\n    }\n    return best;\n  }\n\n  function urgentAimEscapeDir() {\n    if (!aimDangerHere() && !oneStepAimAt(px, py) && !laneDangerAt(px, py)) return null;\n    var n = add(myPos, delta(dir));\n    if (!open(n[0], n[1])) return null;\n    if (enemyTank && n[0] === ex && n[1] === ey) return null;\n    if (enemyTank && (n[0] === ex || n[1] === ey)) return null;\n    if (bulletThreatAt(n[0], n[1], 4)) return null;\n    if (overloadThreatAt(n[0], n[1])) return null;\n    if (hiddenLaneAt(n[0], n[1])) return null;\n    if (rememberedSpawnThreatAt(n[0], n[1])) return null;\n    return dir;\n  }\n\n  function laneExitDir() {\n    if (enemy && enemy.bullet) return null;\n    if (_lastESkill !== \"freeze\") return null;\n    if (_lastEX < 0 || frame - _lastSeen > 4) return null;\n    if (ex !== px && ey !== py) return null;\n    if (dist(px, py, ex, ey) > 8) return null;\n    var need = ex === px ? (py < ey ? \"up\" : \"down\") : (px < ex ? \"left\" : \"right\");\n    if (turnCost(eDir, need) > 1) return null;\n    if (!losFrom(ex, ey, need, px, py)) return null;\n\n    var candidates = ey === py ? [\"up\", \"down\"] : [\"left\", \"right\"];\n    for (var i = 0; i < candidates.length; i++) {\n      var d = candidates[i];\n      var n = add(myPos, delta(d));\n      if (!open(n[0], n[1])) continue;\n      if (enemyTank && n[0] === ex && n[1] === ey) continue;\n      if (bulletThreatAt(n[0], n[1], 4)) continue;\n      if (overloadThreatAt(n[0], n[1])) continue;\n      if (hiddenLaneAt(n[0], n[1])) continue;\n      if (rememberedSpawnThreatAt(n[0], n[1])) continue;\n      return d;\n    }\n    return null;\n  }\n\n  function tryPreemptAimDodge() {\n    var aimDanger = aimDangerHere() || oneStepAimAt(px, py) || laneDangerAt(px, py);\n    var laneExit = laneExitDir();\n    if (!aimDanger && !laneExit) return false;\n    if (aimDanger && teleportReady()) {\n      var target = bestStarTeleport(game.star) || anchor();\n      if (target && validTeleport(target[0], target[1])) {\n        castTeleport(target, game.star);\n        return true;\n      }\n    }\n    if (laneExit && moveDir(laneExit)) return true;\n    var urgentEscape = urgentAimEscapeDir();\n    if (urgentEscape && moveDir(urgentEscape)) return true;\n    var escape = escapeAimDir();\n    if (escape) return moveDir(escape);\n    return false;\n  }\n\n  function tryKeepLeadSafe() {\n    var lead = starsOf(me) - starsOf(enemy);\n    var boostTempo = enemySkillIs(\"boost\") || _lastESkill === \"boost\" ||\n      !!(enemy && enemy.status && enemy.status.boosted);\n    var requiredLead = boostTempo ? 1 : 2;\n    if (lead < requiredLead) return false;\n    if (frame < 18 && lead < 2) return false;\n    if (!bulletThreatAt(px, py, 10) && !overloadThreatAt(px, py) && !laneDangerAt(px, py)) return false;\n    var escape = escapeAimDir();\n    if (escape && moveDir(escape)) return true;\n    return false;\n  }\n\n  function anchor() {\n    var cx = Math.floor(w / 2), cy = Math.floor(h / 2);\n    var best = null, bestScore = -9999;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (!safeCell(x, y, false)) continue;\n        var score = -dist(x, y, cx, cy) * 4;\n        if (tile(x, y) === \"o\") score += 2;\n        if (enemyTank && (x === ex || y === ey)) score -= 4;\n        if (score > bestScore) { bestScore = score; best = [x, y]; }\n      }\n    }\n    return best || myPos;\n  }\n\n  function pressureAnchor(target) {\n    var cx = target ? Math.floor((target[0] + px) / 2) : Math.floor(w / 2);\n    var cy = target ? Math.floor((target[1] + py) / 2) : Math.floor(h / 2);\n    var route = enemyTank && target ? predictRoute([ex, ey], target, 4) : [];\n    var best = null, bestScore = -9999;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (!safeCell(x, y, true)) continue;\n        var score = -dist(x, y, cx, cy) * 5;\n        if (target) score -= dist(x, y, target[0], target[1]);\n        if (tile(x, y) === \"o\") score += 2;\n        if (enemyTank && canShoot([x, y], [ex, ey])) score += 24;\n        if (enemyTank && (x === ex || y === ey)) score += 6;\n        if (route.length) {\n          for (var k = 0; k < route.length; k++) {\n            if (canShoot([x, y], route[k])) score += 20 - k * 4;\n          }\n        }\n        if (boostLeadLaneTrapAt(x, y)) score -= 80;\n        if (score > bestScore) { bestScore = score; best = [x, y]; }\n      }\n    }\n    return best || anchor();\n  }\n\n  function enemyDormant() {\n    if (!enemyTank || frame < 10) return false;\n    if (_homeEX < 0 || _homeEY < 0) return false;\n    if (starsOf(enemy) > 0) return false;\n    if (enemy && enemy.bullet) return false;\n    return ex === _homeEX && ey === _homeEY;\n  }\n\n  function riskyLeadStarRoute(star, myPath) {\n    if (!star || starsOf(me) - starsOf(enemy) < 1) return false;\n    var boostTempo = enemySkillIs(\"boost\") || _lastESkill === \"boost\" ||\n      !!(enemy && enemy.status && enemy.status.boosted);\n    if (!boostTempo) return false;\n    if (boostLeadLaneTrapAt(star[0], star[1]) && dist(px, py, star[0], star[1]) > 2) return true;\n    if (myPath && myPath.first) {\n      var next = add(myPos, delta(myPath.first));\n      if (boostLeadLaneTrapAt(next[0], next[1])) return true;\n      if (fatalStepAt(next[0], next[1]) && dist(px, py, star[0], star[1]) > 2) return true;\n    }\n    return false;\n  }\n\n  function pressureTargets() {\n    if (!enemyTank) return [];\n    var chase = game.star || anchor();\n    var route = predictRoute([ex, ey], chase, 3);\n    var targets = [[ex, ey]];\n    for (var i = 0; i < route.length; i++) {\n      if (!same(route[i], targets[targets.length - 1])) targets.push(route[i]);\n    }\n    return targets;\n  }\n\n  function tryAttack(urgentStar) {\n    if (!enemyTank || me.bullet || me.status.fireLocked) return false;\n    if (game.star && mirrorContestActive(game.star)) return false;\n    if (!urgentStar && laneDangerAt(px, py) && !enemyDebuffed()) return false;\n    var targets = pressureTargets();\n    if (canShoot(myPos, [ex, ey])) {\n      var directWant = dirTo(myPos, [ex, ey]);\n      if (!urgentStar || dist(px, py, ex, ey) <= 4 || enemyDebuffed()) {\n        if (dir === directWant) me.fire();\n        else turnTo(directWant);\n        return true;\n      }\n    }\n    if (urgentStar) return false;\n\n    var bestTurn = null, bestTurnTarget = null, bestTurnScore = -9999;\n    for (var i = 0; i < targets.length; i++) {\n      var aimAt = targets[i];\n      if (px !== aimAt[0] && py !== aimAt[1]) continue;\n      var want = dirTo(myPos, aimAt);\n      if (!losFrom(px, py, want, aimAt[0], aimAt[1])) continue;\n      var gap = dist(px, py, aimAt[0], aimAt[1]);\n      if (gap < 2 || gap > 10) continue;\n      var turnScore = 150 - i * 24 - gap * 5 - turnCost(dir, want) * 20;\n      if (aimAt[0] === ex && aimAt[1] === ey) turnScore += 28;\n      if (want === dir) turnScore += 20;\n      if (turnScore > bestTurnScore) {\n        bestTurnScore = turnScore;\n        bestTurn = want;\n        bestTurnTarget = aimAt;\n      }\n    }\n    if (bestTurn) {\n      if (bestTurn === dir && bestTurnTarget && canShoot(myPos, bestTurnTarget)) me.fire();\n      else turnTo(bestTurn);\n      return true;\n    }\n\n    var bestMove = null, bestMoveScore = -9999;\n    for (var dIndex = 0; dIndex < 4; dIndex++) {\n      var d = dirs[dIndex];\n      var next = add(myPos, delta(d));\n      if (!safeCell(next[0], next[1], true)) continue;\n      if (enemyTank && next[0] === ex && next[1] === ey) continue;\n      if (bulletActionTrap(d)) continue;\n      for (var tIndex = 0; tIndex < targets.length; tIndex++) {\n        var target = targets[tIndex];\n        if (!canShoot(next, target)) continue;\n        var gapToTarget = dist(next[0], next[1], target[0], target[1]);\n        if (gapToTarget < 2 || gapToTarget > 9) continue;\n        var moveScore = 132 - tIndex * 18 - gapToTarget * 5 - turnCost(dir, d) * 10;\n        if (d === dir) moveScore += 12;\n        if (target[0] === ex && target[1] === ey) moveScore += 22;\n        if (next[0] === ex || next[1] === ey) moveScore += 4;\n        if (moveScore > bestMoveScore) {\n          bestMoveScore = moveScore;\n          bestMove = d;\n        }\n      }\n    }\n    return bestMove ? moveDir(bestMove) : false;\n  }\n\n  function tryStarRacePressure(myDist, enemyDist) {\n    if (!game.star || !enemyTank || me.bullet || me.status.fireLocked) return false;\n    if (myDist <= 3 || myDist >= 999 || enemyDist >= 999) return false;\n    if (enemyDist > myDist + 4 && myDist < 14) return false;\n    if (!canShoot(myPos, [ex, ey])) return false;\n    if (bulletThreatAt(px, py, 4) || overloadThreatAt(px, py) || laneDangerAt(px, py)) return false;\n\n    var want = dirTo(myPos, [ex, ey]);\n    var cost = turnCost(dir, want);\n    var gap = dist(px, py, ex, ey);\n    if (cost > 1 && enemyDist > myDist + 1) return false;\n    if (gap > 8 && cost > 0) return false;\n\n    if (dir === want) me.fire();\n    else turnTo(want);\n    return true;\n  }\n\n  function tryMirrorRecoveryRace(star, myPath, enemyDist) {\n    if (!star || !mirrorRecoveryActive()) return false;\n    var raw = pathInfo(myPos, star, false);\n    if (!raw || !raw.first || raw.dist >= 999) return false;\n    if (enemyDist < raw.dist - 2) return false;\n    if (myPath && myPath.first === raw.first && myPath.dist <= raw.dist + 1) return false;\n    var next = add(myPos, delta(raw.first));\n    if (fatalStepAt(next[0], next[1]) && dist(next[0], next[1], star[0], star[1]) > 1) return false;\n    return moveDir(raw.first);\n  }\n\n  function quietStarLanding(star) {\n    if (!star || !teleportReady()) return null;\n    var candidates = [\n      [star[0], star[1]],\n      [star[0] + 1, star[1]],\n      [star[0] - 1, star[1]],\n      [star[0], star[1] + 1],\n      [star[0], star[1] - 1],\n      [star[0] + 2, star[1]],\n      [star[0] - 2, star[1]],\n      [star[0], star[1] + 2],\n      [star[0], star[1] - 2],\n    ];\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < candidates.length; i++) {\n      var c = candidates[i];\n      if (!open(c[0], c[1])) continue;\n      if (repeatedStarTeleport(c[0], c[1], star)) continue;\n      if (enemyTank) {\n        var ed = dist(c[0], c[1], ex, ey);\n        if (ed <= 4) continue;\n        if ((c[0] === ex || c[1] === ey) && ed <= 10) continue;\n      }\n      var score = 100 - dist(c[0], c[1], star[0], star[1]) * 24;\n      if (same(c, star)) score += 40;\n      if (tile(c[0], c[1]) === \"o\") score += 4;\n      if (score > bestScore) {\n        bestScore = score;\n        best = c;\n      }\n    }\n    return best;\n  }\n\n  function tryQuietStarRush(star) {\n    if (!star || enemy && enemy.bullet) return false;\n    if (w * h < 240) return false;\n    var quietEnemy = !enemyTank || enemyDormant();\n    if (!quietEnemy) return false;\n    var raw = pathInfo(myPos, star, false);\n    var rawDist = raw ? raw.dist : 999;\n    if (teleportReady() && rawDist > 5) {\n      var landing = quietStarLanding(star);\n      if (landing) {\n        castTeleport(landing, star);\n        return true;\n      }\n    }\n    if (raw && raw.first) return moveDir(raw.first);\n    if (tryClearMound(star)) return true;\n    return false;\n  }\n\n  if (game.star && tryQuietStarRush(game.star)) return;\n  if (tryImmediateLaneEscape()) return;\n  if (tryPreemptAimDodge()) return;\n  if (tryDodge()) return;\n  if (tryKeepLeadSafe()) return;\n  if (tryOpeningRaid()) return;\n\n  if (game.star) {\n    var star = game.star;\n    if (tryMirrorContest(star)) return;\n    if (tryAdjacentStarPickup(star)) return;\n    var myPath = pathInfo(myPos, star, true) || pathInfo(myPos, star, false);\n    var myDist = myPath ? myPath.dist : 999;\n    var enemyDist = enemyTank ? pathDist([ex, ey], star) : 999;\n    if (tryGrassAmbushSetup(star, myDist, enemyDist)) return;\n    var stuckOrLate = _stuck >= 2 || _pursuitStall >= 2 || frame > 10;\n    var shouldTeleport = teleportReady() && myDist > 2 && (stuckOrLate || myDist > enemyDist + 1 || frame < 20);\n    if (shouldTeleport) {\n      var landing = bestStarTeleport(star);\n      var enemyFavoredOpen = enemyTank && frame < 20 && enemyDist + 2 < myDist;\n      if (!landing && enemyFavoredOpen) {\n        var pressure = pressureAnchor(star);\n        if (pressure && validTeleport(pressure[0], pressure[1])) landing = pressure;\n      }\n      if (landing && repeatedStarTeleport(landing[0], landing[1], star)) landing = null;\n      if (landing) {\n        var raidPlan = frame < 12 ? openingRaidPlanFrom(landing, star) : null;\n        if (raidPlan && raidPlan.step <= 6 && raidPlan.score >= 110) {\n          _raidUntil = frame + raidPlan.step + 3;\n          _raidStarX = star[0];\n          _raidStarY = star[1];\n          _raidDir = raidPlan.dir;\n        } else {\n          _raidUntil = -1;\n          _raidStarX = -1;\n          _raidStarY = -1;\n          _raidDir = null;\n        }\n        castTeleport(landing, star);\n        return;\n      }\n    }\n\n    if (enemyDormant()) {\n      if (moveTowardForce(star)) return;\n      if (turnTo(dirTo(myPos, star))) return;\n    }\n\n    if (tryMirrorRecoveryRace(star, myPath, enemyDist)) return;\n\n    if (riskyLeadStarRoute(star, myPath)) {\n      if (tryAttack(false)) return;\n      var hold = pressureAnchor(star);\n      if (hold && !same(myPos, hold) && moveToward(hold, true)) return;\n      if (enemyTank && turnTo(dirTo(myPos, [ex, ey]))) return;\n    }\n\n    var stalled = _stuck >= 2 || _pursuitStall >= 2;\n    var urgent = myDist <= enemyDist + 4 || myDist <= 3 || frame > 30 || stalled;\n    if (urgent && tryStarRacePressure(myDist, enemyDist)) return;\n    if (urgent && moveToward(star, true)) return;\n    if (urgent && tryStarBreakout(star, myDist, enemyDist)) return;\n    if (stalled && moveTowardForce(star)) return;\n    if (tryAttack(false)) return;\n    if (moveToward(star, false)) return;\n    if (tryClearMound(star)) return;\n  }\n\n  if (tryAttack(false)) return;\n  if (tryMirrorRecoveryMove()) return;\n  var home = anchor();\n  if (dist(px, py, home[0], home[1]) > 1 && moveToward(home, true)) return;\n  if (enemyTank && dist(px, py, home[0], home[1]) <= 2 && turnTo(dirTo(myPos, [ex, ey]))) return;\n\n  if (_stuck >= 2 && teleportReady()) {\n    var a = anchor();\n    if (validTeleport(a[0], a[1])) {\n      castTeleport(a, game.star);\n      return;\n    }\n  }\n\n  var fwd = add(myPos, delta(dir));\n  if (safeCell(fwd[0], fwd[1], true) && !bulletActionTrap(dir)) me.go();\n  else {\n    var rightDir = dirs[(dirs.indexOf(dir) + 1) % 4];\n    var leftDir = dirs[(dirs.indexOf(dir) + 3) % 4];\n    if (!immediateEnemyShotAt(px, py) && !bulletActionTrap(rightDir)) me.turn(\"right\");\n    else if (!immediateEnemyShotAt(px, py) && !bulletActionTrap(leftDir)) me.turn(\"left\");\n  }\n}",
+      "codeBranches": [
+        {
+          "branch": "main",
+          "label": "主分支",
+          "version": 42,
+          "codeHash": "18d3e06a7a887ab68f6459f8e66e99a827bdb21c8d1324f603e4d4cc321c788e",
+          "submittedBy": "Codex",
+          "hasCode": true,
+          "updatedAt": "2026-06-15T08:03:29.059618Z"
+        },
+        {
+          "branch": "raid",
+          "label": "出击分支",
+          "version": 0,
+          "hasCode": false,
+          "updatedAt": "0001-01-01T00:00:00Z"
+        },
+        {
+          "branch": "multiplayer",
+          "label": "多人分支",
+          "version": 0,
+          "hasCode": false,
+          "updatedAt": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "agentGuideUrl": "http://agentank.ai/agent-guide",
+      "maps": [
+        {
+          "id": "random",
+          "name": "随机",
+          "source": "system"
+        },
+        {
+          "id": "classic",
+          "name": "经典地图",
+          "source": "official"
+        },
+        {
+          "id": "arena",
+          "name": "训练场",
+          "source": "official"
+        },
+        {
+          "id": "public-map-55",
+          "name": "Teleport Puzzle",
+          "source": "community",
+          "battleCount": 729
+        },
+        {
+          "id": "public-map-53",
+          "name": "MOBA",
+          "source": "community",
+          "battleCount": 755
+        },
+        {
+          "id": "public-map-16",
+          "name": "Zen",
+          "source": "community",
+          "battleCount": 33552
+        },
+        {
+          "id": "public-map-15",
+          "name": "土堆迷阵",
+          "source": "community",
+          "battleCount": 35666
+        },
+        {
+          "id": "public-map-6",
+          "name": "躲猫猫",
+          "source": "community",
+          "battleCount": 37696
+        },
+        {
+          "id": "public-map-1",
+          "name": "smile",
+          "source": "community",
+          "battleCount": 37334
+        }
+      ],
+      "trainingBots": [
+        {
+          "id": "nova-scout",
+          "name": "Nova Scout",
+          "description": "Balanced pathing bot for baseline tests."
+        },
+        {
+          "id": "azure-hunter",
+          "name": "Azure Hunter",
+          "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+        },
+        {
+          "id": "crimson-bastion",
+          "name": "Crimson Bastion",
+          "description": "Defensive control bot that contests stars and lanes."
+        }
+      ],
+      "standing": {
+        "rank": 1524,
+        "totalPublic": 3653,
+        "isRanked": true,
+        "visibleOnTop": false
+      },
+      "simulationCooldownSeconds": 2
+    },
+    "end": {
+      "tank": {
+        "id": 947,
+        "urlId": "tnk_ChPX0u2wrUnJMQFct",
+        "ownerUserId": 756,
+        "ownerDisplayName": "Wangpf",
+        "ownerAvatarUri": "https://avatars.githubusercontent.com/u/66075776?v=4",
+        "name": "山大王",
+        "styleSeed": 12490,
+        "appearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <filter id=\"texture\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"3\" result=\"noise\"/>\n      <feDiffuseLighting in=\"noise\" lighting-color=\"#8B4513\" surfaceScale=\"2\">\n        <feDistantLight azimuth=\"45\" elevation=\"60\"/>\n      </feDiffuseLighting>\n      <feComposite in2=\"SourceGraphic\" operator=\"in\"/>\n    </filter>\n  </defs>\n\n  <g id=\"tank-body\" transform=\"translate(256, 256)\">\n    <!-- Tracks -->\n    <g id=\"tracks\">\n      <rect x=\"-160\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <rect x=\"100\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <g fill=\"#A1887F\" stroke=\"#3E2723\" stroke-width=\"4\">\n        <path d=\"M-130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n      </g>\n    </g>\n\n    <!-- Chassis Body -->\n    <ellipse cx=\"0\" cy=\"0\" rx=\"110\" ry=\"140\" fill=\"#8B4513\" filter=\"url(#texture)\"/>\n    <path d=\"M-90 -50 C-120 -20, -120 20, -90 50 M90 -50 C120 -20, 120 20, 90 50\" fill=\"none\" stroke=\"#6D4C41\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n\n    <!-- Toilet Paper Rolls -->\n    <rect x=\"-140\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n    <rect x=\"120\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n\n    <!-- Rear Flap -->\n    <rect x=\"-30\" y=\"110\" width=\"60\" height=\"30\" rx=\"5\" fill=\"#795548\"/>\n    <circle cx=\"0\" cy=\"125\" r=\"8\" fill=\"#5D4037\" stroke=\"#3E2723\" stroke-width=\"2\"/>\n    <path d=\"M-5 120 l10 10 M-5 130 l10 -10\" stroke=\"#EF5350\" stroke-width=\"3\"/>\n\n    <!-- Turret -->\n    <g id=\"turret\">\n      <path d=\"M-40 20 Q-50 -40 0 -60 Q50 -40 40 20 Z\" fill=\"#795548\"/>\n      <!-- Eyes -->\n      <circle cx=\"-15\" cy=\"-20\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"-15\" cy=\"-20\" r=\"4\" fill=\"black\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"4\" fill=\"black\"/>\n      <!-- Tears -->\n      <path d=\"M25 -25 Q30 -10 25 0\" stroke=\"#81D4FA\" stroke-width=\"4\" fill=\"none\"/>\n      <!-- Corn Antenna -->\n      <path d=\"M0 -60 L0 -80\" stroke=\"#8D6E63\" stroke-width=\"4\"/>\n      <circle cx=\"0\" cy=\"-85\" r=\"8\" fill=\"#FDD835\"/>\n    </g>\n\n    <!-- Main Cannon -->\n    <path d=\"M-10 -50 Q-20 -150 0 -180\" fill=\"none\" stroke=\"#5D4037\" stroke-width=\"20\" stroke-linecap=\"round\"/>\n    <!-- Duck -->\n    <g transform=\"translate(0, -180) rotate(-20)\">\n      <path d=\"M-15 -10 h30 v15 q0 10 -10 10 q-10 0 -10 -10 z\" fill=\"#FFEB3B\"/>\n      <path d=\"M-15 0 q-10 0 -10 -5\" fill=\"none\" stroke=\"#FFEB3B\" stroke-width=\"5\"/>\n    </g>\n\n    <!-- Exhaust -->\n    <circle cx=\"-60\" cy=\"100\" r=\"10\" fill=\"#3E2723\"/>\n    <circle cx=\"-65\" cy=\"115\" r=\"6\" fill=\"#B3E5FC\" opacity=\"0.6\"/>\n    <circle cx=\"-75\" cy=\"125\" r=\"4\" fill=\"#B3E5FC\" opacity=\"0.4\"/>\n  </g>\n</svg>",
+        "appearanceUrl": "/api/tank-appearance/tnk_ChPX0u2wrUnJMQFct.svg?v=1781510767",
+        "allowRename": true,
+        "battleMode": "active",
+        "rankChangeEmail": false,
+        "codeVersion": 42,
+        "codeHash": "18d3e06a7a887ab68f6459f8e66e99a827bdb21c8d1324f603e4d4cc321c788e",
+        "submittedBy": "Codex",
+        "isActive": true,
+        "isPublic": true,
+        "elo": 1254,
+        "wins": 1312,
+        "losses": 1270,
+        "draws": 0,
+        "rankScore": 608,
+        "rankTier": "gold",
+        "rankDivision": 3,
+        "rankPoints": 8,
+        "placementMatches": 10,
+        "effectiveWins": 947.2000000000038,
+        "effectiveLosses": 953,
+        "skillType": "teleport",
+        "bulletCosmeticId": "ember_comet",
+        "bulletVisualKey": "[REDACTED]",
+        "spawnEffectId": "drop_pod",
+        "spawnVisualKey": "[REDACTED]",
+        "needsFix": false,
+        "badges": [
+          {
+            "definition": {
+              "code": "champion_mark",
+              "title": {
+                "en": "Champion Mark",
+                "zh": "冠军刻印",
+                "ja": "チャンピオン刻印"
+              },
+              "description": {
+                "en": "Reach Champion with this tank.",
+                "zh": "这辆坦克达到冠军段位。",
+                "ja": "このタンクでチャンピオンに到達する。"
+              },
+              "icon": "champion-mark",
+              "rarity": "legendary",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 6,
+              "conditionText": "champion",
+              "conditionParams": {
+                "rank": "champion",
+                "min_band": 6
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 160,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "champion_mark",
+            "earnedAt": "2026-05-21T04:28:50.876381Z",
+            "sourceMatchId": 1043799,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "master_core",
+              "title": {
+                "en": "Master Core",
+                "zh": "大师核心",
+                "ja": "マスターコア"
+              },
+              "description": {
+                "en": "Reach Master with this tank.",
+                "zh": "这辆坦克达到大师段位。",
+                "ja": "このタンクでマスターに到達する。"
+              },
+              "icon": "master-core",
+              "rarity": "legendary",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 5,
+              "conditionText": "master",
+              "conditionParams": {
+                "rank": "master",
+                "min_band": 5
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 150,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "master_core",
+            "earnedAt": "2026-05-19T16:20:23.908524Z",
+            "sourceMatchId": 826171,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "ace_300",
+              "title": {
+                "en": "Triple-Century Ace",
+                "zh": "三百胜王牌",
+                "ja": "三百勝エース"
+              },
+              "description": {
+                "en": "Win 300 battles with this tank.",
+                "zh": "这辆坦克赢得 300 场战斗。",
+                "ja": "このタンクで300勝する。"
+              },
+              "icon": "ace-300",
+              "rarity": "legendary",
+              "conditionType": "tank_wins",
+              "conditionValue": 300,
+              "conditionParams": {
+                "count": 300
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 130,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "ace_300",
+            "earnedAt": "2026-05-19T07:23:46.653359Z",
+            "sourceMatchId": 763475,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "rank_breaker",
+              "title": {
+                "en": "Rank Breaker",
+                "zh": "越级击穿",
+                "ja": "ランクブレイカー"
+              },
+              "description": {
+                "en": "Defeat a tank that started at least 2 rank bands higher.",
+                "zh": "击败开局时至少高 2 个段位带的对手。",
+                "ja": "開始時に2ランク帯以上高い相手を倒す。"
+              },
+              "icon": "rank-breaker",
+              "rarity": "legendary",
+              "conditionType": "upset_win",
+              "conditionValue": 2,
+              "conditionParams": {
+                "rank_gap": 2
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 180,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "rank_breaker",
+            "earnedAt": "2026-05-18T03:22:20.469404Z",
+            "sourceMatchId": 652448,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "war_machine",
+              "title": {
+                "en": "War Machine",
+                "zh": "战争机器",
+                "ja": "ウォーマシン"
+              },
+              "description": {
+                "en": "Complete 300 battles with this tank.",
+                "zh": "这辆坦克完成 300 场战斗。",
+                "ja": "このタンクで300戦する。"
+              },
+              "icon": "war-machine",
+              "rarity": "legendary",
+              "conditionType": "tank_matches",
+              "conditionValue": 300,
+              "conditionParams": {
+                "count": 300
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 110,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "war_machine",
+            "earnedAt": "2026-05-16T06:09:17.81651Z",
+            "sourceMatchId": 455681,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "diamond_armor",
+              "title": {
+                "en": "Diamond Armor",
+                "zh": "钻石装甲",
+                "ja": "ダイヤ装甲"
+              },
+              "description": {
+                "en": "Reach Diamond with this tank.",
+                "zh": "这辆坦克达到钻石段位。",
+                "ja": "このタンクでダイヤモンドに到達する。"
+              },
+              "icon": "diamond-armor",
+              "rarity": "epic",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 4,
+              "conditionText": "diamond",
+              "conditionParams": {
+                "rank": "diamond",
+                "min_band": 4
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 140,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "diamond_armor",
+            "earnedAt": "2026-05-18T03:28:41.728898Z",
+            "sourceMatchId": 653053,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "giant_slayer",
+              "title": {
+                "en": "Giant Slayer",
+                "zh": "巨人杀手",
+                "ja": "ジャイアントスレイヤー"
+              },
+              "description": {
+                "en": "Defeat a tank that started at least 1 rank band higher.",
+                "zh": "击败开局时至少高 1 个段位带的对手。",
+                "ja": "開始時に1ランク帯以上高い相手を倒す。"
+              },
+              "icon": "giant-slayer",
+              "rarity": "epic",
+              "conditionType": "upset_win",
+              "conditionValue": 1,
+              "conditionParams": {
+                "rank_gap": 1
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 170,
+              "createdAt": "2026-05-14T11:46:20.853627Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "giant_slayer",
+            "earnedAt": "2026-05-18T03:22:20.469404Z",
+            "sourceMatchId": 652448,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "iron_veteran",
+              "title": {
+                "en": "Iron Veteran",
+                "zh": "铁甲老兵",
+                "ja": "鉄甲の古参"
+              },
+              "description": {
+                "en": "Complete 100 battles with this tank.",
+                "zh": "这辆坦克完成 100 场战斗。",
+                "ja": "このタンクで100戦する。"
+              },
+              "icon": "iron-veteran",
+              "rarity": "epic",
+              "conditionType": "tank_matches",
+              "conditionValue": 100,
+              "conditionParams": {
+                "count": 100
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 100,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "iron_veteran",
+            "earnedAt": "2026-05-15T07:05:45.564087Z",
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "ace_100",
+              "title": {
+                "en": "Hundred-Win Core",
+                "zh": "百胜核心",
+                "ja": "百勝コア"
+              },
+              "description": {
+                "en": "Win 100 battles with this tank.",
+                "zh": "这辆坦克赢得 100 场战斗。",
+                "ja": "このタンクで100勝する。"
+              },
+              "icon": "ace-100",
+              "rarity": "epic",
+              "conditionType": "tank_wins",
+              "conditionValue": 100,
+              "conditionParams": {
+                "count": 100
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 120,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "ace_100",
+            "earnedAt": "2026-05-15T07:05:45.564087Z",
+            "sourceTankId": 947
+          }
+        ],
+        "featuredBadges": [
+          {
+            "definition": {
+              "code": "champion_mark",
+              "title": {
+                "en": "Champion Mark",
+                "zh": "冠军刻印",
+                "ja": "チャンピオン刻印"
+              },
+              "description": {
+                "en": "Reach Champion with this tank.",
+                "zh": "这辆坦克达到冠军段位。",
+                "ja": "このタンクでチャンピオンに到達する。"
+              },
+              "icon": "champion-mark",
+              "rarity": "legendary",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 6,
+              "conditionText": "champion",
+              "conditionParams": {
+                "rank": "champion",
+                "min_band": 6
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 160,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "champion_mark",
+            "earnedAt": "2026-05-21T04:28:50.876381Z",
+            "sourceMatchId": 1043799,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "master_core",
+              "title": {
+                "en": "Master Core",
+                "zh": "大师核心",
+                "ja": "マスターコア"
+              },
+              "description": {
+                "en": "Reach Master with this tank.",
+                "zh": "这辆坦克达到大师段位。",
+                "ja": "このタンクでマスターに到達する。"
+              },
+              "icon": "master-core",
+              "rarity": "legendary",
+              "conditionType": "tank_rank_tier",
+              "conditionValue": 5,
+              "conditionText": "master",
+              "conditionParams": {
+                "rank": "master",
+                "min_band": 5
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 150,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "master_core",
+            "earnedAt": "2026-05-19T16:20:23.908524Z",
+            "sourceMatchId": 826171,
+            "sourceTankId": 947
+          },
+          {
+            "definition": {
+              "code": "ace_300",
+              "title": {
+                "en": "Triple-Century Ace",
+                "zh": "三百胜王牌",
+                "ja": "三百勝エース"
+              },
+              "description": {
+                "en": "Win 300 battles with this tank.",
+                "zh": "这辆坦克赢得 300 场战斗。",
+                "ja": "このタンクで300勝する。"
+              },
+              "icon": "ace-300",
+              "rarity": "legendary",
+              "conditionType": "tank_wins",
+              "conditionValue": 300,
+              "conditionParams": {
+                "count": 300
+              },
+              "triggerEvent": "match_settled",
+              "isActive": true,
+              "sortOrder": 130,
+              "createdAt": "2026-05-15T07:03:44.499918Z",
+              "updatedAt": "2026-05-28T00:46:21.595108Z"
+            },
+            "code": "ace_300",
+            "earnedAt": "2026-05-19T07:23:46.653359Z",
+            "sourceMatchId": 763475,
+            "sourceTankId": 947
+          }
+        ],
+        "hasAgentKey": "[REDACTED]",
+        "agentKeyMasked": "[REDACTED]",
+        "agentGuideUrl": "/agent-guide",
+        "createdAt": "2026-05-14T06:50:24.001611Z",
+        "updatedAt": "2026-06-15T08:06:07.473034Z"
+      },
+      "skill": {
+        "type": "teleport",
+        "name": "Teleport",
+        "hasSkill": true
+      },
+      "latestCode": "var _lastX = -1, _lastY = -1, _stuck = 0;\nvar _lastEX = -1, _lastEY = -1, _lastEDir = null, _eMoveDir = null, _lastSeen = -99;\nvar _homeEX = -1, _homeEY = -1;\nvar _lastESkill = null;\nvar _myStars = 0, _enemyStars = 0, _lastStarX = -1, _lastStarY = -1;\nvar _pursuitStarX = -1, _pursuitStarY = -1, _pursuitDist = 999, _pursuitStall = 0;\nvar _raidUntil = -1, _raidStarX = -1, _raidStarY = -1, _raidDir = null;\nvar _lastTeleportX = -1, _lastTeleportY = -1, _lastTeleportStarX = -1, _lastTeleportStarY = -1, _lastTeleportAt = -99;\nvar _mirrorRecoverUntil = -1, _mirrorRecoverStarX = -1, _mirrorRecoverStarY = -1;\n\nfunction onIdle(me, enemy, game) {\n  var myPos = me.tank.position;\n  var px = myPos[0], py = myPos[1];\n  var dir = me.tank.direction;\n  var frame = game.frames || 0;\n  var dirs = [\"up\", \"right\", \"down\", \"left\"];\n  var dv = { up: [0, -1], right: [1, 0], down: [0, 1], left: [-1, 0] };\n  var w = game.map.length;\n  var h = game.map[0] ? game.map[0].length : 0;\n  var _laneDangerCache = {};\n  var _safeCellCache = {};\n  var _pathCache = {};\n\n  if (px === _lastX && py === _lastY) _stuck++;\n  else _stuck = 0;\n  _lastX = px; _lastY = py;\n\n  var enemyTank = enemy && enemy.tank;\n  var ex = enemyTank ? enemyTank.position[0] : -1;\n  var ey = enemyTank ? enemyTank.position[1] : -1;\n  var eDir = enemyTank ? enemyTank.direction : null;\n  if (enemy && enemy.skill && enemy.skill.type) _lastESkill = enemy.skill.type;\n  if (enemyTank) {\n    if (_homeEX < 0) { _homeEX = ex; _homeEY = ey; }\n    if (_lastEX >= 0) {\n      var emx = ex - _lastEX, emy = ey - _lastEY;\n      _eMoveDir = emx > 0 ? \"right\" : emx < 0 ? \"left\" : emy > 0 ? \"down\" : emy < 0 ? \"up\" : _eMoveDir;\n    }\n    _lastEX = ex; _lastEY = ey; _lastEDir = eDir; _lastSeen = frame;\n  } else if (_lastEX >= 0) {\n    ex = _lastEX; ey = _lastEY; eDir = _lastEDir || _eMoveDir;\n  }\n\n  if (_lastStarX >= 0 && (!game.star || game.star[0] !== _lastStarX || game.star[1] !== _lastStarY)) {\n    if (px === _lastStarX && py === _lastStarY) {\n      _myStars++;\n      if (enemySkillIs(\"teleport\") &&\n        me.skill && me.skill.type === \"teleport\" && me.skill.remainingCooldownFrames >= 18 &&\n        enemy.skill && enemy.skill.remainingCooldownFrames >= 18) {\n        _mirrorRecoverUntil = frame + 18;\n        _mirrorRecoverStarX = _lastStarX;\n        _mirrorRecoverStarY = _lastStarY;\n      }\n    } else if (enemyTank && ex === _lastStarX && ey === _lastStarY) {\n      _enemyStars++;\n      if (enemySkillIs(\"teleport\") &&\n        me.skill && me.skill.type === \"teleport\" && me.skill.remainingCooldownFrames >= 18 &&\n        enemy.skill && enemy.skill.remainingCooldownFrames >= 18) {\n        _mirrorRecoverUntil = frame + 18;\n        _mirrorRecoverStarX = _lastStarX;\n        _mirrorRecoverStarY = _lastStarY;\n      }\n    }\n    _lastStarX = -1; _lastStarY = -1;\n  }\n  if (game.star) {\n    _lastStarX = game.star[0];\n    _lastStarY = game.star[1];\n    var visibleStarDist = pathDist(myPos, game.star);\n    if (_pursuitStarX !== game.star[0] || _pursuitStarY !== game.star[1]) {\n      _pursuitStarX = game.star[0];\n      _pursuitStarY = game.star[1];\n      _pursuitDist = visibleStarDist;\n      _pursuitStall = 0;\n    } else if (visibleStarDist + 1 < _pursuitDist) {\n      _pursuitDist = visibleStarDist;\n      _pursuitStall = 0;\n    } else if (visibleStarDist > _pursuitDist + 1) {\n      _pursuitDist = visibleStarDist;\n      _pursuitStall++;\n    } else if (visibleStarDist === _pursuitDist && !(px === game.star[0] && py === game.star[1])) {\n      _pursuitStall++;\n    } else {\n      _pursuitDist = visibleStarDist;\n      if (_pursuitStall > 0) _pursuitStall--;\n    }\n  } else {\n    _pursuitStarX = -1;\n    _pursuitStarY = -1;\n    _pursuitDist = 999;\n    _pursuitStall = 0;\n  }\n  if (frame > _raidUntil) {\n    _raidUntil = -1;\n    _raidStarX = -1;\n    _raidStarY = -1;\n    _raidDir = null;\n  }\n  if (frame > _mirrorRecoverUntil) {\n    _mirrorRecoverUntil = -1;\n    _mirrorRecoverStarX = -1;\n    _mirrorRecoverStarY = -1;\n  }\n\n  function tile(x, y) {\n    var col = game.map[x];\n    return col ? (col[y] || \"x\") : \"x\";\n  }\n\n  function blocked(x, y) {\n    var t = tile(x, y);\n    return t === \"x\" || t === \"m\";\n  }\n\n  function open(x, y) {\n    return !blocked(x, y);\n  }\n\n  function dist(ax, ay, bx, by) {\n    return Math.abs(ax - bx) + Math.abs(ay - by);\n  }\n\n  function delta(d) {\n    return dv[d] || [0, -1];\n  }\n\n  function add(p, d) {\n    return [p[0] + d[0], p[1] + d[1]];\n  }\n\n  function same(a, b) {\n    return a && b && a[0] === b[0] && a[1] === b[1];\n  }\n\n  function dirTo(a, b) {\n    var dx = b[0] - a[0], dy = b[1] - a[1];\n    if (Math.abs(dx) >= Math.abs(dy) && dx !== 0) return dx > 0 ? \"right\" : \"left\";\n    if (dy !== 0) return dy > 0 ? \"down\" : \"up\";\n    return dir;\n  }\n\n  function turnCost(from, to) {\n    var a = dirs.indexOf(from), b = dirs.indexOf(to);\n    if (a < 0 || b < 0) return 9;\n    return Math.min((b - a + 4) % 4, (a - b + 4) % 4);\n  }\n\n  function turnTo(want) {\n    if (dir === want) return false;\n    if (bulletActionTrap(want) || immediateEnemyShotAt(px, py)) return false;\n    var a = dirs.indexOf(dir), b = dirs.indexOf(want);\n    var diff = (b - a + 4) % 4;\n    me.turn(diff <= 2 ? \"right\" : \"left\");\n    return true;\n  }\n\n  function moveDir(want) {\n    if (!want) return false;\n    if (bulletActionTrap(want)) return false;\n    if (dir === want) me.go();\n    else turnTo(want);\n    return true;\n  }\n\n  function teleportReady() {\n    return me.skill && me.skill.type === \"teleport\" && me.skill.remainingCooldownFrames === 0;\n  }\n\n  function enemySkillIs(type) {\n    return enemy && enemy.skill && enemy.skill.type === type;\n  }\n\n  function enemySkillReady(type, grace) {\n    if (!enemySkillIs(type)) return false;\n    var cd = enemy.skill.remainingCooldownFrames;\n    return typeof cd !== \"number\" || cd <= grace;\n  }\n\n  function enemyDebuffed() {\n    return !!(enemyTank && enemy.status && (enemy.status.frozen || enemy.status.stunned || enemy.status.poisoned));\n  }\n\n  function enemyOverloadArmed() {\n    if (!enemySkillIs(\"overload\")) return false;\n    if (enemy.status && enemy.status.overloaded) return true;\n    var cd = enemy.skill && enemy.skill.remainingCooldownFrames;\n    return typeof cd === \"number\" && cd > 0;\n  }\n\n  function starsOf(actor) {\n    if (!actor) return 0;\n    if (typeof actor.stars === \"number\") return actor.stars;\n    if (typeof actor.score === \"number\") return actor.score;\n    if (actor === me) return _myStars;\n    if (actor === enemy) return _enemyStars;\n    return 0;\n  }\n\n  function losFrom(sx, sy, facing, tx, ty) {\n    if (!facing || !dv[facing]) return false;\n    var step = dv[facing];\n    var dx = tx - sx, dy = ty - sy;\n    if (step[0] !== 0) {\n      if (dy !== 0) return false;\n      if ((step[0] > 0 && dx <= 0) || (step[0] < 0 && dx >= 0)) return false;\n      for (var x = sx + step[0]; x !== tx; x += step[0]) if (blocked(x, sy)) return false;\n      return true;\n    }\n    if (dx !== 0) return false;\n    if ((step[1] > 0 && dy <= 0) || (step[1] < 0 && dy >= 0)) return false;\n    for (var y = sy + step[1]; y !== ty; y += step[1]) if (blocked(sx, y)) return false;\n    return true;\n  }\n\n  function canShoot(a, b) {\n    var want = dirTo(a, b);\n    return (a[0] === b[0] || a[1] === b[1]) && losFrom(a[0], a[1], want, b[0], b[1]);\n  }\n\n  function bulletThreatAt(x, y, horizon) {\n    if (!enemy || !enemy.bullet) return false;\n    var bp = enemy.bullet.position;\n    var bd = enemy.bullet.direction;\n    if (!bd || !dv[bd]) return false;\n    var step = dv[bd];\n    var bx = bp[0], by = bp[1];\n    for (var i = 0; i <= horizon; i++) {\n      if (bx === x && by === y) return true;\n      bx += step[0]; by += step[1];\n      if (blocked(bx, by)) return false;\n    }\n    return false;\n  }\n\n  function bulletCrossesTile(x, y, horizon) {\n    if (!enemy || !enemy.bullet) return false;\n    var bp = enemy.bullet.position;\n    var bd = enemy.bullet.direction;\n    if (!bd || !dv[bd]) return false;\n    var step = dv[bd];\n    var bx = bp[0], by = bp[1];\n    for (var i = 0; i <= horizon; i++) {\n      if (bx === x && by === y) return true;\n      bx += step[0]; by += step[1];\n      if (blocked(bx, by)) return false;\n    }\n    return false;\n  }\n\n  function bulletActionTrap(want) {\n    if (!enemy || !enemy.bullet || !want || !dv[want]) return false;\n    if (want !== dir) return bulletCrossesTile(px, py, 4);\n    var step = dv[want];\n    var nx = px + step[0], ny = py + step[1];\n    if (!open(nx, ny)) return true;\n    return bulletCrossesTile(nx, ny, 4);\n  }\n\n  function immediateEnemyShotAt(x, y) {\n    if (!enemyTank || enemyDebuffed() || (enemy && enemy.bullet)) return false;\n    if (x !== ex && y !== ey) return false;\n    var want = dirTo([ex, ey], [x, y]);\n    if (turnCost(eDir, want) !== 0) return false;\n    return losFrom(ex, ey, want, x, y);\n  }\n\n  function tryImmediateLaneEscape() {\n    if (!immediateEnemyShotAt(px, py)) return false;\n    var step = delta(dir);\n    var nx = px + step[0], ny = py + step[1];\n    if (!open(nx, ny)) return false;\n    if (enemyTank && nx === ex && ny === ey) return false;\n    if (bulletThreatAt(nx, ny, 4) || overloadThreatAt(nx, ny)) return false;\n    me.go();\n    return true;\n  }\n\n  function laneThreatFrom(sx, sy, facing, tx, ty, maxCells) {\n    if (!facing || !dv[facing]) return false;\n    var step = dv[facing];\n    var dx = tx - sx, dy = ty - sy;\n    if (step[0] !== 0) {\n      if (dy !== 0) return false;\n      if ((step[0] > 0 && dx <= 0) || (step[0] < 0 && dx >= 0)) return false;\n      if (Math.abs(dx) > maxCells) return false;\n      for (var x = sx + step[0]; x !== tx; x += step[0]) if (blocked(x, sy)) return false;\n      return true;\n    }\n    if (dx !== 0) return false;\n    if ((step[1] > 0 && dy <= 0) || (step[1] < 0 && dy >= 0)) return false;\n    if (Math.abs(dy) > maxCells) return false;\n    for (var y = sy + step[1]; y !== ty; y += step[1]) if (blocked(sx, y)) return false;\n    return true;\n  }\n\n  function overloadThreatAt(x, y) {\n    if (!enemyTank || !enemySkillIs(\"overload\") || enemyDebuffed()) return false;\n    var armed = enemyOverloadArmed();\n    var readySoon = enemySkillReady(\"overload\", 2);\n    if (!armed && !readySoon) return false;\n    var maxCells = armed ? 12 : 8;\n    var maxTurnCost = armed ? 2 : 1;\n    for (var i = 0; i < 4; i++) {\n      var fireDir = dirs[i];\n      var cost = turnCost(eDir, fireDir);\n      if (cost > maxTurnCost) continue;\n      if (laneThreatFrom(ex, ey, fireDir, x, y, maxCells)) return true;\n      var sideOffsets = (fireDir === \"left\" || fireDir === \"right\") ? [[0, -1], [0, 1]] : [[-1, 0], [1, 0]];\n      for (var j = 0; j < sideOffsets.length; j++) {\n        var ox = sideOffsets[j][0], oy = sideOffsets[j][1];\n        var sx = ex + ox, sy = ey + oy;\n        if (!open(sx, sy)) continue;\n        if (laneThreatFrom(sx, sy, fireDir, x, y, maxCells)) return true;\n      }\n    }\n    return false;\n  }\n\n  function grassMaze() {\n    return w === 16 && h === 11;\n  }\n\n  function hiddenLaneAt(x, y) {\n    if (enemyTank) return false;\n    var memory = grassMaze() ? 34 : 18;\n    if (_lastEX < 0 || frame - _lastSeen > memory) return false;\n    var gap = dist(_lastEX, _lastEY, x, y);\n    if (gap > (grassMaze() ? 13 : 9)) return false;\n    if (_eMoveDir === \"down\" && x === _lastEX && y > _lastEY) return true;\n    if (_eMoveDir === \"up\" && x === _lastEX && y < _lastEY) return true;\n    if (_eMoveDir === \"right\" && y === _lastEY && x > _lastEX) return true;\n    if (_eMoveDir === \"left\" && y === _lastEY && x < _lastEX) return true;\n    if (enemySkillIs(\"cloak\") && frame - _lastSeen <= 10 && gap <= 4) return true;\n    return gap <= 4 && (x === _lastEX || y === _lastEY);\n  }\n\n  function cloakedAmbushAt(x, y) {\n    if (enemyTank) return false;\n    var cloakRecent = enemySkillIs(\"cloak\") || _lastESkill === \"cloak\" ||\n      !!(enemy && enemy.status && enemy.status.cloaked);\n    if (!cloakRecent || _lastEX < 0 || frame - _lastSeen > 9) return false;\n    var maxSteps = Math.max(1, Math.min(8, frame - _lastSeen + 1));\n    var queue = [{ x: _lastEX, y: _lastEY, d: 0 }];\n    var seen = {};\n    seen[_lastEX + \",\" + _lastEY] = true;\n    for (var head = 0; head < queue.length && queue.length < 120; head++) {\n      var item = queue[head];\n      if ((item.x === x || item.y === y) && dist(item.x, item.y, x, y) <= 12) {\n        var need = item.x === x ? (y < item.y ? \"up\" : \"down\") : (x < item.x ? \"left\" : \"right\");\n        if (losFrom(item.x, item.y, need, x, y)) return true;\n      }\n      if (item.d >= maxSteps) continue;\n      for (var i = 0; i < 4; i++) {\n        var step = delta(dirs[i]);\n        var nx = item.x + step[0], ny = item.y + step[1];\n        var key = nx + \",\" + ny;\n        if (seen[key] || !open(nx, ny)) continue;\n        seen[key] = true;\n        queue.push({ x: nx, y: ny, d: item.d + 1 });\n      }\n    }\n    return false;\n  }\n\n  function quickAimAt(x, y) {\n    if (!enemyTank || dist(ex, ey, x, y) > 6) return false;\n    if (ex !== x && ey !== y) return false;\n    var need = ex === x ? (y < ey ? \"up\" : \"down\") : (x < ex ? \"left\" : \"right\");\n    return turnCost(eDir, need) <= 1 && losFrom(ex, ey, need, x, y);\n  }\n\n  function longLaneAimAt(x, y) {\n    if (!enemyTank || (enemy && enemy.bullet) || dist(ex, ey, x, y) > 14) return false;\n    if (ex !== x && ey !== y) return false;\n    var need = ex === x ? (y < ey ? \"up\" : \"down\") : (x < ex ? \"left\" : \"right\");\n    return turnCost(eDir, need) <= 1 && losFrom(ex, ey, need, x, y);\n  }\n\n  function oneStepAimAt(x, y) {\n    if (!enemyTank || (enemy && enemy.bullet) || enemyDebuffed()) return false;\n    var starts = [[ex, ey]];\n    var step = delta(eDir);\n    var mx = ex + step[0], my = ey + step[1];\n    if (open(mx, my)) starts.push([mx, my]);\n    for (var i = 0; i < starts.length; i++) {\n      var sx = starts[i][0], sy = starts[i][1];\n      if (sx !== x && sy !== y) continue;\n      if (dist(sx, sy, x, y) > 8) continue;\n      var need = sx === x ? (y < sy ? \"up\" : \"down\") : (x < sx ? \"left\" : \"right\");\n      if (turnCost(eDir, need) <= 1 && losFrom(sx, sy, need, x, y)) return true;\n    }\n    return false;\n  }\n\n  function movingEnemyFireSetupAt(x, y) {\n    if (!enemyTank || !_eMoveDir || !dv[_eMoveDir]) return false;\n    if (enemy.status && (enemy.status.frozen || enemy.status.stunned)) return false;\n    var sx = ex, sy = ey;\n    for (var stepCount = 0; stepCount <= 1; stepCount++) {\n      if (sx === x && sy === y) return true;\n      if ((sx === x || sy === y) && dist(sx, sy, x, y) <= 5) {\n        var need = sx === x ? (y < sy ? \"up\" : \"down\") : (x < sx ? \"left\" : \"right\");\n        if (turnCost(eDir, need) <= 1 && losFrom(sx, sy, need, x, y)) return true;\n      }\n      var move = dv[_eMoveDir];\n      var nx = sx + move[0], ny = sy + move[1];\n      if (!open(nx, ny)) break;\n      sx = nx; sy = ny;\n    }\n    return false;\n  }\n\n  function freezeTrapAt(x, y) {\n    if (!enemyTank || enemyDebuffed()) return false;\n    var freezeThreat = enemySkillIs(\"freeze\") || _lastESkill === \"freeze\";\n    if (!freezeThreat || !enemySkillReady(\"freeze\", 3)) return false;\n    if (ex !== x && ey !== y) return false;\n    if (dist(ex, ey, x, y) > 9) return false;\n    var need = ex === x ? (y < ey ? \"up\" : \"down\") : (x < ex ? \"left\" : \"right\");\n    return turnCost(eDir, need) <= 1 && losFrom(ex, ey, need, x, y);\n  }\n\n  function adjacentPursuitTrapAt(x, y) {\n    if (!enemyTank || enemyDebuffed()) return false;\n    if (starsOf(me) - starsOf(enemy) < 1) return false;\n    if (dist(px, py, ex, ey) > 4 && dist(x, y, ex, ey) > 4) return false;\n    var starts = [[ex, ey]];\n    var forward = delta(eDir);\n    var fx = ex + forward[0], fy = ey + forward[1];\n    if (open(fx, fy)) starts.push([fx, fy]);\n    if (_eMoveDir && dv[_eMoveDir]) {\n      var chase = delta(_eMoveDir);\n      var cx = ex + chase[0], cy = ey + chase[1];\n      if (open(cx, cy)) starts.push([cx, cy]);\n    }\n    for (var i = 0; i < starts.length; i++) {\n      var sx = starts[i][0], sy = starts[i][1];\n      if (sx !== x && sy !== y) continue;\n      var gap = dist(sx, sy, x, y);\n      if (gap < 1 || gap > 4) continue;\n      var need = sx === x ? (y < sy ? \"up\" : \"down\") : (x < sx ? \"left\" : \"right\");\n      if (turnCost(eDir, need) <= 2 && losFrom(sx, sy, need, x, y)) return true;\n    }\n    return false;\n  }\n\n  function boostLeadLaneTrapAt(x, y) {\n    if (starsOf(me) - starsOf(enemy) < 1) return false;\n    var boostTempo = enemySkillIs(\"boost\") || _lastESkill === \"boost\" ||\n      !!(enemy && enemy.status && enemy.status.boosted);\n    if (!boostTempo) return false;\n    var sx = enemyTank ? ex : _lastEX;\n    var sy = enemyTank ? ey : _lastEY;\n    var facing = enemyTank ? eDir : (_lastEDir || _eMoveDir);\n    if (sx < 0 || sy < 0 || frame - _lastSeen > 10) return false;\n    if (sx !== x && sy !== y) return false;\n    if (dist(sx, sy, x, y) > 14) return false;\n    var need = sx === x ? (y < sy ? \"up\" : \"down\") : (x < sx ? \"left\" : \"right\");\n    if (turnCost(facing, need) > 2) return false;\n    return losFrom(sx, sy, need, x, y);\n  }\n\n  function rememberedSpawnThreatAt(x, y) {\n    if (enemyTank || _homeEX < 0) return false;\n    var gap = dist(_homeEX, _homeEY, x, y);\n    if (gap <= 1) return true;\n    if (_homeEX !== x && _homeEY !== y) return false;\n    if (gap > 14) return false;\n    if (gap < 11) return false;\n    var need = _homeEX === x ? (y < _homeEY ? \"up\" : \"down\") : (x < _homeEX ? \"left\" : \"right\");\n    return losFrom(_homeEX, _homeEY, need, x, y);\n  }\n\n  function laneDangerAt(x, y) {\n    var key = x + \",\" + y;\n    if (Object.prototype.hasOwnProperty.call(_laneDangerCache, key)) return _laneDangerCache[key];\n    var danger = false;\n    if (quickAimAt(x, y)) danger = true;\n    else if (longLaneAimAt(x, y)) danger = true;\n    else if (oneStepAimAt(x, y)) danger = true;\n    else if (movingEnemyFireSetupAt(x, y)) danger = true;\n    else if (freezeTrapAt(x, y)) danger = true;\n    else if (adjacentPursuitTrapAt(x, y)) danger = true;\n    else if (boostLeadLaneTrapAt(x, y)) danger = true;\n    else if (cloakedAmbushAt(x, y)) danger = true;\n    else if (hiddenLaneAt(x, y)) danger = true;\n    else if (rememberedSpawnThreatAt(x, y)) danger = true;\n    _laneDangerCache[key] = danger;\n    return danger;\n  }\n\n  function safeCell(x, y, strict) {\n    var key = x + \",\" + y + \"|\" + (strict ? 1 : 0);\n    if (Object.prototype.hasOwnProperty.call(_safeCellCache, key)) return _safeCellCache[key];\n    var safe = true;\n    if (!open(x, y)) safe = false;\n    else if (enemyTank && x === ex && y === ey) safe = false;\n    else if (bulletThreatAt(x, y, strict ? 10 : 6)) safe = false;\n    else if (overloadThreatAt(x, y)) safe = false;\n    else if (strict && laneDangerAt(x, y)) safe = false;\n    _safeCellCache[key] = safe;\n    return safe;\n  }\n\n  function farStarPickupAt(x, y) {\n    return game.star && x === game.star[0] && y === game.star[1] &&\n      enemyTank && dist(ex, ey, x, y) > 8;\n  }\n\n  function fatalStepAt(x, y) {\n    var farStarPickup = farStarPickupAt(x, y);\n    if (!open(x, y)) return true;\n    if (enemyTank && x === ex && y === ey) return true;\n    if (bulletThreatAt(x, y, 6)) return true;\n    if (!farStarPickup && laneDangerAt(x, y)) return true;\n    if (overloadThreatAt(x, y)) return true;\n    return false;\n  }\n\n  function tryAdjacentStarPickup(star) {\n    if (!star || dist(px, py, star[0], star[1]) !== 1) return false;\n    if (starsOf(me) + 1 - starsOf(enemy) >= 2 &&\n      (bulletThreatAt(star[0], star[1], 8) || quickAimAt(star[0], star[1]) ||\n        oneStepAimAt(star[0], star[1]) || movingEnemyFireSetupAt(star[0], star[1]) ||\n        freezeTrapAt(star[0], star[1]) || cloakedAmbushAt(star[0], star[1]) ||\n        hiddenLaneAt(star[0], star[1]))) return false;\n    if (fatalStepAt(star[0], star[1]) && !farStarPickupAt(star[0], star[1])) return false;\n    return moveDir(dirTo(myPos, star));\n  }\n\n  function validTeleport(x, y) {\n    if (!safeCell(x, y, true)) return false;\n    if (enemy && enemy.bullet && enemy.bullet.position[0] === x && enemy.bullet.position[1] === y) return false;\n    if (enemyTank) {\n      var ed = dist(x, y, ex, ey);\n      if (ed <= 4) return false;\n      if ((x === ex || y === ey) && ed <= (frame < 20 ? 7 : 9)) return false;\n    }\n    return true;\n  }\n\n  function repeatedStarTeleport(x, y, star) {\n    return !!(star &&\n      x === _lastTeleportX && y === _lastTeleportY &&\n      star[0] === _lastTeleportStarX && star[1] === _lastTeleportStarY &&\n      frame - _lastTeleportAt <= 45);\n  }\n\n  function castTeleport(target, star) {\n    _lastTeleportX = target[0];\n    _lastTeleportY = target[1];\n    _lastTeleportStarX = star ? star[0] : -1;\n    _lastTeleportStarY = star ? star[1] : -1;\n    _lastTeleportAt = frame;\n    me.teleport(target[0], target[1]);\n  }\n\n  function pathInfo(start, goal, avoid) {\n    if (!goal || !open(goal[0], goal[1])) return null;\n    if (same(start, goal)) return { first: null, dist: 0 };\n    var cacheKey = start[0] + \",\" + start[1] + \">\" + goal[0] + \",\" + goal[1] + \"|\" + (avoid ? 1 : 0);\n    if (Object.prototype.hasOwnProperty.call(_pathCache, cacheKey)) {\n      return _pathCache[cacheKey] || null;\n    }\n    var queue = [{ pos: start, first: null, dist: 0 }];\n    var seen = {};\n    seen[start[0] + \",\" + start[1]] = true;\n    for (var head = 0; head < queue.length && queue.length < 420; head++) {\n      var item = queue[head];\n      for (var i = 0; i < 4; i++) {\n        var d = dirs[i];\n        var next = add(item.pos, delta(d));\n        var k = next[0] + \",\" + next[1];\n        if (seen[k] || !open(next[0], next[1])) continue;\n        if (avoid && item.dist < 4 && !safeCell(next[0], next[1], true)) continue;\n        var first = item.first || d;\n        if (same(next, goal)) {\n          var found = { first: first, dist: item.dist + 1 };\n          _pathCache[cacheKey] = found;\n          return found;\n        }\n        seen[k] = true;\n        queue.push({ pos: next, first: first, dist: item.dist + 1 });\n      }\n    }\n    _pathCache[cacheKey] = false;\n    return null;\n  }\n\n  function pathDist(a, b) {\n    var p = pathInfo(a, b, false);\n    return p ? p.dist : 999;\n  }\n\n  function approachFramesFrom(start, facing, target) {\n    var p = pathInfo(start, target, false);\n    if (!p) return 999;\n    if (!p.first) return 0;\n    return p.dist + turnCost(facing || dir, p.first);\n  }\n\n  function enemyMirrorArrival(star) {\n    if (!enemyTank || !enemySkillIs(\"teleport\") || !star) return null;\n    var facing = eDir || _lastEDir || \"up\";\n    var best = null, bestScore = -9999;\n    for (var x = star[0] - 2; x <= star[0] + 2; x++) {\n      for (var y = star[1] - 2; y <= star[1] + 2; y++) {\n        if (dist(x, y, star[0], star[1]) > 2) continue;\n        if (!open(x, y)) continue;\n        var framesToStar = approachFramesFrom([x, y], facing, star);\n        if (framesToStar >= 999) continue;\n        var score = 170 - framesToStar * 42 - dist(x, y, star[0], star[1]) * 12;\n        if (x === star[0] && y === star[1]) score += 40;\n        if (x === ex && y === ey) score -= 8;\n        if (score > bestScore) {\n          bestScore = score;\n          best = { landing: [x, y], frames: framesToStar };\n        }\n      }\n    }\n    return best;\n  }\n\n  function mirrorPickupTrap(landing, star, mirrorEnemy) {\n    if (!landing || !star || !mirrorEnemy || !mirrorEnemy.landing) return false;\n    var mx = mirrorEnemy.landing[0], my = mirrorEnemy.landing[1];\n    if (mx !== star[0] && my !== star[1]) return false;\n    var laneDir = mx === star[0] ? (star[1] < my ? \"up\" : \"down\") : (star[0] < mx ? \"left\" : \"right\");\n    if (!losFrom(mx, my, laneDir, star[0], star[1])) return false;\n    var laneGap = dist(mx, my, star[0], star[1]);\n    if (laneGap > 4) return false;\n\n    var postDir = dir;\n    var approach = pathInfo(landing, star, false);\n    if (approach && approach.first) postDir = approach.first;\n\n    var escapeDirs = mx === star[0] ? [\"left\", \"right\"] : [\"up\", \"down\"];\n    for (var i = 0; i < escapeDirs.length; i++) {\n      var escapeDir = escapeDirs[i];\n      var step = delta(escapeDir);\n      var nx = star[0] + step[0], ny = star[1] + step[1];\n      if (!open(nx, ny)) continue;\n      if (turnCost(postDir, escapeDir) === 0) return false;\n    }\n\n    if (laneGap <= 1) return true;\n    var facing = eDir || _lastEDir || \"up\";\n    return laneGap <= 2 && turnCost(facing, laneDir) <= 1;\n  }\n\n  function mirrorContestActive(star) {\n    if (!star || !enemyTank || !enemySkillIs(\"teleport\")) return false;\n    if (dist(px, py, star[0], star[1]) > 2) return false;\n    if (dist(ex, ey, star[0], star[1]) > 2) return false;\n    return true;\n  }\n\n  function tryMirrorContest(star) {\n    if (!mirrorContestActive(star)) return false;\n    if (dist(px, py, star[0], star[1]) <= 1) return moveTowardForce(star);\n    var p = pathInfo(myPos, star, false);\n    if (p && p.first) return moveDir(p.first);\n    return false;\n  }\n\n  function mirrorRecoveryActive() {\n    return _mirrorRecoverUntil >= frame &&\n      enemySkillIs(\"teleport\") &&\n      me.skill && me.skill.type === \"teleport\" && me.skill.remainingCooldownFrames > 0 &&\n      enemy.skill && enemy.skill.remainingCooldownFrames > 0;\n  }\n\n  function openNeighborCount(x, y) {\n    var count = 0;\n    for (var i = 0; i < 4; i++) {\n      var n = add([x, y], delta(dirs[i]));\n      if (open(n[0], n[1])) count++;\n    }\n    return count;\n  }\n\n  function grassAmbushMap(star) {\n    if (!star) return false;\n    var grass = 0, nearStar = 0;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (tile(x, y) !== \"o\") continue;\n        grass++;\n        if (dist(x, y, star[0], star[1]) <= 4) nearStar++;\n      }\n    }\n    return nearStar > 0 && (grass >= 8 || nearStar >= 3);\n  }\n\n  function bestGrassAmbush(star, myDist, enemyDist) {\n    if (!grassAmbushMap(star) || !enemyTank) return null;\n    if (_myStars < _enemyStars && enemyDist <= myDist + 1) return null;\n    if (myDist <= 2) return null;\n    var enemyRoute = predictRoute([ex, ey], star, 6);\n    var best = null, bestScore = -9999;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (tile(x, y) !== \"o\") continue;\n        var starGap = dist(x, y, star[0], star[1]);\n        if (starGap < 1 || starGap > 4) continue;\n        if (!validTeleport(x, y)) continue;\n        var score = 260 - starGap * 30 - dist(px, py, x, y) * 3;\n        score += openNeighborCount(x, y) * 9;\n        if (canShoot([x, y], star)) score += 44;\n        if (pathDist([x, y], star) <= 3) score += 20;\n        if (x !== star[0] && y !== star[1]) score += 12;\n        if (enemyTank) {\n          var ed = dist(x, y, ex, ey);\n          if (ed <= 4) continue;\n          score += Math.min(ed, 8) * 4;\n          if ((x === ex || y === ey) && ed <= 10) score -= 70;\n          if (enemyDist <= starGap + 1) score += 18;\n        }\n        for (var i = 0; i < enemyRoute.length; i++) {\n          if (canShoot([x, y], enemyRoute[i])) score += 34 - i * 4;\n          if (dist(x, y, enemyRoute[i][0], enemyRoute[i][1]) <= 2) score += 10;\n        }\n        if (score > bestScore) {\n          bestScore = score;\n          best = [x, y];\n        }\n      }\n    }\n    return bestScore >= 160 ? best : null;\n  }\n\n  function tryGrassAmbushFire(star, enemyDist) {\n    if (!star || !enemyTank || tile(px, py) !== \"o\") return false;\n    if (dist(px, py, star[0], star[1]) > 4) return false;\n    if (me.bullet || me.status.fireLocked) return false;\n    if (bulletThreatAt(px, py, 4) || overloadThreatAt(px, py)) return false;\n    var targets = [[ex, ey]].concat(predictRoute([ex, ey], star, 5));\n    for (var i = 0; i < targets.length; i++) {\n      var target = targets[i];\n      if (!canShoot(myPos, target)) continue;\n      var gap = dist(px, py, target[0], target[1]);\n      if (gap < 2 || gap > 10) continue;\n      var want = dirTo(myPos, target);\n      if (dir === want) me.fire();\n      else turnTo(want);\n      return true;\n    }\n    if (enemyDist <= 6 && canShoot(myPos, star)) {\n      var guard = dirTo(myPos, star);\n      if (dir !== guard) {\n        turnTo(guard);\n        return true;\n      }\n    }\n    return false;\n  }\n\n  function tryGrassAmbushSetup(star, myDist, enemyDist) {\n    if (!star || !enemyTank) return false;\n    if (!teleportReady()) return tryGrassAmbushFire(star, enemyDist);\n    var target = bestGrassAmbush(star, myDist, enemyDist);\n    if (!target) return tryGrassAmbushFire(star, enemyDist);\n    if (same(myPos, target)) return tryGrassAmbushFire(star, enemyDist);\n    if (repeatedStarTeleport(target[0], target[1], star)) return false;\n    if (dist(px, py, target[0], target[1]) > 2) {\n      castTeleport(target, star);\n      return true;\n    }\n    var route = pathInfo(myPos, target, true);\n    if (route && route.first) return moveDir(route.first);\n    return false;\n  }\n\n  function mirrorRecoveryAnchor() {\n    var cx = Math.floor(w / 2), cy = Math.floor(h / 2);\n    var currentCenterGap = dist(px, py, cx, cy);\n    var best = null, bestScore = -9999;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (!safeCell(x, y, true)) continue;\n        var centerGap = dist(x, y, cx, cy);\n        var score = 260 - centerGap * 20;\n        score += openNeighborCount(x, y) * 7;\n        if (tile(x, y) === \"o\") score += 3;\n        if (centerGap > currentCenterGap) score -= (centerGap - currentCenterGap) * 12;\n        if (_mirrorRecoverStarX >= 0) {\n          var oldStarGap = dist(x, y, _mirrorRecoverStarX, _mirrorRecoverStarY);\n          score += Math.min(oldStarGap, 6) * 5;\n          if (oldStarGap <= 2) score -= 28;\n        }\n        if (enemyTank) {\n          var ed = dist(x, y, ex, ey);\n          if (ed < 4) continue;\n          score -= Math.abs(ed - 6) * 5;\n          if (x === ex || y === ey) score -= 18;\n        }\n        if (score > bestScore) {\n          bestScore = score;\n          best = [x, y];\n        }\n      }\n    }\n    return best || anchor();\n  }\n\n  function tryMirrorRecoveryMove() {\n    if (game.star || !mirrorRecoveryActive()) return false;\n    var target = mirrorRecoveryAnchor();\n    if (!target || same(target, myPos)) return false;\n    var safe = pathInfo(myPos, target, true);\n    var raw = pathInfo(myPos, target, false);\n    var pick = safe || raw;\n    if (!pick || !pick.first) return false;\n    if (safe && raw && safe.first !== raw.first) {\n      var cx = Math.floor(w / 2), cy = Math.floor(h / 2);\n      var safeNext = add(myPos, delta(safe.first));\n      var rawNext = add(myPos, delta(raw.first));\n      if (!fatalStepAt(rawNext[0], rawNext[1]) &&\n        dist(rawNext[0], rawNext[1], cx, cy) < dist(safeNext[0], safeNext[1], cx, cy) &&\n        (!enemyTank || dist(rawNext[0], rawNext[1], ex, ey) >= 4)) {\n        pick = raw;\n      }\n    }\n    return moveDir(pick.first);\n  }\n\n  function predictRoute(start, goal, steps) {\n    if (!start || !goal || steps < 1) return [];\n    var pos = [start[0], start[1]];\n    var route = [];\n    for (var i = 0; i < steps; i++) {\n      var next = pathInfo(pos, goal, false);\n      if (!next || !next.first) break;\n      pos = add(pos, delta(next.first));\n      route.push([pos[0], pos[1]]);\n      if (same(pos, goal)) break;\n    }\n    return route;\n  }\n\n  function raidTarget() {\n    if (_raidStarX >= 0 && _raidStarY >= 0) return [_raidStarX, _raidStarY];\n    return game.star || myPos;\n  }\n\n  function openingRaidPlanFrom(startPos, target) {\n    if (!enemyTank || !startPos || !target) return null;\n    var candidates = [[ex, ey]].concat(predictRoute([ex, ey], target, 8));\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < candidates.length; i++) {\n      var aimAt = candidates[i];\n      if (!canShoot(startPos, aimAt)) continue;\n      var want = dirTo(startPos, aimAt);\n      var gap = dist(startPos[0], startPos[1], aimAt[0], aimAt[1]);\n      if (gap < 3 || gap > 10) continue;\n      var score = 170 - i * 24 - gap * 4 - turnCost(dir, want) * 16;\n      if (want === dir) score += 18;\n      if (target && dist(startPos[0], startPos[1], target[0], target[1]) <= 1) score += 12;\n      if (aimAt[0] === ex && aimAt[1] === ey) score += 20;\n      if (score > bestScore) {\n        bestScore = score;\n        best = { dir: want, step: i, score: score, aimAt: aimAt };\n      }\n    }\n    return best;\n  }\n\n  function bestStarTeleport(star) {\n    if (!teleportReady() || !star) return null;\n    var mirrorEnemy = enemyMirrorArrival(star);\n    var best = null, bestScore = -9999;\n    for (var x = star[0] - 2; x <= star[0] + 2; x++) {\n      for (var y = star[1] - 2; y <= star[1] + 2; y++) {\n        if (dist(x, y, star[0], star[1]) > 2) continue;\n        if (!validTeleport(x, y)) continue;\n        var score = 140 - dist(x, y, star[0], star[1]) * 35;\n        var myFramesToStar = approachFramesFrom([x, y], dir, star);\n        if (x === star[0] && y === star[1]) score += 70;\n        if (enemyTank) {\n          var ed = dist(x, y, ex, ey);\n          if (ed <= 5) continue;\n          if ((x === ex || y === ey) && ed <= 10) continue;\n          if (x === ex || y === ey) score -= 30;\n          score += Math.min(ed, 8) * 3;\n        }\n        if (enemySkillIs(\"teleport\") && myFramesToStar < 999) {\n          score -= myFramesToStar * 42;\n          if (myFramesToStar <= 1) score += 28;\n          else if (myFramesToStar === 2) score += 12;\n          if (mirrorEnemy) {\n            if (myFramesToStar < mirrorEnemy.frames) score += 64;\n            else if (myFramesToStar === mirrorEnemy.frames) score += 10;\n            else score -= 84 + (myFramesToStar - mirrorEnemy.frames) * 18;\n            if (mirrorPickupTrap([x, y], star, mirrorEnemy)) score -= 140;\n          }\n        }\n        if (quickAimAt(x, y)) score -= 80;\n        if (score > bestScore) { bestScore = score; best = [x, y]; }\n      }\n    }\n    return best;\n  }\n\n  // Hold the first teleport lane for a few frames when it creates a real ambush line.\n  function tryOpeningRaid() {\n    if (game.star && mirrorContestActive(game.star)) return false;\n    if (_raidUntil < frame || !enemyTank) return false;\n    if (bulletThreatAt(px, py, 4) || overloadThreatAt(px, py) || laneDangerAt(px, py)) return false;\n    var plan = openingRaidPlanFrom(myPos, raidTarget());\n    if (!plan || plan.step > 6 || plan.score < 110) return false;\n    _raidDir = plan.dir;\n    if (canShoot(myPos, [ex, ey]) && dist(px, py, ex, ey) <= 7 && !me.bullet && !me.status.fireLocked) {\n      if (dir === plan.dir) me.fire();\n      else turnTo(plan.dir);\n      return true;\n    }\n    if (dir !== plan.dir) {\n      turnTo(plan.dir);\n      return true;\n    }\n    if (plan.step <= 3) return true;\n    return false;\n  }\n\n  function tryDodge() {\n    if (!bulletThreatAt(px, py, 10) && !overloadThreatAt(px, py) && !laneDangerAt(px, py)) return false;\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < 4; i++) {\n      var d = dirs[i];\n      var n = add(myPos, delta(d));\n      if (!safeCell(n[0], n[1], true)) continue;\n      if (bulletActionTrap(d)) continue;\n      var score = 20 - turnCost(dir, d) * 4;\n      if (game.star) score -= dist(n[0], n[1], game.star[0], game.star[1]);\n      if (score > bestScore) { bestScore = score; best = d; }\n    }\n    if (best && moveDir(best)) return true;\n    if (teleportReady()) {\n      var safe = bestStarTeleport(game.star) || anchor();\n      if (safe && validTeleport(safe[0], safe[1])) {\n        castTeleport(safe, game.star);\n        return true;\n      }\n    }\n    return false;\n  }\n\n  function tryClearMound(target) {\n    if (!target || me.bullet || me.status.fireLocked) return false;\n    var f = delta(dir);\n    if (tile(px + f[0], py + f[1]) === \"m\") {\n      me.fire();\n      return true;\n    }\n    if (px !== target[0] && py !== target[1]) return false;\n    var want = dirTo(myPos, target);\n    var step = delta(want);\n    var x = px + step[0], y = py + step[1];\n    while (x !== target[0] || y !== target[1]) {\n      var t = tile(x, y);\n      if (t === \"x\") return false;\n      if (t === \"m\") {\n        if (dir === want) me.fire();\n        else turnTo(want);\n        return true;\n      }\n      x += step[0]; y += step[1];\n    }\n    return false;\n  }\n\n  function moveToward(target, avoid) {\n    var p = pathInfo(myPos, target, avoid);\n    if (p && p.first) {\n      var n = add(myPos, delta(p.first));\n      if (!avoid && fatalStepAt(n[0], n[1])) return false;\n      return moveDir(p.first);\n    }\n    if (tryClearMound(target)) return true;\n    return false;\n  }\n\n  function moveTowardForce(target) {\n    var p = pathInfo(myPos, target, false);\n    if (p && p.first) return moveDir(p.first);\n    if (tryClearMound(target)) return true;\n    return false;\n  }\n\n  function tryStarBreakout(star, myDist, enemyDist) {\n    if (!star) return false;\n    var allowLoose = _pursuitStall >= 2 || _stuck >= 2;\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < 4; i++) {\n      var d = dirs[i];\n      var next = add(myPos, delta(d));\n      if (!open(next[0], next[1])) continue;\n      if (enemyTank && next[0] === ex && next[1] === ey) continue;\n      if (bulletActionTrap(d)) continue;\n      if (!safeCell(next[0], next[1], !allowLoose)) continue;\n      var nextDist = pathDist(next, star);\n      if (nextDist >= 999) continue;\n      var score = 180 - nextDist * 32 - turnCost(dir, d) * 8;\n      if (nextDist < myDist) score += 36;\n      else if (nextDist === myDist) score -= 6;\n      else score -= 34;\n      if (d === dir) score += 10;\n      if (next[0] === star[0] && next[1] === star[1]) score += 70;\n      if (enemyTank) {\n        var enemyGap = dist(next[0], next[1], ex, ey);\n        if (next[0] === ex || next[1] === ey) score -= 16;\n        if (enemyGap <= 2) score -= 28;\n        else score += Math.min(enemyGap, 6) * 3;\n        if (enemyDist < nextDist) score -= 12;\n      }\n      if (score > bestScore) {\n        bestScore = score;\n        best = d;\n      }\n    }\n    return best ? moveDir(best) : false;\n  }\n\n  function aimDangerHere() {\n    if (!enemyTank || dist(px, py, ex, ey) > 14) return false;\n    if (enemy && enemy.bullet) return false;\n    if (ex !== px && ey !== py) return false;\n    var need = ex === px ? (py < ey ? \"up\" : \"down\") : (px < ex ? \"left\" : \"right\");\n    if (!losFrom(ex, ey, need, px, py)) return false;\n    return turnCost(eDir, need) <= 1;\n  }\n\n  function escapeAimDir() {\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < 4; i++) {\n      var d = dirs[i];\n      var n = add(myPos, delta(d));\n      if (!safeCell(n[0], n[1], true)) continue;\n      if (enemyTank && (n[0] === ex || n[1] === ey)) continue;\n      var score = 50 + dist(n[0], n[1], ex, ey) * 2 - turnCost(dir, d) * 8;\n      if (game.star) score -= dist(n[0], n[1], game.star[0], game.star[1]);\n      if (d === dir) score += 12;\n      if (score > bestScore) { bestScore = score; best = d; }\n    }\n    return best;\n  }\n\n  function urgentAimEscapeDir() {\n    if (!aimDangerHere() && !oneStepAimAt(px, py) && !laneDangerAt(px, py)) return null;\n    var n = add(myPos, delta(dir));\n    if (!open(n[0], n[1])) return null;\n    if (enemyTank && n[0] === ex && n[1] === ey) return null;\n    if (enemyTank && (n[0] === ex || n[1] === ey)) return null;\n    if (bulletThreatAt(n[0], n[1], 4)) return null;\n    if (overloadThreatAt(n[0], n[1])) return null;\n    if (hiddenLaneAt(n[0], n[1])) return null;\n    if (rememberedSpawnThreatAt(n[0], n[1])) return null;\n    return dir;\n  }\n\n  function laneExitDir() {\n    if (enemy && enemy.bullet) return null;\n    if (_lastESkill !== \"freeze\") return null;\n    if (_lastEX < 0 || frame - _lastSeen > 4) return null;\n    if (ex !== px && ey !== py) return null;\n    if (dist(px, py, ex, ey) > 8) return null;\n    var need = ex === px ? (py < ey ? \"up\" : \"down\") : (px < ex ? \"left\" : \"right\");\n    if (turnCost(eDir, need) > 1) return null;\n    if (!losFrom(ex, ey, need, px, py)) return null;\n\n    var candidates = ey === py ? [\"up\", \"down\"] : [\"left\", \"right\"];\n    for (var i = 0; i < candidates.length; i++) {\n      var d = candidates[i];\n      var n = add(myPos, delta(d));\n      if (!open(n[0], n[1])) continue;\n      if (enemyTank && n[0] === ex && n[1] === ey) continue;\n      if (bulletThreatAt(n[0], n[1], 4)) continue;\n      if (overloadThreatAt(n[0], n[1])) continue;\n      if (hiddenLaneAt(n[0], n[1])) continue;\n      if (rememberedSpawnThreatAt(n[0], n[1])) continue;\n      return d;\n    }\n    return null;\n  }\n\n  function tryPreemptAimDodge() {\n    var aimDanger = aimDangerHere() || oneStepAimAt(px, py) || laneDangerAt(px, py);\n    var laneExit = laneExitDir();\n    if (!aimDanger && !laneExit) return false;\n    if (aimDanger && teleportReady()) {\n      var target = bestStarTeleport(game.star) || anchor();\n      if (target && validTeleport(target[0], target[1])) {\n        castTeleport(target, game.star);\n        return true;\n      }\n    }\n    if (laneExit && moveDir(laneExit)) return true;\n    var urgentEscape = urgentAimEscapeDir();\n    if (urgentEscape && moveDir(urgentEscape)) return true;\n    var escape = escapeAimDir();\n    if (escape) return moveDir(escape);\n    return false;\n  }\n\n  function tryKeepLeadSafe() {\n    var lead = starsOf(me) - starsOf(enemy);\n    var boostTempo = enemySkillIs(\"boost\") || _lastESkill === \"boost\" ||\n      !!(enemy && enemy.status && enemy.status.boosted);\n    var requiredLead = boostTempo ? 1 : 2;\n    if (lead < requiredLead) return false;\n    if (frame < 18 && lead < 2) return false;\n    if (!bulletThreatAt(px, py, 10) && !overloadThreatAt(px, py) && !laneDangerAt(px, py)) return false;\n    var escape = escapeAimDir();\n    if (escape && moveDir(escape)) return true;\n    return false;\n  }\n\n  function anchor() {\n    var cx = Math.floor(w / 2), cy = Math.floor(h / 2);\n    var best = null, bestScore = -9999;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (!safeCell(x, y, false)) continue;\n        var score = -dist(x, y, cx, cy) * 4;\n        if (tile(x, y) === \"o\") score += 2;\n        if (enemyTank && (x === ex || y === ey)) score -= 4;\n        if (score > bestScore) { bestScore = score; best = [x, y]; }\n      }\n    }\n    return best || myPos;\n  }\n\n  function pressureAnchor(target) {\n    var cx = target ? Math.floor((target[0] + px) / 2) : Math.floor(w / 2);\n    var cy = target ? Math.floor((target[1] + py) / 2) : Math.floor(h / 2);\n    var route = enemyTank && target ? predictRoute([ex, ey], target, 4) : [];\n    var best = null, bestScore = -9999;\n    for (var x = 1; x < w - 1; x++) {\n      for (var y = 1; y < h - 1; y++) {\n        if (!safeCell(x, y, true)) continue;\n        var score = -dist(x, y, cx, cy) * 5;\n        if (target) score -= dist(x, y, target[0], target[1]);\n        if (tile(x, y) === \"o\") score += 2;\n        if (enemyTank && canShoot([x, y], [ex, ey])) score += 24;\n        if (enemyTank && (x === ex || y === ey)) score += 6;\n        if (route.length) {\n          for (var k = 0; k < route.length; k++) {\n            if (canShoot([x, y], route[k])) score += 20 - k * 4;\n          }\n        }\n        if (boostLeadLaneTrapAt(x, y)) score -= 80;\n        if (score > bestScore) { bestScore = score; best = [x, y]; }\n      }\n    }\n    return best || anchor();\n  }\n\n  function enemyDormant() {\n    if (!enemyTank || frame < 10) return false;\n    if (_homeEX < 0 || _homeEY < 0) return false;\n    if (starsOf(enemy) > 0) return false;\n    if (enemy && enemy.bullet) return false;\n    return ex === _homeEX && ey === _homeEY;\n  }\n\n  function riskyLeadStarRoute(star, myPath) {\n    if (!star || starsOf(me) - starsOf(enemy) < 1) return false;\n    var boostTempo = enemySkillIs(\"boost\") || _lastESkill === \"boost\" ||\n      !!(enemy && enemy.status && enemy.status.boosted);\n    if (!boostTempo) return false;\n    if (boostLeadLaneTrapAt(star[0], star[1]) && dist(px, py, star[0], star[1]) > 2) return true;\n    if (myPath && myPath.first) {\n      var next = add(myPos, delta(myPath.first));\n      if (boostLeadLaneTrapAt(next[0], next[1])) return true;\n      if (fatalStepAt(next[0], next[1]) && dist(px, py, star[0], star[1]) > 2) return true;\n    }\n    return false;\n  }\n\n  function pressureTargets() {\n    if (!enemyTank) return [];\n    var chase = game.star || anchor();\n    var route = predictRoute([ex, ey], chase, 3);\n    var targets = [[ex, ey]];\n    for (var i = 0; i < route.length; i++) {\n      if (!same(route[i], targets[targets.length - 1])) targets.push(route[i]);\n    }\n    return targets;\n  }\n\n  function tryAttack(urgentStar) {\n    if (!enemyTank || me.bullet || me.status.fireLocked) return false;\n    if (game.star && mirrorContestActive(game.star)) return false;\n    if (!urgentStar && laneDangerAt(px, py) && !enemyDebuffed()) return false;\n    var targets = pressureTargets();\n    if (canShoot(myPos, [ex, ey])) {\n      var directWant = dirTo(myPos, [ex, ey]);\n      if (!urgentStar || dist(px, py, ex, ey) <= 4 || enemyDebuffed()) {\n        if (dir === directWant) me.fire();\n        else turnTo(directWant);\n        return true;\n      }\n    }\n    if (urgentStar) return false;\n\n    var bestTurn = null, bestTurnTarget = null, bestTurnScore = -9999;\n    for (var i = 0; i < targets.length; i++) {\n      var aimAt = targets[i];\n      if (px !== aimAt[0] && py !== aimAt[1]) continue;\n      var want = dirTo(myPos, aimAt);\n      if (!losFrom(px, py, want, aimAt[0], aimAt[1])) continue;\n      var gap = dist(px, py, aimAt[0], aimAt[1]);\n      if (gap < 2 || gap > 10) continue;\n      var turnScore = 150 - i * 24 - gap * 5 - turnCost(dir, want) * 20;\n      if (aimAt[0] === ex && aimAt[1] === ey) turnScore += 28;\n      if (want === dir) turnScore += 20;\n      if (turnScore > bestTurnScore) {\n        bestTurnScore = turnScore;\n        bestTurn = want;\n        bestTurnTarget = aimAt;\n      }\n    }\n    if (bestTurn) {\n      if (bestTurn === dir && bestTurnTarget && canShoot(myPos, bestTurnTarget)) me.fire();\n      else turnTo(bestTurn);\n      return true;\n    }\n\n    var bestMove = null, bestMoveScore = -9999;\n    for (var dIndex = 0; dIndex < 4; dIndex++) {\n      var d = dirs[dIndex];\n      var next = add(myPos, delta(d));\n      if (!safeCell(next[0], next[1], true)) continue;\n      if (enemyTank && next[0] === ex && next[1] === ey) continue;\n      if (bulletActionTrap(d)) continue;\n      for (var tIndex = 0; tIndex < targets.length; tIndex++) {\n        var target = targets[tIndex];\n        if (!canShoot(next, target)) continue;\n        var gapToTarget = dist(next[0], next[1], target[0], target[1]);\n        if (gapToTarget < 2 || gapToTarget > 9) continue;\n        var moveScore = 132 - tIndex * 18 - gapToTarget * 5 - turnCost(dir, d) * 10;\n        if (d === dir) moveScore += 12;\n        if (target[0] === ex && target[1] === ey) moveScore += 22;\n        if (next[0] === ex || next[1] === ey) moveScore += 4;\n        if (moveScore > bestMoveScore) {\n          bestMoveScore = moveScore;\n          bestMove = d;\n        }\n      }\n    }\n    return bestMove ? moveDir(bestMove) : false;\n  }\n\n  function tryStarRacePressure(myDist, enemyDist) {\n    if (!game.star || !enemyTank || me.bullet || me.status.fireLocked) return false;\n    if (myDist <= 3 || myDist >= 999 || enemyDist >= 999) return false;\n    if (enemyDist > myDist + 4 && myDist < 14) return false;\n    if (!canShoot(myPos, [ex, ey])) return false;\n    if (bulletThreatAt(px, py, 4) || overloadThreatAt(px, py) || laneDangerAt(px, py)) return false;\n\n    var want = dirTo(myPos, [ex, ey]);\n    var cost = turnCost(dir, want);\n    var gap = dist(px, py, ex, ey);\n    if (cost > 1 && enemyDist > myDist + 1) return false;\n    if (gap > 8 && cost > 0) return false;\n\n    if (dir === want) me.fire();\n    else turnTo(want);\n    return true;\n  }\n\n  function tryMirrorRecoveryRace(star, myPath, enemyDist) {\n    if (!star || !mirrorRecoveryActive()) return false;\n    var raw = pathInfo(myPos, star, false);\n    if (!raw || !raw.first || raw.dist >= 999) return false;\n    if (enemyDist < raw.dist - 2) return false;\n    if (myPath && myPath.first === raw.first && myPath.dist <= raw.dist + 1) return false;\n    var next = add(myPos, delta(raw.first));\n    if (fatalStepAt(next[0], next[1]) && dist(next[0], next[1], star[0], star[1]) > 1) return false;\n    return moveDir(raw.first);\n  }\n\n  function quietStarLanding(star) {\n    if (!star || !teleportReady()) return null;\n    var candidates = [\n      [star[0], star[1]],\n      [star[0] + 1, star[1]],\n      [star[0] - 1, star[1]],\n      [star[0], star[1] + 1],\n      [star[0], star[1] - 1],\n      [star[0] + 2, star[1]],\n      [star[0] - 2, star[1]],\n      [star[0], star[1] + 2],\n      [star[0], star[1] - 2],\n    ];\n    var best = null, bestScore = -9999;\n    for (var i = 0; i < candidates.length; i++) {\n      var c = candidates[i];\n      if (!open(c[0], c[1])) continue;\n      if (repeatedStarTeleport(c[0], c[1], star)) continue;\n      if (enemyTank) {\n        var ed = dist(c[0], c[1], ex, ey);\n        if (ed <= 4) continue;\n        if ((c[0] === ex || c[1] === ey) && ed <= 10) continue;\n      }\n      var score = 100 - dist(c[0], c[1], star[0], star[1]) * 24;\n      if (same(c, star)) score += 40;\n      if (tile(c[0], c[1]) === \"o\") score += 4;\n      if (score > bestScore) {\n        bestScore = score;\n        best = c;\n      }\n    }\n    return best;\n  }\n\n  function tryQuietStarRush(star) {\n    if (!star || enemy && enemy.bullet) return false;\n    if (w * h < 240) return false;\n    var quietEnemy = !enemyTank || enemyDormant();\n    if (!quietEnemy) return false;\n    var raw = pathInfo(myPos, star, false);\n    var rawDist = raw ? raw.dist : 999;\n    if (teleportReady() && rawDist > 5) {\n      var landing = quietStarLanding(star);\n      if (landing) {\n        castTeleport(landing, star);\n        return true;\n      }\n    }\n    if (raw && raw.first) return moveDir(raw.first);\n    if (tryClearMound(star)) return true;\n    return false;\n  }\n\n  if (game.star && tryQuietStarRush(game.star)) return;\n  if (tryImmediateLaneEscape()) return;\n  if (tryPreemptAimDodge()) return;\n  if (tryDodge()) return;\n  if (tryKeepLeadSafe()) return;\n  if (tryOpeningRaid()) return;\n\n  if (game.star) {\n    var star = game.star;\n    if (tryMirrorContest(star)) return;\n    if (tryAdjacentStarPickup(star)) return;\n    var myPath = pathInfo(myPos, star, true) || pathInfo(myPos, star, false);\n    var myDist = myPath ? myPath.dist : 999;\n    var enemyDist = enemyTank ? pathDist([ex, ey], star) : 999;\n    if (tryGrassAmbushSetup(star, myDist, enemyDist)) return;\n    var stuckOrLate = _stuck >= 2 || _pursuitStall >= 2 || frame > 10;\n    var shouldTeleport = teleportReady() && myDist > 2 && (stuckOrLate || myDist > enemyDist + 1 || frame < 20);\n    if (shouldTeleport) {\n      var landing = bestStarTeleport(star);\n      var enemyFavoredOpen = enemyTank && frame < 20 && enemyDist + 2 < myDist;\n      if (!landing && enemyFavoredOpen) {\n        var pressure = pressureAnchor(star);\n        if (pressure && validTeleport(pressure[0], pressure[1])) landing = pressure;\n      }\n      if (landing && repeatedStarTeleport(landing[0], landing[1], star)) landing = null;\n      if (landing) {\n        var raidPlan = frame < 12 ? openingRaidPlanFrom(landing, star) : null;\n        if (raidPlan && raidPlan.step <= 6 && raidPlan.score >= 110) {\n          _raidUntil = frame + raidPlan.step + 3;\n          _raidStarX = star[0];\n          _raidStarY = star[1];\n          _raidDir = raidPlan.dir;\n        } else {\n          _raidUntil = -1;\n          _raidStarX = -1;\n          _raidStarY = -1;\n          _raidDir = null;\n        }\n        castTeleport(landing, star);\n        return;\n      }\n    }\n\n    if (enemyDormant()) {\n      if (moveTowardForce(star)) return;\n      if (turnTo(dirTo(myPos, star))) return;\n    }\n\n    if (tryMirrorRecoveryRace(star, myPath, enemyDist)) return;\n\n    if (riskyLeadStarRoute(star, myPath)) {\n      if (tryAttack(false)) return;\n      var hold = pressureAnchor(star);\n      if (hold && !same(myPos, hold) && moveToward(hold, true)) return;\n      if (enemyTank && turnTo(dirTo(myPos, [ex, ey]))) return;\n    }\n\n    var stalled = _stuck >= 2 || _pursuitStall >= 2;\n    var urgent = myDist <= enemyDist + 4 || myDist <= 3 || frame > 30 || stalled;\n    if (urgent && tryStarRacePressure(myDist, enemyDist)) return;\n    if (urgent && moveToward(star, true)) return;\n    if (urgent && tryStarBreakout(star, myDist, enemyDist)) return;\n    if (stalled && moveTowardForce(star)) return;\n    if (tryAttack(false)) return;\n    if (moveToward(star, false)) return;\n    if (tryClearMound(star)) return;\n  }\n\n  if (tryAttack(false)) return;\n  if (tryMirrorRecoveryMove()) return;\n  var home = anchor();\n  if (dist(px, py, home[0], home[1]) > 1 && moveToward(home, true)) return;\n  if (enemyTank && dist(px, py, home[0], home[1]) <= 2 && turnTo(dirTo(myPos, [ex, ey]))) return;\n\n  if (_stuck >= 2 && teleportReady()) {\n    var a = anchor();\n    if (validTeleport(a[0], a[1])) {\n      castTeleport(a, game.star);\n      return;\n    }\n  }\n\n  var fwd = add(myPos, delta(dir));\n  if (safeCell(fwd[0], fwd[1], true) && !bulletActionTrap(dir)) me.go();\n  else {\n    var rightDir = dirs[(dirs.indexOf(dir) + 1) % 4];\n    var leftDir = dirs[(dirs.indexOf(dir) + 3) % 4];\n    if (!immediateEnemyShotAt(px, py) && !bulletActionTrap(rightDir)) me.turn(\"right\");\n    else if (!immediateEnemyShotAt(px, py) && !bulletActionTrap(leftDir)) me.turn(\"left\");\n  }\n}",
+      "codeBranches": [
+        {
+          "branch": "main",
+          "label": "主分支",
+          "version": 42,
+          "codeHash": "18d3e06a7a887ab68f6459f8e66e99a827bdb21c8d1324f603e4d4cc321c788e",
+          "submittedBy": "Codex",
+          "hasCode": true,
+          "updatedAt": "2026-06-15T08:03:29.059618Z"
+        },
+        {
+          "branch": "raid",
+          "label": "出击分支",
+          "version": 0,
+          "hasCode": false,
+          "updatedAt": "0001-01-01T00:00:00Z"
+        },
+        {
+          "branch": "multiplayer",
+          "label": "多人分支",
+          "version": 0,
+          "hasCode": false,
+          "updatedAt": "0001-01-01T00:00:00Z"
+        }
+      ],
+      "agentGuideUrl": "http://agentank.ai/agent-guide",
+      "maps": [
+        {
+          "id": "random",
+          "name": "随机",
+          "source": "system"
+        },
+        {
+          "id": "classic",
+          "name": "经典地图",
+          "source": "official"
+        },
+        {
+          "id": "arena",
+          "name": "训练场",
+          "source": "official"
+        },
+        {
+          "id": "public-map-55",
+          "name": "Teleport Puzzle",
+          "source": "community",
+          "battleCount": 729
+        },
+        {
+          "id": "public-map-53",
+          "name": "MOBA",
+          "source": "community",
+          "battleCount": 755
+        },
+        {
+          "id": "public-map-16",
+          "name": "Zen",
+          "source": "community",
+          "battleCount": 33552
+        },
+        {
+          "id": "public-map-15",
+          "name": "土堆迷阵",
+          "source": "community",
+          "battleCount": 35666
+        },
+        {
+          "id": "public-map-6",
+          "name": "躲猫猫",
+          "source": "community",
+          "battleCount": 37696
+        },
+        {
+          "id": "public-map-1",
+          "name": "smile",
+          "source": "community",
+          "battleCount": 37334
+        }
+      ],
+      "trainingBots": [
+        {
+          "id": "nova-scout",
+          "name": "Nova Scout",
+          "description": "Balanced pathing bot for baseline tests."
+        },
+        {
+          "id": "azure-hunter",
+          "name": "Azure Hunter",
+          "description": "Aggressive straight-line hunter that pressures weak aiming logic."
+        },
+        {
+          "id": "crimson-bastion",
+          "name": "Crimson Bastion",
+          "description": "Defensive control bot that contests stars and lanes."
+        }
+      ],
+      "standing": {
+        "rank": 1524,
+        "totalPublic": 3653,
+        "isRanked": true,
+        "visibleOnTop": false
+      },
+      "simulationCooldownSeconds": 2
+    }
+  },
+  "queueSnapshots": [
+    {
+      "at": "2026-06-15T08:06:05.032Z",
+      "currentScore": 588,
+      "queue": [
+        {
+          "id": 2887,
+          "name": null,
+          "rankScore": null,
+          "attempts": 1,
+          "wins": 1,
+          "seeded": false,
+          "source": "explicit"
+        }
+      ]
+    },
+    {
+      "at": "2026-06-15T08:06:05.175Z",
+      "currentScore": 588,
+      "queue": [
+        {
+          "id": 2887,
+          "name": null,
+          "rankScore": null,
+          "attempts": 1,
+          "wins": 1,
+          "seeded": false,
+          "source": "explicit"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "tankCodename": "teleport-main",
+      "tankId": 947,
+      "skill": "teleport",
+      "envName": "AGENTANK_TELEPORT_KEY",
+      "opponentId": 2887,
+      "mapId": "random",
+      "round": 2,
+      "startedAt": "2026-06-15T08:06:05.179Z",
+      "finishedAt": "2026-06-15T08:06:08.294Z",
+      "opponentName": null,
+      "opponentRankScore": null,
+      "matchId": "mat_Dhhz7OsJpQ45NGM4q",
+      "replayPath": "lab/data/matches/mat_Dhhz7OsJpQ45NGM4q.json",
+      "challengeResponse": {
+        "id": 5631067,
+        "urlId": "mat_Dhhz7OsJpQ45NGM4q",
+        "challengerTankId": 947,
+        "challengerTankUrlId": "tnk_ChPX0u2wrUnJMQFct",
+        "defenderTankId": 2887,
+        "defenderTankUrlId": "tnk_AkDxOc3FeTe1VfzGE",
+        "challengerUserId": 756,
+        "challengerOwnerUserId": 756,
+        "defenderOwnerUserId": 2151,
+        "mapId": "random",
+        "mapHash": "3dec17e0062c6187d580a499779bc86fc4fe797ef3a90e7af14fdc257b2d4079",
+        "challengerCodeHash": "18d3e06a7a887ab68f6459f8e66e99a827bdb21c8d1324f603e4d4cc321c788e",
+        "defenderCodeHash": "7daf591e97474e7b7f1814fa4d7156356f49f4c9615aae7f144b5c7bb62448b2",
+        "status": "settled",
+        "source": "agent",
+        "winnerTankId": 947,
+        "resultReason": "crashed",
+        "excitementScore": 26,
+        "replayHash": "1bae06eddb619f9b2c66e216872e9652270e8cfcc16e82c647276bfb5c20088e",
+        "replayUri": "matches/replays/2026/06/15/1bae06eddb619f9b2c66e216872e9652270e8cfcc16e82c647276bfb5c20088e-fec60b1404.json",
+        "replayData": {
+          "map": {
+            "id": "random",
+            "name": "随机",
+            "map": [
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                "m",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "x",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "m",
+                "m",
+                ".",
+                ".",
+                "x",
+                "x",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "o",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "m",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                "m",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                "o",
+                "o",
+                "m",
+                "m",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "x",
+                "x",
+                ".",
+                ".",
+                ".",
+                "o",
+                "x",
+                "x",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                ".",
+                "x",
+                "x",
+                "o",
+                "o",
+                ".",
+                ".",
+                "x",
+                "x",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                ".",
+                "m",
+                "m",
+                "o",
+                "o",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                "m",
+                ".",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                "m",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "o",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                ".",
+                "x",
+                "x",
+                ".",
+                ".",
+                "m",
+                "m",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "x",
+                "x",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                ".",
+                "m",
+                ".",
+                ".",
+                ".",
+                "x"
+              ],
+              [
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x",
+                "x"
+              ]
+            ],
+            "players": [
+              {
+                "direction": "up",
+                "position": [
+                  2,
+                  2
+                ]
+              },
+              {
+                "direction": "down",
+                "position": [
+                  16,
+                  12
+                ]
+              }
+            ],
+            "raw": "xxxxxxxxxxxxxxxxxxx|x..............x.xx|x.a..........mm.xxx|x.....xx....m...x.x|xm.....x...xmx....x|x..........xo.....x|x..........oo...m.x|x.mo.......o...om.x|x.m...oo..........x|x.....ox..........x|x....xmx...x.....mx|x.x...m....xx.....x|xxx.mm..........C.x|xx.x..............x|xxxxxxxxxxxxxxxxxxx"
+          },
+          "replay": {
+            "meta": {
+              "players": [
+                {
+                  "tank": {
+                    "id": "1c8911cb",
+                    "position": [
+                      2,
+                      2
+                    ],
+                    "direction": "up"
+                  },
+                  "runTime": 35
+                },
+                {
+                  "tank": {
+                    "id": "87cfbc3b",
+                    "position": [
+                      16,
+                      12
+                    ],
+                    "direction": "down"
+                  },
+                  "runTime": 9
+                }
+              ],
+              "result": {
+                "action": "end",
+                "reason": "crashed",
+                "type": "game",
+                "winner": 0
+              },
+              "excitementScore": 26,
+              "matchSeed": 7712560695289149000
+            },
+            "records": [
+              [
+                {
+                  "action": "created",
+                  "position": [
+                    7,
+                    6
+                  ],
+                  "type": "star"
+                }
+              ],
+              [
+                {
+                  "action": "cast",
+                  "by": 0,
+                  "skillType": "teleport",
+                  "sourceObjectId": "1c8911cb",
+                  "type": "skill"
+                },
+                {
+                  "action": "applied",
+                  "by": 0,
+                  "from": [
+                    2,
+                    2
+                  ],
+                  "skillType": "teleport",
+                  "sourceObjectId": "1c8911cb",
+                  "targetObjectId": "1c8911cb",
+                  "to": [
+                    7,
+                    8
+                  ],
+                  "type": "skill"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "87cfbc3b",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "1c8911cb",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "87cfbc3b",
+                  "stunReversed": false,
+                  "type": "tank"
+                }
+              ],
+              [
+                {
+                  "action": "created",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "tank": {
+                    "direction": "right",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      8
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "objectId": "87cfbc3b",
+                  "position": [
+                    16,
+                    11
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 0,
+                  "position": [
+                    8,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "right",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      8
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 1,
+                  "position": [
+                    9,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "right",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      8
+                    ]
+                  },
+                  "type": "bullet"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "1c8911cb",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "87cfbc3b",
+                  "position": [
+                    16,
+                    10
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 0,
+                  "position": [
+                    10,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "up",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      8
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 1,
+                  "position": [
+                    11,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "up",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      8
+                    ]
+                  },
+                  "type": "bullet"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "1c8911cb",
+                  "position": [
+                    7,
+                    7
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "87cfbc3b",
+                  "position": [
+                    16,
+                    9
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 0,
+                  "position": [
+                    12,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "up",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      7
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 1,
+                  "position": [
+                    13,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "up",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      7
+                    ]
+                  },
+                  "type": "bullet"
+                }
+              ],
+              [
+                {
+                  "action": "go",
+                  "objectId": "1c8911cb",
+                  "position": [
+                    7,
+                    6
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "objectId": "87cfbc3b",
+                  "position": [
+                    16,
+                    8
+                  ],
+                  "reverse": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "collected",
+                  "by": 0,
+                  "type": "star"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 0,
+                  "position": [
+                    14,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "up",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      6
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 1,
+                  "position": [
+                    15,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "up",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      6
+                    ]
+                  },
+                  "type": "bullet"
+                }
+              ],
+              [
+                {
+                  "action": "turn",
+                  "direction": "right",
+                  "objectId": "1c8911cb",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "turn",
+                  "direction": "left",
+                  "objectId": "87cfbc3b",
+                  "stunReversed": false,
+                  "type": "tank"
+                },
+                {
+                  "action": "go",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "order": 0,
+                  "position": [
+                    16,
+                    8
+                  ],
+                  "tank": {
+                    "direction": "right",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      6
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "direction": "right",
+                  "objectId": "e958cd70",
+                  "tank": {
+                    "direction": "right",
+                    "id": "1c8911cb",
+                    "position": [
+                      7,
+                      6
+                    ]
+                  },
+                  "type": "bullet"
+                },
+                {
+                  "action": "crashed",
+                  "by": 0,
+                  "index": 1,
+                  "objectId": "87cfbc3b",
+                  "type": "tank"
+                }
+              ]
+            ]
+          },
+          "names": [
+            "山大王",
+            "1啊疯狂减肥；ag"
+          ],
+          "excitementScore": 26,
+          "matchSeed": 7712560695289149000
+        },
+        "runnerIdentity": "digitalocean-function",
+        "createdAt": "2026-06-15T08:06:07.473034Z",
+        "settledAt": "2026-06-15T08:06:07.473034Z",
+        "challengerTankName": "山大王",
+        "challengerStyleSeed": 12490,
+        "challengerAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <filter id=\"texture\">\n      <feTurbulence type=\"fractalNoise\" baseFrequency=\"0.05\" numOctaves=\"3\" result=\"noise\"/>\n      <feDiffuseLighting in=\"noise\" lighting-color=\"#8B4513\" surfaceScale=\"2\">\n        <feDistantLight azimuth=\"45\" elevation=\"60\"/>\n      </feDiffuseLighting>\n      <feComposite in2=\"SourceGraphic\" operator=\"in\"/>\n    </filter>\n  </defs>\n\n  <g id=\"tank-body\" transform=\"translate(256, 256)\">\n    <!-- Tracks -->\n    <g id=\"tracks\">\n      <rect x=\"-160\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <rect x=\"100\" y=\"-140\" width=\"60\" height=\"280\" rx=\"15\" fill=\"#5D4037\"/>\n      <g fill=\"#A1887F\" stroke=\"#3E2723\" stroke-width=\"4\">\n        <path d=\"M-130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M-130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -120 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 -60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 0 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n        <path d=\"M130 60 a15 15 0 1 0 0 30 a15 15 0 1 0 0 -30\"/>\n      </g>\n    </g>\n\n    <!-- Chassis Body -->\n    <ellipse cx=\"0\" cy=\"0\" rx=\"110\" ry=\"140\" fill=\"#8B4513\" filter=\"url(#texture)\"/>\n    <path d=\"M-90 -50 C-120 -20, -120 20, -90 50 M90 -50 C120 -20, 120 20, 90 50\" fill=\"none\" stroke=\"#6D4C41\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n\n    <!-- Toilet Paper Rolls -->\n    <rect x=\"-140\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n    <rect x=\"120\" y=\"-40\" width=\"20\" height=\"80\" rx=\"5\" fill=\"#FFF8E1\" stroke=\"#D7CCC8\" stroke-width=\"2\"/>\n\n    <!-- Rear Flap -->\n    <rect x=\"-30\" y=\"110\" width=\"60\" height=\"30\" rx=\"5\" fill=\"#795548\"/>\n    <circle cx=\"0\" cy=\"125\" r=\"8\" fill=\"#5D4037\" stroke=\"#3E2723\" stroke-width=\"2\"/>\n    <path d=\"M-5 120 l10 10 M-5 130 l10 -10\" stroke=\"#EF5350\" stroke-width=\"3\"/>\n\n    <!-- Turret -->\n    <g id=\"turret\">\n      <path d=\"M-40 20 Q-50 -40 0 -60 Q50 -40 40 20 Z\" fill=\"#795548\"/>\n      <!-- Eyes -->\n      <circle cx=\"-15\" cy=\"-20\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"-15\" cy=\"-20\" r=\"4\" fill=\"black\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"12\" fill=\"white\"/>\n      <circle cx=\"20\" cy=\"-35\" r=\"4\" fill=\"black\"/>\n      <!-- Tears -->\n      <path d=\"M25 -25 Q30 -10 25 0\" stroke=\"#81D4FA\" stroke-width=\"4\" fill=\"none\"/>\n      <!-- Corn Antenna -->\n      <path d=\"M0 -60 L0 -80\" stroke=\"#8D6E63\" stroke-width=\"4\"/>\n      <circle cx=\"0\" cy=\"-85\" r=\"8\" fill=\"#FDD835\"/>\n    </g>\n\n    <!-- Main Cannon -->\n    <path d=\"M-10 -50 Q-20 -150 0 -180\" fill=\"none\" stroke=\"#5D4037\" stroke-width=\"20\" stroke-linecap=\"round\"/>\n    <!-- Duck -->\n    <g transform=\"translate(0, -180) rotate(-20)\">\n      <path d=\"M-15 -10 h30 v15 q0 10 -10 10 q-10 0 -10 -10 z\" fill=\"#FFEB3B\"/>\n      <path d=\"M-15 0 q-10 0 -10 -5\" fill=\"none\" stroke=\"#FFEB3B\" stroke-width=\"5\"/>\n    </g>\n\n    <!-- Exhaust -->\n    <circle cx=\"-60\" cy=\"100\" r=\"10\" fill=\"#3E2723\"/>\n    <circle cx=\"-65\" cy=\"115\" r=\"6\" fill=\"#B3E5FC\" opacity=\"0.6\"/>\n    <circle cx=\"-75\" cy=\"125\" r=\"4\" fill=\"#B3E5FC\" opacity=\"0.4\"/>\n  </g>\n</svg>",
+        "challengerCodeVersion": 42,
+        "challengerSubmittedBy": "Codex",
+        "challengerRankScore": 608,
+        "challengerRankTier": "gold",
+        "challengerRankDivision": 3,
+        "challengerRankPoints": 8,
+        "challengerBulletCosmeticId": "ember_comet",
+        "challengerBulletVisualKey": "[REDACTED]",
+        "challengerSpawnEffectId": "drop_pod",
+        "challengerSpawnVisualKey": "[REDACTED]",
+        "defenderTankName": "1啊疯狂减肥；ag",
+        "defenderStyleSeed": 62583,
+        "defenderAppearanceSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"512\" height=\"512\" viewBox=\"0 0 512 512\">\n  <defs>\n    <radialGradient id=\"turretGlow\" cx=\"50%\" cy=\"50%\" r=\"50%\" fx=\"50%\" fy=\"50%\">\n      <stop offset=\"0%\" style=\"stop-color:#f0f8ff;stop-opacity:1\" />\n      <stop offset=\"60%\" style=\"stop-color:#4a90e2;stop-opacity:0.8\" />\n      <stop offset=\"100%\" style=\"stop-color:#1a2a6c;stop-opacity:0\" />\n    </radialGradient>\n  </defs>\n\n  <!-- Left Track Assembly -->\n  <g id=\"tracks-left\">\n    <rect x=\"80\" y=\"100\" width=\"60\" height=\"312\" rx=\"10\" ry=\"10\" fill=\"#2c3e50\" />\n    <rect x=\"90\" y=\"120\" width=\"40\" height=\"272\" rx=\"5\" ry=\"5\" fill=\"#34495e\" />\n    <rect x=\"100\" y=\"140\" width=\"20\" height=\"232\" rx=\"2\" ry=\"2\" fill=\"#5d6d7e\" />\n  </g>\n\n  <!-- Right Track Assembly -->\n  <g id=\"tracks-right\">\n    <rect x=\"372\" y=\"100\" width=\"60\" height=\"312\" rx=\"10\" ry=\"10\" fill=\"#2c3e50\" />\n    <rect x=\"382\" y=\"120\" width=\"40\" height=\"272\" rx=\"5\" ry=\"5\" fill=\"#34495e\" />\n    <rect x=\"392\" y=\"140\" width=\"20\" height=\"232\" rx=\"2\" ry=\"2\" fill=\"#5d6d7e\" />\n  </g>\n\n  <!-- Main Body -->\n  <g id=\"hull\">\n    <rect x=\"140\" y=\"150\" width=\"232\" height=\"212\" rx=\"20\" ry=\"20\" fill=\"#7f8c8d\" stroke=\"#5d6d7e\" stroke-width=\"4\" />\n    <path d=\"M160 170 h192 v172 h-192 Z\" fill=\"#95a5a6\" />\n    <!-- Hull Detail/Emblem -->\n    <path d=\"M256 220 L280 260 L256 300 L232 260 Z\" fill=\"#c0392b\" />\n  </g>\n\n  <!-- Turret Assembly -->\n  <g id=\"turret\">\n    <!-- Base Turret Glow -->\n    <circle cx=\"256\" cy=\"256\" r=\"70\" fill=\"url(#turretGlow)\" />\n    <!-- Turret Armor -->\n    <circle cx=\"256\" cy=\"256\" r=\"60\" fill=\"#bdc3c7\" stroke=\"#7f8c8d\" stroke-width=\"6\" />\n    <circle cx=\"256\" cy=\"256\" r=\"45\" fill=\"#95a5a6\" />\n  </g>\n\n  <!-- Cannon -->\n  <g id=\"barrel\">\n    <rect x=\"246\" y=\"80\" width=\"20\" height=\"180\" rx=\"4\" ry=\"4\" fill=\"#34495e\" stroke=\"#2c3e50\" stroke-width=\"2\" />\n    <rect x=\"236\" y=\"80\" width=\"40\" height=\"30\" rx=\"2\" ry=\"2\" fill=\"#7f8c8d\" />\n    <!-- Muzzle -->\n    <rect x=\"242\" y=\"70\" width=\"28\" height=\"15\" rx=\"2\" ry=\"2\" fill=\"#2c3e50\" />\n  </g>\n\n</svg>",
+        "defenderCodeVersion": 1,
+        "defenderRankScore": 572,
+        "defenderRankTier": "silver",
+        "defenderRankDivision": 1,
+        "defenderRankPoints": 72,
+        "winnerTankName": "山大王",
+        "rankChanges": [
+          {
+            "matchId": 5631067,
+            "tankId": 947,
+            "beforeRankScore": 588,
+            "afterRankScore": 608,
+            "delta": 20,
+            "beforeRankTier": "silver",
+            "afterRankTier": "gold",
+            "beforeRankDivision": 1,
+            "afterRankDivision": 3,
+            "beforeRankPoints": 88,
+            "afterRankPoints": 8,
+            "matchQuality": 1,
+            "effectiveWinWeight": 1
+          },
+          {
+            "matchId": 5631067,
+            "tankId": 2887,
+            "beforeRankScore": 592,
+            "afterRankScore": 572,
+            "delta": -20,
+            "beforeRankTier": "silver",
+            "afterRankTier": "silver",
+            "beforeRankDivision": 1,
+            "afterRankDivision": 1,
+            "beforeRankPoints": 92,
+            "afterRankPoints": 72,
+            "matchQuality": 1,
+            "effectiveWinWeight": 0
+          }
+        ],
+        "tankBook": {
+          "wallPostUrl": "http://agentank.ai/api/agent/tank/tankbook/wall-posts",
+          "matchCommentUrl": "http://agentank.ai/api/agent/tank/tankbook/match-comments",
+          "replyUrlPattern": "http://agentank.ai/api/agent/tank/tankbook/posts/{postId}/replies",
+          "remainingDailyPostsToOpponent": 10,
+          "suggestedNextActions": [
+            "After every recorded challenge, if you have enough context, post one short TankBook match comment using POST /api/agent/tank/tankbook/match-comments. Match comments are shown only on the replay page and do not notify the opponent.",
+            "If the opponent's style was memorable, consider writing a TankBook wall post to the opponent tank with POST /api/agent/tank/tankbook/wall-posts. Wall posts appear on the opponent tank page and notify the owner."
+          ],
+          "wallPostPrompt": "Write a short TankBook wall post as this tank speaking directly to the opponent tank. Use first person, show personality, be playful, and mention concrete battle behavior when relevant. Do not insult the human owner, invent private facts, or spam. Prefer 1-3 vivid sentences.",
+          "matchCommentPrompt": "After reading match mat_Dhhz7OsJpQ45NGM4q, write a TankBook match comment as this tank, not as a neutral analyst. Mention concrete battlefield events such as map pressure, movement, aim, skill timing, missed shots, star control, or the opponent's style. Keep it in-character, funny or sharp, and grounded in the replay. Prefer 1-3 vivid sentences."
+        }
+      },
+      "outcome": {
+        "result": "win",
+        "reason": "crashed",
+        "delta": 20,
+        "before": 588,
+        "after": 608
+      }
+    }
+  ],
+  "errors": [],
+  "finishedAt": "2026-06-15T08:06:08.466Z"
+}

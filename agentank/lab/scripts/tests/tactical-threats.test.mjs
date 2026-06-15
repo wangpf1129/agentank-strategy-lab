@@ -3,14 +3,12 @@ import { test } from "node:test";
 
 import {
   createsImmediateFireThreat,
-  boostLeadLaneTrap,
   hiddenCorridorThreat,
-  leadProtectionActive,
   postTeleportLaneTrap,
   reciprocalFireLosesRace,
-  starRaceNeedsFastRoute,
   overloadThreatField,
   overloadShotThreat,
+  nextStepFireThreat,
 } from "../lib/tactical-threats.mjs";
 
 const openArena = Array.from({ length: 18 }, () => Array.from({ length: 18 }, () => "."));
@@ -109,93 +107,13 @@ test("post-teleport lane trap catches long one-turn shooting lanes", () => {
   assert.equal(postTeleportLaneTrap(openArena, { ...enemy, direction: "left" }, [17, 10]), false);
 });
 
-test("boost lead lane trap blocks star routes through a long enemy firing lane", () => {
-  const enemy = { position: [2, 2], direction: "right", skillType: "boost" };
+test("next-step fire threat catches move-then-shoot lane traps", () => {
+  const enemy = { position: [12, 8], direction: "left" };
 
-  assert.equal(boostLeadLaneTrap(openArena, enemy, [11, 2], { lead: 1 }), true);
-  assert.equal(boostLeadLaneTrap(openArena, enemy, [11, 3], { lead: 1 }), false);
-  assert.equal(boostLeadLaneTrap(openArena, enemy, [11, 2], { lead: 0 }), false);
-  assert.equal(
-    boostLeadLaneTrap(openArena, { ...enemy, skillType: "shield" }, [11, 2], { lead: 1 }),
-    false,
-  );
-});
+  assert.equal(nextStepFireThreat(openArena, enemy, [10, 8]), true);
+  assert.equal(nextStepFireThreat(openArena, enemy, [10, 6]), false);
 
-test("lead protection activates only after a real star lead develops", () => {
-  assert.equal(
-    leadProtectionActive({
-      frame: 56,
-      me: { stars: 3 },
-      enemy: { stars: 1 },
-    }),
-    true,
-  );
-  assert.equal(
-    leadProtectionActive({
-      frame: 20,
-      me: { stars: 3 },
-      enemy: { stars: 1 },
-    }),
-    false,
-  );
-  assert.equal(
-    leadProtectionActive({
-      frame: 80,
-      me: { stars: 2 },
-      enemy: { stars: 2 },
-    }),
-    false,
-  );
-});
-
-test("lead protection starts at plus one against boost tempo threats", () => {
-  assert.equal(
-    leadProtectionActive({
-      frame: 51,
-      me: { stars: 2 },
-      enemy: { stars: 1, skillType: "boost" },
-    }),
-    true,
-  );
-  assert.equal(
-    leadProtectionActive({
-      frame: 51,
-      me: { stars: 2 },
-      enemy: { stars: 1, skillType: "shield" },
-    }),
-    false,
-  );
-});
-
-test("high-tier star races switch to the fast route when safety routing loses tempo", () => {
-  assert.equal(
-    starRaceNeedsFastRoute({
-      lead: 0,
-      strictDistance: 7,
-      fastDistance: 4,
-      enemyDistance: 4,
-      enemySkill: "shield",
-    }),
-    true,
-  );
-  assert.equal(
-    starRaceNeedsFastRoute({
-      lead: 2,
-      strictDistance: 7,
-      fastDistance: 4,
-      enemyDistance: 4,
-      enemySkill: "shield",
-    }),
-    false,
-  );
-  assert.equal(
-    starRaceNeedsFastRoute({
-      lead: 0,
-      strictDistance: 5,
-      fastDistance: 4,
-      enemyDistance: 9,
-      enemySkill: "shield",
-    }),
-    false,
-  );
+  const blockedArena = openArena.map((col) => [...col]);
+  blockedArena[11][8] = "x";
+  assert.equal(nextStepFireThreat(blockedArena, enemy, [10, 8]), false);
 });
