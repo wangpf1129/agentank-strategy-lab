@@ -1,0 +1,12 @@
+{
+  "name": "agentank-lean-workbench",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check active/teleport-main.js",
+    "test:lab": "find lab/scripts/tests -maxdepth 1 -name '*.test.mjs' -exec node --test {} \\;",
+    "simulate": "node scripts/simulate.mjs",
+    "challenge:dry": "node scripts/challenge-dry-run.mjs",
+    "challenge:run": "node scripts/challenge-execute.mjs"
+  }
+}

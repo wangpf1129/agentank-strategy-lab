@@ -1,22 +1,36 @@
-# agentank-strategy-lab
+# AgenTank Lean Workbench
 
-Ladder-score-first research lab for two primary AgentTank bots: one freeze tank and one teleport tank.
+This repo is for fast AgentTank iteration with a small active workspace and bounded strategy changes.
 
-This repository exists to make both tanks stronger and more recognizable on AgentTank. AI competition research is included only when it can become a concrete AgentTank experiment, playbook, metric, or candidate-code change.
+It stores:
 
-This repository stores:
-- Candidate bot source files.
-- Fleet notes for the freeze and teleport tanks.
-- Replay analysis scripts.
-- Match and map research notes.
-- Skill matchup playbooks.
-- Ladder-score-focused AI competition knowledge cards.
-- Experiment templates and reports.
+- Active tank source files.
+- Current training state and cycle notes.
+- Replay review and behavior-scoring scripts.
+- Simulation, dry-run, publish, and bounded real-challenge helpers.
+- Focused regression tests for protected behavior.
 
 Do not commit tank keys or API tokens. Use environment variables for authenticated API calls.
 
-Start here:
-- `agentank/lab/fleet/README.md`
-- `agentank/lab/playbooks/dual-tank-roadmap.md`
-- `agentank/lab/knowledge/README.md`
-- `agentank/lab/scripts/README.md`
+Read in this order:
+
+1. `active/CURRENT.md`
+2. `docs/agentank-evolution-method.md`
+3. `state/training-space.json`
+4. `state/latest.json`
+5. `state/avoid-list.json`
+6. `state/cycle.md`
+7. `active/shield-main.js`
+8. `active/teleport-main.js`
+
+Before publishing or running a real challenge:
+
+1. `npm run check`
+2. Focused strategy test or `npm run test:lab`
+3. `npm run simulate` when credentials are available
+4. `npm run challenge:dry`
+5. Ask before `npm run challenge:run`
+
+Do not read raw replay folders unless a match id is named.
+Do not patch archived versions directly.
+Do not run real challenges without an explicit execute decision.

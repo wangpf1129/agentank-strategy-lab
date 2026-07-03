@@ -1,6 +1,15 @@
-.DS_Store
+# Raw AgentTank payloads are too large and too noisy for the active repo context.
+raw/
+lab/data/*
+!lab/data/README.md
+agentank/lab/data/
+
+# Local credentials and environment files.
 .env
 .env.*
-*.log
-node_modules/
+!.env.example
 
+# Node/runtime noise.
+node_modules/
+.DS_Store
+*.log
