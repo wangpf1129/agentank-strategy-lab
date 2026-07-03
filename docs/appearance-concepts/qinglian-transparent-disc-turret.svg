@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <style>
+    .sword-wheel {
+      transform-origin: 256px 274px;
+      transform-box: view-box;
+      animation: wheelDrift 9s linear infinite;
+    }
+    .disc-body {
+      transform-origin: 256px 274px;
+      transform-box: view-box;
+      animation: discBreath 3.4s ease-in-out infinite;
+    }
+    .thunder {
+      animation: thunderPulse 1.35s steps(2, end) infinite;
+    }
+    .thunder.alt {
+      animation-delay: .45s;
+    }
+    .thunder.alt2 {
+      animation-delay: .9s;
+    }
+    @keyframes wheelDrift {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes discBreath {
+      0%, 100% { opacity: .9; }
+      50% { opacity: 1; }
+    }
+    @keyframes thunderPulse {
+      0%, 100% { opacity: .18; }
+      12% { opacity: .9; }
+      24% { opacity: .32; }
+      50% { opacity: .78; }
+      68% { opacity: .24; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sword-wheel, .disc-body, .thunder {
+        animation: none !important;
+      }
+    }
+  </style>
+
+  <defs>
+    <radialGradient id="backgroundAura" cx="50%" cy="46%" r="62%">
+      <stop offset="0%" stop-color="#ecfff5" stop-opacity=".46"/>
+      <stop offset="58%" stop-color="#4de7bd" stop-opacity=".2"/>
+      <stop offset="100%" stop-color="#05221c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="transparentDisc" cx="39%" cy="29%" r="78%">
+      <stop offset="0%" stop-color="#f7fff6" stop-opacity=".62"/>
+      <stop offset="34%" stop-color="#9affdd" stop-opacity=".44"/>
+      <stop offset="70%" stop-color="#18b999" stop-opacity=".32"/>
+      <stop offset="100%" stop-color="#05695f" stop-opacity=".22"/>
+    </radialGradient>
+    <radialGradient id="innerDisc" cx="42%" cy="32%" r="72%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".54"/>
+      <stop offset="52%" stop-color="#65f4ca" stop-opacity=".28"/>
+      <stop offset="100%" stop-color="#0a806f" stop-opacity=".18"/>
+    </radialGradient>
+    <linearGradient id="swordGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#eafff4"/>
+      <stop offset="40%" stop-color="#31dbb5"/>
+      <stop offset="78%" stop-color="#087969"/>
+      <stop offset="100%" stop-color="#031a15"/>
+    </linearGradient>
+    <linearGradient id="bambooGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#effff9"/>
+      <stop offset="42%" stop-color="#62e5c5"/>
+      <stop offset="100%" stop-color="#0c7062"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#fff2ad"/>
+      <stop offset="52%" stop-color="#d6a42c"/>
+      <stop offset="100%" stop-color="#6e4908"/>
+    </linearGradient>
+    <linearGradient id="thunderGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#aaffee"/>
+      <stop offset="100%" stop-color="#4bffe0"/>
+    </linearGradient>
+    <filter id="softShadow" x="-24%" y="-24%" width="148%" height="148%">
+      <feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#001a15" flood-opacity=".32"/>
+    </filter>
+    <filter id="jadeGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.08 0 1 0 0 0.88 0 0 1 0 0.72 0 0 0 .7 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="thunderGlow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.4" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.7 0 1 0 0 1 0 0 1 0 0.86 0 0 0 .84 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <g id="jadeSword">
+      <path d="M256 88 C273 139 276 200 256 268 C236 200 239 139 256 88 Z" fill="url(#swordGrad)" stroke="#07564b" stroke-width="4.6" stroke-linejoin="round"/>
+      <path d="M256 109 C263 157 263 208 256 249 C249 208 249 157 256 109 Z" fill="#f5fffb" opacity=".3"/>
+      <path d="M256 88 L262 146 L256 268 L250 146 Z" fill="#ffffff" opacity=".13"/>
+    </g>
+  </defs>
+
+  <circle cx="256" cy="256" r="232" fill="url(#backgroundAura)"/>
+
+  <g class="sword-wheel" filter="url(#softShadow)">
+    <use href="#jadeSword" transform="rotate(0 256 274)"/>
+    <use href="#jadeSword" transform="rotate(45 256 274)"/>
+    <use href="#jadeSword" transform="rotate(90 256 274)"/>
+    <use href="#jadeSword" transform="rotate(135 256 274)"/>
+    <use href="#jadeSword" transform="rotate(180 256 274)"/>
+    <use href="#jadeSword" transform="rotate(225 256 274)"/>
+    <use href="#jadeSword" transform="rotate(270 256 274)"/>
+    <use href="#jadeSword" transform="rotate(315 256 274)"/>
+  </g>
+
+  <g class="disc-body" filter="url(#jadeGlow)">
+    <circle cx="256" cy="274" r="112" fill="url(#transparentDisc)" stroke="#13e5c4" stroke-width="4.5" stroke-opacity=".76"/>
+    <circle cx="256" cy="274" r="82" fill="url(#innerDisc)" stroke="#d7a82f" stroke-width="2.2" stroke-opacity=".4"/>
+    <path d="M161 251 C190 199 239 180 292 193 C319 200 342 217 359 239" fill="none" stroke="#f7fff6" stroke-width="6" stroke-linecap="round" stroke-opacity=".32"/>
+    <path d="M171 301 C215 337 299 340 344 306" fill="none" stroke="#13e5c4" stroke-width="3.5" stroke-linecap="round" stroke-opacity=".34"/>
+    <path d="M191 239 C233 259 279 260 322 241" fill="none" stroke="#f7fff6" stroke-width="2.8" stroke-linecap="round" stroke-opacity=".26"/>
+    <path d="M199 311 C236 290 277 289 315 311" fill="none" stroke="#0e907d" stroke-width="2.8" stroke-linecap="round" stroke-opacity=".32"/>
+  </g>
+
+  <g fill="none" stroke="url(#thunderGrad)" stroke-linecap="round" stroke-linejoin="round" filter="url(#thunderGlow)">
+    <path class="thunder" d="M178 265 L204 255 L195 275 L223 265" stroke-width="3.8"/>
+    <path class="thunder alt" d="M333 250 L309 265 L338 268 L314 288" stroke-width="3.8"/>
+    <path class="thunder alt2" d="M213 333 L238 315 L231 341 L259 326" stroke-width="3.3"/>
+    <path class="thunder" d="M290 331 L274 309 L303 321 L292 295" stroke-width="3.3"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <path d="M223 218 C238 205 274 205 289 218 L279 253 H233 Z" fill="#06221c" stroke="url(#goldGrad)" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M234 227 C247 218 265 218 278 227 L272 246 H240 Z" fill="#15b99b" opacity=".44"/>
+  </g>
+
+  <g filter="url(#jadeGlow)">
+    <rect x="240" y="54" width="32" height="190" rx="13" fill="url(#bambooGrad)" stroke="#064338" stroke-width="5.5"/>
+    <path d="M245 96 H267 M245 142 H267 M245 188 H267" stroke="#effff9" stroke-width="3.6" stroke-linecap="round" opacity=".7"/>
+    <rect x="249" y="28" width="14" height="46" rx="5" fill="#0d6657" stroke="#d3fff1" stroke-width="3.8"/>
+    <circle cx="256" cy="101" r="4.8" fill="#f7fff6" opacity=".9"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <circle cx="256" cy="274" r="28" fill="#06231f" fill-opacity=".82" stroke="url(#goldGrad)" stroke-width="4.6"/>
+    <circle cx="256" cy="274" r="16" fill="#15e0bd" fill-opacity=".72" stroke="#f7fff6" stroke-width="2.8"/>
+    <path d="M256 258 L270 274 L256 290 L242 274 Z" fill="#f7fff6" opacity=".42"/>
+  </g>
+</svg>

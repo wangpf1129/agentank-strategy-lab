@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="irisGrad" cx="43%" cy="34%" r="72%">
+      <stop offset="0%" stop-color="#ff7c63"/>
+      <stop offset="28%" stop-color="#f32424"/>
+      <stop offset="62%" stop-color="#b00000"/>
+      <stop offset="100%" stop-color="#310000"/>
+    </radialGradient>
+    <linearGradient id="armorGrad" x1="0%" x2="100%" y1="8%" y2="92%">
+      <stop offset="0%" stop-color="#2a2a2a"/>
+      <stop offset="52%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#210000"/>
+    </linearGradient>
+    <filter id="redGlow" x="-28%" y="-28%" width="156%" height="156%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.82 0 0 0 0 0.04 0 0 0 0 0.02 0 0 0 .85 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow" x="-18%" y="-18%" width="136%" height="136%">
+      <feDropShadow dx="0" dy="9" stdDeviation="9" flood-color="#000000" flood-opacity=".55"/>
+    </filter>
+  </defs>
+
+  <rect x="239" y="32" width="34" height="180" rx="9" fill="#0c0c0c" stroke="#030303" stroke-width="7"/>
+  <rect x="248" y="45" width="16" height="84" rx="5" fill="#4a4a4a" opacity=".75"/>
+  <path d="M244 85 L256 57 L268 85 L256 116 Z" fill="#d20000" filter="url(#redGlow)">
+    <animate attributeName="opacity" values=".35;1;.35" dur="2.2s" repeatCount="indefinite"/>
+  </path>
+
+  <path d="M47 259 C117 101 395 101 465 259 C395 411 117 411 47 259 Z" fill="url(#armorGrad)" stroke="#020202" stroke-width="15" filter="url(#shadow)"/>
+  <path d="M84 259 C146 153 366 153 428 259 C366 363 146 363 84 259 Z" fill="#090909" stroke="#710000" stroke-width="8"/>
+  <path d="M103 259 C164 187 348 187 409 259 C348 329 164 329 103 259 Z" fill="#050505"/>
+
+  <g fill="none" stroke-linecap="round">
+    <path d="M66 211 C98 181 129 174 159 187" stroke="#525252" stroke-width="16" opacity=".88"/>
+    <path d="M66 307 C98 337 129 344 159 331" stroke="#525252" stroke-width="16" opacity=".88"/>
+    <path d="M353 187 C383 174 414 181 446 211" stroke="#525252" stroke-width="16" opacity=".88"/>
+    <path d="M353 331 C383 344 414 337 446 307" stroke="#525252" stroke-width="16" opacity=".88"/>
+    <path d="M93 259 C137 205 183 184 228 185" stroke="#aa0000" stroke-width="5" opacity=".65"/>
+    <path d="M419 259 C375 205 329 184 284 185" stroke="#aa0000" stroke-width="5" opacity=".65"/>
+  </g>
+
+  <circle cx="256" cy="259" r="129" fill="url(#irisGrad)" stroke="#020202" stroke-width="15" filter="url(#redGlow)"/>
+  <circle cx="256" cy="259" r="94" fill="none" stroke="#160000" stroke-width="8" opacity=".9"/>
+  <circle cx="256" cy="259" r="54" fill="none" stroke="#250000" stroke-width="6" opacity=".95"/>
+
+  <g id="tomoeRotor" filter="url(#redGlow)">
+    <animateTransform attributeName="transform" type="rotate" from="22 256 259" to="382 256 259" dur="3.4s" repeatCount="indefinite"/>
+    <g transform="translate(256 259)" fill="#030000">
+      <g transform="translate(0 -82) rotate(-16)">
+        <circle cx="0" cy="0" r="22"/>
+        <path d="M12 -18 C31 -31 55 -31 74 -21 C52 -19 38 -10 31 3 C27 11 27 18 32 25 C21 22 13 14 11 5 C18 3 22 -4 21 -10 C21 -14 17 -17 12 -18 Z"/>
+      </g>
+      <g transform="rotate(120) translate(0 -82) rotate(-16)">
+        <circle cx="0" cy="0" r="22"/>
+        <path d="M12 -18 C31 -31 55 -31 74 -21 C52 -19 38 -10 31 3 C27 11 27 18 32 25 C21 22 13 14 11 5 C18 3 22 -4 21 -10 C21 -14 17 -17 12 -18 Z"/>
+      </g>
+      <g transform="rotate(240) translate(0 -82) rotate(-16)">
+        <circle cx="0" cy="0" r="22"/>
+        <path d="M12 -18 C31 -31 55 -31 74 -21 C52 -19 38 -10 31 3 C27 11 27 18 32 25 C21 22 13 14 11 5 C18 3 22 -4 21 -10 C21 -14 17 -17 12 -18 Z"/>
+      </g>
+    </g>
+  </g>
+
+  <circle cx="256" cy="259" r="34" fill="#020202" stroke="#650000" stroke-width="5"/>
+  <circle cx="245" cy="246" r="8" fill="#ffc1b8" opacity=".66"/>
+
+  <path d="M130 259 H382" stroke="#ff2727" stroke-width="6" stroke-linecap="round" opacity="0" filter="url(#redGlow)">
+    <animate attributeName="opacity" values="0;0;.85;0;0" keyTimes="0;.28;.42;.57;1" dur="3.2s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="-52 0;52 0" dur="3.2s" repeatCount="indefinite"/>
+  </path>
+
+  <path d="M255 385 L287 405 L255 429 L223 405 Z" fill="#100000" stroke="#ff2626" stroke-width="7" filter="url(#redGlow)">
+    <animate attributeName="stroke-opacity" values=".35;1;.35" dur="2s" repeatCount="indefinite"/>
+  </path>
+</svg>

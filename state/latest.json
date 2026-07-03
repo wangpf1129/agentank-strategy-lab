@@ -1,13 +1,22 @@
 {
-  "tank": "teleport-main",
-  "activeSource": "active/teleport-main.js",
-  "baselineSource": "archive/tanks/teleport-main-v26-candidate.js",
-  "lastKnownRankScore": null,
-  "lastKnownTier": null,
+  "tank": "dark-edge",
+  "activeSource": "active/dark-edge.js",
+  "baselineSource": "active/dark-edge.js",
+  "lastKnownRankScore": 2562,
+  "lastKnownTier": "champion",
+  "lastKnownRankDivision": 1,
   "lastKnownPublicRank": null,
-  "lastUpdatedAt": null,
-  "lastFailure": {
-    "matchId": null,
-    "summary": "post-star close-quarter and adjacent lane risk remains unresolved"
+  "lastUpdatedAt": "2026-07-03T07:38:13Z",
+  "lastKnownCodeVersion": 83,
+  "lastKnownCodeHash": "bffea2b9d3f775d5ed15b99492c69f34be0026fa20d380a7ee9c295ad1adb5e5",
+  "lastKnownRecord": {
+    "wins": 6800,
+    "losses": 5933,
+    "draws": 0,
+    "placementMatches": 10
+  },
+  "lastObservation": {
+    "runPath": "/tmp/agentank-runs/fleet/dark-edge/tank.json",
+    "summary": "Dark Edge v83 published after merging the hard-wall offset fire guard and strategic grass-control priority. Pre-publish code quality / strategy-conflict review passed. Gates passed: npm run check, focused Dark Edge tests 38/38, npm run test:lab, default npm run simulate 9/9 for shield-main, explicit dark-edge server simulation 6/9, and challenge dry-run with start score 2542. During the gate, a wall-blocked nearby-star grass hold was found and fixed before publish; remaining explicit simulation losses were timeout/star-tempo training-bot losses outside this bounded axis. Live snapshot confirms rankScore 2562, record 6800-5933-0. No real challenge was executed."
   }
 }

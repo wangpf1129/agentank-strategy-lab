@@ -3,8 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check active/teleport-main.js",
+    "check": "node --check active/dark-edge.js && node --check active/teleport-main.js && node --check active/shield-main.js && node --check lab/scripts/lib/behavior-score.mjs && node --check lab/scripts/lib/match-analysis.mjs && node --check lab/scripts/lib/training-space.mjs && node --check scripts/publish-code.mjs && node scripts/space-check.mjs",
     "test:lab": "find lab/scripts/tests -maxdepth 1 -name '*.test.mjs' -exec node --test {} \\;",
+    "review:match": "node lab/scripts/analyze-match.mjs",
+    "review:batch": "node lab/scripts/analyze-directory.mjs",
+    "publish:shield": "node scripts/publish-code.mjs --tank shield-main --code active/shield-main.js --notes \"shield-main v9 candidate: tighten teleport star interception, early lane pressure, and post-shield safety\"",
     "simulate": "node scripts/simulate.mjs",
     "challenge:dry": "node scripts/challenge-dry-run.mjs",
     "challenge:run": "node scripts/challenge-execute.mjs"

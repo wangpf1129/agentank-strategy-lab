@@ -6,14 +6,16 @@ Read order for every task:
 
 1. `active/CURRENT.md`
 2. `docs/agentank-evolution-method.md`
-3. `state/latest.json`
-4. `state/avoid-list.json`
-5. `state/cycle.md`
-6. `active/teleport-main.js`
+3. `state/training-space.json`
+4. `state/latest.json`
+5. `state/avoid-list.json`
+6. `state/cycle.md`
+7. `active/shield-main.js`
+8. `active/teleport-main.js`
 
 Do not read `archive/` unless the user gives a specific match id, run id, opponent id, or version id.
 
-Do not patch multiple tactical ideas in one turn.
+Do not patch multiple unrelated tactical ideas in one turn.
 
 Before publishing or real challenge:
 

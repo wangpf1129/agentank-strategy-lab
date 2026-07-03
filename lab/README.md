@@ -6,8 +6,9 @@ Default strategy context lives outside this directory:
 
 1. `active/CURRENT.md`
 2. `docs/agentank-evolution-method.md`
-3. `state/cycle.md`
-4. `active/teleport-main.js`
+3. `state/training-space.json`
+4. `state/cycle.md`
+5. `active/shield-main.js`
 
 Do not rebuild a large local experiment archive here. Simulation and challenge outputs should go to `/tmp/agentank-runs/` unless a specific result needs to be promoted into a short state note.
 

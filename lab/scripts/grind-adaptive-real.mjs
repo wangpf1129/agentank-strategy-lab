@@ -47,6 +47,7 @@ function usage() {
     "  --output-dir <path>            Replay output dir. Default: /tmp/agentank-runs/matches",
     "  --run-dir <path>               Run log dir. Default: /tmp/agentank-runs/challenge-runs",
     "  --explicit-only                Only queue ids passed through --opponents.",
+    "  --random-when-empty           Use a server-selected rank-eligible random opponent if the queue is empty.",
     "  --use-run-history              Load prior run logs from --run-dir before queueing.",
     "  --history-since <iso>          Only load prior run logs started at/after this timestamp.",
     "  --stop-on-loss                 Stop the run immediately after a settled loss.",
@@ -173,11 +174,41 @@ function summarizeOutcome(response, tankId, opponentId) {
   const rankChange = (response?.rankChanges ?? []).find((item) => item.tankId === tankId);
   const winnerTankId = response?.winnerTankId;
   return {
-    result: winnerTankId === tankId ? "win" : (winnerTankId === opponentId ? "loss" : "other"),
+    result: winnerTankId === tankId ? "win" : (winnerTankId ? "loss" : "other"),
     reason: response?.resultReason ?? null,
     delta: rankChange?.delta ?? 0,
     before: rankChange?.beforeRankScore ?? null,
     after: rankChange?.afterRankScore ?? null,
+  };
+}
+
+function positiveTankId(value) {
+  return Number.isInteger(value) && value > 0 ? value : null;
+}
+
+function extractActualOpponent(response, selfTankId, fallback = {}) {
+  const defenderId = positiveTankId(response?.defenderTankId);
+  if (defenderId && defenderId !== selfTankId) {
+    return {
+      id: defenderId,
+      name: response?.defenderTankName ?? fallback.name ?? null,
+      rankScore: Number.isFinite(response?.defenderRankScore) ? response.defenderRankScore : fallback.rankScore ?? null,
+    };
+  }
+
+  const challengerId = positiveTankId(response?.challengerTankId);
+  if (challengerId && challengerId !== selfTankId) {
+    return {
+      id: challengerId,
+      name: response?.challengerTankName ?? fallback.name ?? null,
+      rankScore: Number.isFinite(response?.challengerRankScore) ? response.challengerRankScore : fallback.rankScore ?? null,
+    };
+  }
+
+  return {
+    id: fallback.id ?? null,
+    name: fallback.name ?? null,
+    rankScore: fallback.rankScore ?? null,
   };
 }
 
@@ -189,6 +220,7 @@ if (argv.includes("--help") || argv.includes("-h")) {
 
 const execute = argv.includes("--execute");
 const explicitOnly = argv.includes("--explicit-only");
+const randomWhenEmpty = argv.includes("--random-when-empty");
 const requestedStopOnLoss = argv.includes("--stop-on-loss");
 const climbPolicy = argv.includes("--climb-policy");
 const useRunHistory = argv.includes("--use-run-history") || argv.includes("--history-since");
@@ -265,6 +297,7 @@ const run = {
     requestedDrawdownStop,
     climbPolicy,
     explicitOnly,
+    randomWhenEmpty,
     useRunHistory,
     historySince,
     stopOnLoss,
@@ -346,7 +379,15 @@ async function refreshQueue() {
 
 const initialQueue = await refreshQueue();
 if (!execute) {
-  console.log(JSON.stringify(initialQueue, null, 2));
+  const dryQueue = initialQueue.length || !randomWhenEmpty
+    ? initialQueue
+    : [{
+      randomOpponent: true,
+      name: "server-selected rank-eligible opponent",
+      mapId: mapIds[0],
+      source: "random-when-empty",
+    }];
+  console.log(JSON.stringify(dryQueue, null, 2));
   process.exit(0);
 }
 
@@ -363,16 +404,23 @@ while (run.results.length < limit) {
   }
 
   const queue = await refreshQueue();
-  if (!queue.length) {
+  if (!queue.length && !randomWhenEmpty) {
     console.log("No remaining candidates in the adaptive queue.");
     break;
   }
 
-  const candidate = queue[0];
-  const attemptCount = (run.state.attemptsByOpponent[candidate.id] ?? 0) + 1;
+  const candidate = queue[0] ?? {
+    id: null,
+    name: "server-selected rank-eligible opponent",
+    rankScore: null,
+    randomOpponent: true,
+    source: "random-when-empty",
+  };
+  const opponentKey = candidate.randomOpponent ? "random" : candidate.id;
+  const attemptCount = (run.state.attemptsByOpponent[opponentKey] ?? 0) + 1;
   const mapId = mapIds[(attemptCount - 1) % mapIds.length];
   console.log(
-    `${run.results.length + 1}/${limit}: ${tank.codename} -> opponent ${candidate.id} on ${mapId} (score ${run.state.currentScore})`,
+    `${run.results.length + 1}/${limit}: ${tank.codename} -> ${candidate.randomOpponent ? "random opponent" : `opponent ${candidate.id}`} on ${mapId} (score ${run.state.currentScore})`,
   );
 
   const item = {
@@ -381,6 +429,7 @@ while (run.results.length < limit) {
     skill: tank.skill,
     envName: tank.envName,
     opponentId: candidate.id,
+    randomOpponent: !!candidate.randomOpponent,
     mapId,
     round: attemptCount,
   };
@@ -391,12 +440,16 @@ while (run.results.length < limit) {
     const matchId = extractMatchId(response);
     const replayPath = matchId ? await fetchAndStoreMatch(matchId, outputDir) : null;
     const outcome = summarizeOutcome(response, tank.tankId, candidate.id);
+    const actualOpponent = extractActualOpponent(response, tank.tankId, candidate);
 
-    run.state.attemptsByOpponent[candidate.id] = attemptCount;
-    if (outcome.result === "win") {
-      run.state.winsByOpponent[candidate.id] = (run.state.winsByOpponent[candidate.id] ?? 0) + 1;
-    } else if (outcome.result === "loss") {
-      run.state.lossIds.push(candidate.id);
+    run.state.attemptsByOpponent[opponentKey] = attemptCount;
+    if (actualOpponent.id) {
+      run.state.attemptsByOpponent[actualOpponent.id] = (run.state.attemptsByOpponent[actualOpponent.id] ?? 0) + 1;
+    }
+    if (outcome.result === "win" && actualOpponent.id) {
+      run.state.winsByOpponent[actualOpponent.id] = (run.state.winsByOpponent[actualOpponent.id] ?? 0) + 1;
+    } else if (outcome.result === "loss" && actualOpponent.id) {
+      run.state.lossIds.push(actualOpponent.id);
     }
     if (Number.isFinite(outcome.after)) {
       run.state.currentScore = outcome.after;
@@ -405,10 +458,12 @@ while (run.results.length < limit) {
 
     run.results.push({
       ...item,
+      opponentId: actualOpponent.id,
+      requestedOpponentId: item.opponentId,
       startedAt,
       finishedAt: new Date().toISOString(),
-      opponentName: candidate.name,
-      opponentRankScore: candidate.rankScore,
+      opponentName: actualOpponent.name,
+      opponentRankScore: actualOpponent.rankScore,
       matchId,
       replayPath,
       challengeResponse: response,
@@ -441,7 +496,9 @@ while (run.results.length < limit) {
       kind,
       message: error.message,
     });
-    if (kind === "too_far" || kind === "too_high") {
+    if (candidate.randomOpponent) {
+      run.state.blockedIds.push(opponentKey);
+    } else if (kind === "too_far" || kind === "too_high") {
       run.state.gatedIds.push(candidate.id);
     } else {
       run.state.blockedIds.push(candidate.id);

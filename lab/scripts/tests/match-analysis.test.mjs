@@ -156,6 +156,8 @@ test("produces an analysis object ready for reports", () => {
   assert.equal(analysis.timeline.starCollections.length, 1);
   assert.equal(analysis.players.challenger.name, "Captain");
   assert.equal(analysis.players.defender.name, "Shield");
+  assert.equal(analysis.behavior.perspectiveRole, "challenger");
+  assert.ok(analysis.behavior.fix.some((item) => item.id === "fix-bullet-death"));
 });
 
 test("renders a compact markdown match report", () => {
@@ -168,6 +170,13 @@ test("renders a compact markdown match report", () => {
   assert.match(report, /- Deciding frame: 3/);
   assert.match(report, /- Victim: challenger/);
   assert.match(report, /- Killer: defender/);
+  assert.match(report, /## Behavior Score/);
+  assert.match(report, /## Preserve/);
+  assert.match(report, /## Fix/);
+  assert.match(report, /fix-bullet-death/);
+  assert.match(report, /## Hard Constraints/);
+  assert.match(report, /hard-current-bullet-eta/);
+  assert.match(report, /## Brave Baseline/);
 });
 
 test("summarizes a batch of analyzed matches by result and category", () => {
@@ -187,6 +196,8 @@ test("summarizes a batch of analyzed matches by result and category", () => {
   assert.equal(summary.losses, 1);
   assert.deepEqual(summary.categories, { bullet_crash: 1, star_win: 1 });
   assert.deepEqual(summary.maps, { "public-map-test": 2 });
+  assert.equal(summary.fix["fix-bullet-death"], 1);
+  assert.equal(summary.hardConstraints["hard-current-bullet-eta"], 1);
 });
 
 test("renders a markdown batch report", () => {
@@ -204,4 +215,9 @@ test("renders a markdown batch report", () => {
   assert.match(report, /- Wins: 1/);
   assert.match(report, /- Losses: 1/);
   assert.match(report, /\| bullet_crash \| 1 \|/);
+  assert.match(report, /- Avg behavior score:/);
+  assert.match(report, /## Preserve Signals/);
+  assert.match(report, /## Fix Signals/);
+  assert.match(report, /## Hard Constraint Breaches/);
+  assert.match(report, /## Brave Baseline Signals/);
 });

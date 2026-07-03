@@ -5,11 +5,23 @@ export const PRIMARY_TANKS = Object.freeze({
     skill: "freeze",
     envName: "AGENTANK_FREEZE_KEY",
   }),
+  "dark-edge": Object.freeze({
+    codename: "dark-edge",
+    tankId: 20,
+    skill: "overload",
+    envName: "AGENTANK_DARK_EDGE_KEY",
+  }),
   "teleport-main": Object.freeze({
     codename: "teleport-main",
     tankId: 947,
     skill: "teleport",
     envName: "AGENTANK_TELEPORT_KEY",
+  }),
+  "shield-main": Object.freeze({
+    codename: "shield-main",
+    tankId: 4839,
+    skill: "shield",
+    envName: "AGENTANK_SHIELD_KEY",
   }),
 });
 
@@ -98,6 +110,12 @@ export function buildChallengePlan({
 }
 
 export function buildChallengeRequestBody(item) {
+  if (item.randomOpponent || !item.opponentId) {
+    return {
+      randomOpponent: true,
+      mapId: item.mapId,
+    };
+  }
   return {
     opponentTankId: item.opponentId,
     mapId: item.mapId,

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="coreGrad" cx="46%" cy="36%" r="70%">
+      <stop offset="0%" stop-color="#ffb1a8"/>
+      <stop offset="35%" stop-color="#f52a35"/>
+      <stop offset="74%" stop-color="#990008"/>
+      <stop offset="100%" stop-color="#2a0000"/>
+    </radialGradient>
+    <linearGradient id="wingGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff3f75" stop-opacity=".12"/>
+      <stop offset="52%" stop-color="#ff2258" stop-opacity=".38"/>
+      <stop offset="100%" stop-color="#ff002c" stop-opacity=".08"/>
+    </linearGradient>
+    <filter id="pinkGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.9 0 0 0 0 0.1 0 0 0 0 0.25 0 0 0 .75 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g fill="url(#wingGrad)" stroke="#ff2c68" stroke-width="8" filter="url(#pinkGlow)">
+    <path d="M247 242 C170 132 88 123 67 225 C53 293 96 370 181 382 C217 387 240 350 256 292 Z">
+      <animate attributeName="opacity" values=".55;.9;.55" dur="2.6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M265 242 C342 132 424 123 445 225 C459 293 416 370 331 382 C295 387 272 350 256 292 Z">
+      <animate attributeName="opacity" values=".9;.55;.9" dur="2.6s" repeatCount="indefinite"/>
+    </path>
+    <path d="M242 279 C178 235 103 247 81 325 C64 384 106 439 174 443 C222 446 247 386 256 310 Z" opacity=".7"/>
+    <path d="M270 279 C334 235 409 247 431 325 C448 384 406 439 338 443 C290 446 265 386 256 310 Z" opacity=".7"/>
+  </g>
+
+  <g stroke="#ff3470" stroke-width="4" stroke-linecap="round" opacity=".85">
+    <path d="M256 258 L121 192"/>
+    <path d="M256 258 L116 304"/>
+    <path d="M256 258 L184 397"/>
+    <path d="M256 258 L391 192"/>
+    <path d="M256 258 L396 304"/>
+    <path d="M256 258 L328 397"/>
+  </g>
+
+  <rect x="235" y="68" width="42" height="322" rx="21" fill="#1a0508" stroke="#ff3f73" stroke-width="8" filter="url(#pinkGlow)"/>
+  <rect x="245" y="82" width="22" height="98" rx="11" fill="#ff7797" opacity=".7"/>
+  <rect x="241" y="39" width="30" height="72" rx="9" fill="#450009" stroke="#ff3f73" stroke-width="6"/>
+
+  <circle cx="256" cy="244" r="86" fill="url(#coreGrad)" stroke="#060000" stroke-width="10"/>
+  <circle cx="256" cy="244" r="58" fill="none" stroke="#2a0000" stroke-width="5"/>
+
+  <g>
+    <animateTransform attributeName="transform" type="rotate" from="360 256 244" to="0 256 244" dur="6s" repeatCount="indefinite"/>
+    <g transform="translate(256 244)" fill="#050000">
+      <path d="M0 -64 C19 -70 36 -57 36 -39 C36 -21 19 -12 3 -21 C17 -26 21 -39 13 -49 C5 -59 -8 -57 -20 -47 C-18 -57 -10 -62 0 -64 Z"/>
+      <path d="M0 -64 C19 -70 36 -57 36 -39 C36 -21 19 -12 3 -21 C17 -26 21 -39 13 -49 C5 -59 -8 -57 -20 -47 C-18 -57 -10 -62 0 -64 Z" transform="rotate(120)"/>
+      <path d="M0 -64 C19 -70 36 -57 36 -39 C36 -21 19 -12 3 -21 C17 -26 21 -39 13 -49 C5 -59 -8 -57 -20 -47 C-18 -57 -10 -62 0 -64 Z" transform="rotate(240)"/>
+    </g>
+  </g>
+
+  <circle cx="256" cy="244" r="24" fill="#050000"/>
+  <circle cx="247" cy="234" r="7" fill="#ffd3d7" opacity=".75"/>
+  <path d="M229 407 L256 429 L283 407" fill="none" stroke="#ff3f73" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <path d="M190 244 H322" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" values="0;.75;0" dur="3s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="-42 0;42 0" dur="3s" repeatCount="indefinite"/>
+  </path>
+</svg>

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="eyeGrad" cx="50%" cy="42%" r="65%">
+      <stop offset="0%" stop-color="#ff8168"/>
+      <stop offset="35%" stop-color="#f01818"/>
+      <stop offset="78%" stop-color="#780000"/>
+      <stop offset="100%" stop-color="#170000"/>
+    </radialGradient>
+    <linearGradient id="metalGrad" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#30343c"/>
+      <stop offset="48%" stop-color="#08090d"/>
+      <stop offset="100%" stop-color="#1f0000"/>
+    </linearGradient>
+    <filter id="hardGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.9 0 0 0 0 0.02 0 0 0 0 0.02 0 0 0 .9 0" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <path d="M256 54 L454 390 L58 390 Z" fill="url(#metalGrad)" stroke="#050505" stroke-width="14" stroke-linejoin="round">
+    <animate attributeName="d" dur="2.4s" repeatCount="indefinite" values="M256 54 L454 390 L58 390 Z;M282 68 L438 402 L74 374 Z;M230 68 L438 374 L74 402 Z;M256 54 L454 390 L58 390 Z"/>
+  </path>
+  <path d="M256 92 L399 360 L113 360 Z" fill="none" stroke="#ff2020" stroke-width="7" stroke-linejoin="round" filter="url(#hardGlow)">
+    <animate attributeName="stroke-opacity" values=".45;1;.45" dur="1.4s" repeatCount="indefinite"/>
+  </path>
+
+  <rect x="239" y="34" width="34" height="188" rx="8" fill="#070707" stroke="#ff2222" stroke-width="5" filter="url(#hardGlow)"/>
+  <path d="M242 56 H270" stroke="#ff8b8b" stroke-width="6" stroke-linecap="round" opacity=".85"/>
+
+  <path d="M104 254 C166 166 346 166 408 254 C346 341 166 341 104 254 Z" fill="#030303" stroke="#ff1d1d" stroke-width="8" filter="url(#hardGlow)"/>
+  <circle cx="256" cy="254" r="97" fill="url(#eyeGrad)" stroke="#050505" stroke-width="10"/>
+  <circle cx="256" cy="254" r="66" fill="none" stroke="#260000" stroke-width="6"/>
+
+  <g filter="url(#hardGlow)">
+    <animateTransform attributeName="transform" type="rotate" from="0 256 254" to="-360 256 254" dur="4.8s" repeatCount="indefinite"/>
+    <g transform="translate(256 254)" fill="#050505">
+      <path d="M0 -72 C18 -72 34 -60 37 -42 C40 -24 26 -10 8 -12 C21 -19 24 -34 16 -45 C8 -56 -6 -56 -20 -47 C-18 -61 -11 -70 0 -72 Z"/>
+      <path d="M0 -72 C18 -72 34 -60 37 -42 C40 -24 26 -10 8 -12 C21 -19 24 -34 16 -45 C8 -56 -6 -56 -20 -47 C-18 -61 -11 -70 0 -72 Z" transform="rotate(120)"/>
+      <path d="M0 -72 C18 -72 34 -60 37 -42 C40 -24 26 -10 8 -12 C21 -19 24 -34 16 -45 C8 -56 -6 -56 -20 -47 C-18 -61 -11 -70 0 -72 Z" transform="rotate(240)"/>
+    </g>
+  </g>
+
+  <circle cx="256" cy="254" r="29" fill="#020202" stroke="#9b0000" stroke-width="5"/>
+  <path d="M172 254 H340" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" values="0;.85;0" dur="1.8s" repeatCount="indefinite"/>
+    <animateTransform attributeName="transform" type="translate" values="-56 0;56 0" dur="1.8s" repeatCount="indefinite"/>
+  </path>
+
+  <g stroke="#ff2929" stroke-width="8" stroke-linecap="round" filter="url(#hardGlow)">
+    <path d="M135 390 L102 438"/>
+    <path d="M377 390 L410 438"/>
+    <path d="M207 390 L193 452"/>
+    <path d="M305 390 L319 452"/>
+  </g>
+  <path d="M214 410 H298 L256 459 Z" fill="#090909" stroke="#ff2929" stroke-width="6" stroke-linejoin="round"/>
+</svg>

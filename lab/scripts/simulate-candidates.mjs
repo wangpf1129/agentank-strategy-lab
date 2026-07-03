@@ -18,7 +18,7 @@ function usage() {
     "  node lab/scripts/simulate-candidates.mjs --code <tank=path> [options]",
     "",
     "Options:",
-    "  --tank <codename|all>       Tank to simulate: freeze-main, teleport-main, or all. Default: all",
+    "  --tank <codename|all>       Tank to simulate: freeze-main, teleport-main, shield-main, or all. Default: all",
     "  --code <tank=path>          Candidate code file. Repeat for multiple tanks.",
     "  --opponents <ids>           Comma-separated training bots. Default: nova-scout,azure-hunter,crimson-bastion",
     "  --maps <ids>                Comma-separated map ids. Default: classic,arena,public-map-6,random",
@@ -28,7 +28,7 @@ function usage() {
     "  --output-root <path>        Output root. Default: /tmp/agentank-runs/simulations",
     "",
     "Examples:",
-    "  AGENTANK_TELEPORT_KEY=<key> node lab/scripts/simulate-candidates.mjs --tank teleport-main --code teleport-main=active/teleport-main.js",
+    "  AGENTANK_SHIELD_KEY=<key> node lab/scripts/simulate-candidates.mjs --tank shield-main --code shield-main=active/shield-main.js",
     "",
     "Real tank keys must come from environment variables. Never commit them.",
   ].join("\n");

@@ -23,7 +23,7 @@ function usage() {
     "  node lab/scripts/run-real-challenges.mjs --opponents <ids> [options]",
     "",
     "Options:",
-    "  --tank <codename|all>       Tank to run: freeze-main, teleport-main, or all. Default: all",
+    "  --tank <codename|all>       Tank to run: freeze-main, teleport-main, shield-main, or all. Default: all",
     "  --opponents <ids>           Comma-separated public opponent tank ids. Required.",
     "  --maps <ids>                Comma-separated map ids. Default: random",
     "  --repeat <n>                Rounds per opponent/map/tank combination. Default: 1",
@@ -35,7 +35,7 @@ function usage() {
     "",
     "Examples:",
     "  node lab/scripts/run-real-challenges.mjs --opponents 829,913 --maps random,arena --repeat 2",
-    "  AGENTANK_FREEZE_KEY=<key> AGENTANK_TELEPORT_KEY=<key> node lab/scripts/run-real-challenges.mjs --opponents 829 --maps arena --repeat 5 --execute",
+    "  AGENTANK_SHIELD_KEY=<key> node lab/scripts/run-real-challenges.mjs --tank shield-main --opponents 829 --maps arena --repeat 5 --execute",
     "",
     "Real tank keys must come from environment variables. Never commit them.",
   ].join("\n");

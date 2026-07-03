@@ -1,3 +1,5 @@
+import { scoreBehavior } from "./behavior-score.mjs";
+
 const ROLE_BY_INDEX = ["challenger", "defender"];
 
 function asArray(value) {
@@ -249,16 +251,32 @@ export function summarizeTimeline(match) {
   };
 }
 
-export function analyzeMatch(raw) {
+export function analyzeMatch(raw, { perspectiveRole = "challenger" } = {}) {
   const match = normalizeMatch(raw);
   const players = Object.fromEntries(match.players.map((player) => [player.role, player]));
-
-  return {
+  const analysis = {
     match,
     players,
     outcome: classifyOutcome(match),
     timeline: summarizeTimeline(match),
   };
+
+  return {
+    ...analysis,
+    behavior: scoreBehavior(analysis, perspectiveRole),
+  };
+}
+
+function renderBehaviorItems(items) {
+  return items.length
+    ? items.map((item) => `- ${item.id}: ${item.title} (${item.evidence})`).join("\n")
+    : "- None";
+}
+
+function renderBehaviorChecks(items) {
+  return items.length
+    ? items.map((item) => `- ${item.status ?? "check"} ${item.id}: ${item.title} (${item.evidence})`).join("\n")
+    : "- None";
 }
 
 export function renderMatchReport(analysis) {
@@ -272,6 +290,7 @@ export function renderMatchReport(analysis) {
   const starCollections = analysis.timeline.starCollections
     .map((star) => `- Frame ${star.frame}: ${star.role} collected a star`)
     .join("\n");
+  const behavior = analysis.behavior ?? scoreBehavior(analysis, "challenger");
 
   return [
     `# Match Review: ${match.matchId}`,
@@ -294,6 +313,27 @@ export function renderMatchReport(analysis) {
     "",
     starCollections || "- None",
     "",
+    "## Behavior Score",
+    "",
+    `- Perspective: ${behavior.perspectiveRole}`,
+    `- Score: ${behavior.score}/100`,
+    "",
+    "## Preserve",
+    "",
+    renderBehaviorItems(behavior.preserve),
+    "",
+    "## Fix",
+    "",
+    renderBehaviorItems(behavior.fix),
+    "",
+    "## Hard Constraints",
+    "",
+    renderBehaviorChecks(behavior.hardConstraints),
+    "",
+    "## Brave Baseline",
+    "",
+    renderBehaviorChecks(behavior.braveBaseline),
+    "",
   ].filter((line) => line !== null).join("\n");
 }
 
@@ -313,6 +353,11 @@ export function summarizeBatch(analyses, perspectiveRole = "challenger") {
     categories: {},
     maps: {},
     opponents: {},
+    behaviorScoreTotal: 0,
+    preserve: {},
+    fix: {},
+    hardConstraints: {},
+    braveBaseline: {},
   };
 
   for (const analysis of analyses) {
@@ -326,6 +371,13 @@ export function summarizeBatch(analyses, perspectiveRole = "challenger") {
     const opponentRole = perspectiveRole === "challenger" ? "defender" : "challenger";
     const opponentName = analysis.players[opponentRole]?.name ?? opponentRole;
     increment(summary.opponents, opponentName);
+
+    const behavior = scoreBehavior(analysis, perspectiveRole);
+    summary.behaviorScoreTotal += behavior.score;
+    for (const item of behavior.preserve) increment(summary.preserve, item.id);
+    for (const item of behavior.fix) increment(summary.fix, item.id);
+    for (const item of behavior.hardConstraints) increment(summary.hardConstraints, item.id);
+    for (const item of behavior.braveBaseline) increment(summary.braveBaseline, item.id);
   }
 
   return summary;
@@ -345,6 +397,9 @@ function table(title, entries) {
 export function renderBatchReport(analyses, perspectiveRole = "challenger") {
   const summary = summarizeBatch(analyses, perspectiveRole);
   const winRate = summary.total === 0 ? 0 : Math.round((summary.wins / summary.total) * 1000) / 10;
+  const behaviorScore = summary.total === 0
+    ? 0
+    : Math.round((summary.behaviorScoreTotal / summary.total) * 10) / 10;
 
   return [
     "# Match Batch Report",
@@ -354,12 +409,21 @@ export function renderBatchReport(analyses, perspectiveRole = "challenger") {
     `- Wins: ${summary.wins}`,
     `- Losses: ${summary.losses}`,
     `- Win rate: ${winRate}%`,
+    `- Avg behavior score: ${behaviorScore}/100`,
     "",
     table("Outcome Categories", summary.categories),
     "",
     table("Maps", summary.maps),
     "",
     table("Opponents", summary.opponents),
+    "",
+    table("Preserve Signals", summary.preserve),
+    "",
+    table("Fix Signals", summary.fix),
+    "",
+    table("Hard Constraint Breaches", summary.hardConstraints),
+    "",
+    table("Brave Baseline Signals", summary.braveBaseline),
     "",
   ].join("\n");
 }

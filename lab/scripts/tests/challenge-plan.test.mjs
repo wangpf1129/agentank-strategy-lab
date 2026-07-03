@@ -11,10 +11,12 @@ import {
 test("resolves all primary tank configs without exposing secrets", () => {
   const tanks = resolveTankConfigs("all");
 
-  assert.deepEqual(tanks.map((tank) => tank.codename), ["freeze-main", "teleport-main"]);
+  assert.deepEqual(tanks.map((tank) => tank.codename), ["freeze-main", "dark-edge", "teleport-main", "shield-main"]);
   assert.deepEqual(tanks.map((tank) => tank.envName), [
     "AGENTANK_FREEZE_KEY",
+    "AGENTANK_DARK_EDGE_KEY",
     "AGENTANK_TELEPORT_KEY",
+    "AGENTANK_SHIELD_KEY",
   ]);
   assert.ok(tanks.every((tank) => !("key" in tank)));
 });
@@ -30,18 +32,18 @@ test("builds a bounded real challenge plan across tanks, opponents, maps, and re
 
   assert.deepEqual(plan.map((item) => item.tankCodename), [
     "freeze-main",
+    "dark-edge",
     "teleport-main",
-    "freeze-main",
-    "teleport-main",
+    "shield-main",
     "freeze-main",
   ]);
-  assert.deepEqual(plan.map((item) => item.opponentId), [1, 1, 1, 1, 2]);
+  assert.deepEqual(plan.map((item) => item.opponentId), [1, 1, 1, 1, 1]);
   assert.deepEqual(plan.map((item) => item.mapId), [
     "random",
     "random",
-    "arena",
-    "arena",
     "random",
+    "random",
+    "arena",
   ]);
 });
 
@@ -49,6 +51,13 @@ test("builds challenge request body with AgentTank's targeted opponent field", (
   assert.deepEqual(
     buildChallengeRequestBody({ opponentId: 70, mapId: "arena" }),
     { opponentTankId: 70, mapId: "arena" },
+  );
+});
+
+test("builds challenge request body for a server-selected random opponent", () => {
+  assert.deepEqual(
+    buildChallengeRequestBody({ randomOpponent: true, mapId: "classic" }),
+    { randomOpponent: true, mapId: "classic" },
   );
 });
 
