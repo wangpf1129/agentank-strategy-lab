@@ -6,6 +6,23 @@ import vm from "node:vm";
 
 const candidatePath = path.resolve("active/shield-main.js");
 
+function readCandidateSource() {
+  if (!existsSync(candidatePath)) {
+    assert.fail("active/shield-main.js should exist");
+  }
+  return readFileSync(candidatePath, "utf8");
+}
+
+function readStrategyPipelineEntries() {
+  const source = readCandidateSource();
+  const match = source.match(/function buildStrategyPipeline\(\) \{[\s\S]*?return \[([\s\S]*?)\];\n  \}/);
+  assert.ok(match, "buildStrategyPipeline should return a static module list");
+  const block = match[1];
+  const entries = [...block.matchAll(/strategyModule\("([^"]+)", "([^"]+)", ([A-Za-z0-9_]+)\)/g)]
+    .map(([, layer, id, run]) => ({ layer, id, run }));
+  return { source, block, entries };
+}
+
 function loadCandidate() {
   if (!existsSync(candidatePath)) {
     assert.fail("active/shield-main.js should exist");
@@ -155,7 +172,7 @@ test("shield-main handles future bullet danger before taking a clear shot", () =
     star: [11, 8],
   });
 
-  assert.notEqual(me.actions[0]?.type, "fire");
+  assert.equal(me.actions[0]?.type, "go");
   assert.ok(["shield", "turn", "go"].includes(me.actions[0]?.type));
 });
 
@@ -181,6 +198,7 @@ test("shield-main turns into a shielded counter lane instead of drifting away", 
   context._lastShieldAt = 35;
   const me = createMe([13, 6], "right", 20);
   me.status.shielded = true;
+  me.skill.activeRemainingFrames = 3;
   const enemy = createEnemy([13, 10], "up", "cloak");
   enemy.bullet = { position: [13, 8], direction: "up" };
 
@@ -191,6 +209,23 @@ test("shield-main turns into a shielded counter lane instead of drifting away", 
   });
 
   assert.equal(me.actions[0]?.type, "turn");
+});
+
+test("shield-main treats estimated post-shield close lanes as expiring before turning", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 44;
+  context._lastShieldedAt = 44;
+  const me = createMe([9, 3], "right", 20);
+  me.status.shielded = true;
+  const enemy = createEnemy([9, 4], "up", "poison");
+
+  context.onIdle(me, enemy, {
+    frames: 45,
+    map: createOpenMap(19, 15),
+    star: [13, 13],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
 });
 
 test("shield-main fires at a last-known cloaked enemy while shielded on the gunline", () => {
@@ -231,6 +266,24 @@ test("shield-main spends late shield frames on gunline pressure instead of fleei
   assert.deepEqual(me.actions[0], { type: "turn", side: "right" });
 });
 
+test("shield-main does not spend late shield frames on far gunline pressure under an incoming bullet", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 11;
+  const me = createMe([10, 2], "right", 20);
+  me.status.shielded = true;
+  me.skill.activeRemainingFrames = 2;
+  const enemy = createEnemy([10, 9], "up", "shield");
+  enemy.bullet = { position: [10, 4], direction: "up" };
+
+  context.onIdle(me, enemy, {
+    frames: 14,
+    map: createOpenMap(19, 15),
+    star: [9, 9],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "fire");
+});
+
 test("shield-main breaks a guarded nearby star instead of orbiting the approach", () => {
   const onIdle = loadCandidate();
   const me = createMe([9, 6], "down", 0);
@@ -243,6 +296,56 @@ test("shield-main breaks a guarded nearby star instead of orbiting the approach"
   });
 
   assert.equal(me.actions[0]?.type, "shield");
+});
+
+test("shield-main does not shield-chase a clearly lost star race", () => {
+  const context = loadCandidateContext();
+  const me = createMe([12, 6], "down", 0);
+  me.stars = 0;
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([13, 9], "left", "poison");
+  enemy.stars = 1;
+
+  context.onIdle(me, enemy, {
+    frames: 52,
+    map: createOpenMap(19, 15),
+    star: [12, 9],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "shield");
+  assert.equal(me.actions[0]?.type, "fire");
+});
+
+test("shield-main exits a post-shield overload lane instead of turning in place", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 13;
+  context._lastShieldedAt = 17;
+  const me = createMe([8, 8], "up", 20);
+  const enemy = createEnemy([9, 8], "left", "overload");
+  enemy.status.overloaded = true;
+
+  context.onIdle(me, enemy, {
+    frames: 17,
+    map: createOpenMap(19, 15),
+    star: [9, 10],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main leaves adjacent one-turn lanes instead of turning after control expires", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([4, 10], "down", 20);
+  const enemy = createEnemy([3, 10], "up", "freeze");
+
+  onIdle(me, enemy, {
+    frames: 78,
+    map: createOpenMap(13, 13),
+    star: [10, 10],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
 });
 
 test("shield-main holds a contested star line instead of turning away from the star", () => {
@@ -368,6 +471,117 @@ test("shield-main moves forward while stunned instead of turning in place under 
   });
 
   assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main does not go while reversed when the actual reverse cell is unsafe", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap(13, 11);
+  map[9][5] = "x";
+  const me = createMe([8, 5], "left", 20);
+  me.status.reversed = true;
+  const enemy = createEnemy([8, 2], "down", "stun");
+  enemy.bullet = { position: [8, 2], direction: "down" };
+
+  onIdle(me, enemy, {
+    frames: 70,
+    map,
+    star: [3, 8],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "go");
+});
+
+test("shield-main uses reversed go when it is the real one-frame bullet-lane exit", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap(13, 11);
+  map[7][5] = "x";
+  const me = createMe([8, 5], "left", 20);
+  me.status.reversed = true;
+  const enemy = createEnemy([8, 2], "down", "stun");
+  enemy.bullet = { position: [8, 2], direction: "down" };
+
+  onIdle(me, enemy, {
+    frames: 70,
+    map,
+    star: [3, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main shields an urgent bullet lane before spending a frame turning", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([8, 8], "up", 0);
+  const enemy = createEnemy([8, 2], "down", "freeze");
+  enemy.bullet = { position: [8, 5], direction: "down" };
+
+  onIdle(me, enemy, {
+    frames: 88,
+    map: createOpenMap(13, 11),
+    star: [3, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "shield");
+});
+
+test("shield-main executes the committed side exit before an active shield expires", () => {
+  const context = loadCandidateContext();
+  context._lastMoveIntent = "left";
+  context._lastIntentFrame = 12;
+  context._lastShieldAt = 10;
+  const me = createMe([9, 12], "left", 20);
+  me.status.shielded = true;
+  me.skill.activeRemainingFrames = 1;
+  const enemy = createEnemy([9, 3], "down", "teleport");
+  enemy.bullet = { position: [9, 8], direction: "down" };
+
+  context.onIdle(me, enemy, {
+    frames: 13,
+    map: createOpenMap(19, 15),
+    star: [17, 13],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+  assert.equal(context._lastMoveIntent, "left");
+});
+
+test("shield-main uses the expiring shield frame to leave an edge-row bullet lane", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 24;
+  context._lastShieldedAt = 26;
+  const me = createMe([2, 1], "down", 20);
+  me.status.shielded = true;
+  me.skill.activeRemainingFrames = 1;
+  const enemy = createEnemy([10, 1], "left", "freeze");
+  enemy.bullet = { position: [4, 1], direction: "left" };
+
+  context.onIdle(me, enemy, {
+    frames: 27,
+    map: createOpenMap(19, 15),
+    star: [1, 5],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main does not reverse back into an active bullet lane after stun", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 53;
+  context._lastShieldedAt = 56;
+  context._lastMoveIntent = "up";
+  context._lastIntentFrame = 58;
+  const me = createMe([14, 12], "up", 20);
+  me.status.reversed = true;
+  const enemy = createEnemy([10, 13], "up", "stun");
+  enemy.bullet = { position: [14, 13], direction: "right" };
+
+  context.onIdle(me, enemy, {
+    frames: 59,
+    map: createOpenMap(19, 15),
+    star: [13, 11],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "go");
 });
 
 test("shield-main does not waste a shot into an active enemy shield", () => {
@@ -577,6 +791,26 @@ test("shield-main does not step into a recent hidden grass shooter lane", () => 
   });
 
   assert.notEqual(threatenedMe.actions[0]?.type, "go");
+});
+
+test("shield-main shields a reachable cloaked same-row shooter lane", () => {
+  const context = loadCandidateContext();
+  context._lastEX = 14;
+  context._lastEY = 5;
+  context._lastEDir = "up";
+  context._eMoveDir = "up";
+  context._lastSeen = 16;
+  context._lastESkill = "cloak";
+  const me = createMe([12, 1], "right", 0);
+  const enemy = { tank: null, skill: { type: "cloak", remainingCooldownFrames: 20 }, status: {}, bullet: null };
+
+  context.onIdle(me, enemy, {
+    frames: 20,
+    map: createOpenMap(19, 15),
+    star: [5, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "shield");
 });
 
 test("shield-main stops chasing a grass firing lane after shield expires", () => {
@@ -818,4 +1052,228 @@ test("shield-main exits a post-shield same-lane threat instead of holding the le
 
   assert.notDeepEqual(me.actions[0], { type: "go" });
   assert.ok(["turn", "shield"].includes(me.actions[0]?.type));
+});
+
+test("shield-main steps out of a post-shield two-turn reply lane", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 26;
+  context._lastShieldedAt = 29;
+  const me = createMe([9, 4], "up", 20);
+  const enemy = createEnemy([10, 4], "right", "cloak");
+
+  context.onIdle(me, enemy, {
+    frames: 31,
+    map: createOpenMap(19, 15),
+    star: [2, 6],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main resets after a shield pickup instead of bombing into the next reply lane", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 119;
+  context._lastShieldedAt = 121;
+  const me = createMe([16, 8], "down", 20);
+  me.stars = 3;
+  me.status.shielded = true;
+  me.skill.activeRemainingFrames = 1;
+  const enemy = createEnemy([15, 9], "right", "freeze");
+  enemy.stars = 4;
+
+  context.onIdle(me, enemy, {
+    frames: 122,
+    map: createOpenMap(19, 15),
+    star: null,
+  });
+
+  assert.equal(me.actions[0]?.type, "turn");
+  assert.notEqual(me.actions[0]?.type, "bomb");
+});
+
+test("shield-main leaves a long aimed gunline before turning for value", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([7, 3], "up", 20);
+  const enemy = createEnemy([15, 3], "left", "freeze");
+
+  onIdle(me, enemy, {
+    frames: 39,
+    map: createOpenMap(19, 15),
+    star: [4, 12],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main uses shield to brawl a clean aimed gunline", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([5, 5], "up", 0);
+  const enemy = createEnemy([13, 5], "left", "freeze");
+
+  onIdle(me, enemy, {
+    frames: 41,
+    map: createOpenMap(19, 15),
+    star: [4, 12],
+  });
+
+  assert.equal(me.actions[0]?.type, "shield");
+});
+
+test("shield-main uses fresh shield frames to turn into a point-blank lane", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 40;
+  context._lastShieldedAt = 41;
+  const me = createMe([2, 5], "left", 20);
+  me.status.shielded = true;
+  me.skill.activeRemainingFrames = 3;
+  const enemy = createEnemy([3, 5], "left", "freeze");
+
+  context.onIdle(me, enemy, {
+    frames: 41,
+    map: createOpenMap(13, 11),
+    star: null,
+  });
+
+  assert.equal(me.actions[0]?.type, "turn");
+});
+
+test("shield-main fires on the last shield frame when already aimed", () => {
+  const context = loadCandidateContext();
+  context._lastShieldAt = 40;
+  context._lastShieldedAt = 43;
+  const me = createMe([2, 5], "right", 20);
+  me.status.shielded = true;
+  me.skill.activeRemainingFrames = 1;
+  const enemy = createEnemy([5, 5], "left", "freeze");
+
+  context.onIdle(me, enemy, {
+    frames: 43,
+    map: createOpenMap(13, 11),
+    star: null,
+  });
+
+  assert.equal(me.actions[0]?.type, "fire");
+});
+
+test("shield-main re-centers from a low-value edge patrol when no star is visible", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([10, 1], "right", 20);
+
+  onIdle(me, null, {
+    frames: 90,
+    map: createOpenMap(13, 11),
+    star: null,
+  });
+
+  assert.equal(me.actions[0]?.type, "turn");
+});
+
+test("shield-main exits a close vertical gunline instead of turning in place", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([16, 12], "right", 20);
+  const enemy = createEnemy([16, 10], "down", "poison");
+
+  onIdle(me, enemy, {
+    frames: 56,
+    map: createOpenMap(19, 15),
+    star: [2, 12],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main keeps shield star tempo arbitration split from candidate execution", () => {
+  const source = readFileSync(candidatePath, "utf8");
+  assert.match(source, /function buildShieldStarTempoFrame\(\)/);
+  assert.match(source, /function collectShieldStarTempoCandidates\(tempo\)/);
+  assert.match(source, /function runShieldStarRacePressure\(\)/);
+  assert.match(source, /var tempo = buildShieldStarTempoFrame\(\);/);
+  assert.match(source, /var candidates = collectShieldStarTempoCandidates\(tempo\);/);
+});
+
+test("shield-main keeps panic dodge and positioning scoring separated", () => {
+  const source = readFileSync(candidatePath, "utf8");
+  assert.match(source, /function tryPanicDodgeSetup\(\)/);
+  assert.match(source, /function scoreDodgeDirection\(d, panic\)/);
+  assert.match(source, /function chooseDodgeDirection\(panic\)/);
+  assert.match(source, /if \(panic && tryPanicDodgeSetup\(\)\) return true;/);
+  assert.doesNotMatch(source, /positionalValue\(n\) \* \(panic \?/);
+});
+
+test("shield-main keeps action priority in an explicit strategy pipeline", () => {
+  const { source, entries } = readStrategyPipelineEntries();
+  assert.match(source, /function buildStrategyPipeline\(\)/);
+  assert.match(source, /function runStrategyPipeline\(modules\)/);
+  assert.match(source, /runStrategyPipeline\(buildStrategyPipeline\(\)\);/);
+
+  const order = entries.map(({ layer, id, run }) => `${layer}:${id}:${run}`);
+
+  assert.deepEqual(order, [
+    "L0:hazard-evasion:tryHazardEvasion",
+    "L0:emergency-defense:tryEmergencyDefense",
+    "L1:post-shield-reset:tryPostShieldResetGuard",
+    "L1:gunline-frame-economy:tryGunlineFrameEconomyGuard",
+    "L2:immediate-shot:tryImmediateShot",
+    "L3:shielded-gunline-pressure:tryShieldedGunlinePressure",
+    "L3:shield-counter-pressure:tryShieldCounterPressure",
+    "L3:guarded-star-break:tryGuardedStarBreak",
+    "L3:grass-star-shield-pickup:tryGrassStarShieldPickup",
+    "L3:adjacent-star:tryAdjacentStar",
+    "L4:grass-camper-hold:tryGrassCamperHold",
+    "L4:lead-grass-control:tryLeadGrassControl",
+    "L4:star-interception:tryStarInterception",
+    "L5:early-lane-pressure:tryEarlyLanePressure",
+    "L5:star-lane-pressure:tryStarLanePressure",
+    "L6:direct-star-advance:tryDirectStarAdvance",
+    "L6:contested-star-line-hold:tryContestedStarLineHold",
+    "L6:late-value-pressure:tryLateValuePressure",
+    "L7:break-dirt-toward-star:tryBreakDirtTowardStar",
+    "L7:star-path:tryStarPath",
+    "L7:bomb-trap:tryBombTrap",
+    "L7:pressure-enemy:tryPressureEnemy",
+    "L8:unstick:tryUnstick",
+    "L8:low-value-reposition:tryLowValueReposition",
+    "L8:patrol:patrol",
+  ]);
+
+  const ranks = entries.map(({ layer }) => Number(layer.slice(1)));
+  for (let i = 1; i < ranks.length; i++) {
+    assert.ok(ranks[i] >= ranks[i - 1], "strategy pipeline layers should be monotonic");
+  }
+  assert.equal(new Set(entries.map(({ id }) => id)).size, entries.length, "strategy module ids should be unique");
+});
+
+test("shield-main validates strategy pipeline before running modules", () => {
+  const source = readCandidateSource();
+  assert.match(source, /function strategyLayerRank\(layer\)/);
+  assert.match(source, /function strategyModule\(layer, id, run\)/);
+  assert.match(source, /function strategyPipelineValid\(modules\)/);
+  assert.match(source, /if \(!strategyPipelineValid\(modules\)\) \{/);
+  assert.match(
+    source,
+    /if \(tryHazardEvasion\(\)\) return true;[\s\S]*if \(tryEmergencyDefense\(\)\) return true;[\s\S]*if \(tryDodge\(true\)\) return true;[\s\S]*return patrol\(\);/,
+  );
+});
+
+test("shield-main keeps draft strategy skeletons out of the live pipeline", () => {
+  const { source, block } = readStrategyPipelineEntries();
+  assert.match(source, /function tryShieldStarTempoArbiter\(\)/);
+  assert.match(source, /function tryStrategicGrassControl\(\)/);
+  assert.doesNotMatch(block, /tryShieldStarTempoArbiter|tryStrategicGrassControl/);
+  assert.doesNotMatch(block, /star-tempo-arbiter|strategic-grass-control/);
+});
+
+test("shield-main patrol does not fire dirt when it is not opening a star route", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap(13, 11);
+  map[3][2] = "m";
+  const me = createMe([2, 2], "right", 20);
+
+  onIdle(me, null, {
+    frames: 90,
+    map,
+    star: null,
+  });
+
+  assert.notEqual(me.actions[0]?.type, "fire");
 });

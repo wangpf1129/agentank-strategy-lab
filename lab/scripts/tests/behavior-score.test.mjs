@@ -21,7 +21,7 @@ function baseMatch(overrides = {}) {
       ...overrides.participants,
     },
     replayData: {
-      map: { id: "public-map-test", map: [["x"], ["."]] },
+      map: { id: "public-map-test", map: overrides.map ?? [["x"], ["."]] },
       replay: {
         meta: {
           players: [
@@ -67,6 +67,122 @@ test("behavior score preserves star tempo and pressure from wins", () => {
   assert.ok(ids(behavior.preserve).includes("preserve-clear-kill-pressure"));
   assert.ok(ids(behavior.braveBaseline).includes("brave-safe-star"));
   assert.ok(behavior.score > 50);
+});
+
+test("behavior score preserves initiative and shield conversion from wins", () => {
+  const analysis = analyzeMatch(baseMatch({
+    records: [
+      [{ action: "cast", by: 0, skillType: "shield", type: "skill" }],
+      [{ action: "collected", by: 0, type: "star" }],
+      [
+        {
+          action: "created",
+          direction: "right",
+          objectId: "bullet-a",
+          tank: { id: "our-tank", position: [2, 2], direction: "right" },
+          type: "bullet",
+        },
+      ],
+    ],
+  }));
+  const behavior = scoreBehavior(analysis, "challenger");
+
+  assert.ok(ids(behavior.preserve).includes("preserve-initiative-pressure"));
+  assert.ok(ids(behavior.preserve).includes("preserve-shield-conversion"));
+  assert.ok(ids(behavior.braveBaseline).includes("brave-initiative-pressure"));
+  assert.ok(ids(behavior.braveBaseline).includes("brave-shield-conversion"));
+});
+
+test("behavior score catches shield casts that do not convert into value", () => {
+  const analysis = analyzeMatch(baseMatch({
+    match: { resultReason: "stars", winnerRole: "defender", winnerTankName: "Enemy" },
+    meta: { result: { type: "game", reason: "stars", winner: 1 } },
+    records: [
+      [{ action: "cast", by: 0, skillType: "shield", type: "skill" }],
+      [{ action: "collected", by: 1, type: "star" }],
+    ],
+  }));
+  const behavior = scoreBehavior(analysis, "challenger");
+
+  assert.ok(ids(behavior.fix).includes("fix-shield-no-conversion"));
+  assert.ok(ids(behavior.braveBaseline).includes("risk-wasted-shield"));
+});
+
+test("behavior score catches losses where the opponent owns initiative", () => {
+  const analysis = analyzeMatch(baseMatch({
+    match: { resultReason: "stars", winnerRole: "defender", winnerTankName: "Enemy" },
+    meta: { result: { type: "game", reason: "stars", winner: 1 } },
+    records: [
+      ...Array.from({ length: 3 }, (_, index) => [
+        {
+          action: "created",
+          direction: "left",
+          objectId: `bullet-enemy-${index}`,
+          tank: { id: "enemy-tank", position: [8, 2], direction: "left" },
+          type: "bullet",
+        },
+      ]),
+      [{ action: "collected", by: 1, type: "star" }],
+    ],
+  }));
+  const behavior = scoreBehavior(analysis, "challenger");
+
+  assert.ok(ids(behavior.fix).includes("fix-lost-initiative"));
+});
+
+test("shield-specific behavior signals stay isolated from overload tanks", () => {
+  const analysis = analyzeMatch(baseMatch({
+    participants: {
+      challenger: { tankId: 9120, tankName: "Dark Edge" },
+    },
+    records: [
+      [{ action: "cast", by: 0, skillType: "overload", type: "skill" }],
+      [{ action: "collected", by: 0, type: "star" }],
+      [
+        {
+          action: "created",
+          direction: "right",
+          objectId: "bullet-a",
+          tank: { id: "our-tank", position: [2, 2], direction: "right" },
+          type: "bullet",
+        },
+      ],
+    ],
+  }));
+  const behavior = scoreBehavior(analysis, "challenger");
+
+  assert.equal(ids(behavior.preserve).includes("preserve-initiative-pressure"), false);
+  assert.equal(ids(behavior.preserve).includes("preserve-shield-conversion"), false);
+  assert.equal(ids(behavior.braveBaseline).includes("brave-shield-conversion"), false);
+});
+
+test("behavior score separates strategic grass value from dead grass", () => {
+  const map = [
+    [".", "."],
+    [".", "o"],
+    [".", "."],
+  ];
+  const valueAnalysis = analyzeMatch(baseMatch({
+    map,
+    records: [
+      [{ action: "go", objectId: "our-tank", position: [1, 1], type: "tank" }],
+      [{ action: "collected", by: 0, type: "star" }],
+    ],
+  }));
+  const deadAnalysis = analyzeMatch(baseMatch({
+    map,
+    match: { resultReason: "stars", winnerRole: "defender", winnerTankName: "Enemy" },
+    meta: { result: { type: "game", reason: "stars", winner: 1 } },
+    records: [
+      [{ action: "go", objectId: "our-tank", position: [1, 1], type: "tank" }],
+      [{ action: "go", objectId: "our-tank", position: [1, 1], type: "tank" }],
+      [{ action: "go", objectId: "our-tank", position: [1, 1], type: "tank" }],
+      [{ action: "collected", by: 1, type: "star" }],
+    ],
+  }));
+
+  assert.ok(ids(scoreBehavior(valueAnalysis, "challenger").preserve).includes("preserve-grass-leverage"));
+  assert.ok(ids(scoreBehavior(deadAnalysis, "challenger").fix).includes("fix-dead-grass"));
 });
 
 test("behavior score promotes bullet deaths into hard constraints", () => {

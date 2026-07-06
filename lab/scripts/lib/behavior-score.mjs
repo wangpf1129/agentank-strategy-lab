@@ -28,6 +28,11 @@ function blankStats() {
     tankCrashes: 0,
     lastCrashFrame: null,
     latePositions: [],
+    shotFrames: [],
+    hitFrames: [],
+    starFrames: [],
+    skillCastFrames: [],
+    grassPositions: [],
   };
 }
 
@@ -55,6 +60,32 @@ function positionKey(position) {
   return Array.isArray(position) && position.length >= 2 ? `${position[0]},${position[1]}` : null;
 }
 
+function mapGrid(match) {
+  return match.raw?.replayData?.map?.map
+    ?? match.raw?.map?.map
+    ?? match.raw?.replayData?.replay?.map
+    ?? null;
+}
+
+function tileAt(match, position) {
+  if (!Array.isArray(position) || position.length < 2) return null;
+  const map = mapGrid(match);
+  if (!Array.isArray(map)) return null;
+  const [x, y] = position;
+
+  const column = map[x];
+  if (Array.isArray(column)) return column[y] ?? null;
+
+  const row = map[y];
+  if (typeof row === "string") return row[x] ?? null;
+
+  return null;
+}
+
+function isGrassPosition(match, position) {
+  return tileAt(match, position) === "o";
+}
+
 function collectStats(analysis) {
   const match = analysis.match;
   const rolesByObjectId = objectRoleMap(match);
@@ -73,6 +104,9 @@ function collectStats(analysis) {
           if (frameIndex >= lateStart && key) {
             out[role].latePositions.push({ frame: frameIndex, key });
           }
+          if (isGrassPosition(match, event.position)) {
+            out[role].grassPositions.push({ frame: frameIndex, key });
+          }
         } else if (event.action === "turn") {
           out[role].turns += 1;
         } else if (event.action === "crashed") {
@@ -84,19 +118,31 @@ function collectStats(analysis) {
       if (event?.type === "bullet") {
         const role = sourceRole(event, rolesByObjectId);
         if (!role || !out[role]) continue;
-        if (event.action === "created") out[role].shotsFired += 1;
-        if (event.action === "shot_hit" || event.action === "hit") out[role].shotsHit += 1;
+        if (event.action === "created") {
+          out[role].shotsFired += 1;
+          out[role].shotFrames.push(frameIndex);
+        }
+        if (event.action === "shot_hit" || event.action === "hit") {
+          out[role].shotsHit += 1;
+          out[role].hitFrames.push(frameIndex);
+        }
         if (event.action === "crashed") out[role].bulletCrashes += 1;
       }
 
       if (event?.type === "star" && event.action === "collected") {
         const role = roleForIndex(event.by);
-        if (out[role]) out[role].stars += 1;
+        if (out[role]) {
+          out[role].stars += 1;
+          out[role].starFrames.push(frameIndex);
+        }
       }
 
       if (event?.type === "skill" && event.action === "cast") {
         const role = roleForIndex(event.by);
-        if (out[role]) out[role].skillCasts += 1;
+        if (out[role]) {
+          out[role].skillCasts += 1;
+          out[role].skillCastFrames.push({ frame: frameIndex, skillType: event.skillType ?? null });
+        }
       }
     }
   });
@@ -133,6 +179,65 @@ function lateLoopSignal(stats) {
   }
 
   return null;
+}
+
+function firstFrameBetween(frames, start, end) {
+  return frames.find((frame) => frame >= start && frame <= end) ?? null;
+}
+
+function shieldConversionEvidence(analysis, stats, role) {
+  for (const cast of stats.skillCastFrames) {
+    if (cast.skillType && cast.skillType !== "shield") continue;
+    const frame = cast.frame;
+
+    const starFrame = firstFrameBetween(stats.starFrames, frame, frame + 10);
+    if (starFrame !== null) return `shield at frame ${frame}, star at frame ${starFrame}`;
+
+    const shotFrame = firstFrameBetween(stats.shotFrames, frame, frame + 5);
+    if (shotFrame !== null) return `shield at frame ${frame}, shot at frame ${shotFrame}`;
+
+    const hitFrame = firstFrameBetween(stats.hitFrames, frame, frame + 12);
+    if (hitFrame !== null) return `shield at frame ${frame}, hit at frame ${hitFrame}`;
+
+    if (
+      analysis.outcome.killerRole === role
+      && analysis.outcome.decidingFrame >= frame
+      && analysis.outcome.decidingFrame <= frame + 14
+    ) {
+      return `shield at frame ${frame}, kill at frame ${analysis.outcome.decidingFrame}`;
+    }
+  }
+
+  return null;
+}
+
+function initiativePressureEvidence(mine, enemy) {
+  if (mine.shotsHit > 0) return `${mine.shotsHit} registered hits`;
+  if (mine.shotsFired > enemy.shotsFired) return `${mine.shotsFired}-${enemy.shotsFired} shot count`;
+  if (mine.stars > enemy.stars && mine.shotsFired > 0) {
+    return `${mine.stars}-${enemy.stars} stars with ${mine.shotsFired} pressure shots`;
+  }
+  return null;
+}
+
+function lostInitiativeEvidence(mine, enemy) {
+  if (mine.shotsFired === 0 && enemy.shotsFired > 0) {
+    return `enemy fired ${enemy.shotsFired} shots while we fired 0`;
+  }
+  if (enemy.shotsFired >= mine.shotsFired + 2) {
+    return `enemy shot count ${enemy.shotsFired}-${mine.shotsFired}`;
+  }
+  return null;
+}
+
+function isShieldPerspective(analysis, role, stats) {
+  const player = analysis.players?.[role]
+    ?? analysis.match.players.find((candidate) => candidate.role === role)
+    ?? {};
+  const name = String(player.name ?? player.tankName ?? "").toLowerCase();
+  return player.tankId === 4839
+    || name.includes("shield")
+    || stats.skillCastFrames.some((cast) => cast.skillType === "shield");
 }
 
 function crashedTogether(analysis, perspectiveRole) {
@@ -201,6 +306,7 @@ export function scoreBehavior(analysis, perspectiveRole = "challenger") {
   const starDelta = mine.stars - enemy.stars;
   const lateLoop = lateLoopSignal(mine);
   const breakableCover = breakableCoverBeforeDecision(analysis);
+  const shieldPerspective = isShieldPerspective(analysis, perspectiveRole, mine);
   const behavior = {
     perspectiveRole,
     won,
@@ -214,6 +320,9 @@ export function scoreBehavior(analysis, perspectiveRole = "challenger") {
       starTempo: createModule("star-tempo", "Star tempo"),
       firePressure: createModule("fire-pressure", "Fire pressure"),
       shieldTempo: createModule("shield-tempo", "Skill tempo"),
+      initiativeEconomy: createModule("initiative-economy", "Initiative and frame economy"),
+      shieldConversion: createModule("shield-conversion", "Shield conversion"),
+      grassLeverage: createModule("grass-leverage", "Strategic grass leverage"),
       movementCleanliness: createModule("movement-cleanliness", "Movement cleanliness"),
       targetPool: createModule("target-pool", "Live target-pool discipline"),
     },
@@ -254,6 +363,22 @@ export function scoreBehavior(analysis, perspectiveRole = "challenger") {
     });
   }
 
+  const initiativeEvidence = initiativePressureEvidence(mine, enemy);
+  if (shieldPerspective && won && initiativeEvidence) {
+    applyPreserve(behavior, "initiativeEconomy", {
+      id: "preserve-initiative-pressure",
+      title: "Preserve frames that make the opponent respond first.",
+      evidence: initiativeEvidence,
+      weight: 6,
+    });
+    applyBraveBaseline(behavior, {
+      id: "brave-initiative-pressure",
+      status: "preserve",
+      title: "Do not remove confirmed initiative pressure while fixing defense.",
+      evidence: initiativeEvidence,
+    });
+  }
+
   if (won && mine.skillCasts > 0) {
     applyPreserve(behavior, "shieldTempo", {
       id: "preserve-skill-tempo",
@@ -263,12 +388,53 @@ export function scoreBehavior(analysis, perspectiveRole = "challenger") {
     });
   }
 
+  const shieldEvidence = shieldConversionEvidence(analysis, mine, perspectiveRole);
+  if (shieldPerspective && shieldEvidence) {
+    applyPreserve(behavior, "shieldConversion", {
+      id: "preserve-shield-conversion",
+      title: "Preserve shield casts that convert into star, shot, or kill value.",
+      evidence: shieldEvidence,
+      weight: 7,
+    });
+    applyBraveBaseline(behavior, {
+      id: "brave-shield-conversion",
+      status: "preserve",
+      title: "A shielded frame should be allowed to take value, not only retreat.",
+      evidence: shieldEvidence,
+    });
+  }
+
+  if (shieldPerspective && won && mine.grassPositions.length > 0 && (starDelta > 0 || mine.shotsFired > 0 || analysis.outcome.killerRole === perspectiveRole)) {
+    applyPreserve(behavior, "grassLeverage", {
+      id: "preserve-grass-leverage",
+      title: "Preserve grass use only when it supports star tempo or pressure.",
+      evidence: `${mine.grassPositions.length} grass moves with value created`,
+      weight: 4,
+    });
+    applyBraveBaseline(behavior, {
+      id: "brave-strategic-grass",
+      status: "preserve",
+      title: "Strategic grass can be a valid midgame station when it controls value.",
+      evidence: `${mine.grassPositions.length} grass moves in a winning value replay`,
+    });
+  }
+
   if (starDelta < 0) {
     applyFix(behavior, "starTempo", {
       id: "fix-star-tempo-loss",
       title: "Improve star tempo without relaxing fatal-risk checks.",
       evidence: `star score ${mine.stars}-${enemy.stars}`,
       weight: 8,
+    });
+  }
+
+  const lostInitiative = lost ? lostInitiativeEvidence(mine, enemy) : null;
+  if (shieldPerspective && lostInitiative) {
+    applyFix(behavior, "initiativeEconomy", {
+      id: "fix-lost-initiative",
+      title: "Recover initiative instead of letting the opponent dictate every frame.",
+      evidence: lostInitiative,
+      weight: 7,
     });
   }
 
@@ -284,6 +450,30 @@ export function scoreBehavior(analysis, perspectiveRole = "challenger") {
       status: "risk",
       title: "Potential passivity drift: no fire pressure.",
       evidence: "loss contained no outgoing bullets",
+    });
+  }
+
+  if (shieldPerspective && lost && mine.skillCasts > 0 && !shieldEvidence) {
+    applyFix(behavior, "shieldConversion", {
+      id: "fix-shield-no-conversion",
+      title: "A spent shield must convert into star value, counterfire, or lane exit.",
+      evidence: `${mine.skillCasts} shield casts without star, shot, hit, or kill conversion`,
+      weight: 8,
+    });
+    applyBraveBaseline(behavior, {
+      id: "risk-wasted-shield",
+      status: "risk",
+      title: "Shield may be used as panic without a value plan.",
+      evidence: `${mine.skillCasts} skill casts in a loss without conversion`,
+    });
+  }
+
+  if (shieldPerspective && lost && mine.grassPositions.length >= 3 && mine.shotsFired === 0 && mine.stars === 0) {
+    applyFix(behavior, "grassLeverage", {
+      id: "fix-dead-grass",
+      title: "Do not turn grass into a dead camp with no star or pressure value.",
+      evidence: `${mine.grassPositions.length} grass moves with 0 stars and 0 shots`,
+      weight: 7,
     });
   }
 
