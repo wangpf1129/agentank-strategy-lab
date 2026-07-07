@@ -22,6 +22,21 @@ function loadCandidate() {
   return loadContext().onIdle;
 }
 
+function loadSource() {
+  if (!existsSync(candidatePath)) {
+    assert.fail("active/dark-edge.js should exist");
+  }
+  return readFileSync(candidatePath, "utf8");
+}
+
+function sourceSection(source, start, end) {
+  const startAt = source.indexOf(start);
+  assert.notEqual(startAt, -1, `missing source marker: ${start}`);
+  const endAt = source.indexOf(end, startAt);
+  assert.notEqual(endAt, -1, `missing source marker: ${end}`);
+  return source.slice(startAt, endAt);
+}
+
 function createOpenMap(width = 19, height = 15) {
   return Array.from({ length: width }, (_, x) => (
     Array.from({ length: height }, (_, y) => (x === 0 || y === 0 || x === width - 1 || y === height - 1 ? "x" : "."))
@@ -166,6 +181,23 @@ test("dark-edge active bullet danger and hard current danger vetoes value action
 
   assert.notEqual(me.actions[0]?.type, "overload");
   assert.ok(["turn", "go"].includes(me.actions[0]?.type));
+});
+
+test("dark-edge treats active enemy overload frames as hard offset danger", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([8, 10], "up", 0);
+  const enemy = createEnemy([7, 4], "down", "overload", 18);
+  enemy.skill.activeRemainingFrames = 3;
+
+  onIdle(me, enemy, {
+    frames: 13,
+    map: createOpenMap(),
+    star: [8, 8],
+  });
+
+  assert.notDeepEqual(me.actions[0], { type: "go" });
+  assert.notEqual(me.actions[0]?.type, "overload");
+  assert.deepEqual(me.actions[0], { type: "turn", side: "right" });
 });
 
 test("dark-edge does not run down a recently cloaked straight firing lane", () => {
@@ -401,6 +433,36 @@ test("dark-edge lost star race avoids blind chase with contested offset pressure
   assert.equal(me.actions[0]?.type, "overload");
 });
 
+test("dark-edge overload mirror lost star race opens pressure before blind interception", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([7, 12], "up", 0);
+  const enemy = createEnemy([7, 7], "up", "overload", 12);
+  enemy.stars = 1;
+
+  onIdle(me, enemy, {
+    frames: 50,
+    map: createOpenMap(),
+    star: [8, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "overload");
+});
+
+test("dark-edge still takes a safe adjacent star before overload mirror pressure", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([5, 5], "right", 0);
+  const enemy = createEnemy([8, 8], "up", "overload", 12);
+  enemy.stars = 1;
+
+  onIdle(me, enemy, {
+    frames: 18,
+    map: createOpenMap(),
+    star: [5, 6],
+  });
+
+  assert.deepEqual(me.actions[0], { type: "turn", side: "right" });
+});
+
 test("dark-edge does not face a hard-wall-blocked star line while intercepting", () => {
   const onIdle = loadCandidate();
   const map = createOpenMap();
@@ -528,7 +590,7 @@ test("dark-edge keeps star tempo arbitration split from candidate execution", ()
   const source = readFileSync(candidatePath, "utf8");
   assert.match(source, /function buildStarTempoFrame\(\)/);
   assert.match(source, /function collectStarTempoCandidates\(tempo\)/);
-  assert.match(source, /function runStarRacePressure\(\)/);
+  assert.match(source, /function runStarRacePressure\(tempo\)/);
   assert.match(source, /var tempo = buildStarTempoFrame\(\);/);
   assert.match(source, /var candidates = collectStarTempoCandidates\(tempo\);/);
 });
@@ -684,6 +746,28 @@ test("dark-edge safe adjacent star before grass control", () => {
   });
 
   assert.deepEqual(me.actions[0], { type: "go" });
+});
+
+test("dark-edge bounded grass candidate scans before pathing", () => {
+  const source = loadSource();
+  const strategicGrass = sourceSection(
+    source,
+    "function tryStrategicGrassControl()",
+    "function tryLeadStarLineControl()",
+  );
+  const leadGrass = sourceSection(
+    source,
+    "function tryLeadGrassControl()",
+    "function tryStarLanePressure()",
+  );
+
+  assert.match(source, /var GRASS_SCAN_RADIUS = 4;/);
+  assert.match(source, /var GRASS_CANDIDATE_LIMIT = 8;/);
+  assert.match(source, /function collectBoundedGrassCandidates/);
+  assert.match(strategicGrass, /collectBoundedGrassCandidates/);
+  assert.match(leadGrass, /collectBoundedGrassCandidates/);
+  assert.doesNotMatch(strategicGrass, /for \(var x = 1; x < w - 1; x\+\+\)/);
+  assert.doesNotMatch(leadGrass, /for \(var x = 1; x < w - 1; x\+\+\)/);
 });
 
 test("dark-edge config tracks the tank as overload", async () => {

@@ -465,9 +465,20 @@ function onIdle(me, enemy, game) {
     return losFrom(sx, sy, want, x, y);
   }
 
-  function enemyOverloadReady() {
+  function enemyOverloadActive() {
     if (!enemy || !enemy.skill || enemy.skill.type !== "overload") return false;
     if (enemy.status && enemy.status.overloaded) return true;
+    if (typeof enemy.skill.activeRemainingFrames === "number" &&
+      enemy.skill.activeRemainingFrames > 0) return true;
+    if (enemy.effects && enemy.effects.self && enemy.effects.self.type === "overload" &&
+      typeof enemy.effects.self.remainingFrames === "number" &&
+      enemy.effects.self.remainingFrames > 0) return true;
+    return false;
+  }
+
+  function enemyOverloadReady() {
+    if (!enemy || !enemy.skill || enemy.skill.type !== "overload") return false;
+    if (enemyOverloadActive()) return true;
     var cd = enemy.skill.remainingCooldownFrames;
     return typeof cd !== "number" || cd <= 2;
   }
@@ -924,8 +935,65 @@ function onIdle(me, enemy, game) {
     };
   }
 
-  function runStarRacePressure() {
-    return tryStarLanePressure() || tryStarInterception() || tryEarlyLanePressure();
+  function overloadMirrorStarPressureNeeded(tempo) {
+    if (!tempo || !game.star || !enemyTank || enemyShielded() || !fireReady()) return false;
+    if (!enemy.skill || enemy.skill.type !== "overload") return false;
+    if (!tempo.raceLost) return false;
+    if (dist(px, py, game.star[0], game.star[1]) <= 1 && tempo.safeStar) return false;
+    if (starsOf(me) > starsOf(enemy) && tempo.enemyRoute.eta > tempo.route.eta) return false;
+    return !currentHardDanger();
+  }
+
+  function tryOverloadMirrorStarPressure(tempo) {
+    if (!overloadMirrorStarPressureNeeded(tempo)) return false;
+    var target = [ex, ey];
+    var want = overloadDirTo(myPos, target);
+    if (overloadAttackLaneSafe(target) && want) {
+      if (!overloadPressureActive() && canCastOverloadSafely()) return castOverload("mirror-star-lane");
+      if (overloadPressureActive() && dir === want) return fireAtIfSafe(target);
+      if (overloadPressureActive() && !projectileDangerAt(px, py) && !ownBombDangerAt(px, py, 4)) {
+        say("mirror-pressure", ["星线别硬追,先压枪", "对面超载别白追,先架偏移线", "慢半拍就压线逼退"], 5);
+        me.turn(turnSide(dir, want));
+        return true;
+      }
+    }
+
+    var baseStarDist = roughDistToStar(myPos);
+    var best = null, bestScore = -99999;
+    for (var i = 0; i < 4; i++) {
+      var d = dirs[i];
+      var n = add(myPos, delta(d));
+      if (!safeCell(n[0], n[1], true)) continue;
+      if (same(n, game.star) && !tempo.safeStar) continue;
+      if (enemyOverloadReady() && overloadDangerAt(n[0], n[1])) continue;
+
+      var overloadOk = overloadAttackLaneSafeFrom(n, target);
+      var directOk = canShootFrom(n, target);
+      if (!overloadOk && !directOk) continue;
+
+      var score = 80 - turnCost(dir, d) * 12 - dist(n[0], n[1], ex, ey) * 2;
+      if (overloadOk) score += 54;
+      if (directOk) score += 34;
+      if (n[0] === game.star[0] || n[1] === game.star[1]) score += 16;
+      var starDelta = roughDistToStar(n) - baseStarDist;
+      if (starDelta > 0) score -= starDelta * 10;
+      else score += Math.min(12, -starDelta * 4);
+      if (d === dir) score += 6;
+
+      if (score > bestScore) {
+        bestScore = score;
+        best = { dir: d };
+      }
+    }
+
+    if (!best || bestScore < 70) return false;
+    say("mirror-pressure", ["星线别硬追,先压枪", "对面超载别白追,先架偏移线", "慢半拍就压线逼退"], 5);
+    return moveDir(best.dir);
+  }
+
+  function runStarRacePressure(tempo) {
+    return tryOverloadMirrorStarPressure(tempo) ||
+      tryStarLanePressure() || tryStarInterception() || tryEarlyLanePressure();
   }
 
   function runLeadTempoControl() {
@@ -965,7 +1033,9 @@ function onIdle(me, enemy, game) {
       candidates.push({
         priority: tempo.raceLost ? 560 : 470,
         value: 90 - Math.min(40, tempo.route.eta * 6),
-        run: runStarRacePressure,
+        run: function () {
+          return runStarRacePressure(tempo);
+        },
       });
     }
 
@@ -1641,6 +1711,55 @@ function onIdle(me, enemy, game) {
     return canShootFrom([x, y], [ex, ey]) || overloadLineFrom([x, y], [ex, ey]);
   }
 
+  var GRASS_SCAN_RADIUS = 4;
+  var GRASS_CANDIDATE_LIMIT = 8;
+
+  function cheapGrassCandidateScore(x, y, baseStarGap) {
+    if (tile(x, y) !== "o") return -99999;
+    if (enemyTank && x === ex && y === ey) return -99999;
+
+    var reachGap = dist(px, py, x, y);
+    if (reachGap > GRASS_SCAN_RADIUS) return -99999;
+
+    var controlsStar = game.star && grassControlsPoint(x, y, game.star);
+    var directPressure = enemyTank && !enemyShielded() && canShootFrom([x, y], [ex, ey]);
+    var overloadPressure = enemyTank && !enemyShielded() && overloadLineFrom([x, y], [ex, ey]);
+    if (!controlsStar && !directPressure && !overloadPressure) return -99999;
+
+    var score = 100 - reachGap * 16;
+    if (controlsStar) score += 58;
+    if (overloadPressure) score += 34;
+    if (directPressure) score += 26;
+    if (tile(px, py) === "o" && x === px && y === py) score += 12;
+    if (game.star) {
+      var starGap = dist(x, y, game.star[0], game.star[1]);
+      if (starGap <= baseStarGap + 1) score += 20;
+      else score -= (starGap - baseStarGap) * 10;
+    }
+    return score;
+  }
+
+  function collectBoundedGrassCandidates(baseStarGap, limit) {
+    var candidates = [];
+    var maxCandidates = limit || GRASS_CANDIDATE_LIMIT;
+    var minX = Math.max(1, px - GRASS_SCAN_RADIUS);
+    var maxX = Math.min(w - 2, px + GRASS_SCAN_RADIUS);
+    var minY = Math.max(1, py - GRASS_SCAN_RADIUS);
+    var maxY = Math.min(h - 2, py + GRASS_SCAN_RADIUS);
+
+    for (var x = minX; x <= maxX; x++) {
+      for (var y = minY; y <= maxY; y++) {
+        var score = cheapGrassCandidateScore(x, y, baseStarGap);
+        if (score <= -99990) continue;
+        candidates.push({ x: x, y: y, score: score });
+      }
+    }
+
+    candidates.sort(function(a, b) { return b.score - a.score; });
+    if (candidates.length > maxCandidates) candidates.length = maxCandidates;
+    return candidates;
+  }
+
   function strategicGrassValueAt(x, y, info, baseStarGap) {
     if (tile(x, y) !== "o" || !safeCell(x, y, true)) return -99999;
     if (enemyTank && x === ex && y === ey) return -99999;
@@ -1679,18 +1798,18 @@ function onIdle(me, enemy, game) {
 
     var baseStarGap = game.star ? roughDistToStar(myPos) : 99;
     var best = null, bestScore = -99999;
-    for (var x = 1; x < w - 1; x++) {
-      for (var y = 1; y < h - 1; y++) {
-        if (tile(x, y) !== "o") continue;
-        var info = same([x, y], myPos) ? null :
-          (pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false));
-        if (info && info.dist > 4) continue;
-        if (!info && (x !== px || y !== py)) continue;
-        var score = strategicGrassValueAt(x, y, info, baseStarGap);
-        if (score > bestScore) {
-          bestScore = score;
-          best = { x: x, y: y, info: info };
-        }
+    var candidates = collectBoundedGrassCandidates(baseStarGap, GRASS_CANDIDATE_LIMIT);
+    for (var i = 0; i < candidates.length; i++) {
+      var candidate = candidates[i];
+      var x = candidate.x, y = candidate.y;
+      var info = same([x, y], myPos) ? null :
+        (pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false));
+      if (info && info.dist > 4) continue;
+      if (!info && (x !== px || y !== py)) continue;
+      var score = strategicGrassValueAt(x, y, info, baseStarGap);
+      if (score > bestScore) {
+        bestScore = score;
+        best = { x: x, y: y, info: info };
       }
     }
 
@@ -1779,27 +1898,27 @@ function onIdle(me, enemy, game) {
 
     var best = null, bestScore = -99999;
     var baseStarGap = game.star ? roughDistToStar(myPos) : 99;
-    for (var x = 1; x < w - 1; x++) {
-      for (var y = 1; y < h - 1; y++) {
-        if (tile(x, y) !== "o") continue;
-        if (!safeCell(x, y, true)) continue;
-        if (enemyTank && (x === ex || y === ey) && dist(x, y, ex, ey) <= 7) continue;
-        var info = pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false);
-        if (!info || info.dist > 4) continue;
-        var score = 150 - info.dist * 28;
-        if (game.star) {
-          var starGap = dist(x, y, game.star[0], game.star[1]);
-          if (starGap <= baseStarGap + 2) score += 18;
-          else score -= (starGap - baseStarGap) * 8;
-          if (grassControlsPoint(x, y, game.star)) score += 36;
-        }
-        if (!grassPressureAt(x, y)) score -= 70;
-        if (enemyTank && canShootFrom([x, y], [ex, ey])) score += 24;
-        if (enemyTank && overloadLineFrom([x, y], [ex, ey])) score += 22;
-        if (score > bestScore) {
-          bestScore = score;
-          best = { first: info.first, dist: info.dist };
-        }
+    var candidates = collectBoundedGrassCandidates(baseStarGap, GRASS_CANDIDATE_LIMIT);
+    for (var i = 0; i < candidates.length; i++) {
+      var candidate = candidates[i];
+      var x = candidate.x, y = candidate.y;
+      if (!safeCell(x, y, true)) continue;
+      if (enemyTank && (x === ex || y === ey) && dist(x, y, ex, ey) <= 7) continue;
+      var info = pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false);
+      if (!info || info.dist > 4) continue;
+      var score = 150 - info.dist * 28;
+      if (game.star) {
+        var starGap = dist(x, y, game.star[0], game.star[1]);
+        if (starGap <= baseStarGap + 2) score += 18;
+        else score -= (starGap - baseStarGap) * 8;
+        if (grassControlsPoint(x, y, game.star)) score += 36;
+      }
+      if (!grassPressureAt(x, y)) score -= 70;
+      if (enemyTank && canShootFrom([x, y], [ex, ey])) score += 24;
+      if (enemyTank && overloadLineFrom([x, y], [ex, ey])) score += 22;
+      if (score > bestScore) {
+        bestScore = score;
+        best = { first: info.first, dist: info.dist };
       }
     }
 
