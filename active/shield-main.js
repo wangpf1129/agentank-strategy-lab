@@ -1110,6 +1110,87 @@ function onIdle(me, enemy, game) {
     return false;
   }
 
+  function boostStarControlScore(target, info, route, enemyRoute) {
+    var targetStarDist = dist(target[0], target[1], game.star[0], game.star[1]);
+    var controlsStar = targetStarDist === 0 || canShootFrom(target, game.star);
+    if (!controlsStar) return -99999;
+
+    var score = 150 - info.dist * 22 - targetStarDist * 16;
+    score += Math.round(positionalValue(target) * 0.6);
+    if (targetStarDist === 1) score += 52;
+    else if (targetStarDist === 2) score += 24;
+    if (tile(target[0], target[1]) === "o") score += 18;
+    if (enemyTank && canShootFrom(target, [ex, ey])) score += 22;
+    if (enemyRoute && enemyRoute.eta <= route.eta + 2) score += 34;
+    if (scoreMargin() <= 0) score += 24;
+    if (frame > 96 && scoreMargin() <= 1) score += 16;
+    if (edgeDepth(target[0], target[1]) <= 1) score -= 54;
+    else if (edgeDepth(target[0], target[1]) <= 2) score -= 18;
+    if (targetStarDist > 2 && scoreMargin() < 0) score -= 22;
+    return score;
+  }
+
+  function tryBoostStarControlPosition() {
+    if (!game.star || !(me.skill && me.skill.type === "boost")) return false;
+    if (currentHardDanger()) return false;
+    if (dist(px, py, game.star[0], game.star[1]) <= 1 && starPickupSafe(game.star)) return false;
+
+    var safeRoute = etaToStarFrom(myPos, dir, true);
+    var route = safeRoute.info ? safeRoute : etaToStarFrom(myPos, dir, false);
+    if (!route.info) return false;
+    var enemyRoute = enemyTank ? etaToStarFrom([ex, ey], eDir, false) : { eta: 999, info: null };
+    var boostedEta = boostEtaForRoute(route, dir);
+
+    if (!starRaceClearlyLost(game.star) && safeRoute.info && safeRoute.eta <= 4) return false;
+    if (boostReady() && boostStarWorthwhile(route, safeRoute, enemyRoute)) return false;
+    if (enemyTank && enemyRoute.eta + 2 >= boostedEta && route.eta <= 5 && scoreMargin() >= 0) return false;
+
+    var candidates = [];
+    candidates.push(game.star);
+    for (var i = 0; i < 4; i++) {
+      var step = delta(dirs[i]);
+      for (var r = 1; r <= 3; r++) {
+        candidates.push([game.star[0] + step[0] * r, game.star[1] + step[1] * r]);
+      }
+    }
+
+    var best = null, bestScore = -99999, seen = {};
+    var maxDist = boosted() || frame - _lastBoostAt <= 8 ? 7 : 5;
+    for (var c = 0; c < candidates.length; c++) {
+      var target = candidates[c];
+      var key = target[0] + "," + target[1];
+      if (seen[key] || !open(target[0], target[1])) continue;
+      seen[key] = true;
+      if (enemyTank && target[0] === ex && target[1] === ey) continue;
+      if (!safeCell(target[0], target[1], true)) continue;
+      if (same(target, game.star) && (starRaceClearlyLost(game.star) || starUnderPressure(game.star))) continue;
+      var info = pathInfo(myPos, target, true);
+      if (!info || info.dist > maxDist) continue;
+      var score = boostStarControlScore(target, info, route, enemyRoute);
+      if (score > bestScore) {
+        bestScore = score;
+        best = { target: target, info: info };
+      }
+    }
+
+    if (!best || bestScore < 58) return false;
+    if (best.info.dist === 0) {
+      var faceStar = dirTo(myPos, game.star);
+      if (dir !== faceStar && !projectileDangerAt(px, py) && !ownBombDangerAt(px, py, 3)) {
+        say("star-control", ["先占星线", "卡住星点", "不追,控星"], 5);
+        me.turn(turnSide(dir, faceStar));
+        return true;
+      }
+      say("star-control", ["守住星位", "等对面交路线", "星点我控着"], 7);
+      return true;
+    }
+
+    var n = add(myPos, delta(best.info.first));
+    if (!safeCell(n[0], n[1], true)) return false;
+    say("star-control", ["先占星线", "卡住星点", "不追,控星"], 5);
+    return moveDir(best.info.first);
+  }
+
   function collectShieldStarTempoCandidates(tempo) {
     var candidates = [];
 
@@ -2234,6 +2315,7 @@ function onIdle(me, enemy, game) {
       postShieldReset: strategyModule("L1", "post-shield-reset", tryPostShieldResetGuard),
       gunlineFrameEconomy: strategyModule("L1", "gunline-frame-economy", tryGunlineFrameEconomyGuard),
       boostStarTempo: strategyModule("L2", "boost-star-tempo", tryBoostStarTempo),
+      boostStarControl: strategyModule("L2", "boost-star-control", tryBoostStarControlPosition),
       starTempoArbiter: strategyModule("L2", "star-tempo-arbiter", tryShieldStarTempoArbiter),
       shieldedGunlinePressure: strategyModule("L3", "shielded-gunline-pressure", tryShieldedGunlinePressure),
       shieldCounterPressure: strategyModule("L3", "shield-counter-pressure", tryShieldCounterPressure),
@@ -2252,6 +2334,7 @@ function onIdle(me, enemy, game) {
       shield.postShieldReset,
       shield.gunlineFrameEconomy,
       shield.boostStarTempo,
+      shield.boostStarControl,
       shield.starTempoArbiter,
       base.immediateShot,
       shield.shieldedGunlinePressure,

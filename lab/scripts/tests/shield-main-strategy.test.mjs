@@ -239,6 +239,46 @@ test("shield-main does not cast boost while a current bullet lane is urgent", ()
   assert.notEqual(me.actions[0]?.type, "boost");
 });
 
+test("shield-main occupies a star-control lane when boost cannot win the direct race", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([3, 7], "down", 20);
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([12, 10], "left", "boost");
+
+  onIdle(me, enemy, {
+    frames: 50,
+    map: createOpenMap(15, 13),
+    star: [3, 3],
+  });
+
+  assert.deepEqual(me.actions[0], { type: "turn", side: "right" });
+  assert.ok(
+    me.speeches.some((text) => ["先占星线", "卡住星点", "不追,控星"].includes(text)),
+    "boost star-control should explain its lane occupation intent",
+  );
+});
+
+test("shield-main does not let boost star-control override urgent bullet danger", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([3, 7], "down", 20);
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([12, 10], "left", "boost");
+  enemy.bullet = { position: [3, 9], direction: "up" };
+
+  onIdle(me, enemy, {
+    frames: 50,
+    map: createOpenMap(15, 13),
+    star: [3, 3],
+  });
+
+  assert.ok(
+    !me.speeches.some((text) => ["先占星线", "卡住星点", "不追,控星"].includes(text)),
+    "urgent bullet danger should stay above boost star-control",
+  );
+});
+
 test("shield-main takes a safe adjacent star before ordinary clear fire", () => {
   const onIdle = loadCandidate();
   const me = createMe([5, 5], "down", 20);
@@ -1380,6 +1420,7 @@ test("shield-main keeps action priority in an explicit strategy pipeline", () =>
     "L1:post-shield-reset:tryPostShieldResetGuard",
     "L1:gunline-frame-economy:tryGunlineFrameEconomyGuard",
     "L2:boost-star-tempo:tryBoostStarTempo",
+    "L2:boost-star-control:tryBoostStarControlPosition",
     "L2:star-tempo-arbiter:tryShieldStarTempoArbiter",
     "L3:immediate-shot:tryImmediateShot",
     "L3:shielded-gunline-pressure:tryShieldedGunlinePressure",
@@ -1421,6 +1462,7 @@ test("shield-main separates base strategy modules from shield skill modules", ()
   assert.match(baseBlock, /starPath: strategyModule\("L7", "star-path", tryStarPath\)/);
   assert.match(shieldBlock, /postShieldReset: strategyModule\("L1", "post-shield-reset", tryPostShieldResetGuard\)/);
   assert.match(shieldBlock, /boostStarTempo: strategyModule\("L2", "boost-star-tempo", tryBoostStarTempo\)/);
+  assert.match(shieldBlock, /boostStarControl: strategyModule\("L2", "boost-star-control", tryBoostStarControlPosition\)/);
   assert.match(shieldBlock, /starTempoArbiter: strategyModule\("L2", "star-tempo-arbiter", tryShieldStarTempoArbiter\)/);
   assert.match(shieldBlock, /shieldedGunlinePressure: strategyModule\("L3", "shielded-gunline-pressure", tryShieldedGunlinePressure\)/);
   assert.doesNotMatch(baseBlock, /tryShieldStarTempoArbiter/);
@@ -1444,11 +1486,13 @@ test("shield-main activates star tempo arbitration while keeping strategic grass
   const { source, entries } = readStrategyPipelineEntries();
   assert.match(source, /function tryShieldStarTempoArbiter\(\)/);
   assert.match(source, /function tryBoostStarTempo\(\)/);
+  assert.match(source, /function tryBoostStarControlPosition\(\)/);
   assert.match(source, /function tryStrategicGrassControl\(\)/);
   assert.match(source, /function collectBoundedGrassCandidates\(baseStarGap, limit\)/);
   assert.match(source, /var GRASS_SCAN_RADIUS = 4;/);
   assert.match(source, /var candidates = collectBoundedGrassCandidates\(baseStarGap, GRASS_CANDIDATE_LIMIT\);/);
   assert.ok(entries.some((entry) => entry.id === "boost-star-tempo" && entry.run === "tryBoostStarTempo"));
+  assert.ok(entries.some((entry) => entry.id === "boost-star-control" && entry.run === "tryBoostStarControlPosition"));
   assert.ok(entries.some((entry) => entry.id === "star-tempo-arbiter" && entry.run === "tryShieldStarTempoArbiter"));
   assert.ok(!entries.some((entry) => entry.id === "strategic-grass-control" || entry.run === "tryStrategicGrassControl"));
   assert.match(source, /return tryGrassCamperHold\(\) \|\| tryLeadGrassControl\(\) \|\| tryStrategicGrassControl\(\);/);
