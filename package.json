@@ -3,13 +3,17 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check active/dark-edge.js && node --check active/teleport-main.js && node --check active/shield-main.js && node --check lab/scripts/lib/behavior-score.mjs && node --check lab/scripts/lib/match-analysis.mjs && node --check lab/scripts/lib/training-space.mjs && node --check scripts/publish-code.mjs && node scripts/space-check.mjs",
+    "check": "node --check active/dark-edge.js && node --check active/teleport-main.js && node --check active/shield-main.js && node --check lab/scripts/lib/behavior-score.mjs && node --check lab/scripts/lib/match-analysis.mjs && node --check lab/scripts/lib/training-space.mjs && node --check scripts/publish-code.mjs && node --check scripts/challenge-dry-run.mjs && node --check scripts/challenge-execute.mjs && node --check scripts/tanks/dark-edge-challenge-dry-run.mjs && node --check scripts/tanks/dark-edge-challenge-execute.mjs && node scripts/space-check.mjs",
     "test:lab": "find lab/scripts/tests -maxdepth 1 -name '*.test.mjs' -exec node --test {} \\;",
     "review:match": "node lab/scripts/analyze-match.mjs",
     "review:batch": "node lab/scripts/analyze-directory.mjs",
     "publish:shield": "node scripts/publish-code.mjs --tank shield-main --code active/shield-main.js --notes \"shield-main candidate: boost star-tempo conversion for tank 4839\"",
     "simulate": "node scripts/simulate.mjs",
     "challenge:dry": "node scripts/challenge-dry-run.mjs",
-    "challenge:run": "node scripts/challenge-execute.mjs"
+    "challenge:run": "node scripts/challenge-execute.mjs",
+    "challenge:dry:shield": "node scripts/challenge-dry-run.mjs",
+    "challenge:run:shield": "node scripts/challenge-execute.mjs",
+    "challenge:dry:dark": "node scripts/tanks/dark-edge-challenge-dry-run.mjs",
+    "challenge:run:dark": "node scripts/tanks/dark-edge-challenge-execute.mjs"
   }
 }

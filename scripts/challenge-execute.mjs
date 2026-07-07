@@ -3,16 +3,16 @@ import { spawnSync } from "node:child_process";
 const args = [
   "lab/scripts/grind-adaptive-real.mjs",
   "--tank",
-  "dark-edge",
+  "shield-main",
   "--climb-policy",
   "--limit",
   "3",
   "--use-run-history",
   "--random-when-empty",
   "--output-dir",
-  "/tmp/agentank-runs/matches",
+  "/tmp/agentank-runs/shield-main/matches",
   "--run-dir",
-  "/tmp/agentank-runs/challenge-runs",
+  "/tmp/agentank-runs/shield-main/challenge-runs",
   "--execute",
 ];
 

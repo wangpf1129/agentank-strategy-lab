@@ -1,0 +1,171 @@
+{
+  "version": 1,
+  "activeTank": "dark-edge",
+  "candidateSource": "active/dark-edge.js",
+  "testFile": "lab/scripts/tests/dark-edge-strategy.test.mjs",
+  "referenceRepo": "https://github.com/tylearymf/agentank-evolution-lab",
+  "method": {
+    "name": "real-review bounded evolution",
+    "summary": "Convert real wins and losses into bounded scoring rules, hard constraints, and protected brave behaviors before publishing.",
+    "principles": [
+      "Learn from winning matches and losing matches.",
+      "Fatal risks are hard constraints, not small penalties.",
+      "Do not let defensive fixes remove star tempo, lane control, or pressure fire.",
+      "Keep one rollback baseline and one coherent hypothesis per cycle.",
+      "Use live target pools and real challenge batches for ladder evaluation; simulations are only safety checks.",
+      "Do not patch from a single fresh loss unless it is a reproducible hard constraint; cluster real replay tags before changing code."
+    ]
+  },
+  "boundedAxes": [
+    {
+      "id": "hazard-first",
+      "purpose": "Handle active bullets, aimed shots, overload lanes, hidden shooters, and own bombs before value actions.",
+      "requiredTests": [
+        "active bullet danger",
+        "reply-capable direct lane",
+        "long enemy bullet lane",
+        "aimed firing lane",
+        "active enemy overload frames"
+      ]
+    },
+    {
+      "id": "star-tempo",
+      "purpose": "Preserve safe star pickups and direct star routes when they are not hard-danger moves.",
+      "requiredTests": [
+        "safe adjacent-star priority",
+        "low-value far star"
+      ]
+    },
+    {
+      "id": "frame-arbitration",
+      "purpose": "Choose between star pickup, overload pressure, interception, and lead control by frame value instead of fixed try-order side effects.",
+      "requiredTests": [
+        "safe near-star beats overload setup",
+        "lost star race avoids blind chase",
+        "overload mirror lost star race opens pressure",
+        "hard current danger vetoes value actions"
+      ]
+    },
+    {
+      "id": "gunline-frame-economy",
+      "purpose": "Resolve same-row or same-column gunlines by frame cost: take a one-frame exit when already facing off-line, or fire only when already aimed.",
+      "requiredTests": [
+        "off-line gunline exit",
+        "same-line aimed duel"
+      ]
+    },
+    {
+      "id": "overload-pressure",
+      "purpose": "Use overload for covered positive-offset pressure, not shield-style direct duels or impossible offset shots.",
+      "requiredTests": [
+        "covered overload offset attacks",
+        "ordinary fire blocked by hard-wall offset star lane",
+        "wrong-side offset lane",
+        "vertical overload",
+        "active overload"
+      ]
+    },
+    {
+      "id": "movement-cleanliness",
+      "purpose": "Avoid empty line holds, grass idling, and post-overload gunline stalls.",
+      "requiredTests": [
+        "leaves the gunline after overload",
+        "does not idle in grass",
+        "hard-wall-blocked star line",
+        "destructible star-line blocker"
+      ]
+    },
+    {
+      "id": "grass-control-priority",
+      "purpose": "Promote only grass tiles that control star lines, enemy pressure lanes, or overload offset lanes ahead of ordinary pathing.",
+      "requiredTests": [
+        "strategic grass control",
+        "wall-blocked nearby star line",
+        "safe adjacent star before grass control",
+        "does not idle in grass",
+        "bounded grass candidate scans"
+      ]
+    }
+  ],
+  "protectedBehaviors": [
+    "Keep safe immediate star pickup when no hard danger exists.",
+    "Do not cast overload in a reply-capable direct lane; take a one-frame off-line exit when available, otherwise fire only when already aimed.",
+    "Do not step into a long enemy bullet lane while chasing star line.",
+    "Treat active enemy overload offset lanes as hard danger even when the enemy cooldown is not ready.",
+    "Do not spend overload setup frames when a safe near star can be collected first.",
+    "When a star race is clearly lost, stop blind chasing and convert to star-line pressure or interception.",
+    "In overload mirror games, when the star race is clearly lost, open overload or offset pressure before blind star interception.",
+    "Preserve covered positive-offset overload attacks.",
+    "Ordinary fire must not consume a hard-wall-blocked offset star lane; active overload may still use the covered offset lane.",
+    "Do not cast overload for the wrong-side offset lane.",
+    "Use vertical overload only on the real positive offset lane.",
+    "Active overload should not fire at wrong-side offset targets.",
+    "Leave the gunline after overload instead of firing or holding.",
+    "Do not fire into an active enemy shield.",
+    "Do not chase a low-value far star while already leading on its line.",
+    "Do not idle in grass unless it controls a star line or pressure lane.",
+    "Do not treat wall-blocked nearby star lines as strategic grass control.",
+    "Strategic grass control may outrank ordinary star pathing only when the grass controls a star line or pressure lane.",
+    "Bound grass control path scans to nearby pressure candidates so runtime budget does not consume long games."
+  ],
+  "cycleGate": {
+    "oneHypothesisRequired": true,
+    "maxHypothesisCharacters": 260,
+    "publishRequires": [
+      "pre-publish code quality and strategy-conflict review",
+      "npm run check",
+      "npm run test:lab",
+      "challenge dry-run before any real challenge",
+      "explicit user confirmation before real challenge execution"
+    ],
+    "stopAfter": [
+      "first non-crash real validation loss",
+      "meaningful drawdown from run peak",
+      "runtime loss",
+      "new failure not covered by current bounded axis"
+    ]
+  },
+  "reviewGate": {
+    "scoreModule": "lab/scripts/lib/behavior-score.mjs",
+    "requiredPackageScripts": [
+      "review:match",
+      "review:batch"
+    ],
+    "requiredReportSections": [
+      "## Behavior Score",
+      "## Preserve",
+      "## Fix",
+      "## Hard Constraints",
+      "## Brave Baseline"
+    ],
+    "requiredBehaviorSignals": [
+      "preserve-star-tempo-win",
+      "preserve-clear-kill-pressure",
+      "fix-bullet-death",
+      "fix-breakable-cover-lane",
+      "fix-late-loop",
+      "fix-unshielded-mutual-trade",
+      "hard-current-bullet-eta",
+      "hard-breakable-cover-shot",
+      "hard-close-aimed-duel",
+      "preserve-live-target-pool"
+    ]
+  },
+  "driftRules": [
+    "Do not add match-id-only patches.",
+    "Do not convert one fresh loss directly into code unless the reviewed hard constraint is reproducible or part of a clustered failure axis.",
+    "Do not add a new tactical axis without a required regression test.",
+    "Do not optimize only from losses; preserve at least one winning behavior.",
+    "Do not publish a candidate whose protected behavior tests fail.",
+    "Do not keep raw replay dumps as persistent repo context.",
+    "Visual speech may add flavor, but it must not change action selection.",
+    "Every reviewed replay must emit preserve, fix, hard-constraint, and brave-baseline buckets.",
+    "Use real challenge batches as the decision signal; simulation results are safety checks only."
+  ],
+  "requiredDocPhrases": [
+    "勇敢基准",
+    "硬约束",
+    "目标池",
+    "回滚"
+  ]
+}
