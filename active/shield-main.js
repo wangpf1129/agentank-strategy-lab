@@ -1071,11 +1071,27 @@ function onIdle(me, enemy, game) {
     return eta;
   }
 
+  function cleanBoostStarRoute(route) {
+    if (!game.star || !route || !route.info || !route.info.first) return false;
+    var rawDist = route.info.dist;
+    if (rawDist <= 3) return false;
+    if (px === game.star[0] || py === game.star[1]) return true;
+    if (rawDist < 6) return false;
+    var firstStep = add(myPos, delta(route.info.first));
+    if (!safeCell(firstStep[0], firstStep[1], true)) return false;
+    return true;
+  }
+
   function boostStarWorthwhile(route, safeRoute, enemyRoute) {
     if (!game.star || !route.info || !route.info.first) return false;
     if (shieldStarAdvanceBlocked()) return false;
+    if (!cleanBoostStarRoute(route)) return false;
     if (route.eta <= 1) return false;
-    if (route.eta > 8) return false;
+    var aligned = px === game.star[0] || py === game.star[1];
+    var mobileEnemy = enemy && enemy.skill &&
+      (enemy.skill.type === "boost" || enemy.skill.type === "teleport");
+    var maxRouteEta = aligned ? 8 : (mobileEnemy || scoreMargin() <= 0 ? 13 : 10);
+    if (route.eta > maxRouteEta) return false;
     if (lowValueFarStar() && scoreMargin() >= 2 && route.eta > 4) return false;
     if (safeRoute.info && safeRoute.eta <= 2 && !starUnderPressure(game.star)) return false;
     var boostedEta = boostEtaForRoute(route, dir);
@@ -1083,6 +1099,21 @@ function onIdle(me, enemy, game) {
     if (scoreMargin() <= 0) return boostedEta <= enemyEta + 3 || route.eta <= 6;
     if (enemyTank && enemyEta <= route.eta + 2) return true;
     return route.eta >= 4 && route.eta <= 7 && !starUnderPressure(game.star);
+  }
+
+  function tryBoostStarLandingGuard(route) {
+    if (!game.star || !boosted()) return false;
+    if (pathDist(myPos, game.star) !== 1) return false;
+    var want = dirTo(myPos, game.star);
+    if (actualGoDir() === want) {
+      say("boost-land", ["别冲过星,贴一帧", "加速收住,下一步吃", "落星前一格"], 4);
+      return true;
+    }
+    if (!projectileDangerAt(px, py) && !ownBombDangerAt(px, py, 3)) {
+      say("boost-land", ["先把车头对准星", "减少转向,下一步吃", "星前落位"], 4);
+      return commandTurnToward(want);
+    }
+    return false;
   }
 
   function tryBoostStarTempo() {
@@ -1101,6 +1132,7 @@ function onIdle(me, enemy, game) {
     }
     if (boosted() || frame - _lastBoostAt <= 8) {
       if (shieldStarAdvanceBlocked()) return false;
+      if (tryBoostStarLandingGuard(route)) return true;
       var n = add(myPos, delta(route.info.first));
       if (safeCell(n[0], n[1], true)) {
         say("star", ["加速中,直取星", "提速吃星", "别绕,拿经济"], 4);
@@ -1133,7 +1165,7 @@ function onIdle(me, enemy, game) {
   function tryBoostStarControlPosition() {
     if (!game.star || !(me.skill && me.skill.type === "boost")) return false;
     if (currentHardDanger()) return false;
-    if (dist(px, py, game.star[0], game.star[1]) <= 1 && starPickupSafe(game.star)) return false;
+    if (dist(px, py, game.star[0], game.star[1]) <= 1) return false;
 
     var safeRoute = etaToStarFrom(myPos, dir, true);
     var route = safeRoute.info ? safeRoute : etaToStarFrom(myPos, dir, false);

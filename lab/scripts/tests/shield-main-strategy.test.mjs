@@ -209,6 +209,20 @@ test("shield-main casts boost before a valuable medium star race", () => {
   assert.equal(me.actions[0]?.type, "boost");
 });
 
+test("shield-main casts boost for an opening diagonal star route against a mobile opponent", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([2, 2], "up", 0);
+  const enemy = createEnemy([16, 12], "down", "boost");
+
+  onIdle(me, enemy, {
+    frames: 1,
+    map: createOpenMap(19, 15),
+    star: [9, 7],
+  });
+
+  assert.equal(me.actions[0]?.type, "boost");
+});
+
 test("shield-main advances along the star route while boost is active", () => {
   const onIdle = loadCandidate();
   const me = createBoostMe([2, 2], "right", 20);
@@ -239,6 +253,56 @@ test("shield-main does not cast boost while a current bullet lane is urgent", ()
   assert.notEqual(me.actions[0]?.type, "boost");
 });
 
+test("shield-main does not boost a short odd-distance star route that would skip the star", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([5, 6], "up", 0);
+  const enemy = createEnemy([11, 9], "left", "boost");
+
+  onIdle(me, enemy, {
+    frames: 20,
+    map: createOpenMap(15, 13),
+    star: [5, 3],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+  assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main does not spend boost on a short diagonal star route", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([5, 5], "right", 0);
+  const enemy = createEnemy([3, 10], "right", "teleport");
+
+  onIdle(me, enemy, {
+    frames: 44,
+    map: createOpenMap(13, 11),
+    star: [7, 7],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main holds while boosted when moving would pass through a one-step star", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([5, 4], "up", 20);
+  me.status.boosted = true;
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([11, 9], "left", "boost");
+
+  onIdle(me, enemy, {
+    frames: 18,
+    map: createOpenMap(15, 13),
+    star: [5, 3],
+  });
+
+  assert.deepEqual(me.actions, []);
+  assert.ok(
+    me.speeches.some((text) => ["别冲过星,贴一帧", "加速收住,下一步吃", "落星前一格"].includes(text)),
+    "boost landing guard should hold instead of skipping the star",
+  );
+});
+
 test("shield-main occupies a star-control lane when boost cannot win the direct race", () => {
   const onIdle = loadCandidate();
   const me = createBoostMe([3, 7], "down", 20);
@@ -256,6 +320,26 @@ test("shield-main occupies a star-control lane when boost cannot win the direct 
   assert.ok(
     me.speeches.some((text) => ["先占星线", "卡住星点", "不追,控星"].includes(text)),
     "boost star-control should explain its lane occupation intent",
+  );
+});
+
+test("shield-main does not keep holding boost star-control next to a collectible star", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([7, 8], "right", 20);
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([15, 12], "left", "boost");
+
+  onIdle(me, enemy, {
+    frames: 18,
+    map: createOpenMap(19, 15),
+    star: [8, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+  assert.ok(
+    !me.speeches.some((text) => ["守住星位", "等对面交路线", "星点我控着"].includes(text)),
+    "adjacent star pickup should outrank boost star-control holding",
   );
 });
 
