@@ -4,6 +4,7 @@ var _homeEX = -1, _homeEY = -1;
 var _lastESkill = null;
 var _myStars = 0, _enemyStars = 0, _lastStarX = -1, _lastStarY = -1;
 var _lastBombAt = -99, _lastShieldAt = -99;
+var _lastBoostAt = -99;
 var _lastShieldedAt = -99;
 var _ownBombX = -1, _ownBombY = -1, _ownBombExplodeAt = -99;
 var _grassCampX = -1, _grassCampY = -1, _grassCampAt = -99;
@@ -26,6 +27,8 @@ function onIdle(me, enemy, game) {
   var hiddenShooterCache = {};
   var projectileCache = {};
   var frameBullets = null;
+  var GRASS_SCAN_RADIUS = 4;
+  var GRASS_CANDIDATE_LIMIT = 8;
 
   if (_ownBombX >= 0 && frame > _ownBombExplodeAt) {
     _ownBombX = -1;
@@ -250,6 +253,27 @@ function onIdle(me, enemy, game) {
   function shieldReady() {
     return !!(me.skill && me.skill.type === "shield" &&
       me.skill.remainingCooldownFrames === 0 && typeof me.shield === "function");
+  }
+
+  function boostReady() {
+    return !!(me.skill && me.skill.type === "boost" &&
+      me.skill.remainingCooldownFrames === 0 && typeof me.boost === "function");
+  }
+
+  function boosted() {
+    if (me.status && me.status.boosted) return true;
+    if (me.skill && me.skill.type === "boost" &&
+      (me.skill.activeType === "boost" || me.skill.activeRemainingFrames > 0)) return true;
+    return !!(me.effects && me.effects.self && me.effects.self.type === "boost" &&
+      me.effects.self.remainingFrames > 0);
+  }
+
+  function castBoost() {
+    if (!boostReady()) return false;
+    _lastBoostAt = frame;
+    say("boost", ["加速抢星", "这一颗提速拿", "星路开加速"], 4);
+    me.boost();
+    return true;
   }
 
   function shielded() {
@@ -553,13 +577,13 @@ function onIdle(me, enemy, game) {
     return danger;
   }
 
-  function ownBombBlastAt(x, y) {
-    if (_ownBombX < 0) return false;
-    if (x !== _ownBombX && y !== _ownBombY) return false;
-    if (dist(x, y, _ownBombX, _ownBombY) > 2) return false;
-    var sx = x === _ownBombX ? 0 : (x > _ownBombX ? 1 : -1);
-    var sy = y === _ownBombY ? 0 : (y > _ownBombY ? 1 : -1);
-    var cx = _ownBombX + sx, cy = _ownBombY + sy;
+  function bombBlastFrom(bx, by, x, y) {
+    if (bx < 0) return false;
+    if (x !== bx && y !== by) return false;
+    if (dist(x, y, bx, by) > 2) return false;
+    var sx = x === bx ? 0 : (x > bx ? 1 : -1);
+    var sy = y === by ? 0 : (y > by ? 1 : -1);
+    var cx = bx + sx, cy = by + sy;
     while (cx !== x || cy !== y) {
       if (tile(cx, cy) === "x") return false;
       cx += sx;
@@ -568,9 +592,46 @@ function onIdle(me, enemy, game) {
     return true;
   }
 
+  function ownBombBlastAt(x, y) {
+    return bombBlastFrom(_ownBombX, _ownBombY, x, y);
+  }
+
   function ownBombDangerAt(x, y, horizon) {
     if (_ownBombX < 0 || !ownBombBlastAt(x, y)) return false;
     return frame + (horizon || 0) >= _ownBombExplodeAt - 1;
+  }
+
+  function bombEscapeInfoFrom(start, bx, by, maxSteps, avoidProjectiles) {
+    if (!bombBlastFrom(bx, by, start[0], start[1])) return { ok: true, dist: 0 };
+    var limit = Math.max(1, maxSteps || 1);
+    var queue = [{ pos: start, dist: 0 }];
+    var seen = {};
+    seen[start[0] + "," + start[1]] = true;
+    for (var head = 0; head < queue.length && queue.length < 60; head++) {
+      var item = queue[head];
+      if (item.dist >= limit) continue;
+      for (var i = 0; i < 4; i++) {
+        var d = dirs[i];
+        var n = add(item.pos, delta(d));
+        var key = n[0] + "," + n[1];
+        if (seen[key] || hardBlockedAt(n[0], n[1])) continue;
+        if (avoidProjectiles && !shielded() && projectileDangerAt(n[0], n[1])) continue;
+        if (!bombBlastFrom(bx, by, n[0], n[1])) return { ok: true, dist: item.dist + 1 };
+        seen[key] = true;
+        queue.push({ pos: n, dist: item.dist + 1 });
+      }
+    }
+    return { ok: false, dist: 99 };
+  }
+
+  function cleanOwnBombEscapeFrom(pos, avoidProjectiles) {
+    if (_ownBombX < 0) return { ok: true, dist: 0 };
+    var framesLeft = _ownBombExplodeAt - frame;
+    return bombEscapeInfoFrom(pos, _ownBombX, _ownBombY, Math.max(1, Math.min(6, framesLeft - 1)), avoidProjectiles);
+  }
+
+  function postBombEscapeAvailable(bx, by) {
+    return bombEscapeInfoFrom(myPos, bx, by, 6, true).ok;
   }
 
   function safeCell(x, y, strict) {
@@ -956,6 +1017,99 @@ function onIdle(me, enemy, game) {
     return tryGrassCamperHold() || tryLeadGrassControl() || tryStrategicGrassControl();
   }
 
+  function contestedStarLineActive() {
+    if (!game.star || !enemyTank) return false;
+    if (!(px === game.star[0] || py === game.star[1])) return false;
+    if (dist(px, py, game.star[0], game.star[1]) > 4) return false;
+    return dist(ex, ey, game.star[0], game.star[1]) <= 3;
+  }
+
+  function shieldStarAdvanceBlocked() {
+    if (!game.star) return true;
+    if (contestedStarLineActive()) return true;
+    if (dirtDirectionTo(game.star)) return true;
+    if (lowValueFarStar() && scoreMargin() >= 2) return true;
+    return false;
+  }
+
+  function nearStarRouteValue(tempo) {
+    if (!tempo || !tempo.safeRoute || !tempo.safeRoute.info || !tempo.safeRoute.info.first) return 0;
+    if (shieldStarAdvanceBlocked()) return 0;
+    if (tempo.raceLost) return 0;
+    if (tempo.safeRoute.eta > 7 && tempo.margin >= 0 && !tempo.enemyRush) return 0;
+    return Math.max(1, 90 - tempo.safeRoute.eta * 8 + Math.max(0, -tempo.margin) * 18);
+  }
+
+  function tryShieldSafeStarAdvance() {
+    if (!game.star || currentHardDanger()) return false;
+    if (shieldStarAdvanceBlocked()) return false;
+    var safeRoute = etaToStarFrom(myPos, dir, true);
+    if (!safeRoute.info || !safeRoute.info.first) return false;
+    if (starRaceClearlyLost(game.star)) return false;
+    var n = add(myPos, delta(safeRoute.info.first));
+    if (!safeCell(n[0], n[1], true)) return false;
+    say("star", ["先吃星,别空枪", "星星节奏先拿", "这帧先收经济"], 5);
+    return moveDir(safeRoute.info.first);
+  }
+
+  function tryShieldStarRouteCommit() {
+    if (!game.star || shielded() || !shieldReady() || currentHardDanger()) return false;
+    if (shieldStarAdvanceBlocked()) return false;
+    if (!shieldStarWorthwhile(game.star)) return false;
+    var route = etaToStarFrom(myPos, dir, false);
+    if (!route.info || !route.info.first || route.eta > 4) return false;
+    var n = add(myPos, delta(route.info.first));
+    if (!riskyButShieldable(n[0], n[1]) && !starUnderPressure(game.star)) return false;
+    say("shield-star", ["开盾抢关键星", "这一颗顶盾拿", "盾换星,值"], 4);
+    return castShield();
+  }
+
+  function boostEtaForRoute(route, facing) {
+    if (!route || !route.info) return 999;
+    var eta = Math.ceil(route.info.dist / 2);
+    if (route.info.first && facing && facing !== route.info.first) eta += turnCost(facing, route.info.first);
+    return eta;
+  }
+
+  function boostStarWorthwhile(route, safeRoute, enemyRoute) {
+    if (!game.star || !route.info || !route.info.first) return false;
+    if (shieldStarAdvanceBlocked()) return false;
+    if (route.eta <= 1) return false;
+    if (route.eta > 8) return false;
+    if (lowValueFarStar() && scoreMargin() >= 2 && route.eta > 4) return false;
+    if (safeRoute.info && safeRoute.eta <= 2 && !starUnderPressure(game.star)) return false;
+    var boostedEta = boostEtaForRoute(route, dir);
+    var enemyEta = enemyRoute ? enemyRoute.eta : 999;
+    if (scoreMargin() <= 0) return boostedEta <= enemyEta + 3 || route.eta <= 6;
+    if (enemyTank && enemyEta <= route.eta + 2) return true;
+    return route.eta >= 4 && route.eta <= 7 && !starUnderPressure(game.star);
+  }
+
+  function tryBoostStarTempo() {
+    if (!game.star || !(me.skill && me.skill.type === "boost")) return false;
+    if (currentHardDanger()) return false;
+    var safeRoute = etaToStarFrom(myPos, dir, true);
+    var route = safeRoute.info ? safeRoute : etaToStarFrom(myPos, dir, false);
+    if (!route.info || !route.info.first) return false;
+    var enemyRoute = enemyTank ? etaToStarFrom([ex, ey], eDir, false) : { eta: 999, info: null };
+    var boostedEta = boostEtaForRoute(route, dir);
+    if (enemyTank && enemyRoute.eta + 1 < boostedEta && !boosted()) {
+      return runShieldStarRacePressure();
+    }
+    if (boostReady() && boostStarWorthwhile(route, safeRoute, enemyRoute)) {
+      return castBoost();
+    }
+    if (boosted() || frame - _lastBoostAt <= 8) {
+      if (shieldStarAdvanceBlocked()) return false;
+      var n = add(myPos, delta(route.info.first));
+      if (safeCell(n[0], n[1], true)) {
+        say("star", ["加速中,直取星", "提速吃星", "别绕,拿经济"], 4);
+        return moveDir(route.info.first);
+      }
+    }
+    return false;
+  }
+
   function collectShieldStarTempoCandidates(tempo) {
     var candidates = [];
 
@@ -964,6 +1118,24 @@ function onIdle(me, enemy, game) {
         priority: 700,
         value: 120 - tempo.route.eta,
         run: tryAdjacentStar,
+      });
+    }
+
+    var nearRouteValue = nearStarRouteValue(tempo);
+    if (nearRouteValue > 0) {
+      candidates.push({
+        priority: tempo.safeRoute.eta <= 4 || tempo.margin <= 0 ? 640 : 510,
+        value: nearRouteValue,
+        run: tryShieldSafeStarAdvance,
+      });
+    }
+
+    if (!tempo.raceLost && shieldReady() && !shielded() && shieldStarWorthwhile(game.star) &&
+      tempo.route.info && tempo.route.info.first && tempo.route.eta <= 4) {
+      candidates.push({
+        priority: tempo.enemyRush || tempo.margin <= 0 ? 620 : 545,
+        value: 88 - tempo.route.eta * 7 + Math.max(0, -tempo.margin) * 16,
+        run: tryShieldStarRouteCommit,
       });
     }
 
@@ -988,6 +1160,14 @@ function onIdle(me, enemy, game) {
 
   function tryShieldStarTempoArbiter() {
     if (!game.star || currentHardDanger()) return false;
+    if (!shielded() && shieldReady()) {
+      if (scoreMargin() < 0 && enemyAimsAtUs(14) && enemyTank && canShootFrom(myPos, [ex, ey])) return false;
+      if (enemyTank && shieldStarWorthwhile(game.star) &&
+        pathDist(myPos, game.star) <= 4 &&
+        dist(ex, ey, game.star[0], game.star[1]) <= 1) {
+        return false;
+      }
+    }
     var tempo = buildShieldStarTempoFrame();
     var candidates = collectShieldStarTempoCandidates(tempo);
     return tryFrameCandidates(candidates);
@@ -1140,6 +1320,83 @@ function onIdle(me, enemy, game) {
     return false;
   }
 
+  function skillTrapOpponentActive() {
+    var type = enemy && enemy.skill && enemy.skill.type;
+    if (!type) type = _lastESkill;
+    return type === "cloak" || type === "stun";
+  }
+
+  function skillTrapThreatDirectionAt(x, y) {
+    if (!enemyTank || enemyDebuffed()) return null;
+    var threat = enemyLaneThreatDirectionAt(x, y, 2, 6);
+    if (threat) return threat;
+    if (x !== ex && y !== ey) return null;
+    if (dist(x, y, ex, ey) > 4) return null;
+    var want = dirTo([ex, ey], [x, y]);
+    if (!losFrom(ex, ey, want, x, y)) return null;
+    return turnCost(eDir, want) <= 2 ? want : null;
+  }
+
+  function skillTrapExitSafe(moveDirName, threatDir) {
+    if (!moveDirName || !threatDir || !leavesBulletLane(moveDirName, threatDir)) return false;
+    var n = add(myPos, delta(moveDirName));
+    if (!safeCell(n[0], n[1], true)) return false;
+    if (enemyReplyLaneAt(n[0], n[1], 6)) return false;
+    if (game.star && same(n, game.star) && !starPickupSafe(game.star)) return false;
+    return true;
+  }
+
+  function trySkillTrapOneFrameExit(threatDir) {
+    var goDir = actualGoDir();
+    if (!skillTrapExitSafe(goDir, threatDir)) return false;
+    _lastMoveIntent = goDir;
+    _lastIntentFrame = frame;
+    say("skill-reset", ["技能压线先脱身", "别在控制线里转", "先离开技能枪线"], 3);
+    me.go();
+    return true;
+  }
+
+  function trySkillTrapLaneReset() {
+    if (!skillTrapOpponentActive() || !enemyTank || enemyDebuffed()) return false;
+    if (dist(px, py, ex, ey) > 5 && !selfStunned()) return false;
+    var threatDir = skillTrapThreatDirectionAt(px, py);
+    if (!threatDir) return false;
+
+    if (shielded() && shieldCoversImmediateAction()) {
+      if (tryShieldedGunlinePressure()) return true;
+      if (tryShieldCounterPressure()) return true;
+    }
+    if (trySkillTrapOneFrameExit(threatDir)) return true;
+
+    var enemyCanShootBeforeTurn = turnCost(eDir, threatDir) <= 1 && dist(px, py, ex, ey) <= 4;
+    if (!shielded() && shieldReady() && enemyCanShootBeforeTurn) return castShield();
+
+    var best = null, bestScore = -99999;
+    var options = laneEscapeDirs(threatDir);
+    for (var i = 0; i < options.length; i++) {
+      var d = options[i];
+      if (!skillTrapExitSafe(d, threatDir)) continue;
+      var n = add(myPos, delta(d));
+      var score = 220 - turnCost(dir, d) * 36;
+      if (d === _lastMoveIntent && frame - _lastIntentFrame <= 3) score += 48;
+      if (d === actualGoDir()) score += 42;
+      if (edgeDepth(n[0], n[1]) <= 1) score -= 42;
+      else if (edgeDepth(n[0], n[1]) <= 2) score -= 14;
+      if (enemyTank) score += Math.min(28, dist(n[0], n[1], ex, ey) * 7);
+      if (game.star) score -= Math.max(0, roughDistToStar(n) - roughDistToStar(myPos)) * 4;
+      if (score > bestScore) {
+        bestScore = score;
+        best = d;
+      }
+    }
+    if (best) {
+      say("skill-reset", ["技能压线先脱身", "别在控制线里转", "先离开技能枪线"], 3);
+      return controlledMoveDir(best);
+    }
+    if (!shielded() && shieldReady()) return castShield();
+    return false;
+  }
+
   function tryPostShieldResetGuard() {
     var justShielded = frame - _lastShieldAt <= 7 || frame - _lastShieldedAt <= 2 ||
       (shielded() && shieldRemaining() <= 1);
@@ -1258,6 +1515,7 @@ function onIdle(me, enemy, game) {
   function tryBombEscape() {
     if (!ownBombBlastAt(px, py) && !ownBombDangerAt(px, py, 5)) return false;
     var imminentSelfBomb = ownBombDangerAt(px, py, 2);
+    var framesLeft = _ownBombExplodeAt - frame;
     var best = null, bestScore = -99999;
     for (var i = 0; i < 4; i++) {
       var d = dirs[i];
@@ -1266,9 +1524,12 @@ function onIdle(me, enemy, game) {
       var nextBombBlast = ownBombBlastAt(n[0], n[1]);
       var nextProjectileDanger = projectileDangerAt(n[0], n[1]);
       if (nextProjectileDanger && !shielded() && !imminentSelfBomb) continue;
+      var escapeInfo = cleanOwnBombEscapeFrom(n, true);
+      if (nextBombBlast && (imminentSelfBomb || !escapeInfo.ok)) continue;
+      if (!escapeInfo.ok && framesLeft <= 6) continue;
       var score = 0;
       if (!nextBombBlast) score += 260;
-      else score -= imminentSelfBomb ? 420 : 80;
+      else score -= 120 + escapeInfo.dist * 26;
       if (nextProjectileDanger && !shielded()) score -= 90;
       score += dist(n[0], n[1], _ownBombX, _ownBombY) * 12;
       score -= turnCost(dir, d) * 6;
@@ -1325,6 +1586,9 @@ function onIdle(me, enemy, game) {
         if (!shielded() || shieldRemaining() <= 1) return tryDodge(true);
       }
       if (closeOneTurnAimed) {
+        if (skillTrapOpponentActive() && !shielded() && shieldReady() && dist(px, py, ex, ey) <= 4) {
+          return castShield();
+        }
         if (tryCommittedLaneEscape(2)) return true;
         if (castShield()) return true;
         if (!shielded() || shieldRemaining() <= 1) return tryDodge(true);
@@ -1614,6 +1878,50 @@ function onIdle(me, enemy, game) {
     return canShootFrom([x, y], [ex, ey]);
   }
 
+  function cheapGrassCandidateScore(x, y, baseStarGap) {
+    if (tile(x, y) !== "o") return -99999;
+    if (enemyTank && x === ex && y === ey) return -99999;
+
+    var reachGap = dist(px, py, x, y);
+    if (reachGap > GRASS_SCAN_RADIUS) return -99999;
+
+    var controlsStar = game.star && grassControlsPoint(x, y, game.star);
+    var directPressure = enemyTank && !enemyShielded() && canShootFrom([x, y], [ex, ey]);
+    if (!controlsStar && !directPressure) return -99999;
+
+    var score = 100 - reachGap * 16;
+    if (controlsStar) score += 58;
+    if (directPressure) score += 26;
+    if (tile(px, py) === "o" && x === px && y === py) score += 12;
+    if (game.star) {
+      var starGap = dist(x, y, game.star[0], game.star[1]);
+      if (starGap <= baseStarGap + 1) score += 20;
+      else score -= (starGap - baseStarGap) * 10;
+    }
+    return score;
+  }
+
+  function collectBoundedGrassCandidates(baseStarGap, limit) {
+    var candidates = [];
+    var maxCandidates = limit || GRASS_CANDIDATE_LIMIT;
+    var minX = Math.max(1, px - GRASS_SCAN_RADIUS);
+    var maxX = Math.min(w - 2, px + GRASS_SCAN_RADIUS);
+    var minY = Math.max(1, py - GRASS_SCAN_RADIUS);
+    var maxY = Math.min(h - 2, py + GRASS_SCAN_RADIUS);
+
+    for (var x = minX; x <= maxX; x++) {
+      for (var y = minY; y <= maxY; y++) {
+        var score = cheapGrassCandidateScore(x, y, baseStarGap);
+        if (score <= -99990) continue;
+        candidates.push({ x: x, y: y, score: score });
+      }
+    }
+
+    candidates.sort(function(a, b) { return b.score - a.score; });
+    if (candidates.length > maxCandidates) candidates.length = maxCandidates;
+    return candidates;
+  }
+
   function strategicGrassValueAt(x, y, info, baseStarGap) {
     if (tile(x, y) !== "o" || !safeCell(x, y, true)) return -99999;
     if (enemyTank && x === ex && y === ey) return -99999;
@@ -1650,18 +1958,18 @@ function onIdle(me, enemy, game) {
 
     var baseStarGap = game.star ? roughDistToStar(myPos) : 99;
     var best = null, bestScore = -99999;
-    for (var x = 1; x < w - 1; x++) {
-      for (var y = 1; y < h - 1; y++) {
-        if (tile(x, y) !== "o") continue;
-        var info = same([x, y], myPos) ? null :
-          (pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false));
-        if (info && info.dist > 4) continue;
-        if (!info && (x !== px || y !== py)) continue;
-        var score = strategicGrassValueAt(x, y, info, baseStarGap);
-        if (score > bestScore) {
-          bestScore = score;
-          best = { x: x, y: y, info: info };
-        }
+    var candidates = collectBoundedGrassCandidates(baseStarGap, GRASS_CANDIDATE_LIMIT);
+    for (var i = 0; i < candidates.length; i++) {
+      var candidate = candidates[i];
+      var x = candidate.x, y = candidate.y;
+      var info = same([x, y], myPos) ? null :
+        (pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false));
+      if (info && info.dist > 4) continue;
+      if (!info && (x !== px || y !== py)) continue;
+      var score = strategicGrassValueAt(x, y, info, baseStarGap);
+      if (score > bestScore) {
+        bestScore = score;
+        best = { x: x, y: y, info: info };
       }
     }
 
@@ -1685,25 +1993,26 @@ function onIdle(me, enemy, game) {
 
     var best = null, bestScore = -99999;
     var baseStarGap = game.star ? roughDistToStar(myPos) : 99;
-    for (var x = 1; x < w - 1; x++) {
-      for (var y = 1; y < h - 1; y++) {
-        if (tile(x, y) !== "o") continue;
-        if (!safeCell(x, y, true)) continue;
-        if (enemyTank && (x === ex || y === ey) && dist(x, y, ex, ey) <= 7) continue;
-        var info = pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false);
-        if (!info || info.dist > 4) continue;
-        var score = 150 - info.dist * 28;
-        if (game.star) {
-          var starGap = dist(x, y, game.star[0], game.star[1]);
-          if (starGap <= baseStarGap + 2) score += 18;
-          else score -= (starGap - baseStarGap) * 8;
-          if (grassControlsPoint(x, y, game.star)) score += 36;
-        }
-        if (enemyTank && canShootFrom([x, y], [ex, ey])) score += 24;
-        if (score > bestScore) {
-          bestScore = score;
-          best = { first: info.first, dist: info.dist };
-        }
+    var candidates = collectBoundedGrassCandidates(baseStarGap, GRASS_CANDIDATE_LIMIT);
+    for (var i = 0; i < candidates.length; i++) {
+      var candidate = candidates[i];
+      var x = candidate.x, y = candidate.y;
+      if (!safeCell(x, y, true)) continue;
+      if (enemyTank && (x === ex || y === ey) && dist(x, y, ex, ey) <= 7) continue;
+      var info = pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false);
+      if (!info || info.dist > 4) continue;
+      var score = 150 - info.dist * 28;
+      if (game.star) {
+        var starGap = dist(x, y, game.star[0], game.star[1]);
+        if (starGap <= baseStarGap + 2) score += 18;
+        else score -= (starGap - baseStarGap) * 8;
+        if (grassControlsPoint(x, y, game.star)) score += 36;
+      }
+      if (!grassPressureAt(x, y)) score -= 70;
+      if (enemyTank && canShootFrom([x, y], [ex, ey])) score += 24;
+      if (score > bestScore) {
+        bestScore = score;
+        best = { first: info.first, dist: info.dist };
       }
     }
 
@@ -1745,6 +2054,7 @@ function onIdle(me, enemy, game) {
   function tryBombTrap() {
     if (!canBomb() || projectileDangerAt(px, py)) return false;
     if (ownBombDangerAt(px, py, 5)) return false;
+    if (!postBombEscapeAvailable(px, py)) return false;
     if (game.star && pathDist(myPos, game.star) <= 5) return false;
     if (game.star && dist(px, py, game.star[0], game.star[1]) === 1) return false;
     if (enemyTank) {
@@ -1894,33 +2204,76 @@ function onIdle(me, enemy, game) {
     return modules[0].layer === "L0" && modules[modules.length - 1].layer === "L8";
   }
 
+  function buildBaseStrategyModules() {
+    return {
+      hazardEvasion: strategyModule("L0", "hazard-evasion", tryHazardEvasion),
+      emergencyDefense: strategyModule("L0", "emergency-defense", tryEmergencyDefense),
+      immediateShot: strategyModule("L3", "immediate-shot", tryImmediateShot),
+      adjacentStar: strategyModule("L3", "adjacent-star", tryAdjacentStar),
+      grassCamperHold: strategyModule("L4", "grass-camper-hold", tryGrassCamperHold),
+      leadGrassControl: strategyModule("L4", "lead-grass-control", tryLeadGrassControl),
+      starInterception: strategyModule("L4", "star-interception", tryStarInterception),
+      earlyLanePressure: strategyModule("L5", "early-lane-pressure", tryEarlyLanePressure),
+      starLanePressure: strategyModule("L5", "star-lane-pressure", tryStarLanePressure),
+      directStarAdvance: strategyModule("L6", "direct-star-advance", tryDirectStarAdvance),
+      contestedStarLineHold: strategyModule("L6", "contested-star-line-hold", tryContestedStarLineHold),
+      lateValuePressure: strategyModule("L6", "late-value-pressure", tryLateValuePressure),
+      breakDirtTowardStar: strategyModule("L7", "break-dirt-toward-star", tryBreakDirtTowardStar),
+      starPath: strategyModule("L7", "star-path", tryStarPath),
+      bombTrap: strategyModule("L7", "bomb-trap", tryBombTrap),
+      pressureEnemy: strategyModule("L7", "pressure-enemy", tryPressureEnemy),
+      unstick: strategyModule("L8", "unstick", tryUnstick),
+      lowValueReposition: strategyModule("L8", "low-value-reposition", tryLowValueReposition),
+      patrol: strategyModule("L8", "patrol", patrol),
+    };
+  }
+
+  function buildShieldSkillModules() {
+    return {
+      skillTrapLaneReset: strategyModule("L1", "skill-trap-lane-reset", trySkillTrapLaneReset),
+      postShieldReset: strategyModule("L1", "post-shield-reset", tryPostShieldResetGuard),
+      gunlineFrameEconomy: strategyModule("L1", "gunline-frame-economy", tryGunlineFrameEconomyGuard),
+      boostStarTempo: strategyModule("L2", "boost-star-tempo", tryBoostStarTempo),
+      starTempoArbiter: strategyModule("L2", "star-tempo-arbiter", tryShieldStarTempoArbiter),
+      shieldedGunlinePressure: strategyModule("L3", "shielded-gunline-pressure", tryShieldedGunlinePressure),
+      shieldCounterPressure: strategyModule("L3", "shield-counter-pressure", tryShieldCounterPressure),
+      guardedStarBreak: strategyModule("L3", "guarded-star-break", tryGuardedStarBreak),
+      grassStarShieldPickup: strategyModule("L3", "grass-star-shield-pickup", tryGrassStarShieldPickup),
+    };
+  }
+
   function buildStrategyPipeline() {
+    var base = buildBaseStrategyModules();
+    var shield = buildShieldSkillModules();
     return [
-      strategyModule("L0", "hazard-evasion", tryHazardEvasion),
-      strategyModule("L0", "emergency-defense", tryEmergencyDefense),
-      strategyModule("L1", "post-shield-reset", tryPostShieldResetGuard),
-      strategyModule("L1", "gunline-frame-economy", tryGunlineFrameEconomyGuard),
-      strategyModule("L2", "immediate-shot", tryImmediateShot),
-      strategyModule("L3", "shielded-gunline-pressure", tryShieldedGunlinePressure),
-      strategyModule("L3", "shield-counter-pressure", tryShieldCounterPressure),
-      strategyModule("L3", "guarded-star-break", tryGuardedStarBreak),
-      strategyModule("L3", "grass-star-shield-pickup", tryGrassStarShieldPickup),
-      strategyModule("L3", "adjacent-star", tryAdjacentStar),
-      strategyModule("L4", "grass-camper-hold", tryGrassCamperHold),
-      strategyModule("L4", "lead-grass-control", tryLeadGrassControl),
-      strategyModule("L4", "star-interception", tryStarInterception),
-      strategyModule("L5", "early-lane-pressure", tryEarlyLanePressure),
-      strategyModule("L5", "star-lane-pressure", tryStarLanePressure),
-      strategyModule("L6", "direct-star-advance", tryDirectStarAdvance),
-      strategyModule("L6", "contested-star-line-hold", tryContestedStarLineHold),
-      strategyModule("L6", "late-value-pressure", tryLateValuePressure),
-      strategyModule("L7", "break-dirt-toward-star", tryBreakDirtTowardStar),
-      strategyModule("L7", "star-path", tryStarPath),
-      strategyModule("L7", "bomb-trap", tryBombTrap),
-      strategyModule("L7", "pressure-enemy", tryPressureEnemy),
-      strategyModule("L8", "unstick", tryUnstick),
-      strategyModule("L8", "low-value-reposition", tryLowValueReposition),
-      strategyModule("L8", "patrol", patrol),
+      base.hazardEvasion,
+      base.emergencyDefense,
+      shield.skillTrapLaneReset,
+      shield.postShieldReset,
+      shield.gunlineFrameEconomy,
+      shield.boostStarTempo,
+      shield.starTempoArbiter,
+      base.immediateShot,
+      shield.shieldedGunlinePressure,
+      shield.shieldCounterPressure,
+      shield.guardedStarBreak,
+      shield.grassStarShieldPickup,
+      base.adjacentStar,
+      base.grassCamperHold,
+      base.leadGrassControl,
+      base.starInterception,
+      base.earlyLanePressure,
+      base.starLanePressure,
+      base.directStarAdvance,
+      base.contestedStarLineHold,
+      base.lateValuePressure,
+      base.breakDirtTowardStar,
+      base.starPath,
+      base.bombTrap,
+      base.pressureEnemy,
+      base.unstick,
+      base.lowValueReposition,
+      base.patrol,
     ];
   }
 

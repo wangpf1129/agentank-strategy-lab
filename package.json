@@ -7,7 +7,7 @@
     "test:lab": "find lab/scripts/tests -maxdepth 1 -name '*.test.mjs' -exec node --test {} \\;",
     "review:match": "node lab/scripts/analyze-match.mjs",
     "review:batch": "node lab/scripts/analyze-directory.mjs",
-    "publish:shield": "node scripts/publish-code.mjs --tank shield-main --code active/shield-main.js --notes \"shield-main candidate: pipeline contract, post-shield state model, and structure hardening\"",
+    "publish:shield": "node scripts/publish-code.mjs --tank shield-main --code active/shield-main.js --notes \"shield-main candidate: boost star-tempo conversion for tank 4839\"",
     "simulate": "node scripts/simulate.mjs",
     "challenge:dry": "node scripts/challenge-dry-run.mjs",
     "challenge:run": "node scripts/challenge-execute.mjs"

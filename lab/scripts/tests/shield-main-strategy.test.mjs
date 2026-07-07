@@ -15,12 +15,27 @@ function readCandidateSource() {
 
 function readStrategyPipelineEntries() {
   const source = readCandidateSource();
+  const baseMatch = source.match(/function buildBaseStrategyModules\(\) \{[\s\S]*?return \{([\s\S]*?)\};\n  \}/);
+  const shieldMatch = source.match(/function buildShieldSkillModules\(\) \{[\s\S]*?return \{([\s\S]*?)\};\n  \}/);
+  assert.ok(baseMatch, "buildBaseStrategyModules should return a static module map");
+  assert.ok(shieldMatch, "buildShieldSkillModules should return a static module map");
+  const factoryEntries = new Map();
+  for (const [owner, block] of [["base", baseMatch[1]], ["shield", shieldMatch[1]]]) {
+    for (const [, key, layer, id, run] of block.matchAll(/([A-Za-z0-9_]+): strategyModule\("([^"]+)", "([^"]+)", ([A-Za-z0-9_]+)\)/g)) {
+      factoryEntries.set(`${owner}.${key}`, { layer, id, run });
+    }
+  }
+
   const match = source.match(/function buildStrategyPipeline\(\) \{[\s\S]*?return \[([\s\S]*?)\];\n  \}/);
   assert.ok(match, "buildStrategyPipeline should return a static module list");
   const block = match[1];
-  const entries = [...block.matchAll(/strategyModule\("([^"]+)", "([^"]+)", ([A-Za-z0-9_]+)\)/g)]
-    .map(([, layer, id, run]) => ({ layer, id, run }));
-  return { source, block, entries };
+  const entries = [...block.matchAll(/\b(base|shield)\.([A-Za-z0-9_]+)/g)]
+    .map(([, owner, key]) => {
+      const entry = factoryEntries.get(`${owner}.${key}`);
+      assert.ok(entry, `pipeline entry ${owner}.${key} should exist in module factories`);
+      return entry;
+    });
+  return { source, block, entries, baseBlock: baseMatch[1], shieldBlock: shieldMatch[1] };
 }
 
 function loadCandidate() {
@@ -85,6 +100,16 @@ function createMe(position, direction = "right", cooldown = 0) {
   };
 }
 
+function createBoostMe(position, direction = "right", cooldown = 0) {
+  const me = createMe(position, direction, cooldown);
+  me.skill = { type: "boost", remainingCooldownFrames: cooldown };
+  me.status.boosted = false;
+  me.boost = function () {
+    me.actions.push({ type: "boost" });
+  };
+  return me;
+}
+
 function createEnemy(position, direction = "left", skill = "freeze") {
   return {
     stars: 0,
@@ -140,6 +165,92 @@ test("shield-main fires when it has a clear unshielded shot", () => {
   });
 
   assert.equal(me.actions[0]?.type, "fire");
+});
+
+test("shield-main takes a safe near-star route through star-tempo arbitration", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([2, 2], "right", 0);
+  const enemy = createEnemy([10, 8], "left");
+
+  onIdle(me, enemy, {
+    frames: 12,
+    map: createOpenMap(13, 11),
+    star: [2, 4],
+  });
+
+  assert.deepEqual(me.actions[0], { type: "turn", side: "right" });
+});
+
+test("shield-main shields before committing through a covered near-star route", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([2, 2], "down", 0);
+  const enemy = createEnemy([5, 3], "left");
+
+  onIdle(me, enemy, {
+    frames: 16,
+    map: createOpenMap(13, 11),
+    star: [2, 4],
+  });
+
+  assert.equal(me.actions[0]?.type, "shield");
+});
+
+test("shield-main casts boost before a valuable medium star race", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([2, 2], "right", 0);
+  const enemy = createEnemy([10, 8], "left");
+
+  onIdle(me, enemy, {
+    frames: 12,
+    map: createOpenMap(13, 11),
+    star: [2, 6],
+  });
+
+  assert.equal(me.actions[0]?.type, "boost");
+});
+
+test("shield-main advances along the star route while boost is active", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([2, 2], "right", 20);
+  me.status.boosted = true;
+  const enemy = createEnemy([10, 8], "left");
+
+  onIdle(me, enemy, {
+    frames: 14,
+    map: createOpenMap(13, 11),
+    star: [2, 4],
+  });
+
+  assert.deepEqual(me.actions[0], { type: "turn", side: "right" });
+});
+
+test("shield-main does not cast boost while a current bullet lane is urgent", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([2, 2], "right", 0);
+  const enemy = createEnemy([10, 8], "left");
+  enemy.bullet = { position: [2, 4], direction: "up" };
+
+  onIdle(me, enemy, {
+    frames: 16,
+    map: createOpenMap(13, 11),
+    star: [2, 6],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main takes a safe adjacent star before ordinary clear fire", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([5, 5], "down", 20);
+  const enemy = createEnemy([9, 5], "left");
+
+  onIdle(me, enemy, {
+    frames: 42,
+    map: createOpenMap(13, 11),
+    star: [5, 6],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
 });
 
 test("shield-main emits danmaku speech without consuming the action", () => {
@@ -524,6 +635,20 @@ test("shield-main shields an urgent bullet lane before spending a frame turning"
   assert.equal(me.actions[0]?.type, "shield");
 });
 
+test("shield-main shields a close skill trap before spending a turn to escape", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([8, 3], "left", 0);
+  const enemy = createEnemy([9, 3], "up", "stun");
+
+  onIdle(me, enemy, {
+    frames: 95,
+    map: createOpenMap(19, 15),
+    star: [2, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "shield");
+});
+
 test("shield-main executes the committed side exit before an active shield expires", () => {
   const context = loadCandidateContext();
   context._lastMoveIntent = "left";
@@ -719,6 +844,27 @@ test("shield-main uses bombs for close non-line traps", () => {
   assert.equal(me.actions[0]?.type, "bomb");
 });
 
+test("shield-main refuses close bombs without a clean post-bomb escape route", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap(11, 11);
+  for (let x = 1; x < 10; x++) {
+    for (let y = 1; y < 10; y++) {
+      map[x][y] = "x";
+    }
+  }
+  for (let x = 3; x <= 7; x++) map[x][5] = ".";
+  const me = createMe([5, 5], "right", 0);
+  const enemy = createEnemy([6, 6], "down");
+
+  onIdle(me, enemy, {
+    frames: 35,
+    map,
+    star: null,
+  });
+
+  assert.notEqual(me.actions[0]?.type, "bomb");
+});
+
 test("shield-main shoots destructible dirt that blocks a direct star lane", () => {
   const onIdle = loadCandidate();
   const map = createOpenMap();
@@ -769,6 +915,25 @@ test("shield-main leaves an imminent own bomb even when the exit has lane pressu
   });
 
   assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main does not re-enter an imminent own bomb blast dead end", () => {
+  const context = loadCandidateContext();
+  context._ownBombX = 15;
+  context._ownBombY = 13;
+  context._ownBombExplodeAt = 85;
+  const map = createOpenMap(19, 15);
+  map[16][12] = "x";
+  const me = createMe([16, 13], "right", 20);
+  const enemy = createEnemy([8, 3], "left", "freeze");
+
+  context.onIdle(me, enemy, {
+    frames: 84,
+    map,
+    star: [2, 10],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "go");
 });
 
 test("shield-main does not step into a recent hidden grass shooter lane", () => {
@@ -1012,7 +1177,7 @@ test("shield-main moves into nearby grass control instead of chasing a far star 
   context.onIdle(me, enemy, {
     frames: 118,
     map,
-    star: [13, 11],
+    star: [13, 6],
   });
 
   assert.equal(me.actions[0]?.type, "go");
@@ -1211,9 +1376,12 @@ test("shield-main keeps action priority in an explicit strategy pipeline", () =>
   assert.deepEqual(order, [
     "L0:hazard-evasion:tryHazardEvasion",
     "L0:emergency-defense:tryEmergencyDefense",
+    "L1:skill-trap-lane-reset:trySkillTrapLaneReset",
     "L1:post-shield-reset:tryPostShieldResetGuard",
     "L1:gunline-frame-economy:tryGunlineFrameEconomyGuard",
-    "L2:immediate-shot:tryImmediateShot",
+    "L2:boost-star-tempo:tryBoostStarTempo",
+    "L2:star-tempo-arbiter:tryShieldStarTempoArbiter",
+    "L3:immediate-shot:tryImmediateShot",
     "L3:shielded-gunline-pressure:tryShieldedGunlinePressure",
     "L3:shield-counter-pressure:tryShieldCounterPressure",
     "L3:guarded-star-break:tryGuardedStarBreak",
@@ -1243,6 +1411,23 @@ test("shield-main keeps action priority in an explicit strategy pipeline", () =>
   assert.equal(new Set(entries.map(({ id }) => id)).size, entries.length, "strategy module ids should be unique");
 });
 
+test("shield-main separates base strategy modules from shield skill modules", () => {
+  const { source, block, baseBlock, shieldBlock } = readStrategyPipelineEntries();
+  assert.match(source, /function buildBaseStrategyModules\(\)/);
+  assert.match(source, /function buildShieldSkillModules\(\)/);
+  assert.match(block, /base\.hazardEvasion/);
+  assert.match(block, /shield\.postShieldReset/);
+  assert.match(baseBlock, /hazardEvasion: strategyModule\("L0", "hazard-evasion", tryHazardEvasion\)/);
+  assert.match(baseBlock, /starPath: strategyModule\("L7", "star-path", tryStarPath\)/);
+  assert.match(shieldBlock, /postShieldReset: strategyModule\("L1", "post-shield-reset", tryPostShieldResetGuard\)/);
+  assert.match(shieldBlock, /boostStarTempo: strategyModule\("L2", "boost-star-tempo", tryBoostStarTempo\)/);
+  assert.match(shieldBlock, /starTempoArbiter: strategyModule\("L2", "star-tempo-arbiter", tryShieldStarTempoArbiter\)/);
+  assert.match(shieldBlock, /shieldedGunlinePressure: strategyModule\("L3", "shielded-gunline-pressure", tryShieldedGunlinePressure\)/);
+  assert.doesNotMatch(baseBlock, /tryShieldStarTempoArbiter/);
+  assert.doesNotMatch(baseBlock, /tryShieldedGunlinePressure/);
+  assert.doesNotMatch(shieldBlock, /tryStarPath/);
+});
+
 test("shield-main validates strategy pipeline before running modules", () => {
   const source = readCandidateSource();
   assert.match(source, /function strategyLayerRank\(layer\)/);
@@ -1255,12 +1440,18 @@ test("shield-main validates strategy pipeline before running modules", () => {
   );
 });
 
-test("shield-main keeps draft strategy skeletons out of the live pipeline", () => {
-  const { source, block } = readStrategyPipelineEntries();
+test("shield-main activates star tempo arbitration while keeping strategic grass bounded", () => {
+  const { source, entries } = readStrategyPipelineEntries();
   assert.match(source, /function tryShieldStarTempoArbiter\(\)/);
+  assert.match(source, /function tryBoostStarTempo\(\)/);
   assert.match(source, /function tryStrategicGrassControl\(\)/);
-  assert.doesNotMatch(block, /tryShieldStarTempoArbiter|tryStrategicGrassControl/);
-  assert.doesNotMatch(block, /star-tempo-arbiter|strategic-grass-control/);
+  assert.match(source, /function collectBoundedGrassCandidates\(baseStarGap, limit\)/);
+  assert.match(source, /var GRASS_SCAN_RADIUS = 4;/);
+  assert.match(source, /var candidates = collectBoundedGrassCandidates\(baseStarGap, GRASS_CANDIDATE_LIMIT\);/);
+  assert.ok(entries.some((entry) => entry.id === "boost-star-tempo" && entry.run === "tryBoostStarTempo"));
+  assert.ok(entries.some((entry) => entry.id === "star-tempo-arbiter" && entry.run === "tryShieldStarTempoArbiter"));
+  assert.ok(!entries.some((entry) => entry.id === "strategic-grass-control" || entry.run === "tryStrategicGrassControl"));
+  assert.match(source, /return tryGrassCamperHold\(\) \|\| tryLeadGrassControl\(\) \|\| tryStrategicGrassControl\(\);/);
 });
 
 test("shield-main patrol does not fire dirt when it is not opening a star route", () => {

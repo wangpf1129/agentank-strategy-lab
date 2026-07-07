@@ -18,6 +18,7 @@ test("resolves all primary tank configs without exposing secrets", () => {
     "AGENTANK_TELEPORT_KEY",
     "AGENTANK_SHIELD_KEY",
   ]);
+  assert.deepEqual(tanks.map((tank) => tank.skill), ["freeze", "overload", "teleport", "boost"]);
   assert.ok(tanks.every((tank) => !("key" in tank)));
 });
 

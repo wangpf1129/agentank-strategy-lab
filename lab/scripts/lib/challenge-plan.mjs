@@ -20,7 +20,7 @@ export const PRIMARY_TANKS = Object.freeze({
   "shield-main": Object.freeze({
     codename: "shield-main",
     tankId: 4839,
-    skill: "shield",
+    skill: "boost",
     envName: "AGENTANK_SHIELD_KEY",
   }),
 });
