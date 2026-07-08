@@ -200,6 +200,24 @@ test("dark-edge treats active enemy overload frames as hard offset danger", () =
   assert.deepEqual(me.actions[0], { type: "turn", side: "right" });
 });
 
+test("dark-edge infers the hidden offset bullet from an enemy overload shot", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([12, 5], "up", 8);
+  const enemy = createEnemy([11, 9], "up", "overload", 8);
+  enemy.status.overloaded = true;
+  enemy.bullet = { position: [11, 6], direction: "up" };
+
+  onIdle(me, enemy, {
+    frames: 103,
+    map: createOpenMap(),
+    star: [12, 4],
+  });
+
+  assert.notDeepEqual(me.actions[0], { type: "go" });
+  assert.notEqual(me.actions[0]?.type, "overload");
+  assert.notEqual(me.actions[0]?.type, "fire");
+});
+
 test("dark-edge does not run down a recently cloaked straight firing lane", () => {
   const onIdle = loadCandidate();
   const map = createOpenMap();
@@ -226,6 +244,171 @@ test("dark-edge does not run down a recently cloaked straight firing lane", () =
 
   assert.notDeepEqual(me.actions[0], { type: "go" });
   assert.ok(["turn", "overload", "fire"].includes(me.actions[0]?.type));
+});
+
+test("dark-edge predicts a reachable cloaked shooter lane before rushing forward", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+
+  onIdle(createMe([4, 9], "right", 0), createEnemy([9, 12], "left", "cloak", 20), {
+    frames: 13,
+    map,
+    star: [4, 12],
+  });
+
+  const me = createMe([5, 10], "left", 0);
+  onIdle(me, { tank: null, skill: { type: "cloak", remainingCooldownFrames: 20 }, status: {}, bullet: null }, {
+    frames: 19,
+    map,
+    star: [4, 12],
+  });
+
+  assert.notDeepEqual(me.actions[0], { type: "go" });
+  assert.notEqual(me.actions[0]?.type, "overload");
+});
+
+test("dark-edge refuses a star covered by a reachable cloaked pickup shooter", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+
+  onIdle(createMe([10, 4], "down", 0), createEnemy([12, 9], "up", "cloak", 20), {
+    frames: 12,
+    map,
+    star: [10, 6],
+  });
+
+  const me = createMe([10, 5], "down", 0);
+  onIdle(me, { tank: null, skill: { type: "cloak", remainingCooldownFrames: 20 }, status: {}, bullet: null }, {
+    frames: 13,
+    map,
+    star: [10, 6],
+  });
+
+  assert.notDeepEqual(me.actions[0], { type: "go" });
+  assert.notEqual(me.actions[0]?.type, "overload");
+});
+
+test("dark-edge remembers a hidden shooter lane from a visible bullet", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+
+  onIdle(createMe([5, 8], "right", 0), createEnemy([15, 7], "left", "cloak", 20), {
+    frames: 40,
+    map,
+    star: null,
+  });
+
+  onIdle(createMe([8, 7], "up", 0), {
+    tank: null,
+    skill: { type: "cloak", remainingCooldownFrames: 20 },
+    status: {},
+    bullet: { position: [9, 7], direction: "left" },
+  }, {
+    frames: 70,
+    map,
+    star: null,
+  });
+
+  const me = createMe([8, 8], "up", 0);
+  onIdle(me, { tank: null, skill: { type: "cloak", remainingCooldownFrames: 20 }, status: {}, bullet: null }, {
+    frames: 71,
+    map,
+    star: [8, 7],
+  });
+
+  assert.notDeepEqual(me.actions[0], { type: "go" });
+  assert.notEqual(me.actions[0]?.type, "overload");
+});
+
+test("dark-edge exits a remembered shooter column instead of turning in place", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+
+  onIdle(createMe([5, 10], "right", 0), {
+    tank: { id: 99, position: [4, 13], direction: "up" },
+    skill: { type: "cloak", remainingCooldownFrames: 20 },
+    status: {},
+    bullet: { position: [4, 12], direction: "up" },
+  }, {
+    frames: 24,
+    map,
+    star: null,
+  });
+
+  const me = createMe([4, 10], "right", 0);
+  onIdle(me, { tank: null, skill: { type: "cloak", remainingCooldownFrames: 20 }, status: {}, bullet: null }, {
+    frames: 25,
+    map,
+    star: [4, 13],
+  });
+
+  assert.deepEqual(me.actions[0], { type: "go" });
+});
+
+test("dark-edge does not enter a fixed shooter line exposed by a visible bullet", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+
+  onIdle(createMe([7, 6], "right", 0), {
+    tank: { id: 99, position: [8, 9], direction: "up" },
+    skill: { type: "boost", remainingCooldownFrames: 20 },
+    status: {},
+    bullet: { position: [8, 8], direction: "up" },
+  }, {
+    frames: 24,
+    map,
+    star: null,
+  });
+
+  const me = createMe([7, 7], "right", 0);
+  onIdle(me, { tank: null, skill: { type: "boost", remainingCooldownFrames: 20 }, status: {}, bullet: null }, {
+    frames: 34,
+    map,
+    star: [8, 7],
+  });
+
+  assert.notDeepEqual(me.actions[0], { type: "go" });
+});
+
+test("dark-edge exits a reachable cloaked shooter row instead of spinning", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+
+  onIdle(createMe([6, 12], "right", 0), createEnemy([8, 11], "left", "cloak", 20), {
+    frames: 17,
+    map,
+    star: null,
+  });
+
+  const me = createMe([6, 12], "down", 0);
+  onIdle(me, { tank: null, skill: { type: "cloak", remainingCooldownFrames: 20 }, status: {}, bullet: null }, {
+    frames: 18,
+    map,
+    star: null,
+  });
+
+  assert.deepEqual(me.actions[0], { type: "go" });
+});
+
+test("dark-edge exits a predicted grass shooter row instead of edge spinning", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+  setTile(map, 6, 3, "o");
+
+  onIdle(createMe([2, 3], "left", 0), createEnemy([6, 4], "up", "overload", 20), {
+    frames: 29,
+    map,
+    star: null,
+  });
+
+  const me = createMe([1, 3], "down", 0);
+  onIdle(me, { tank: null, skill: { type: "overload", remainingCooldownFrames: 20 }, status: {}, bullet: null }, {
+    frames: 30,
+    map,
+    star: null,
+  });
+
+  assert.deepEqual(me.actions[0], { type: "go" });
 });
 
 test("dark-edge does not cast overload while sitting in an aimed firing lane", () => {
@@ -448,6 +631,21 @@ test("dark-edge overload mirror lost star race opens pressure before blind inter
   assert.equal(me.actions[0]?.type, "overload");
 });
 
+test("dark-edge avoids adjacent star inside an enemy overload star trap", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([9, 8], "left", 0);
+  const enemy = createEnemy([7, 7], "right", "overload", 12);
+
+  onIdle(me, enemy, {
+    frames: 15,
+    map: createOpenMap(),
+    star: [8, 8],
+  });
+
+  assert.notDeepEqual(me.actions[0], { type: "go" });
+  assert.notEqual(me.actions[0]?.type, "overload");
+});
+
 test("dark-edge still takes a safe adjacent star before overload mirror pressure", () => {
   const onIdle = loadCandidate();
   const me = createMe([5, 5], "right", 0);
@@ -591,6 +789,8 @@ test("dark-edge keeps star tempo arbitration split from candidate execution", ()
   assert.match(source, /function buildStarTempoFrame\(\)/);
   assert.match(source, /function collectStarTempoCandidates\(tempo\)/);
   assert.match(source, /function runStarRacePressure\(tempo\)/);
+  assert.match(source, /function tryEnemyOverloadStarTrapCounter\(\)/);
+  assert.match(source, /function enemyOverloadStarTrap\(star\)/);
   assert.match(source, /var tempo = buildStarTempoFrame\(\);/);
   assert.match(source, /var candidates = collectStarTempoCandidates\(tempo\);/);
 });
@@ -712,6 +912,48 @@ test("dark-edge strategic grass control can outrank ordinary star pathing", () =
   });
 
   assert.deepEqual(me.actions[0], { type: "go" });
+});
+
+test("dark-edge turns a held strategic grass tile into an action", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+  setTile(map, 5, 5, "o");
+  const me = createMe([5, 5], "down", 0);
+  const enemy = createEnemy([2, 12], "up", "freeze", 12);
+
+  onIdle(me, enemy, {
+    frames: 58,
+    map,
+    star: [12, 5],
+  });
+
+  assert.equal(me.actions[0]?.type, "turn");
+});
+
+test("dark-edge does not let stale grass-camper memory swallow non-grass movement", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap();
+  setTile(map, 9, 7, "o");
+  const firstMe = createMe([5, 5], "right", 0);
+  const camper = createEnemy([9, 7], "left", "cloak", 12);
+
+  onIdle(firstMe, camper, {
+    frames: 20,
+    map,
+    star: [12, 12],
+  });
+
+  const secondMe = createMe([5, 5], "right", 0);
+  secondMe.stars = 2;
+  const enemy = createEnemy([12, 12], "left", "cloak", 12);
+
+  onIdle(secondMe, enemy, {
+    frames: 28,
+    map,
+    star: [14, 12],
+  });
+
+  assert.ok(secondMe.actions.length > 0);
 });
 
 test("dark-edge does not hold grass on a wall-blocked nearby star line", () => {

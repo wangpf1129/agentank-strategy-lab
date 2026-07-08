@@ -25,7 +25,15 @@
         "reply-capable direct lane",
         "long enemy bullet lane",
         "aimed firing lane",
-        "active enemy overload frames"
+        "active enemy overload frames",
+        "hidden enemy overload offset bullet",
+        "reachable cloak shooter lane",
+        "hidden shooter lane from a visible bullet",
+        "remembered shooter column exit",
+        "fixed shooter line exposed by a visible bullet",
+        "reachable cloaked shooter row",
+        "predicted grass shooter row",
+        "enemy overload star trap"
       ]
     },
     {
@@ -71,6 +79,8 @@
       "requiredTests": [
         "leaves the gunline after overload",
         "does not idle in grass",
+        "held strategic grass tile into an action",
+        "stale grass-camper memory",
         "hard-wall-blocked star line",
         "destructible star-line blocker"
       ]
@@ -80,6 +90,7 @@
       "purpose": "Promote only grass tiles that control star lines, enemy pressure lanes, or overload offset lanes ahead of ordinary pathing.",
       "requiredTests": [
         "strategic grass control",
+        "held strategic grass tile into an action",
         "wall-blocked nearby star line",
         "safe adjacent star before grass control",
         "does not idle in grass",
@@ -92,6 +103,12 @@
     "Do not cast overload in a reply-capable direct lane; take a one-frame off-line exit when available, otherwise fire only when already aimed.",
     "Do not step into a long enemy bullet lane while chasing star line.",
     "Treat active enemy overload offset lanes as hard danger even when the enemy cooldown is not ready.",
+    "Treat inferred enemy overload offset bullets from visible primary shots as hard bullet danger.",
+    "Treat reachable cloak shooter lanes from the enemy's last visible pre-cloak position as hard pressure.",
+    "Treat rows or columns exposed by enemy bullets as temporary fixed-shooter pressure.",
+    "If currently sitting on an exposed fixed shooter line, take a safe side exit before turning in place or chasing the star.",
+    "If currently sitting on a reachable cloak or grass shooter line, take a safe side exit before turning in place.",
+    "Do not collect adjacent or near stars that sit inside an enemy overload offset trap.",
     "Do not spend overload setup frames when a safe near star can be collected first.",
     "When a star race is clearly lost, stop blind chasing and convert to star-line pressure or interception.",
     "In overload mirror games, when the star race is clearly lost, open overload or offset pressure before blind star interception.",
@@ -104,6 +121,7 @@
     "Do not fire into an active enemy shield.",
     "Do not chase a low-value far star while already leading on its line.",
     "Do not idle in grass unless it controls a star line or pressure lane.",
+    "Grass-control hold frames must submit a real action or fall through; say-only waiting is not a valid strategy action.",
     "Do not treat wall-blocked nearby star lines as strategic grass control.",
     "Strategic grass control may outrank ordinary star pathing only when the grass controls a star line or pressure lane.",
     "Bound grass control path scans to nearby pressure candidates so runtime budget does not consume long games."

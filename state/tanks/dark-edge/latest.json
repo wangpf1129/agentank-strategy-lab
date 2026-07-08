@@ -2,21 +2,21 @@
   "tank": "dark-edge",
   "activeSource": "active/dark-edge.js",
   "baselineSource": "active/dark-edge.js",
-  "lastKnownRankScore": 2544,
+  "lastKnownRankScore": 2360,
   "lastKnownTier": "champion",
   "lastKnownRankDivision": 1,
-  "lastKnownPublicRank": null,
-  "lastUpdatedAt": "2026-07-06T10:02:02Z",
-  "lastKnownCodeVersion": 86,
-  "lastKnownCodeHash": "c9d4d56e2ebc3fbee233d1e5c2b3bc390bd898de87c9499f7aaa66b6a2e4285e",
+  "lastKnownPublicRank": 91,
+  "lastUpdatedAt": "2026-07-08T07:26:13Z",
+  "lastKnownCodeVersion": 91,
+  "lastKnownCodeHash": "f202de6b9c9b60c263404df404979d70afc3d2af2435bfe1a1e7074e78b5500f",
   "lastKnownRecord": {
-    "wins": 7700,
-    "losses": 6867,
+    "wins": 8041,
+    "losses": 7195,
     "draws": 0,
     "placementMatches": 10
   },
   "lastObservation": {
-    "runPath": "/tmp/agentank-runs/snapshots-dark-edge-v86-publish/dark-edge/tank.json",
-    "summary": "Dark Edge v86 published with bounded grass-control candidate scans before pathing to protect runtime budget. Pre-publish code quality / strategy-conflict review passed. Gates passed: npm run check, focused Dark Edge tests 42/42, npm run test:lab, explicit dark-edge server simulation 9/9, and challenge dry-run with start score 2544. Live snapshot confirms rankScore 2544, Champion I 744 points, record 7700-6867-0, codeVersion 86, codeHash c9d4d56e2ebc3fbee233d1e5c2b3bc390bd898de87c9499f7aaa66b6a2e4285e. No real challenge was executed."
+    "runPath": "/tmp/agentank-runs/snapshots-dark-edge-v91-publish/dark-edge/tank.json",
+    "summary": "Dark Edge v91 published with the reachable cloak/grass hidden-shooter side-exit candidate. Bounded fix axis: reachable cloak and predicted grass shooter lines now force a safe side exit before generic hidden-shooter speculation causes turn-in-place. Gates passed: focused Dark Edge tests 53/53, npm run check, git diff --check, standard Dark Edge server simulation 9/9 at /tmp/agentank-runs/simulations/2026-07-08T07-25-14-734Z, and dark-edge challenge dry-run at /tmp/agentank-runs/dark-edge/challenge-runs/2026-07-08T07-25-58-444Z.json with start score 2360. Full npm run test:lab is currently blocked by an unrelated dirty shield-main regression (`shield-main takes a late reachable star before wall-only fire`: actual fire, expected go), so the Dark Edge publish intentionally relied on focused Dark Edge tests plus the Dark Edge-specific gates. Live snapshot confirms rankScore 2360, Champion I, public rank 91, record 8041-7195-0, codeVersion 91, codeHash f202de6b9c9b60c263404df404979d70afc3d2af2435bfe1a1e7074e78b5500f. No real challenge-run was executed."
   }
 }

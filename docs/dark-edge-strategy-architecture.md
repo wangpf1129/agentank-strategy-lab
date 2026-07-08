@@ -89,16 +89,20 @@ L8 patrol -> patrol
 处理内容：
 
 - 当前弹道和长弹道
+- 敌方超载主弹可见时推断出的隐藏偏移实弹
 - 敌方已瞄准枪线
 - 破土后一枪线
 - 敌方超载线
-- 隐身/草丛隐藏射手
+- 隐身/草丛隐藏射手；面对隐身时，用敌方隐身前最后可见位置推断短时间可达的同排/同列枪线
+- 敌方可见或不可见时，如果子弹暴露了固定射手源点、行/列和方向，短时间把这条线当作隐藏射手压力
 - 自己炸弹范围
 
 规则：
 
 - 硬危险不能被星星、超载、草丛、追击覆盖。
 - 只有明确“已瞄准且无法一帧离线”的对射可以作为受控例外。
+- 子弹暴露的固定枪线只进入 L0 感知，不提升草丛路径优先级；当前已经站在这条线时，先用横向出口离线，不能原地转向或把它扩展成无压制蹲草。
+- 对方隐身或进入草丛后，即使还没有开枪，只要最后可见位置能在短时间内到达同排/同列射手点，当前站在线上也要先横向离线；不能让泛化隐藏射手推测把所有出口都判成危险后空转。
 
 ### L1 枪线帧经济
 
@@ -146,6 +150,7 @@ L8 patrol -> patrol
 规则：
 
 - 安全相邻星和安全近星优先于超载 setup。
+- 安全相邻星必须排除敌方超载偏移线陷阱；不能为了吃星走进敌方 overload 第二弹道。
 - 明显抢不过时，不盲追，转压星线、拦截或早期压线。
 - 领先且远星低价值时，不追远星，转控线/控草。
 - `tryStarTempoArbiter()` 只负责短路调度；星星局面统一由 `buildStarTempoFrame()` 生成，候选统一由 `collectStarTempoCandidates()` 生成。
@@ -205,6 +210,7 @@ L8 patrol -> patrol
 规则：
 
 - 草丛必须控制星线或敌方压力线，不能只是挂机。
+- 草位控线必须产出动作：开超载、开火、转向压线或放行给后续模块；不能用 `return true` 空等整帧。
 - 战略草丛可以抢在普通 `star-path` 前执行，但不能抢在 L0/L1、星星节奏仲裁、安全相邻星或明确超载窗口前执行。
 - 草丛评分必须考虑到达帧数和转向成本；超过短路径窗口的草丛不能因为“是草”就被追。
 - 领先时用草丛和星线逼对手动，不主动走进草丛枪线。
@@ -289,7 +295,7 @@ L8 patrol -> patrol
 
 1. `tryImmediateShot`、`tryOverloadCounterPressure`、`tryOverloadLineWindow` 都可能创建攻击动作。必须继续受 `canCastOverloadSafely`、`overloadAttackLaneSafe` 和枪线帧经济保护。
 2. `tryStarTempoArbiter` 已拆成 frame/candidates/executor。后续新增星星节奏分支必须进入 `collectStarTempoCandidates()`，不要在调度函数里直接塞动作。
-3. `tryLeadStarLineControl` 和 `tryLeadGrassControl` 有等待/控线行为。新增草丛策略时必须证明它控制星线或敌线，否则会重新变成无压制挂机。
+3. `tryLeadStarLineControl` 和 `tryLeadGrassControl` 有等待/控线行为。新增草丛策略时必须证明它控制星线或敌线，并且等待帧必须产出具体动作，否则会重新变成无压制挂机或 runtime 风险。
 4. `tryDodge` 已拆成 panic 前置动作和方向评分。以后若发现走位混乱，只能分别调整 `tryPanicDodgeSetup()` 或 `scoreDodgeDirection()`，不要把新特例重新塞回调度函数。
 5. `tryPressureEnemy` 是兜底压力，位置很靠后。单场看到“没压制”时，不应直接加强它，先看前面的星星/草丛/超载模块为什么没有产出压力。
 

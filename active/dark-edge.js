@@ -5,8 +5,10 @@ var _homeEX = -1, _homeEY = -1;
 var _myStars = 0, _enemyStars = 0, _lastStarX = -1, _lastStarY = -1;
 var _lastBombAt = -99, _lastOverloadAt = -99;
 var _lastOverloadedAt = -99;
+var _lastEnemyOverloadedAt = -99;
 var _ownBombX = -1, _ownBombY = -1, _ownBombExplodeAt = -99;
 var _grassCampX = -1, _grassCampY = -1, _grassCampAt = -99;
+var _hiddenShotX = -1, _hiddenShotY = -1, _hiddenShotDir = null, _hiddenShotAt = -99;
 var _lastMoveIntent = null, _lastIntentFrame = -99;
 var _speakCount = 0, _lastSpeakAt = -99, _lastSpeakTag = "";
 
@@ -328,18 +330,132 @@ function onIdle(me, enemy, game) {
   function collectBullets() {
     if (frameBullets) return frameBullets;
     var bullets = [];
-    if (enemy && enemy.bullet) bullets.push(enemy.bullet);
+    if (enemy && enemy.bullet) {
+      rememberHiddenShotFromBullet(enemy.bullet);
+      bullets.push(enemy.bullet);
+      var inferred = inferredEnemyOverloadBullet(enemy.bullet);
+      if (inferred) bullets.push(inferred);
+    }
     var visible = game.visibleBullets;
     if (visible && visible.length) {
       for (var i = 0; i < visible.length; i++) {
         var b = visible[i];
         if (!b || !b.position || !b.direction) continue;
         if (b.ownerTankId && me.tank && b.ownerTankId === me.tank.id) continue;
+        rememberHiddenShotFromBullet(b);
         bullets.push(b);
       }
     }
     frameBullets = bullets;
     return frameBullets;
+  }
+
+  function inferredEnemyOverloadBullet(bullet) {
+    if (!bullet || !bullet.position || !bullet.direction || !dv[bullet.direction]) return null;
+    if (!_lastESkill || _lastESkill !== "overload") return null;
+    if (!enemyOverloadActive() && frame - _lastEnemyOverloadedAt > 4) return null;
+    var bx = bullet.position[0], by = bullet.position[1];
+    var x = bx, y = by;
+    if (bullet.direction === "up" || bullet.direction === "down") {
+      if (enemyTank && bx === ex + 1) x = ex;
+      else x = bx + 1;
+    } else {
+      if (enemyTank && by === ey + 1) y = ey;
+      else y = by + 1;
+    }
+    if (!open(x, y)) return null;
+    return {
+      direction: bullet.direction,
+      position: [x, y],
+      inferredOverloadOffset: true,
+    };
+  }
+
+  function rememberHiddenShotFromBullet(bullet) {
+    if (!bullet || !bullet.position || !bullet.direction || !dv[bullet.direction]) return false;
+    var step = delta(bullet.direction);
+    var sx = -1, sy = -1;
+    if (bullet.tank && bullet.tank.position) {
+      sx = bullet.tank.position[0];
+      sy = bullet.tank.position[1];
+    } else if (enemyTank && losFrom(ex, ey, bullet.direction, bullet.position[0], bullet.position[1])) {
+      sx = ex;
+      sy = ey;
+    } else {
+      sx = bullet.position[0] - step[0];
+      sy = bullet.position[1] - step[1];
+    }
+    if (!open(sx, sy)) {
+      sx = bullet.position[0];
+      sy = bullet.position[1];
+    }
+    if (!open(sx, sy)) return false;
+    _hiddenShotX = sx;
+    _hiddenShotY = sy;
+    _hiddenShotDir = bullet.direction;
+    _hiddenShotAt = frame;
+    if (tile(sx, sy) === "o") rememberGrassCamp(sx, sy);
+    return true;
+  }
+
+  function hiddenShotLaneAt(x, y) {
+    if (_hiddenShotX < 0 || !_hiddenShotDir || frame - _hiddenShotAt > 18) return false;
+    if (enemyTank && (ex !== _hiddenShotX || ey !== _hiddenShotY) && tile(_hiddenShotX, _hiddenShotY) !== "o") return false;
+    if (x !== _hiddenShotX && y !== _hiddenShotY) return false;
+    if (dist(_hiddenShotX, _hiddenShotY, x, y) > 10) return false;
+    return losFrom(_hiddenShotX, _hiddenShotY, _hiddenShotDir, x, y);
+  }
+
+  function rememberedShotDirectionAt(x, y) {
+    return hiddenShotLaneAt(x, y) ? _hiddenShotDir : null;
+  }
+
+  function leavesRememberedShotLine(moveDirName, laneDir) {
+    if (!laneDir || !moveDirName) return false;
+    if (laneDir === "up" || laneDir === "down") return moveDirName === "left" || moveDirName === "right";
+    return moveDirName === "up" || moveDirName === "down";
+  }
+
+  function rememberedShooterExitSafe(moveDirName, laneDir) {
+    if (!leavesRememberedShotLine(moveDirName, laneDir)) return false;
+    var n = add(myPos, delta(moveDirName));
+    if (hardBlockedAt(n[0], n[1])) return false;
+    if (n[0] === _ownBombX && n[1] === _ownBombY) return false;
+    if (ownBombDangerAt(n[0], n[1], 5)) return false;
+    if (bulletDangerAt(n[0], n[1], 3)) return false;
+    if (shotSetupAt(n[0], n[1], 1, 8)) return false;
+    if (breakableShotSetupAt(n[0], n[1], 1, 5)) return false;
+    if (overloadDangerAt(n[0], n[1])) return false;
+    if (hiddenShotLaneAt(n[0], n[1]) || hiddenLaneAt(n[0], n[1])) return false;
+    if (poorGunlineAt(n[0], n[1])) return false;
+    if (enemyTank && escapeRoutesAt(n[0], n[1]) <= 1 && dist(n[0], n[1], ex, ey) <= 5) return false;
+    return true;
+  }
+
+  function tryRememberedShooterExit() {
+    var laneDir = rememberedShotDirectionAt(px, py);
+    if (!laneDir) return false;
+    if (rememberedShooterExitSafe(dir, laneDir)) {
+      return goForwardDodge(["枪线暴露了,横着离线", "别原地转,先离开这一列", "草里有炮,一步出线"], true);
+    }
+
+    var best = null, bestScore = -99999;
+    for (var i = 0; i < 4; i++) {
+      var d = dirs[i];
+      if (!rememberedShooterExitSafe(d, laneDir)) continue;
+      var n = add(myPos, delta(d));
+      var score = 120 - turnCost(dir, d) * 20;
+      if (d === dir) score += 30;
+      if (game.star) score -= roughDistToStar(n) * 2;
+      if (enemyTank) score += Math.min(8, dist(n[0], n[1], ex, ey));
+      if (score > bestScore) {
+        bestScore = score;
+        best = d;
+      }
+    }
+    if (!best) return false;
+    say("dodge", ["枪线暴露了,横着离线", "别原地转,先离开这一列", "草里有炮,一步出线"], 3);
+    return moveDir(best);
   }
 
   function bulletDangerAt(x, y, horizon) {
@@ -483,6 +599,8 @@ function onIdle(me, enemy, game) {
     return typeof cd !== "number" || cd <= 2;
   }
 
+  if (enemyOverloadActive()) _lastEnemyOverloadedAt = frame;
+
   function overloadDangerAt(x, y) {
     if (!enemyTank || !enemyOverloadReady() || enemyDebuffed()) return false;
     for (var i = 0; i < 4; i++) {
@@ -494,6 +612,28 @@ function onIdle(me, enemy, game) {
       if (losFrom(shifted[0], shifted[1], d, x, y) && dist(shifted[0], shifted[1], x, y) <= 10) return true;
     }
     return false;
+  }
+
+  function enemyOverloadTrapLineAt(x, y) {
+    if (!enemyTank || enemyDebuffed()) return false;
+    if (!enemy.skill || enemy.skill.type !== "overload") return false;
+    if (dist(ex, ey, x, y) > 5) return false;
+    for (var i = 0; i < 4; i++) {
+      var d = dirs[i];
+      if (turnCost(eDir, d) > 1) continue;
+      if (losFrom(ex, ey, d, x, y)) return true;
+      var shifted = overloadOffsetSource([ex, ey], d);
+      if (!shifted || !open(shifted[0], shifted[1])) continue;
+      if (losFrom(shifted[0], shifted[1], d, x, y)) return true;
+    }
+    return false;
+  }
+
+  function enemyOverloadStarTrap(star) {
+    if (!star || !enemyOverloadTrapLineAt(star[0], star[1])) return false;
+    if (dist(px, py, star[0], star[1]) > 2) return false;
+    if (starsOf(me) + 1 >= 3 && frame > 116) return false;
+    return true;
   }
 
   function hiddenLaneAt(x, y) {
@@ -514,30 +654,42 @@ function onIdle(me, enemy, game) {
   function hiddenShooterAt(x, y) {
     var cacheKey = x + "," + y;
     if (Object.prototype.hasOwnProperty.call(hiddenShooterCache, cacheKey)) return hiddenShooterCache[cacheKey];
+    collectBullets();
+    if (hiddenShotLaneAt(x, y)) {
+      hiddenShooterCache[cacheKey] = true;
+      return true;
+    }
+    if (predictedHiddenShooterDirectionAt(x, y)) {
+      hiddenShooterCache[cacheKey] = true;
+      return true;
+    }
+    hiddenShooterCache[cacheKey] = false;
+    return false;
+  }
+
+  function predictedHiddenShooterDirectionAt(x, y) {
     if (_grassCampX >= 0 && frame - _grassCampAt <= 80 &&
       (x === _grassCampX || y === _grassCampY) &&
       dist(_grassCampX, _grassCampY, x, y) <= 10) {
       var campDir = _grassCampX === x ? (y < _grassCampY ? "up" : "down") :
         (x < _grassCampX ? "left" : "right");
-      if (losFrom(_grassCampX, _grassCampY, campDir, x, y)) {
-        hiddenShooterCache[cacheKey] = true;
-        return true;
-      }
+      if (losFrom(_grassCampX, _grassCampY, campDir, x, y)) return campDir;
     }
-    if (enemyTank || _lastEX < 0 || frame - _lastSeen > 18) return false;
-    var maxSteps = Math.max(1, Math.min(4, frame - _lastSeen + 1));
+    if (enemyTank || _lastEX < 0 || frame - _lastSeen > 18) return null;
+    var hiddenAge = frame - _lastSeen;
+    var predictCloakShooter = _lastESkill === "cloak" && hiddenAge <= 10;
+    var maxSteps = Math.max(1, Math.min(predictCloakShooter ? 6 : 4, hiddenAge + 1));
     var queue = [{ x: _lastEX, y: _lastEY, d: 0 }];
     var seen = {};
     seen[_lastEX + "," + _lastEY] = true;
     for (var head = 0; head < queue.length && queue.length < 90; head++) {
       var item = queue[head];
-      if (tile(item.x, item.y) === "o" &&
+      if ((predictCloakShooter || tile(item.x, item.y) === "o") &&
         (item.x === x || item.y === y) && dist(item.x, item.y, x, y) <= 8) {
         var need = item.x === x ? (y < item.y ? "up" : "down") : (x < item.x ? "left" : "right");
         if (losFrom(item.x, item.y, need, x, y)) {
           rememberGrassCamp(item.x, item.y);
-          hiddenShooterCache[cacheKey] = true;
-          return true;
+          return need;
         }
       }
       if (item.d >= maxSteps) continue;
@@ -550,8 +702,48 @@ function onIdle(me, enemy, game) {
         queue.push({ x: nx, y: ny, d: item.d + 1 });
       }
     }
-    hiddenShooterCache[cacheKey] = false;
-    return false;
+    return null;
+  }
+
+  function hiddenShooterExitSafe(moveDirName, laneDir) {
+    if (!leavesRememberedShotLine(moveDirName, laneDir)) return false;
+    var n = add(myPos, delta(moveDirName));
+    if (hardBlockedAt(n[0], n[1])) return false;
+    if (n[0] === _ownBombX && n[1] === _ownBombY) return false;
+    if (ownBombDangerAt(n[0], n[1], 5)) return false;
+    if (bulletDangerAt(n[0], n[1], 3)) return false;
+    if (shotSetupAt(n[0], n[1], 1, 8)) return false;
+    if (breakableShotSetupAt(n[0], n[1], 1, 5)) return false;
+    if (overloadDangerAt(n[0], n[1])) return false;
+    if (hiddenShotLaneAt(n[0], n[1]) || hiddenLaneAt(n[0], n[1])) return false;
+    if (poorGunlineAt(n[0], n[1])) return false;
+    if (enemyTank && escapeRoutesAt(n[0], n[1]) <= 1 && dist(n[0], n[1], ex, ey) <= 5) return false;
+    return true;
+  }
+
+  function tryPredictedHiddenShooterExit() {
+    var laneDir = predictedHiddenShooterDirectionAt(px, py);
+    if (!laneDir) return false;
+    if (hiddenShooterExitSafe(dir, laneDir)) {
+      return goForwardDodge(["隐身枪线先离开", "草线有炮,别原地转", "先横出隐藏枪线"], true);
+    }
+
+    var best = null, bestScore = -99999;
+    for (var i = 0; i < 4; i++) {
+      var d = dirs[i];
+      if (!hiddenShooterExitSafe(d, laneDir)) continue;
+      var n = add(myPos, delta(d));
+      var score = 120 - turnCost(dir, d) * 20;
+      if (d === dir) score += 30;
+      if (game.star) score -= roughDistToStar(n) * 2;
+      if (score > bestScore) {
+        bestScore = score;
+        best = d;
+      }
+    }
+    if (!best) return false;
+    say("dodge", ["隐身枪线先离开", "草线有炮,别原地转", "先横出隐藏枪线"], 3);
+    return moveDir(best);
   }
 
   function poorGunlineAt(x, y) {
@@ -834,6 +1026,7 @@ function onIdle(me, enemy, game) {
 
   function starPickupSafe(star) {
     if (!star || !safeCell(star[0], star[1], false)) return false;
+    if (enemyOverloadStarTrap(star)) return false;
     if (starPressureNeedsClear(star) && !postStarExitAvailable(star)) return false;
     return true;
   }
@@ -996,12 +1189,61 @@ function onIdle(me, enemy, game) {
       tryStarLanePressure() || tryStarInterception() || tryEarlyLanePressure();
   }
 
+  function tryEnemyOverloadStarTrapCounter() {
+    if (!game.star || !enemyOverloadStarTrap(game.star)) return false;
+    if (currentHardDanger()) return false;
+    if (enemyTank && !enemyShielded() && fireReady()) {
+      var target = [ex, ey];
+      if (overloadAttackLaneSafe(target)) {
+        if (!overloadPressureActive() && canCastOverloadSafely()) return castOverload("star-trap");
+        if (overloadPressureActive() && fireAtIfSafe(target)) return true;
+      }
+      if (canShootFrom(myPos, target)) {
+        var want = dirTo(myPos, target);
+        if (dir === want && fireIfSafe()) return true;
+        if (turnCost(dir, want) <= 1 && !projectileDangerAt(px, py) && !ownBombDangerAt(px, py, 4)) {
+          say("star-trap", ["星点有超载线,先反压", "不硬吃星,先卡他枪", "这颗星先别撞弹"], 4);
+          me.turn(turnSide(dir, want));
+          return true;
+        }
+      }
+    }
+    var best = null, bestScore = -99999;
+    for (var i = 0; i < 4; i++) {
+      var d = dirs[i];
+      var n = add(myPos, delta(d));
+      if (!safeCell(n[0], n[1], true)) continue;
+      if (same(n, game.star)) continue;
+      if (enemyOverloadTrapLineAt(n[0], n[1])) continue;
+      var score = 100 - turnCost(dir, d) * 14 + Math.min(20, dist(n[0], n[1], ex, ey) * 4);
+      if (d === dir) score += 8;
+      if (score > bestScore) {
+        bestScore = score;
+        best = d;
+      }
+    }
+    if (best) {
+      say("star-trap", ["星点有超载线,先离线", "不硬吃星,先躲偏移弹", "这颗星先别撞弹"], 3);
+      return moveDir(best);
+    }
+    say("star-trap", ["星点有超载线,先离线", "不硬吃星,先躲偏移弹", "这颗星先别撞弹"], 3);
+    return true;
+  }
+
   function runLeadTempoControl() {
     return tryGrassCamperHold() || tryStrategicGrassControl() || tryLeadStarLineControl() || tryLeadGrassControl();
   }
 
   function collectStarTempoCandidates(tempo) {
     var candidates = [];
+
+    if (enemyOverloadStarTrap(game.star)) {
+      candidates.push({
+        priority: 690,
+        value: 130 - tempo.route.eta * 8,
+        run: tryEnemyOverloadStarTrapCounter,
+      });
+    }
 
     if (dist(px, py, game.star[0], game.star[1]) === 1 && tempo.safeStar) {
       candidates.push({
@@ -1389,6 +1631,8 @@ function onIdle(me, enemy, game) {
       if (tryDodge(true)) return true;
       return false;
     }
+    if (tryRememberedShooterExit()) return true;
+    if (tryPredictedHiddenShooterExit()) return true;
     if (hiddenLaneAt(px, py)) {
       return tryDodge(true);
     }
@@ -1678,6 +1922,7 @@ function onIdle(me, enemy, game) {
   function tryGrassCamperHold() {
     if (_grassCampX < 0 || frame - _grassCampAt > 80) return false;
     if (starsOf(me) <= starsOf(enemy)) return false;
+    if (tile(px, py) !== "o" || !grassPressureAt(px, py)) return false;
     if (bulletDangerAt(px, py, 2) || ownBombDangerAt(px, py, 3) || hiddenShooterAt(px, py)) return false;
     if (game.star) {
       var info = pathInfo(myPos, game.star, false);
@@ -1687,8 +1932,7 @@ function onIdle(me, enemy, game) {
         if (riskyButOverloadable(n[0], n[1]) && attackStarWorthwhile(game.star)) return false;
       }
     }
-    say("grass-hold", ["领先别进草线", "他蹲草,我控星", "别上钩,等下一颗"], 8);
-    return true;
+    return tryActiveGrassHold("grass-hold", ["领先别进草线", "他蹲草,我控星", "别上钩,等下一颗"]);
   }
 
   function leadControlNeeded() {
@@ -1709,6 +1953,48 @@ function onIdle(me, enemy, game) {
     if (game.star && grassControlsPoint(x, y, game.star)) return true;
     if (!enemyTank || enemyShielded()) return false;
     return canShootFrom([x, y], [ex, ey]) || overloadLineFrom([x, y], [ex, ey]);
+  }
+
+  function tryActiveGrassHold(tag, lines) {
+    if (tile(px, py) !== "o") return false;
+    if (bulletDangerAt(px, py, 2) || projectileDangerAt(px, py) ||
+      ownBombDangerAt(px, py, 3) || hiddenShooterAt(px, py)) return false;
+
+    if (enemyTank && !enemyShielded()) {
+      var target = [ex, ey];
+      if (overloadAttackLaneSafe(target)) {
+        if (!overloadPressureActive() && canCastOverloadSafely()) return castOverload(tag);
+        var overloadWant = overloadDirTo(myPos, target);
+        if (overloadPressureActive()) {
+          if (dir === overloadWant && fireAtIfSafe(target)) return true;
+          if (turnCost(dir, overloadWant) <= 1 && !ownBombDangerAt(px, py, 4)) {
+            say(tag, lines, 7);
+            me.turn(turnSide(dir, overloadWant));
+            return true;
+          }
+        }
+      }
+
+      if (canShootFrom(myPos, target)) {
+        var directWant = dirTo(myPos, target);
+        if (dir === directWant && fireAtIfSafe(target)) return true;
+        if (turnCost(dir, directWant) <= 1 && !ownBombDangerAt(px, py, 4)) {
+          say(tag, lines, 7);
+          me.turn(turnSide(dir, directWant));
+          return true;
+        }
+      }
+    }
+
+    if (game.star && grassControlsPoint(px, py, game.star)) {
+      var starWant = dirTo(myPos, game.star);
+      if (dir !== starWant && !bulletDangerAt(px, py, 2) && !ownBombDangerAt(px, py, 4)) {
+        say(tag, lines, 7);
+        me.turn(turnSide(dir, starWant));
+        return true;
+      }
+    }
+    return false;
   }
 
   var GRASS_SCAN_RADIUS = 4;
@@ -1815,8 +2101,7 @@ function onIdle(me, enemy, game) {
 
     if (!best || bestScore < 118) return false;
     if (!best.info) {
-      say("grass-control", ["先占草线", "草位控住再说", "这个草能卡线"], 7);
-      return true;
+      return tryActiveGrassHold("grass-control", ["先占草线", "草位控住再说", "这个草能卡线"]);
     }
     var n = add(myPos, delta(best.info.first));
     if (!safeCell(n[0], n[1], true)) return false;
@@ -1888,12 +2173,7 @@ function onIdle(me, enemy, game) {
   function tryLeadGrassControl() {
     if (!leadControlNeeded()) return false;
     if (safeCell(px, py, true) && tile(px, py) === "o" && grassPressureAt(px, py)) {
-      if (enemyTank && !enemyShielded() && fireReady() && overloadAttackLaneSafe([ex, ey]) &&
-        !overloadPressureActive() && canCastOverloadSafely()) {
-        return castOverload("lead-grass");
-      }
-      say("lead-grass", ["领先进草控线", "别急,草里等他", "优势位先拿住"], 7);
-      return true;
+      return tryActiveGrassHold("lead-grass", ["领先进草控线", "别急,草里等他", "优势位先拿住"]);
     }
 
     var best = null, bestScore = -99999;
@@ -1925,8 +2205,7 @@ function onIdle(me, enemy, game) {
     if (!best || bestScore < 80) return false;
     if (best.dist === 0) {
       if (!grassPressureAt(px, py)) return false;
-      say("lead-grass", ["领先进草控线", "别急,草里等他", "优势位先拿住"], 7);
-      return true;
+      return tryActiveGrassHold("lead-grass", ["领先进草控线", "别急,草里等他", "优势位先拿住"]);
     }
     var n = add(myPos, delta(best.first));
     if (!safeCell(n[0], n[1], true)) return false;
