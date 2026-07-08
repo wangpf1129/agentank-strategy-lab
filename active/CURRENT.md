@@ -16,7 +16,7 @@ Goal mode: train shield-main / tank 4839 `500` / boost toward a stable 2600-poin
 
 ## Current Hypothesis
 
-Live shield-main is still codeVersion 51, but the latest dry-run read the current ladder score as 1153 after continued live drift. The local candidate now switches the bounded axis to boost initiative pressure: learn from 50 high-score boost replay samples and Dark Edge's pressure-first arbitration, then make boost convert into clear shots, safe side pressure lanes, and hard bullet-lane exits before far-star or empty control drift.
+Live shield-main is codeVersion 52 at rankScore 1153, Platinum I, after publishing the boost initiative pressure refactor. The current bounded axis is to convert boost into clear shots, safe side pressure lanes, and hard bullet-lane exits before far-star or empty control drift, while preserving safe close stars, valuable boost star routes, and nearby grass star-control.
 
 ## Protected Behaviors
 
