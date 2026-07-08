@@ -455,7 +455,8 @@ function onIdle(me, enemy, game) {
   }
 
   function enemyLaneThreatDirectionAt(x, y, turnGrace, maxCells) {
-    if (!enemyTank || enemyDebuffed() || (enemy && enemy.bullet)) return null;
+    if (!enemyTank || enemyDebuffed()) return null;
+    if (enemy && enemy.bullet && enemy.bullet.position && enemy.bullet.direction) return null;
     if (x !== ex && y !== ey) return null;
     var want = ex === x ? (y < ey ? "up" : "down") : (x < ex ? "left" : "right");
     if (turnCost(eDir, want) > turnGrace) return null;
@@ -1035,6 +1036,159 @@ function onIdle(me, enemy, game) {
       return commandTurnToward(want);
     }
     return false;
+  }
+
+  function safeCloseStarAvailable(maxEta) {
+    if (!game.star) return false;
+    if (dist(px, py, game.star[0], game.star[1]) === 1) {
+      return safeCell(game.star[0], game.star[1], false);
+    }
+    var safeRoute = etaToStarFrom(myPos, dir, true);
+    if (!safeRoute.info || !safeRoute.info.first || safeRoute.eta > maxEta) return false;
+    if (starUnderPressure(game.star)) return false;
+    var n = add(myPos, delta(safeRoute.info.first));
+    if (!safeCell(n[0], n[1], true)) return false;
+    return !boostedMoveWouldLeaveStarRoute(safeRoute.info.first);
+  }
+
+  function boostPressureShouldYieldToStar() {
+    if (!game.star) return false;
+    if (safeCloseStarAvailable(2)) return true;
+
+    var safeRoute = etaToStarFrom(myPos, dir, true);
+    var route = safeRoute.info ? safeRoute : etaToStarFrom(myPos, dir, false);
+    if (!route.info || !route.info.first) return false;
+    var enemyRoute = enemyTank ? etaToStarFrom([ex, ey], eDir, false) : { eta: 999, info: null };
+
+    if (!starRaceClearlyLost(game.star) && safeRoute.info && safeRoute.eta <= 3) return true;
+    if (roughDistToStar(myPos) <= 5 && enemyStarRushThreat(route.eta, enemyRoute.eta) &&
+      nearbyGrassStarControlAvailable(4)) return true;
+    return boostReady() && boostStarWorthwhile(route, safeRoute, enemyRoute) &&
+      !starRaceClearlyLost(game.star);
+  }
+
+  function nearbyGrassStarControlAvailable(maxDist) {
+    if (!game.star) return false;
+    var grassCandidates = collectBoundedGrassCandidates(roughDistToStar(myPos), GRASS_CANDIDATE_LIMIT);
+    for (var g = 0; g < grassCandidates.length; g++) {
+      var grass = grassCandidates[g];
+      if (!grassControlsPoint(grass.x, grass.y, game.star)) continue;
+      if (dist(grass.x, grass.y, game.star[0], game.star[1]) > 5) continue;
+      if (!safeCell(grass.x, grass.y, true)) continue;
+      var info = pathInfo(myPos, [grass.x, grass.y], true);
+      if (info && info.dist <= maxDist) return true;
+    }
+    return false;
+  }
+
+  function boostInitiativePressureNeeded() {
+    if (!(me.skill && me.skill.type === "boost")) return false;
+    if (!enemyTank || enemyShielded() || !fireReady()) return false;
+    if (currentHardDanger() || bulletDangerAt(px, py, 2) || ownBombDangerAt(px, py, 4)) return false;
+    if (boostPressureShouldYieldToStar()) return false;
+
+    if (!game.star) {
+      if (frame >= 96 && scoreMargin() >= 2 && !canShootFrom(myPos, [ex, ey])) return false;
+      return true;
+    }
+    var route = etaToStarFrom(myPos, dir, false);
+    var enemyRoute = enemyTank ? etaToStarFrom([ex, ey], eDir, false) : { eta: 999, info: null };
+    if (frame - _lastBoostAt <= 28) return true;
+    if (scoreMargin() <= 0) return true;
+    if (starRaceClearlyLost(game.star)) return true;
+    if (enemyStarRushThreat(route.eta, enemyRoute.eta)) return true;
+    if (frame >= 36 && route.eta >= 5) return true;
+    if (dist(px, py, ex, ey) <= 8 && route.eta >= 4) return true;
+    return starsOf(me) > starsOf(enemy) && route.eta >= 6;
+  }
+
+  function pressureSideScore(target) {
+    var fromEnemy = dirTo([ex, ey], target);
+    if (fromEnemy === oppositeDir(eDir)) return 28;
+    if (fromEnemy !== eDir) return 14;
+    return -18;
+  }
+
+  function findBoostPressureLane(maxDist) {
+    if (!enemyTank) return null;
+    var best = null, bestScore = -99999;
+    var baseStarDist = game.star ? roughDistToStar(myPos) : 99;
+
+    for (var i = 0; i < 4; i++) {
+      var ray = delta(dirs[i]);
+      for (var r = 2; r <= 9; r++) {
+        var target = [ex + ray[0] * r, ey + ray[1] * r];
+        if (!open(target[0], target[1])) break;
+        if (!canShootFrom(target, [ex, ey])) break;
+        var roughGap = dist(px, py, target[0], target[1]);
+        if (roughGap > maxDist + 2) continue;
+        if (hardBlockedAt(target[0], target[1])) continue;
+        if (bulletDangerAt(target[0], target[1], 3) || ownBombDangerAt(target[0], target[1], 4)) continue;
+        if (enemyLaneThreatDirectionAt(target[0], target[1], 0, 12)) continue;
+        if (overloadDangerAt(target[0], target[1]) || hiddenShooterAt(target[0], target[1])) continue;
+        var cheapScore = 90 - roughGap * 7 + pressureSideScore(target);
+        if (tile(target[0], target[1]) === "o") cheapScore += 12;
+        if (edgeDepth(target[0], target[1]) <= 1) cheapScore -= 24;
+        if (cheapScore < 22) continue;
+
+        var info = pathInfo(myPos, target, true) || pathInfo(myPos, target, false);
+        if (!info || !info.first || info.dist < 2 || info.dist > maxDist) continue;
+
+        var score = 138 - info.dist * 9 - turnCost(dir, info.first) * 10;
+        score += pressureSideScore(target);
+        score += Math.round(positionalValue(target) * 0.5);
+        if (tile(target[0], target[1]) === "o") score += 16;
+        if (game.star) {
+          var starDelta = roughDistToStar(target) - baseStarDist;
+          if (starDelta > 0) score -= Math.min(36, starDelta * 7);
+          else score += Math.min(18, -starDelta * 4);
+          if (target[0] === game.star[0] || target[1] === game.star[1]) score += 12;
+          if (canShootFrom(target, game.star)) score += 10;
+        }
+        if (dist(target[0], target[1], ex, ey) <= 3) score -= 18;
+        if (edgeDepth(target[0], target[1]) <= 1) score -= 30;
+        else if (edgeDepth(target[0], target[1]) <= 2) score -= 10;
+
+        if (score > bestScore) {
+          bestScore = score;
+          best = { target: target, info: info, score: score };
+        }
+      }
+    }
+    return best && bestScore >= 58 ? best : null;
+  }
+
+  function tryBoostInitiativePressure() {
+    if (!boostInitiativePressureNeeded()) return false;
+
+    var target = [ex, ey];
+    var want = dirTo(myPos, target);
+    if (losFrom(px, py, want, ex, ey)) {
+      if (dir === want) {
+        say("boost-pressure", ["加速节奏转火", "有线就开炮", "别空跑,先压住"], 4);
+        return fireIfSafe();
+      }
+      if (turnCost(dir, want) <= 1 && !projectileDangerAt(px, py) &&
+        !ownBombDangerAt(px, py, 4) && !shotSetupAt(px, py, 0, 7)) {
+        say("boost-pressure", ["加速节奏转火", "有线就开炮", "别空跑,先压住"], 4);
+        return commandTurnToward(want);
+      }
+    }
+
+    if (frame >= 118) return false;
+
+    var maxDist = boosted() || frame - _lastBoostAt <= 28 ? 8 : 7;
+    var best = findBoostPressureLane(maxDist);
+    if (!best) return false;
+    if (boostReady() && best.info.dist >= (game.star ? 3 : 2) && best.score >= 70) {
+      say("boost-pressure", ["加速抢侧线", "提速绕侧面", "不追空星,抢枪位"], 4);
+      return castBoost();
+    }
+    var n = add(myPos, delta(best.info.first));
+    if (!safeCell(n[0], n[1], true)) return false;
+    if (boostedMoveWouldLeaveTrace(best.info.first, best.target, true)) return false;
+    say("boost-pressure", ["加速抢侧线", "提速绕侧面", "不追空星,抢枪位"], 4);
+    return moveDir(best.info.first);
   }
 
   function trySkillTrapTempoShot() {
@@ -2820,6 +2974,7 @@ function onIdle(me, enemy, game) {
       postShieldReset: strategyModule("L1", "post-shield-reset", tryPostShieldResetGuard),
       gunlineFrameEconomy: strategyModule("L1", "gunline-frame-economy", tryGunlineFrameEconomyGuard),
       boostConfirmedShot: strategyModule("L2", "boost-confirmed-shot", tryBoostConfirmedShot),
+      boostInitiativePressure: strategyModule("L2", "boost-initiative-pressure", tryBoostInitiativePressure),
       boostStarTempo: strategyModule("L2", "boost-star-tempo", tryBoostStarTempo),
       lateReachableStar: strategyModule("L2", "late-reachable-star", tryLateReachableStarPickup),
       boostStarControl: strategyModule("L2", "boost-star-control", tryBoostStarControlPosition),
@@ -2842,6 +2997,7 @@ function onIdle(me, enemy, game) {
       shield.postShieldReset,
       shield.gunlineFrameEconomy,
       shield.boostConfirmedShot,
+      shield.boostInitiativePressure,
       shield.boostStarTempo,
       shield.lateReachableStar,
       shield.boostTempoPressure,

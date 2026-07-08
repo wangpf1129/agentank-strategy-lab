@@ -181,6 +181,57 @@ test("shield-main boost confirmed shot fires before far-star value drift", () =>
   assert.equal(me.actions[0]?.type, "fire");
 });
 
+test("shield-main fires before lead far-star pressure movement", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([2, 2], "right", 20);
+  me.speak = () => {};
+  me.stars = 2;
+  const enemy = createEnemy([10, 2], "up", "freeze");
+  enemy.stars = 1;
+
+  context.onIdle(me, enemy, {
+    frames: 30,
+    map: createOpenMap(17, 13),
+    star: [2, 9],
+  });
+
+  assert.equal(me.actions[0]?.type, "fire");
+});
+
+test("shield-main casts boost to take a safe side pressure lane when no star is available", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([8, 5], "right", 0);
+  me.speak = () => {};
+  const enemy = createEnemy([12, 8], "left", "boost");
+
+  context.onIdle(me, enemy, {
+    frames: 42,
+    map: createOpenMap(19, 15),
+    star: null,
+  });
+
+  assert.equal(me.actions[0]?.type, "boost");
+  assert.equal(context._lastSpeakTag, "boost-pressure");
+});
+
+test("shield-main does not scan for late boost side lanes while safely ahead without a star", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([8, 5], "right", 0);
+  me.speak = () => {};
+  me.stars = 3;
+  const enemy = createEnemy([12, 8], "left", "boost");
+  enemy.stars = 0;
+
+  context.onIdle(me, enemy, {
+    frames: 104,
+    map: createOpenMap(19, 15),
+    star: null,
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+  assert.notEqual(context._lastSpeakTag, "boost-pressure");
+});
+
 test("shield-main still takes an adjacent safe star before boost confirmed fire", () => {
   const onIdle = loadCandidate();
   const me = createBoostMe([5, 5], "down", 20);
@@ -380,6 +431,25 @@ test("shield-main does not force a recent-boost adjacent star through an active 
 
   assert.notEqual(me.actions[0]?.type, "go");
   assert.notEqual(context._lastSpeakTag, "boost-land");
+});
+
+test("shield-main does not chase a star along an opaque active enemy bullet lane", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([8, 13], "left", 20);
+  me.speak = () => {};
+  me.stars = 3;
+  const enemy = createEnemy([17, 13], "left", "freeze");
+  enemy.stars = 0;
+  enemy.bullet = {};
+
+  context.onIdle(me, enemy, {
+    frames: 92,
+    map: createOpenMap(19, 15),
+    star: [7, 12],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "go");
+  assert.notEqual(context._lastSpeakTag, "star");
 });
 
 test("shield-main does not cast boost while a current bullet lane is urgent", () => {
@@ -1954,7 +2024,7 @@ test("shield-main converts late boost tempo into pressure before runtime drift",
   });
 
   assert.equal(me.actions[0]?.type, "go");
-  assert.equal(context._lastSpeakTag, "pressure");
+  assert.equal(context._lastSpeakTag, "boost-pressure");
 });
 
 test("shield-main releases stale boost-tempo star-line hold instead of empty hold", () => {
@@ -2056,6 +2126,7 @@ test("shield-main keeps action priority in an explicit strategy pipeline", () =>
     "L1:post-shield-reset:tryPostShieldResetGuard",
     "L1:gunline-frame-economy:tryGunlineFrameEconomyGuard",
     "L2:boost-confirmed-shot:tryBoostConfirmedShot",
+    "L2:boost-initiative-pressure:tryBoostInitiativePressure",
     "L2:boost-star-tempo:tryBoostStarTempo",
     "L2:late-reachable-star:tryLateReachableStarPickup",
     "L2:boost-tempo-pressure:tryBoostTempoPressure",
@@ -2102,6 +2173,7 @@ test("shield-main separates base strategy modules from shield skill modules", ()
   assert.match(baseBlock, /starPath: strategyModule\("L7", "star-path", tryStarPath\)/);
   assert.match(shieldBlock, /postShieldReset: strategyModule\("L1", "post-shield-reset", tryPostShieldResetGuard\)/);
   assert.match(shieldBlock, /boostConfirmedShot: strategyModule\("L2", "boost-confirmed-shot", tryBoostConfirmedShot\)/);
+  assert.match(shieldBlock, /boostInitiativePressure: strategyModule\("L2", "boost-initiative-pressure", tryBoostInitiativePressure\)/);
   assert.match(shieldBlock, /boostStarTempo: strategyModule\("L2", "boost-star-tempo", tryBoostStarTempo\)/);
   assert.match(shieldBlock, /lateReachableStar: strategyModule\("L2", "late-reachable-star", tryLateReachableStarPickup\)/);
   assert.match(shieldBlock, /boostStarControl: strategyModule\("L2", "boost-star-control", tryBoostStarControlPosition\)/);

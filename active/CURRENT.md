@@ -16,7 +16,7 @@ Goal mode: train shield-main / tank 4839 `500` / boost toward a stable 2600-poin
 
 ## Current Hypothesis
 
-Live shield-main is codeVersion 51 at 1252 after real stop-loss `mat_D7rGhn6agqCLyer30`. v51's recent-boost adjacent-star fix held in that replay; the next cycle should cluster boost-mirror far-star tempo losses before any new code patch.
+Live shield-main is still codeVersion 51, but the latest dry-run read the current ladder score as 1153 after continued live drift. The local candidate now switches the bounded axis to boost initiative pressure: learn from 50 high-score boost replay samples and Dark Edge's pressure-first arbitration, then make boost convert into clear shots, safe side pressure lanes, and hard bullet-lane exits before far-star or empty control drift.
 
 ## Protected Behaviors
 
@@ -40,6 +40,9 @@ Live shield-main is codeVersion 51 at 1252 after real stop-loss `mat_D7rGhn6agqC
 - Do not let boost star-control override urgent bullet danger.
 - Occupied boost star-control lines should convert into real pressure fire when the enemy gunline is clear.
 - Boost confirmed clear shots should fire before far-star value drift while safe adjacent stars remain protected.
+- Boost initiative should fire, turn to a clear gunline, or cast boost toward a safe side pressure lane before far-star drift when no safe near-star or valuable star-control action exists.
+- Boost initiative must yield to safe close stars, valuable boost star routes, and nearby grass positions that control the current star line.
+- Do not scan or cast boost for late side-pressure lanes while safely ahead without a star.
 - Boost tempo lead should convert into early or mid/late pressure before ordinary far-star walking when no safe nearby star is available.
 - Late reachable stars should be collected before wall-only star-line fire.
 - Recent boost tempo must not keep holding an unsafe star line after it has gone stale without fire pressure.
@@ -47,6 +50,7 @@ Live shield-main is codeVersion 51 at 1252 after real stop-loss `mat_D7rGhn6agqC
 - When leading by two or more stars, boost-tempo pressure must not step into a two-turn enemy long lane.
 - Boost skill must treat close enemy firing lanes and overload offset lanes as hard danger before value movement.
 - Active enemy overload frames exposed through remaining-frame state are hard offset danger before star or pressure actions.
+- Opaque active enemy bullets still preserve the enemy's current gunline as hard danger; do not chase a star along that lane.
 - Hard danger still outranks stars, grass, pressure fire, bombs, and ordinary pathing.
 - Same-row or same-column gunline decisions should be resolved by frame cost before star chasing or turning in place.
 - Against stun or cloak skill traps, clear close pressure shots may outrank lane escape only when no current bullet or bomb hard danger exists and our shot frame is no slower than the enemy aim frame.

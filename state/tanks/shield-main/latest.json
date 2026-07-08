@@ -5,11 +5,11 @@
   "skillType": "boost",
   "activeSource": "active/shield-main.js",
   "baselineSource": "active/shield-main.js",
-  "lastKnownRankScore": 1252,
+  "lastKnownRankScore": 1153,
   "lastKnownTier": "diamond",
   "lastKnownRankDivision": 3,
   "lastKnownPublicRank": 620,
-  "lastUpdatedAt": "2026-07-08T07:46:26Z",
+  "lastUpdatedAt": "2026-07-08T08:58:41Z",
   "lastKnownCodeVersion": 51,
   "lastKnownCodeHash": "671068cd5ced10f25270218190f0b517ccb86c2d227365ee8d01a8b57f70408c",
   "lastKnownRecord": {
@@ -19,7 +19,7 @@
     "placementMatches": 10
   },
   "lastObservation": {
-    "runPath": "/tmp/agentank-runs/snapshots-shield-v51-after-real1/shield-main/tank.json",
-    "summary": "Shield-main / tank 4839 `500` codeVersion 51 / codeHash 671068cd5ced10f25270218190f0b517ccb86c2d227365ee8d01a8b57f70408c, skillType boost. A v51 real challenge run stopped after the first loss by stopOnLoss: `mat_D7rGhn6agqCLyer30` vs boost tank Overlord, 2-4 star loss, score 1272 -> 1252, record 732-698-0. Replay showed v51 did collect the recent-boost adjacent star at frame 51, so the v51 fix held; the new loss shape is boost-mirror far-star tempo where Overlord used boost to collect three later stars first. No new local patch yet; next round should cluster boost-mirror star tempo before editing."
+    "runPath": "/tmp/agentank-runs/shield-main/challenge-runs/2026-07-08T08-58-41-221Z.json",
+    "summary": "Latest shield-main dry-run read live start score 1153 while codeVersion remains 51 / codeHash 671068cd5ced10f25270218190f0b517ccb86c2d227365ee8d01a8b57f70408c. Local unpublished candidate is a boost initiative pressure refactor based on 50 high-score boost leaderboard samples: wins averaged more shots than losses, and the candidate moves boost pressure before far-star drift while preserving safe close stars, valuable boost star routes, grass star-control, and hard danger. Gates passed locally: check, test:lab, focused shield-main 124/124, .env simulation 9/9 at /tmp/agentank-runs/simulations/2026-07-08T08-57-55-020Z, and challenge dry-run /tmp/agentank-runs/shield-main/challenge-runs/2026-07-08T08-58-41-221Z.json. Not published yet."
   }
 }
