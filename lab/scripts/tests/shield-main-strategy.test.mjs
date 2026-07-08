@@ -167,6 +167,34 @@ test("shield-main fires when it has a clear unshielded shot", () => {
   assert.equal(me.actions[0]?.type, "fire");
 });
 
+test("shield-main boost confirmed shot fires before far-star value drift", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([2, 2], "right", 20);
+  const enemy = createEnemy([7, 2], "up", "freeze");
+
+  onIdle(me, enemy, {
+    frames: 54,
+    map: createOpenMap(13, 11),
+    star: [2, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "fire");
+});
+
+test("shield-main still takes an adjacent safe star before boost confirmed fire", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([5, 5], "down", 20);
+  const enemy = createEnemy([9, 5], "up", "freeze");
+
+  onIdle(me, enemy, {
+    frames: 54,
+    map: createOpenMap(13, 11),
+    star: [5, 6],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
 test("shield-main takes a safe near-star route through star-tempo arbitration", () => {
   const onIdle = loadCandidate();
   const me = createMe([2, 2], "right", 0);
@@ -223,6 +251,86 @@ test("shield-main casts boost for an opening diagonal star route against a mobil
   assert.equal(me.actions[0]?.type, "boost");
 });
 
+test("shield-main does not hard-veto a valuable folded boost star route by shape alone", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap(15, 13);
+  map[4][2] = "x";
+  const me = createBoostMe([2, 2], "right", 0);
+  const enemy = createEnemy([13, 10], "left", "boost");
+
+  onIdle(me, enemy, {
+    frames: 6,
+    map,
+    star: [8, 5],
+  });
+
+  assert.equal(me.actions[0]?.type, "boost");
+});
+
+test("shield-main does not boost into a wall-capped opening star route", () => {
+  const onIdle = loadCandidate();
+  const map = createOpenMap(19, 15);
+  map[12][2] = "x";
+  map[12][3] = "o";
+  const me = createBoostMe([3, 2], "right", 0);
+  const enemy = createEnemy([14, 10], "right", "boost");
+  enemy.status.boosted = true;
+
+  onIdle(me, enemy, {
+    frames: 3,
+    map,
+    star: [13, 3],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main does not boost an opening folded route against a direct non-mobile star race", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([2, 2], "up", 0);
+  const enemy = createEnemy([16, 12], "down", "freeze");
+
+  onIdle(me, enemy, {
+    frames: 1,
+    map: createOpenMap(19, 15),
+    star: [11, 5],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main does not cast late boost for an unreachable final star", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([12, 1], "left", 0);
+  me.stars = 2;
+  const enemy = createEnemy([6, 3], "up", "boost");
+  enemy.stars = 2;
+
+  onIdle(me, enemy, {
+    frames: 124,
+    map: createOpenMap(19, 15),
+    star: [1, 2],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main can still cast late boost when the final star is reachable", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([10, 8], "right", 0);
+  me.stars = 2;
+  const enemy = createEnemy([2, 2], "up", "boost");
+  enemy.stars = 2;
+
+  onIdle(me, enemy, {
+    frames: 122,
+    map: createOpenMap(19, 15),
+    star: [15, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "boost");
+});
+
 test("shield-main advances along the star route while boost is active", () => {
   const onIdle = loadCandidate();
   const me = createBoostMe([2, 2], "right", 20);
@@ -238,6 +346,42 @@ test("shield-main advances along the star route while boost is active", () => {
   assert.deepEqual(me.actions[0], { type: "turn", side: "right" });
 });
 
+test("shield-main collects an adjacent star after recent boost instead of replanning away", () => {
+  const context = loadCandidateContext();
+  context._lastBoostAt = 3;
+  const me = createBoostMe([9, 6], "down", 20);
+  me.speak = () => {};
+  const enemy = createEnemy([15, 7], "left", "poison");
+  enemy.stars = 1;
+
+  context.onIdle(me, enemy, {
+    frames: 11,
+    map: createOpenMap(19, 15),
+    star: [9, 7],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+  assert.equal(context._lastSpeakTag, "boost-land");
+});
+
+test("shield-main does not force a recent-boost adjacent star through an active bullet", () => {
+  const context = loadCandidateContext();
+  context._lastBoostAt = 3;
+  const me = createBoostMe([9, 6], "down", 20);
+  me.speak = () => {};
+  const enemy = createEnemy([15, 7], "left", "poison");
+  enemy.bullet = { position: [9, 10], direction: "up" };
+
+  context.onIdle(me, enemy, {
+    frames: 11,
+    map: createOpenMap(19, 15),
+    star: [9, 7],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "go");
+  assert.notEqual(context._lastSpeakTag, "boost-land");
+});
+
 test("shield-main does not cast boost while a current bullet lane is urgent", () => {
   const onIdle = loadCandidate();
   const me = createBoostMe([2, 2], "right", 0);
@@ -251,6 +395,90 @@ test("shield-main does not cast boost while a current bullet lane is urgent", ()
   });
 
   assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main treats a close enemy firing lane while boosted as hard danger", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([12, 8], "right", 20);
+  me.speak = () => {};
+  const enemy = createEnemy([10, 8], "right", "freeze");
+
+  context.onIdle(me, enemy, {
+    frames: 17,
+    map: createOpenMap(19, 15),
+    star: [4, 13],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+  assert.equal(context._lastSpeakTag, "dodge");
+  assert.ok(["up", "down"].includes(context._lastMoveIntent));
+});
+
+test("shield-main dodges a close overload offset firing lane before value movement", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([10, 10], "left", 20);
+  me.speak = () => {};
+  const enemy = createEnemy([13, 9], "left", "overload");
+  enemy.skill.remainingCooldownFrames = 0;
+
+  context.onIdle(me, enemy, {
+    frames: 55,
+    map: createOpenMap(19, 15),
+    star: [12, 10],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+  assert.equal(context._lastSpeakTag, "dodge");
+  assert.ok(["up", "down"].includes(context._lastMoveIntent));
+});
+
+test("shield-main treats active overload remaining frames as hard offset danger", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([9, 4], "right", 20);
+  me.speak = () => {};
+  const enemy = createEnemy([11, 3], "left", "overload");
+  enemy.skill.remainingCooldownFrames = 18;
+  enemy.skill.activeRemainingFrames = 3;
+
+  context.onIdle(me, enemy, {
+    frames: 52,
+    map: createOpenMap(19, 15),
+    star: [9, 6],
+  });
+
+  assert.equal(context._lastSpeakTag, "dodge");
+  assert.ok(["up", "down"].includes(context._lastMoveIntent));
+});
+
+test("shield-main does not cast boost while stun control reverses movement", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([2, 2], "right", 0);
+  me.status.stunned = true;
+  me.status.reversed = true;
+  const enemy = createEnemy([12, 2], "left", "stun");
+
+  onIdle(me, enemy, {
+    frames: 2,
+    map: createOpenMap(19, 15),
+    star: [14, 2],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main uses reversed controls for a safe adjacent star pickup", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([5, 5], "left", 20);
+  me.status.reversed = true;
+  const enemy = createEnemy([10, 8], "left", "stun");
+
+  onIdle(me, enemy, {
+    frames: 74,
+    map: createOpenMap(13, 11),
+    star: [6, 5],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
 });
 
 test("shield-main does not boost a short odd-distance star route that would skip the star", () => {
@@ -277,6 +505,38 @@ test("shield-main does not spend boost on a short diagonal star route", () => {
     frames: 44,
     map: createOpenMap(13, 11),
     star: [7, 7],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main does not boost-control a stable closer star route", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([14, 4], "right", 0);
+  me.stars = 2;
+  const enemy = createEnemy([7, 7], "right", "boost");
+  enemy.stars = 1;
+
+  onIdle(me, enemy, {
+    frames: 53,
+    map: createOpenMap(19, 15),
+    star: [13, 8],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "boost");
+});
+
+test("shield-main does not boost-control a near star while already closer", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([9, 11], "right", 0);
+  me.stars = 3;
+  const enemy = createEnemy([15, 12], "left", "teleport");
+  enemy.stars = 1;
+
+  onIdle(me, enemy, {
+    frames: 74,
+    map: createOpenMap(19, 15),
+    star: [8, 12],
   });
 
   assert.notEqual(me.actions[0]?.type, "boost");
@@ -323,6 +583,45 @@ test("shield-main occupies a star-control lane when boost cannot win the direct 
   );
 });
 
+test("shield-main favors a grass star-control station in a contested boost lane", () => {
+  const context = loadCandidateContext();
+  const map = createOpenMap(19, 15);
+  map[9][8] = "o";
+  const me = createBoostMe([10, 6], "left", 20);
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([8, 10], "left", "freeze");
+  enemy.stars = 1;
+
+  context.onIdle(me, enemy, {
+    frames: 50,
+    map,
+    star: [8, 8],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+  assert.equal(context._lastSpeakTag, "grass-control");
+});
+
+test("shield-main still takes an adjacent safe star before grass control", () => {
+  const context = loadCandidateContext();
+  const map = createOpenMap(13, 11);
+  map[5][5] = "o";
+  const me = createBoostMe([5, 5], "right", 20);
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([10, 8], "left", "boost");
+
+  context.onIdle(me, enemy, {
+    frames: 18,
+    map,
+    star: [6, 5],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+  assert.notEqual(context._lastSpeakTag, "grass-control");
+});
+
 test("shield-main does not keep holding boost star-control next to a collectible star", () => {
   const onIdle = loadCandidate();
   const me = createBoostMe([7, 8], "right", 20);
@@ -341,6 +640,22 @@ test("shield-main does not keep holding boost star-control next to a collectible
     !me.speeches.some((text) => ["守住星位", "等对面交路线", "星点我控着"].includes(text)),
     "adjacent star pickup should outrank boost star-control holding",
   );
+});
+
+test("shield-main converts an occupied boost star-control lane into pressure fire", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([8, 3], "left", 20);
+  const enemy = createEnemy([4, 3], "up", "teleport");
+  enemy.stars = 1;
+  enemy.status.stunned = true;
+
+  onIdle(me, enemy, {
+    frames: 50,
+    map: createOpenMap(13, 11),
+    star: [5, 3],
+  });
+
+  assert.equal(me.actions[0]?.type, "fire");
 });
 
 test("shield-main does not let boost star-control override urgent bullet danger", () => {
@@ -744,6 +1059,22 @@ test("shield-main uses reversed go when it is the real one-frame bullet-lane exi
   assert.equal(me.actions[0]?.type, "go");
 });
 
+test("shield-main does not reverse-walk into a stun-controlled star pin", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([11, 3], "up", 20);
+  me.status.stunned = true;
+  me.status.reversed = true;
+  const enemy = createEnemy([12, 5], "left", "stun");
+
+  onIdle(me, enemy, {
+    frames: 18,
+    map: createOpenMap(19, 15),
+    star: [11, 5],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "go");
+});
+
 test("shield-main shields an urgent bullet lane before spending a frame turning", () => {
   const onIdle = loadCandidate();
   const me = createMe([8, 8], "up", 0);
@@ -920,6 +1251,36 @@ test("shield-main refuses a close aimed duel when it cannot shield and is not ah
   });
 
   assert.notEqual(me.actions[0]?.type, "fire");
+});
+
+test("shield-main close skill-trap tempo shot before escape when already aimed", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([11, 4], "right", 12);
+  const enemy = createEnemy([13, 4], "right", "stun");
+
+  onIdle(me, enemy, {
+    frames: 16,
+    map: createOpenMap(19, 15),
+    star: [13, 3],
+  });
+
+  assert.equal(me.actions[0]?.type, "fire");
+});
+
+test("shield-main turns for a point-blank stun trap shot before reverse drifting", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([14, 3], "right", 12);
+  me.status.reversed = true;
+  me.stars = 1;
+  const enemy = createEnemy([14, 4], "down", "stun");
+
+  onIdle(me, enemy, {
+    frames: 14,
+    map: createOpenMap(19, 15),
+    star: null,
+  });
+
+  assert.equal(me.actions[0]?.type, "turn");
 });
 
 test("shield-main dodges a breakable dirt firing lane before the opponent opens it", () => {
@@ -1220,6 +1581,23 @@ test("shield-main fires down a lost teleport star lane instead of walking into t
   assert.equal(me.actions[0]?.type, "fire");
 });
 
+test("shield-main takes a late reachable star before wall-only fire", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([13, 6], "down", 20);
+  me.stars = 2;
+  const enemy = createEnemy([11, 8], "right", "teleport");
+  enemy.stars = 3;
+  enemy.skill.remainingCooldownFrames = 16;
+
+  onIdle(me, enemy, {
+    frames: 116,
+    map: createOpenMap(19, 15),
+    star: [13, 9],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
 test("shield-main does not treat a wall-blocked column as a star-line intercept", () => {
   const context = loadCandidateContext();
   const map = createOpenMap(19, 15);
@@ -1308,6 +1686,45 @@ test("shield-main moves into nearby grass control instead of chasing a far star 
   assert.equal(context._lastSpeakTag, "lead-grass");
 });
 
+test("shield-main fires from a lead grass pressure lane instead of holding empty tempo", () => {
+  const context = loadCandidateContext();
+  const map = createOpenMap(19, 15);
+  map[11][7] = "o";
+  const me = createMe([11, 7], "right", 20);
+  me.stars = 2;
+  const enemy = createEnemy([15, 7], "right", "freeze");
+  enemy.stars = 0;
+
+  context.onIdle(me, enemy, {
+    frames: 70,
+    map,
+    star: [2, 5],
+  });
+
+  assert.equal(me.actions[0]?.type, "fire");
+});
+
+test("shield-main releases stale lead grass instead of holding empty tempo", () => {
+  const context = loadCandidateContext();
+  const map = createOpenMap(19, 15);
+  map[11][7] = "o";
+  const me = createMe([11, 7], "right", 20);
+  me.stars = 2;
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([14, 10], "left", "freeze");
+  enemy.stars = 0;
+
+  context.onIdle(me, enemy, {
+    frames: 118,
+    map,
+    star: [14, 6],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+  assert.notEqual(context._lastSpeakTag, "lead-grass");
+});
+
 test("shield-main does not spend shield on a low-value dangerous adjacent star while far ahead", () => {
   const onIdle = loadCandidate();
   const me = createMe([5, 5], "right", 0);
@@ -1377,6 +1794,22 @@ test("shield-main resets after a shield pickup instead of bombing into the next 
   });
 
   assert.equal(me.actions[0]?.type, "turn");
+  assert.notEqual(me.actions[0]?.type, "bomb");
+});
+
+test("shield-main does not bomb first while leading inside a close skill trap", () => {
+  const onIdle = loadCandidate();
+  const me = createMe([8, 4], "up", 20);
+  me.stars = 2;
+  const enemy = createEnemy([9, 5], "up", "stun");
+  enemy.stars = 1;
+
+  onIdle(me, enemy, {
+    frames: 88,
+    map: createOpenMap(15, 13),
+    star: null,
+  });
+
   assert.notEqual(me.actions[0]?.type, "bomb");
 });
 
@@ -1480,6 +1913,125 @@ test("shield-main keeps shield star tempo arbitration split from candidate execu
   assert.match(source, /var candidates = collectShieldStarTempoCandidates\(tempo\);/);
 });
 
+test("shield-main uses boost route traces as soft scoring and overshoot guards", () => {
+  const source = readFileSync(candidatePath, "utf8");
+  assert.match(source, /function routeTrace\(start, goal, avoidDanger\)/);
+  assert.match(source, /function boostRoutePlan\(route, avoidDanger\)/);
+  assert.match(source, /function boostedMoveWouldLeaveStarRoute\(moveDirName\)/);
+  assert.doesNotMatch(source, /!plan\.firstBoostClean \|\| plan\.shortTurnSegment/);
+  assert.match(source, /var strongRaceNeed = scoreMargin\(\) <= 0 \|\| mobileEnemy/);
+});
+
+test("shield-main converts boost tempo into early pressure before far-star walking", () => {
+  const onIdle = loadCandidate();
+  const me = createBoostMe([5, 5], "up", 20);
+  me.stars = 1;
+  const enemy = createEnemy([10, 4], "right", "overload");
+  enemy.stars = 0;
+
+  onIdle(me, enemy, {
+    frames: 30,
+    map: createOpenMap(19, 15),
+    star: [15, 12],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+});
+
+test("shield-main converts late boost tempo into pressure before runtime drift", () => {
+  const context = loadCandidateContext();
+  context._lastBoostAt = 71;
+  const me = createBoostMe([5, 5], "up", 20);
+  me.speak = () => {};
+  me.stars = 3;
+  const enemy = createEnemy([10, 4], "right", "overload");
+  enemy.stars = 2;
+
+  context.onIdle(me, enemy, {
+    frames: 84,
+    map: createOpenMap(19, 15),
+    star: [15, 12],
+  });
+
+  assert.equal(me.actions[0]?.type, "go");
+  assert.equal(context._lastSpeakTag, "pressure");
+});
+
+test("shield-main releases stale boost-tempo star-line hold instead of empty hold", () => {
+  const context = loadCandidateContext();
+  context._lastBoostAt = 50;
+  context._lastX = 4;
+  context._lastY = 10;
+  context._stuck = 8;
+  const me = createBoostMe([4, 10], "left", 20);
+  me.speak = () => {};
+  me.stars = 1;
+  const enemy = createEnemy([3, 13], "left", "freeze");
+  enemy.stars = 1;
+
+  context.onIdle(me, enemy, {
+    frames: 73,
+    map: createOpenMap(19, 15),
+    star: [3, 10],
+  });
+
+  assert.ok(["go", "turn"].includes(me.actions[0]?.type));
+  assert.notEqual(context._lastSpeakTag, "star-line");
+});
+
+test("shield-main does not convert boost tempo by entering an already aimed long lane", () => {
+  const context = loadCandidateContext();
+  context._lastBoostAt = 41;
+  const me = createBoostMe([2, 12], "up", 20);
+  me.speak = () => {};
+  me.stars = 2;
+  const enemy = createEnemy([16, 11], "left", "freeze");
+
+  context.onIdle(me, enemy, {
+    frames: 61,
+    map: createOpenMap(19, 15),
+    star: null,
+  });
+
+  assert.notEqual(me.actions[0]?.type, "go");
+  assert.notEqual(context._lastSpeakTag, "pressure");
+});
+
+test("shield-main does not convert boost tempo by entering a two-turn long lane", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([6, 5], "down", 20);
+  me.speak = () => {};
+  me.stars = 2;
+  const enemy = createEnemy([13, 6], "up", "stun");
+  enemy.stars = 0;
+
+  context.onIdle(me, enemy, {
+    frames: 45,
+    map: createOpenMap(19, 15),
+    star: [14, 11],
+  });
+
+  assert.notEqual(me.actions[0]?.type, "go");
+  assert.notEqual(context._lastSpeakTag, "pressure");
+});
+
+test("shield-main can spend boost to reach star-control position when direct race is lost", () => {
+  const context = loadCandidateContext();
+  const me = createBoostMe([2, 5], "right", 0);
+  me.speeches = [];
+  me.speak = (text) => me.speeches.push(text);
+  const enemy = createEnemy([10, 6], "left", "stun");
+
+  context.onIdle(me, enemy, {
+    frames: 40,
+    map: createOpenMap(19, 15),
+    star: [10, 5],
+  });
+
+  assert.equal(me.actions[0]?.type, "boost");
+  assert.equal(context._lastSpeakTag, "boost-control");
+});
+
 test("shield-main keeps panic dodge and positioning scoring separated", () => {
   const source = readFileSync(candidatePath, "utf8");
   assert.match(source, /function tryPanicDodgeSetup\(\)/);
@@ -1503,7 +2055,10 @@ test("shield-main keeps action priority in an explicit strategy pipeline", () =>
     "L1:skill-trap-lane-reset:trySkillTrapLaneReset",
     "L1:post-shield-reset:tryPostShieldResetGuard",
     "L1:gunline-frame-economy:tryGunlineFrameEconomyGuard",
+    "L2:boost-confirmed-shot:tryBoostConfirmedShot",
     "L2:boost-star-tempo:tryBoostStarTempo",
+    "L2:late-reachable-star:tryLateReachableStarPickup",
+    "L2:boost-tempo-pressure:tryBoostTempoPressure",
     "L2:boost-star-control:tryBoostStarControlPosition",
     "L2:star-tempo-arbiter:tryShieldStarTempoArbiter",
     "L3:immediate-shot:tryImmediateShot",
@@ -1514,6 +2069,7 @@ test("shield-main keeps action priority in an explicit strategy pipeline", () =>
     "L3:adjacent-star:tryAdjacentStar",
     "L4:grass-camper-hold:tryGrassCamperHold",
     "L4:lead-grass-control:tryLeadGrassControl",
+    "L4:strategic-grass-control:tryStrategicGrassControl",
     "L4:star-interception:tryStarInterception",
     "L5:early-lane-pressure:tryEarlyLanePressure",
     "L5:star-lane-pressure:tryStarLanePressure",
@@ -1545,7 +2101,9 @@ test("shield-main separates base strategy modules from shield skill modules", ()
   assert.match(baseBlock, /hazardEvasion: strategyModule\("L0", "hazard-evasion", tryHazardEvasion\)/);
   assert.match(baseBlock, /starPath: strategyModule\("L7", "star-path", tryStarPath\)/);
   assert.match(shieldBlock, /postShieldReset: strategyModule\("L1", "post-shield-reset", tryPostShieldResetGuard\)/);
+  assert.match(shieldBlock, /boostConfirmedShot: strategyModule\("L2", "boost-confirmed-shot", tryBoostConfirmedShot\)/);
   assert.match(shieldBlock, /boostStarTempo: strategyModule\("L2", "boost-star-tempo", tryBoostStarTempo\)/);
+  assert.match(shieldBlock, /lateReachableStar: strategyModule\("L2", "late-reachable-star", tryLateReachableStarPickup\)/);
   assert.match(shieldBlock, /boostStarControl: strategyModule\("L2", "boost-star-control", tryBoostStarControlPosition\)/);
   assert.match(shieldBlock, /starTempoArbiter: strategyModule\("L2", "star-tempo-arbiter", tryShieldStarTempoArbiter\)/);
   assert.match(shieldBlock, /shieldedGunlinePressure: strategyModule\("L3", "shielded-gunline-pressure", tryShieldedGunlinePressure\)/);
@@ -1575,10 +2133,11 @@ test("shield-main activates star tempo arbitration while keeping strategic grass
   assert.match(source, /function collectBoundedGrassCandidates\(baseStarGap, limit\)/);
   assert.match(source, /var GRASS_SCAN_RADIUS = 4;/);
   assert.match(source, /var candidates = collectBoundedGrassCandidates\(baseStarGap, GRASS_CANDIDATE_LIMIT\);/);
+  assert.ok(entries.some((entry) => entry.id === "boost-confirmed-shot" && entry.run === "tryBoostConfirmedShot"));
   assert.ok(entries.some((entry) => entry.id === "boost-star-tempo" && entry.run === "tryBoostStarTempo"));
   assert.ok(entries.some((entry) => entry.id === "boost-star-control" && entry.run === "tryBoostStarControlPosition"));
   assert.ok(entries.some((entry) => entry.id === "star-tempo-arbiter" && entry.run === "tryShieldStarTempoArbiter"));
-  assert.ok(!entries.some((entry) => entry.id === "strategic-grass-control" || entry.run === "tryStrategicGrassControl"));
+  assert.ok(entries.some((entry) => entry.id === "strategic-grass-control" && entry.run === "tryStrategicGrassControl"));
   assert.match(source, /return tryGrassCamperHold\(\) \|\| tryLeadGrassControl\(\) \|\| tryStrategicGrassControl\(\);/);
 });
 

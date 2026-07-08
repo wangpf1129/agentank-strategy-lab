@@ -5,21 +5,21 @@
   "skillType": "boost",
   "activeSource": "active/shield-main.js",
   "baselineSource": "active/shield-main.js",
-  "lastKnownRankScore": 1726,
-  "lastKnownTier": "master",
-  "lastKnownRankDivision": 1,
-  "lastKnownPublicRank": null,
-  "lastUpdatedAt": "2026-07-07T08:43:32Z",
-  "lastKnownCodeVersion": 32,
-  "lastKnownCodeHash": "f21e503eed177192eb0e1b3b440e51dad6b94f65b91f397d2bfbbfe5fa142304",
+  "lastKnownRankScore": 1252,
+  "lastKnownTier": "diamond",
+  "lastKnownRankDivision": 3,
+  "lastKnownPublicRank": 620,
+  "lastUpdatedAt": "2026-07-08T07:46:26Z",
+  "lastKnownCodeVersion": 51,
+  "lastKnownCodeHash": "671068cd5ced10f25270218190f0b517ccb86c2d227365ee8d01a8b57f70408c",
   "lastKnownRecord": {
-    "wins": 679,
-    "losses": 608,
+    "wins": 732,
+    "losses": 698,
     "draws": 0,
     "placementMatches": 10
   },
   "lastObservation": {
-    "runPath": "/tmp/agentank-runs/snapshots-shield-isolation/shield-main/tank.json",
-    "summary": "Shield-main / tank 4839 `500` is now the active workspace tank. Live codeVersion 32 is boost, rankScore 1726, Master I, record 679-608-0. A local candidate restores boost star-tempo for valuable safe folded star routes after v32 over-constrained boost to same-row/same-column routes; focused shield tests passed 87/87, npm run check passed, npm run test:lab passed, explicit .env simulation passed 9/9, and default challenge:dry confirmed shield-main only with start score 1726. No post-candidate publish or real challenge was executed."
+    "runPath": "/tmp/agentank-runs/snapshots-shield-v51-after-real1/shield-main/tank.json",
+    "summary": "Shield-main / tank 4839 `500` codeVersion 51 / codeHash 671068cd5ced10f25270218190f0b517ccb86c2d227365ee8d01a8b57f70408c, skillType boost. A v51 real challenge run stopped after the first loss by stopOnLoss: `mat_D7rGhn6agqCLyer30` vs boost tank Overlord, 2-4 star loss, score 1272 -> 1252, record 732-698-0. Replay showed v51 did collect the recent-boost adjacent star at frame 51, so the v51 fix held; the new loss shape is boost-mirror far-star tempo where Overlord used boost to collect three later stars first. No new local patch yet; next round should cluster boost-mirror star tempo before editing."
   }
 }

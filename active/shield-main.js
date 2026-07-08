@@ -22,6 +22,7 @@ function onIdle(me, enemy, game) {
   var w = map.length;
   var h = map[0] ? map[0].length : 0;
   var pathCache = {};
+  var routeTraceCache = {};
   var safetyCache = {};
   var bulletCache = {};
   var hiddenShooterCache = {};
@@ -178,12 +179,11 @@ function onIdle(me, enemy, game) {
     if (!want || !dv[want]) return false;
     _lastMoveIntent = want;
     _lastIntentFrame = frame;
-    if (dir === want) {
+    if (actualGoDir() === want) {
       me.go();
       return true;
     }
-    me.turn(turnSide(dir, want));
-    return true;
+    return commandTurnToward(want);
   }
 
   function actualGoDir() {
@@ -270,6 +270,7 @@ function onIdle(me, enemy, game) {
 
   function castBoost() {
     if (!boostReady()) return false;
+    if (selfStunned()) return false;
     _lastBoostAt = frame;
     say("boost", ["加速抢星", "这一颗提速拿", "星路开加速"], 4);
     me.boost();
@@ -467,7 +468,8 @@ function onIdle(me, enemy, game) {
   function currentLaneThreatDirection(maxEnemyCells) {
     maxEnemyCells = typeof maxEnemyCells === "number" ? maxEnemyCells : 2;
     return bulletLaneDirectionAt(px, py, 8) ||
-      enemyLaneThreatDirectionAt(px, py, 1, maxEnemyCells);
+      enemyLaneThreatDirectionAt(px, py, 1, maxEnemyCells) ||
+      closeVolleyThreatDirectionAt(px, py, 4);
   }
 
   function enemyReplyLaneAt(x, y, maxCells) {
@@ -485,6 +487,9 @@ function onIdle(me, enemy, game) {
   function enemyOverloadReady() {
     if (!enemy || !enemy.skill || enemy.skill.type !== "overload") return false;
     if (enemy.status && enemy.status.overloaded) return true;
+    if (typeof enemy.skill.activeRemainingFrames === "number" && enemy.skill.activeRemainingFrames > 0) return true;
+    if (enemy.effects && enemy.effects.self && enemy.effects.self.type === "overload" &&
+      enemy.effects.self.remainingFrames > 0) return true;
     var cd = enemy.skill.remainingCooldownFrames;
     return typeof cd !== "number" || cd <= 2;
   }
@@ -505,6 +510,23 @@ function onIdle(me, enemy, game) {
       if (losFrom(shifted[0], shifted[1], d, x, y) && dist(shifted[0], shifted[1], x, y) <= 10) return true;
     }
     return false;
+  }
+
+  function closeVolleyThreatDirectionAt(x, y, maxCells) {
+    if (!(me.skill && me.skill.type === "boost")) return null;
+    if (!enemyTank || enemyDebuffed() || (enemy && enemy.bullet)) return null;
+    maxCells = typeof maxCells === "number" ? maxCells : 4;
+    for (var i = 0; i < 4; i++) {
+      var d = dirs[i];
+      if (turnCost(eDir, d) > 2) continue;
+      if (losFrom(ex, ey, d, x, y) && dist(ex, ey, x, y) <= maxCells) return d;
+      if (!enemyOverloadReady()) continue;
+      var shifted = overloadOffsetSource([ex, ey], d);
+      if (!shifted || !open(shifted[0], shifted[1])) continue;
+      if (losFrom(shifted[0], shifted[1], d, x, y) &&
+        dist(shifted[0], shifted[1], x, y) <= maxCells) return d;
+    }
+    return null;
   }
 
   function hiddenLaneAt(x, y) {
@@ -572,7 +594,9 @@ function onIdle(me, enemy, game) {
     if (Object.prototype.hasOwnProperty.call(projectileCache, key)) return projectileCache[key];
     var danger = bulletDangerAt(x, y, 3) || shotSetupAt(x, y, 1, 8) ||
       breakableShotSetupAt(x, y, 1, 5) ||
-      overloadDangerAt(x, y) || hiddenShooterAt(x, y);
+      overloadDangerAt(x, y) ||
+      closeVolleyThreatDirectionAt(x, y, 4) ||
+      hiddenShooterAt(x, y);
     projectileCache[key] = danger;
     return danger;
   }
@@ -643,6 +667,7 @@ function onIdle(me, enemy, game) {
     else if (ownBombDangerAt(x, y, strict ? 5 : 3)) safe = false;
     else if (!shieldCoversNextExchange() && projectileDangerAt(x, y)) safe = false;
     else if (strict && hiddenLaneAt(x, y)) safe = false;
+    else if (strict && stunnedSkillTrapStarPinAt(x, y)) safe = false;
     safetyCache[key] = safe;
     return safe;
   }
@@ -759,6 +784,71 @@ function onIdle(me, enemy, game) {
     return null;
   }
 
+  function routeTrace(start, goal, avoidDanger) {
+    if (!goal || !open(goal[0], goal[1])) return null;
+    if (same(start, goal)) return { first: null, dist: 0, steps: [], cells: [] };
+    var cacheKey = start[0] + "," + start[1] + ">" + goal[0] + "," + goal[1] + "|" + (avoidDanger ? 1 : 0);
+    if (Object.prototype.hasOwnProperty.call(routeTraceCache, cacheKey)) return routeTraceCache[cacheKey];
+
+    if (start[0] === goal[0] || start[1] === goal[1]) {
+      var lineWant = dirTo(start, goal);
+      var lineStep = delta(lineWant);
+      var lx = start[0] + lineStep[0], ly = start[1] + lineStep[1];
+      var lineDist = 1;
+      var lineSteps = [];
+      var lineCells = [];
+      var lineOk = true;
+      while (lx !== goal[0] || ly !== goal[1]) {
+        if (!open(lx, ly) || (enemyTank && lx === ex && ly === ey) ||
+          (avoidDanger && lineDist < 5 && !safeCell(lx, ly, true))) {
+          lineOk = false;
+          break;
+        }
+        lineSteps.push(lineWant);
+        lineCells.push([lx, ly]);
+        lx += lineStep[0];
+        ly += lineStep[1];
+        lineDist++;
+      }
+      if (lineOk && open(goal[0], goal[1]) &&
+        (!avoidDanger || lineDist >= 5 || safeCell(goal[0], goal[1], true))) {
+        lineSteps.push(lineWant);
+        lineCells.push([goal[0], goal[1]]);
+        var lineFound = { first: lineWant, dist: lineDist, steps: lineSteps, cells: lineCells };
+        routeTraceCache[cacheKey] = lineFound;
+        return lineFound;
+      }
+    }
+
+    var queue = [{ pos: start, first: null, dist: 0, steps: [], cells: [] }];
+    var seen = {};
+    seen[start[0] + "," + start[1]] = true;
+    for (var head = 0; head < queue.length && queue.length < 520; head++) {
+      var item = queue[head];
+      var order = item.dist <= 1 ? dirsToward(item.pos, goal) : dirs;
+      for (var i = 0; i < 4; i++) {
+        var d = order[i];
+        var next = add(item.pos, delta(d));
+        var k = next[0] + "," + next[1];
+        if (seen[k] || !open(next[0], next[1])) continue;
+        if (enemyTank && next[0] === ex && next[1] === ey) continue;
+        if (avoidDanger && item.dist < 5 && !safeCell(next[0], next[1], true)) continue;
+        var first = item.first || d;
+        var nextSteps = item.steps.concat([d]);
+        var nextCells = item.cells.concat([[next[0], next[1]]]);
+        if (same(next, goal)) {
+          var found = { first: first, dist: item.dist + 1, steps: nextSteps, cells: nextCells };
+          routeTraceCache[cacheKey] = found;
+          return found;
+        }
+        seen[k] = true;
+        queue.push({ pos: next, first: first, dist: item.dist + 1, steps: nextSteps, cells: nextCells });
+      }
+    }
+    routeTraceCache[cacheKey] = null;
+    return null;
+  }
+
   function pathDist(pos, target) {
     var info = pathInfo(pos, target, false);
     return info ? info.dist : 999;
@@ -853,6 +943,7 @@ function onIdle(me, enemy, game) {
       ownBombDangerAt(px, py, 4) ||
       breakableShotSetupAt(px, py, 0, 5) ||
       overloadDangerAt(px, py) ||
+      closeVolleyThreatDirectionAt(px, py, 4) ||
       hiddenShooterAt(px, py) ||
       hiddenLaneAt(px, py);
   }
@@ -917,6 +1008,64 @@ function onIdle(me, enemy, game) {
     return false;
   }
 
+  function tryBoostConfirmedShot() {
+    if (!(me.skill && me.skill.type === "boost")) return false;
+    if (!enemyTank || enemyShielded() || !fireReady()) return false;
+    if (currentHardDanger() || bulletDangerAt(px, py, 2) || ownBombDangerAt(px, py, 4)) return false;
+    if (game.star && dist(px, py, game.star[0], game.star[1]) === 1 &&
+      safeCell(game.star[0], game.star[1], false)) return false;
+    if (game.star && pathDist(myPos, game.star) <= 2 &&
+      safeCell(game.star[0], game.star[1], false) && !starUnderPressure(game.star)) return false;
+
+    var target = [ex, ey];
+    var want = dirTo(myPos, target);
+    if (!losFrom(px, py, want, ex, ey)) return false;
+    var gap = dist(px, py, ex, ey);
+    var starNear = game.star && pathDist(myPos, game.star) <= 3;
+    var pressureNeeded = !game.star || starUnderPressure(game.star) ||
+      scoreMargin() <= 0 || frame >= 48 || gap <= 6;
+
+    if (dir === want && pressureNeeded) {
+      say("boost-shot", ["别空跑,先打一炮", "有枪线先确认", "加速节奏要转火"], 4);
+      return fireIfSafe();
+    }
+    if (!starNear && pressureNeeded && gap <= 5 && turnCost(dir, want) <= 1 &&
+      !projectileDangerAt(px, py) && !shotSetupAt(px, py, 0, 7)) {
+      say("boost-shot", ["先把炮口转过去", "星远先压枪", "有机会先架住"], 4);
+      return commandTurnToward(want);
+    }
+    return false;
+  }
+
+  function trySkillTrapTempoShot() {
+    if (!enemyTank || enemyShielded() || !fireReady()) return false;
+    if (!skillTrapOpponentActive()) return false;
+    if (bulletDangerAt(px, py, 2) || ownBombDangerAt(px, py, 4)) return false;
+    if (shotSetupAt(px, py, 0, 7)) return false;
+
+    var gap = dist(px, py, ex, ey);
+    if (gap > 5) return false;
+    var target = [ex, ey];
+    var shootDir = dirTo(myPos, target);
+    if (!losFrom(px, py, shootDir, ex, ey)) return false;
+
+    var threatDir = enemyLaneThreatDirectionAt(px, py, 2, 6) ||
+      closeVolleyThreatDirectionAt(px, py, 4);
+    if (!threatDir) return false;
+    var enemyAimCost = turnCost(eDir, threatDir);
+    var myShootCost = turnCost(dir, shootDir);
+    if (myShootCost > enemyAimCost) return false;
+    if (myShootCost === enemyAimCost && gap > 2) return false;
+
+    if (dir === shootDir) return fireIfSafe();
+    if (myShootCost <= 1 && !ownBombDangerAt(px, py, 4) &&
+      (!projectileDangerAt(px, py) || myShootCost < enemyAimCost)) {
+      say("trap-shot", ["别只撤,先压枪", "控线前先打一炮", "技能贴脸也要还手"], 4);
+      return commandTurnToward(shootDir);
+    }
+    return false;
+  }
+
   function tryShieldCounterPressure() {
     if (!enemyTank || enemyShielded() || !fireReady() || !shieldCoversNextExchange()) return false;
     if (dist(px, py, ex, ey) > 6) return false;
@@ -954,6 +1103,11 @@ function onIdle(me, enemy, game) {
     var next = add(myPos, delta(want));
     if (safeCell(next[0], next[1], true) || shieldCoversNextExchange()) return false;
     if (riskyButShieldable(next[0], next[1]) && shieldStarWorthwhile(game.star) && castShield()) return true;
+    var recentBoostTempo = me.skill && me.skill.type === "boost" && !boosted() &&
+      frame - _lastBoostAt >= 6 && frame - _lastBoostAt <= 24;
+    if (recentBoostTempo && _stuck >= 2 && fireReady() &&
+      !canShootFrom(myPos, [ex, ey]) && !bulletDangerAt(px, py, 1) &&
+      !ownBombDangerAt(px, py, 3)) return false;
 
     if (dir !== want && !projectileDangerAt(px, py) && !ownBombDangerAt(px, py, 3)) {
       say("star-line", ["星线不能白让", "这个点位我先卡住", "守住十字线"], 5);
@@ -1010,11 +1164,24 @@ function onIdle(me, enemy, game) {
   }
 
   function runShieldStarRacePressure() {
-    return tryStarInterception() || tryEarlyLanePressure() || tryStarLanePressure();
+    return tryBoostStarControlPosition() || tryStarInterception() || tryEarlyLanePressure() || tryStarLanePressure();
   }
 
   function runShieldLeadTempoControl() {
     return tryGrassCamperHold() || tryLeadGrassControl() || tryStrategicGrassControl();
+  }
+
+  function boostTempoPressureWindow() {
+    if (!(me.skill && me.skill.type === "boost")) return false;
+    if (currentHardDanger() || boosted()) return false;
+    if (frame - _lastBoostAt >= 6 && frame - _lastBoostAt <= 24) return true;
+    return frame <= 60 && starsOf(me) > starsOf(enemy);
+  }
+
+  function tryBoostTempoPressure() {
+    if (!boostTempoPressureWindow()) return false;
+    if (game.star && pathDist(myPos, game.star) <= 2 && starPickupSafe(game.star)) return false;
+    return tryEarlyLanePressure(true);
   }
 
   function contestedStarLineActive() {
@@ -1048,6 +1215,7 @@ function onIdle(me, enemy, game) {
     if (starRaceClearlyLost(game.star)) return false;
     var n = add(myPos, delta(safeRoute.info.first));
     if (!safeCell(n[0], n[1], true)) return false;
+    if (boostedMoveWouldLeaveStarRoute(safeRoute.info.first)) return false;
     say("star", ["先吃星,别空枪", "星星节奏先拿", "这帧先收经济"], 5);
     return moveDir(safeRoute.info.first);
   }
@@ -1071,10 +1239,122 @@ function onIdle(me, enemy, game) {
     return eta;
   }
 
-  function cleanBoostStarRoute(route) {
+  function routeSegments(trace) {
+    var segments = [];
+    if (!trace || !trace.steps || !trace.steps.length) return segments;
+    for (var i = 0; i < trace.steps.length; i++) {
+      var step = trace.steps[i];
+      var last = segments[segments.length - 1];
+      if (last && last.dir === step) last.len++;
+      else segments.push({ dir: step, len: 1 });
+    }
+    return segments;
+  }
+
+  function boostedLandingAfterGo(moveDirName) {
+    if (!moveDirName || !dv[moveDirName]) return null;
+    var step = delta(moveDirName);
+    var first = [px + step[0], py + step[1]];
+    if (!open(first[0], first[1])) return null;
+    var second = [first[0] + step[0], first[1] + step[1]];
+    return open(second[0], second[1]) ? second : first;
+  }
+
+  function boostedMoveWouldLeaveTrace(moveDirName, target, avoidDanger) {
+    if (!target || !(boosted() || frame - _lastBoostAt <= 8)) return false;
+    if (actualGoDir() !== moveDirName) return false;
+    var trace = routeTrace(myPos, target, !!avoidDanger) || routeTrace(myPos, target, false);
+    if (!trace || !trace.steps || !trace.steps.length || trace.steps[0] !== moveDirName) return false;
+    var landing = boostedLandingAfterGo(moveDirName);
+    if (!landing) return true;
+    if (trace.cells.length === 1) return !same(landing, target);
+    if (same(landing, target)) return false;
+    if (!safeCell(landing[0], landing[1], true)) return true;
+    var currentGap = dist(px, py, target[0], target[1]);
+    var landingGap = dist(landing[0], landing[1], target[0], target[1]);
+    if (landingGap < currentGap) return false;
+    if (same(landing, trace.cells[1])) return false;
+    return landingGap >= currentGap;
+  }
+
+  function boostedMoveWouldLeaveStarRoute(moveDirName) {
+    return game.star && boostedMoveWouldLeaveTrace(moveDirName, game.star, true);
+  }
+
+  function boostRoutePlan(route, avoidDanger) {
+    if (!game.star || !route || !route.info || !route.info.first) return null;
+    var trace = routeTrace(myPos, game.star, !!avoidDanger);
+    if (!trace || !trace.steps || !trace.steps.length) return null;
+    var segments = routeSegments(trace);
+    if (!segments.length) return null;
+
+    var frames = 0;
+    var facing = dir;
+    var passThroughStar = false;
+    var shortTurnSegment = false;
+    for (var s = 0; s < segments.length; s++) {
+      var segment = segments[s];
+      frames += turnCost(facing, segment.dir);
+      facing = segment.dir;
+      frames += Math.ceil(segment.len / 2);
+      if (s < segments.length - 1 && segment.len < 2) shortTurnSegment = true;
+    }
+
+    for (var i = 0; i < trace.cells.length - 1; i++) {
+      if (same(trace.cells[i], game.star)) passThroughStar = true;
+    }
+
+    var finalCell = trace.cells[trace.cells.length - 1];
+    var firstSegment = segments[0];
+    var firstBoostClean = firstSegment.len >= 2;
+    if (!firstBoostClean && trace.cells.length > 1) {
+      var landing = boostedLandingAfterGo(route.info.first);
+      firstBoostClean = !!(landing && same(landing, trace.cells[1]));
+    }
+
+    return {
+      trace: trace,
+      frames: frames,
+      turns: segments.length - 1,
+      firstSegmentLen: firstSegment.len,
+      firstBoostClean: firstBoostClean,
+      shortTurnSegment: shortTurnSegment,
+      passThroughStar: passThroughStar,
+      finalStarDist: finalCell ? dist(finalCell[0], finalCell[1], game.star[0], game.star[1]) : 99,
+    };
+  }
+
+  function boostFirstSegmentWallTrap(plan) {
+    if (!plan || !plan.trace || !plan.trace.steps || plan.turns < 1) return false;
+    if (plan.firstSegmentLen < 4) return false;
+    var firstDir = plan.trace.steps[0];
+    var firstEnd = plan.trace.cells[plan.firstSegmentLen - 1];
+    if (!firstEnd) return false;
+    if (dist(firstEnd[0], firstEnd[1], game.star[0], game.star[1]) <= 2) return false;
+    var step = delta(firstDir);
+    var ahead = [firstEnd[0] + step[0], firstEnd[1] + step[1]];
+    return !open(ahead[0], ahead[1]) && edgeDepth(firstEnd[0], firstEnd[1]) <= 2;
+  }
+
+  function openingFoldedBoostRaceTrap(plan, route, enemyRoute) {
+    if (!enemyTank || frame > 8 || scoreMargin() !== 0) return false;
+    if (!plan || !plan.trace || plan.turns < 1 || plan.firstSegmentLen < 6) return false;
+    if (!route || !route.info || !enemyRoute || !enemyRoute.info) return false;
+    var enemySkill = enemy && enemy.skill && enemy.skill.type;
+    if (enemySkill === "boost" || enemySkill === "teleport") return false;
+    if (enemyRoute.eta > route.eta + 2) return false;
+    var firstEnd = plan.trace.cells[plan.firstSegmentLen - 1];
+    if (!firstEnd) return false;
+    return dist(firstEnd[0], firstEnd[1], game.star[0], game.star[1]) > 1;
+  }
+
+  function cleanBoostStarRoute(route, plan) {
     if (!game.star || !route || !route.info || !route.info.first) return false;
+    plan = plan || boostRoutePlan(route, true) || boostRoutePlan(route, false);
+    if (!plan) return false;
     var rawDist = route.info.dist;
     if (rawDist <= 3) return false;
+    if (boostFirstSegmentWallTrap(plan)) return false;
     if (px === game.star[0] || py === game.star[1]) return true;
     if (rawDist < 6) return false;
     var firstStep = add(myPos, delta(route.info.first));
@@ -1085,7 +1365,10 @@ function onIdle(me, enemy, game) {
   function boostStarWorthwhile(route, safeRoute, enemyRoute) {
     if (!game.star || !route.info || !route.info.first) return false;
     if (shieldStarAdvanceBlocked()) return false;
-    if (!cleanBoostStarRoute(route)) return false;
+    var plan = boostRoutePlan(route, !!(safeRoute && safeRoute.info));
+    if (!cleanBoostStarRoute(route, plan)) return false;
+    if (openingFoldedBoostRaceTrap(plan, route, enemyRoute)) return false;
+    if (!lateBoostCanReachStar(route)) return false;
     if (route.eta <= 1) return false;
     var aligned = px === game.star[0] || py === game.star[1];
     var mobileEnemy = enemy && enemy.skill &&
@@ -1096,15 +1379,41 @@ function onIdle(me, enemy, game) {
     if (safeRoute.info && safeRoute.eta <= 2 && !starUnderPressure(game.star)) return false;
     var boostedEta = boostEtaForRoute(route, dir);
     var enemyEta = enemyRoute ? enemyRoute.eta : 999;
+    var myStarDist = pathDist(myPos, game.star);
+    var enemyStarDist = enemyTank ? pathDist([ex, ey], game.star) : 999;
+    var roughMyStarDist = dist(px, py, game.star[0], game.star[1]);
+    var roughEnemyStarDist = enemyTank ? dist(ex, ey, game.star[0], game.star[1]) : 999;
+    if (scoreMargin() > 0 && roughMyStarDist <= roughEnemyStarDist + 1 && roughMyStarDist <= 6) return false;
+    var strongRaceNeed = scoreMargin() <= 0 || mobileEnemy ||
+      (enemyTank && enemyEta <= route.eta + 2) || frame <= 24;
+    if (plan && plan.turns >= 2 && !strongRaceNeed && route.eta > 7) return false;
+    if (plan && plan.passThroughStar && route.eta <= 6) return false;
     if (scoreMargin() <= 0) return boostedEta <= enemyEta + 3 || route.eta <= 6;
     if (enemyTank && enemyEta <= route.eta + 2) return true;
     return route.eta >= 4 && route.eta <= 7 && !starUnderPressure(game.star);
   }
 
+  function lateBoostCanReachStar(route) {
+    if (frame < 118) return true;
+    if (!route || !route.info) return false;
+    var remaining = 127 - frame;
+    if (remaining <= 0) return false;
+    return boostEtaForRoute(route, dir) <= remaining;
+  }
+
   function tryBoostStarLandingGuard(route) {
-    if (!game.star || !boosted()) return false;
-    if (pathDist(myPos, game.star) !== 1) return false;
+    if (!game.star) return false;
+    if (dist(px, py, game.star[0], game.star[1]) !== 1) return false;
     var want = dirTo(myPos, game.star);
+    if (!boosted()) {
+      if (hardBlockedAt(game.star[0], game.star[1])) return false;
+      if (ownBombDangerAt(game.star[0], game.star[1], 3)) return false;
+      if (bulletDangerAt(game.star[0], game.star[1], 3)) return false;
+      if (overloadDangerAt(game.star[0], game.star[1]) || hiddenShooterAt(game.star[0], game.star[1])) return false;
+      if (enemyTank && dist(ex, ey, game.star[0], game.star[1]) <= 1) return false;
+      say("boost-land", ["加速贴星,直接收", "别绕了,这颗吃掉", "加速后补一脚"], 4);
+      return moveDir(want);
+    }
     if (actualGoDir() === want) {
       say("boost-land", ["别冲过星,贴一帧", "加速收住,下一步吃", "落星前一格"], 4);
       return true;
@@ -1122,18 +1431,25 @@ function onIdle(me, enemy, game) {
     var safeRoute = etaToStarFrom(myPos, dir, true);
     var route = safeRoute.info ? safeRoute : etaToStarFrom(myPos, dir, false);
     if (!route.info || !route.info.first) return false;
+    if ((boosted() || frame - _lastBoostAt <= 8) && tryBoostStarLandingGuard(route)) return true;
     var enemyRoute = enemyTank ? etaToStarFrom([ex, ey], eDir, false) : { eta: 999, info: null };
     var boostedEta = boostEtaForRoute(route, dir);
     if (enemyTank && enemyRoute.eta + 1 < boostedEta && !boosted()) {
+      if (tryLateReachableStarPickup()) return true;
       return runShieldStarRacePressure();
     }
     if (boostReady() && boostStarWorthwhile(route, safeRoute, enemyRoute)) {
       return castBoost();
     }
     if (boosted() || frame - _lastBoostAt <= 8) {
+      if (enemyTank && enemyRoute.eta + 1 < boostedEta) return false;
       if (shieldStarAdvanceBlocked()) return false;
       if (tryBoostStarLandingGuard(route)) return true;
+      var plan = boostRoutePlan(route, !!(safeRoute && safeRoute.info));
+      if (plan && !plan.firstBoostClean && actualGoDir() === route.info.first &&
+        boostedMoveWouldLeaveStarRoute(route.info.first)) return false;
       var n = add(myPos, delta(route.info.first));
+      if (boostedMoveWouldLeaveStarRoute(route.info.first)) return false;
       if (safeCell(n[0], n[1], true)) {
         say("star", ["加速中,直取星", "提速吃星", "别绕,拿经济"], 4);
         return moveDir(route.info.first);
@@ -1142,16 +1458,38 @@ function onIdle(me, enemy, game) {
     return false;
   }
 
+  function tryBoostStarControlPressure() {
+    if (!game.star || !enemyTank || enemyShielded() || !fireReady()) return false;
+    if (!(px === game.star[0] || py === game.star[1])) return false;
+    if (dist(px, py, game.star[0], game.star[1]) > 3) return false;
+    if (!canShootFrom(myPos, game.star)) return false;
+
+    var want = dirTo(myPos, [ex, ey]);
+    if (!losFrom(px, py, want, ex, ey)) return false;
+    if (dir === want) return fireIfSafe();
+    if (turnCost(dir, want) <= 1 && !bulletDangerAt(px, py, 4) &&
+      !ownBombDangerAt(px, py, 4) && !shotSetupAt(px, py, 0, 7)) {
+      say("boost-control", ["控住星线,顺手压炮", "星线到手,转压制", "别空等,给枪线"], 4);
+      me.turn(turnSide(dir, want));
+      return true;
+    }
+    return false;
+  }
+
   function boostStarControlScore(target, info, route, enemyRoute) {
     var targetStarDist = dist(target[0], target[1], game.star[0], game.star[1]);
     var controlsStar = targetStarDist === 0 || canShootFrom(target, game.star);
     if (!controlsStar) return -99999;
+    var grassStarControl = starGrassControlTarget(target);
 
     var score = 150 - info.dist * 22 - targetStarDist * 16;
     score += Math.round(positionalValue(target) * 0.6);
     if (targetStarDist === 1) score += 52;
     else if (targetStarDist === 2) score += 24;
     if (tile(target[0], target[1]) === "o") score += 18;
+    if (grassStarControl) score += 46;
+    if (grassStarControl && targetStarDist <= 2) score += 18;
+    if (grassStarControl && enemyRoute && route && enemyRoute.eta <= route.eta + 3) score += 18;
     if (enemyTank && canShootFrom(target, [ex, ey])) score += 22;
     if (enemyRoute && enemyRoute.eta <= route.eta + 2) score += 34;
     if (scoreMargin() <= 0) score += 24;
@@ -1165,7 +1503,12 @@ function onIdle(me, enemy, game) {
   function tryBoostStarControlPosition() {
     if (!game.star || !(me.skill && me.skill.type === "boost")) return false;
     if (currentHardDanger()) return false;
-    if (dist(px, py, game.star[0], game.star[1]) <= 1) return false;
+    var myStarDist = pathDist(myPos, game.star);
+    var enemyStarDist = enemyTank ? pathDist([ex, ey], game.star) : 999;
+    var roughMyStarDist = dist(px, py, game.star[0], game.star[1]);
+    var roughEnemyStarDist = enemyTank ? dist(ex, ey, game.star[0], game.star[1]) : 999;
+    if (roughMyStarDist <= 1) return false;
+    if (roughMyStarDist <= 3 && roughMyStarDist <= roughEnemyStarDist + 1) return false;
 
     var safeRoute = etaToStarFrom(myPos, dir, true);
     var route = safeRoute.info ? safeRoute : etaToStarFrom(myPos, dir, false);
@@ -1174,20 +1517,32 @@ function onIdle(me, enemy, game) {
     var boostedEta = boostEtaForRoute(route, dir);
 
     if (!starRaceClearlyLost(game.star) && safeRoute.info && safeRoute.eta <= 4) return false;
-    if (boostReady() && boostStarWorthwhile(route, safeRoute, enemyRoute)) return false;
+    if (boostReady() && boostStarWorthwhile(route, safeRoute, enemyRoute) &&
+      !starRaceClearlyLost(game.star)) return false;
     if (enemyTank && enemyRoute.eta + 2 >= boostedEta && route.eta <= 5 && scoreMargin() >= 0) return false;
+    if (tryBoostStarControlPressure()) return true;
 
     var candidates = [];
     candidates.push(game.star);
+    var starLineSpan = starUnderPressure(game.star) ||
+      (enemyTank && enemyRoute.eta <= route.eta + 2) ? 4 : 3;
     for (var i = 0; i < 4; i++) {
       var step = delta(dirs[i]);
-      for (var r = 1; r <= 3; r++) {
+      for (var r = 1; r <= starLineSpan; r++) {
         candidates.push([game.star[0] + step[0] * r, game.star[1] + step[1] * r]);
+      }
+    }
+    var grassCandidates = collectBoundedGrassCandidates(roughMyStarDist, GRASS_CANDIDATE_LIMIT);
+    for (var g = 0; g < grassCandidates.length; g++) {
+      var grassCandidate = grassCandidates[g];
+      if (grassControlsPoint(grassCandidate.x, grassCandidate.y, game.star) &&
+        dist(grassCandidate.x, grassCandidate.y, game.star[0], game.star[1]) <= 5) {
+        candidates.push([grassCandidate.x, grassCandidate.y]);
       }
     }
 
     var best = null, bestScore = -99999, seen = {};
-    var maxDist = boosted() || frame - _lastBoostAt <= 8 ? 7 : 5;
+    var maxDist = boosted() || frame - _lastBoostAt <= 8 ? 7 : (boostReady() ? 8 : 5);
     for (var c = 0; c < candidates.length; c++) {
       var target = candidates[c];
       var key = target[0] + "," + target[1];
@@ -1206,20 +1561,33 @@ function onIdle(me, enemy, game) {
     }
 
     if (!best || bestScore < 58) return false;
+    var bestGrassControl = starGrassControlTarget(best.target);
+    if (boostReady() && !selfStunned() && best.info.dist >= 3 && bestScore >= 86) {
+      if (frame >= 118 && (!same(best.target, game.star) || !lateBoostCanReachStar({ info: best.info }))) return false;
+      if (!starRaceClearlyLost(game.star) && roughMyStarDist <= 6 &&
+        roughMyStarDist <= roughEnemyStarDist + 1 && scoreMargin() > 0) return false;
+      if (!starRaceClearlyLost(game.star) && best.info.dist <= 6 && actualGoDir() !== best.info.first) return false;
+      say("boost-control", bestGrassControl ?
+        ["加速进草卡星", "提速抢草线", "草线先拿住"] :
+        ["加速先占好点", "不硬追,提速卡位", "先抢优势位"], 4);
+      return castBoost();
+    }
     if (best.info.dist === 0) {
       var faceStar = dirTo(myPos, game.star);
       if (dir !== faceStar && !projectileDangerAt(px, py) && !ownBombDangerAt(px, py, 3)) {
-        say("star-control", ["先占星线", "卡住星点", "不追,控星"], 5);
+        sayStarControl(bestGrassControl, 5);
         me.turn(turnSide(dir, faceStar));
         return true;
       }
-      say("star-control", ["守住星位", "等对面交路线", "星点我控着"], 7);
+      if (bestGrassControl) sayStarControl(true, 7);
+      else say("star-control", ["守住星位", "等对面交路线", "星点我控着"], 7);
       return true;
     }
 
     var n = add(myPos, delta(best.info.first));
     if (!safeCell(n[0], n[1], true)) return false;
-    say("star-control", ["先占星线", "卡住星点", "不追,控星"], 5);
+    if (boostedMoveWouldLeaveTrace(best.info.first, best.target, true)) return false;
+    sayStarControl(bestGrassControl, 5);
     return moveDir(best.info.first);
   }
 
@@ -1284,6 +1652,27 @@ function onIdle(me, enemy, game) {
     var tempo = buildShieldStarTempoFrame();
     var candidates = collectShieldStarTempoCandidates(tempo);
     return tryFrameCandidates(candidates);
+  }
+
+  function tryLateReachableStarPickup() {
+    if (!game.star || currentHardDanger()) return false;
+    if (scoreMargin() > 0) return false;
+    if (frame < 84 && scoreMargin() >= 0) return false;
+    if (!clearLineTo(game.star)) return false;
+
+    var route = etaToStarFrom(myPos, dir, false);
+    if (!route.info || !route.info.first || route.eta > 4) return false;
+    if (frame + route.eta > 127) return false;
+    if (enemyTank) {
+      var enemyRoute = etaToStarFrom([ex, ey], eDir, false);
+      if (enemyRoute.eta + 1 < route.eta) return false;
+    }
+
+    var next = add(myPos, delta(route.info.first));
+    if (!safeCell(next[0], next[1], true)) return false;
+    if (boostedMoveWouldLeaveStarRoute(route.info.first)) return false;
+    say("star", ["别朝星线空炮,先收星", "这颗还能吃,别打墙", "晚星先拿下"], 5);
+    return moveDir(route.info.first);
   }
 
   function tryStarInterception() {
@@ -1400,15 +1789,19 @@ function onIdle(me, enemy, game) {
     return false;
   }
 
-  function tryEarlyLanePressure() {
-    if (!enemyTank || frame > 36 || enemyShielded() || !fireReady()) return false;
+  function tryEarlyLanePressure(boostTempoOverride) {
+    var boostTempo = !!boostTempoOverride || boostTempoPressureWindow();
+    var frameLimit = boostTempo ? 112 : 36;
+    if (!enemyTank || frame > frameLimit || enemyShielded() || !fireReady()) return false;
     if (dist(px, py, ex, ey) <= 2) return false;
-    if (game.star && pathDist(myPos, game.star) <= 2) return false;
+    if (game.star && pathDist(myPos, game.star) <= 2 &&
+      (!boostTempo || starPickupSafe(game.star))) return false;
     if (bulletDangerAt(px, py, 2) || ownBombDangerAt(px, py, 4)) return false;
 
     var type = enemy.skill && enemy.skill.type;
     var urgent = type === "teleport" || type === "cloak" || type === "stun" ||
-      type === "freeze" || !game.star || starsOf(enemy) > starsOf(me);
+      type === "freeze" || !game.star || starsOf(enemy) > starsOf(me) ||
+      (boostTempo && (type === "overload" || starsOf(me) >= starsOf(enemy)));
     if (!urgent) return false;
 
     var baseStarDist = game.star ? roughDistToStar(myPos) : 99;
@@ -1418,8 +1811,11 @@ function onIdle(me, enemy, game) {
       var n = add(myPos, delta(d));
       if (!safeCell(n[0], n[1], true)) continue;
       if (!canShootFrom(n, [ex, ey])) continue;
+      if (boostTempo && enemyLaneThreatDirectionAt(n[0], n[1], scoreMargin() >= 2 ? 2 : 0, 16)) continue;
       var score = 90 - turnCost(dir, d) * 10 - dist(n[0], n[1], ex, ey) * 2;
+      if (boostTempo) score += 24;
       if (type === "teleport") score += 14;
+      if (type === "overload") score += 14;
       if (game.star) score -= Math.max(0, roughDistToStar(n) - baseStarDist) * 9;
       if (score > bestScore) {
         bestScore = score;
@@ -1448,6 +1844,14 @@ function onIdle(me, enemy, game) {
     var want = dirTo([ex, ey], [x, y]);
     if (!losFrom(ex, ey, want, x, y)) return null;
     return turnCost(eDir, want) <= 2 ? want : null;
+  }
+
+  function stunnedSkillTrapStarPinAt(x, y) {
+    if (!selfStunned() || !skillTrapOpponentActive() || !enemyTank || enemyDebuffed() || !game.star) return false;
+    if (dist(x, y, game.star[0], game.star[1]) > 1) return false;
+    if (dist(ex, ey, game.star[0], game.star[1]) > 1) return false;
+    if (dist(x, y, ex, ey) > 3) return false;
+    return x === game.star[0] || y === game.star[1] || !!enemyLaneThreatDirectionAt(x, y, 1, 5);
   }
 
   function skillTrapExitSafe(moveDirName, threatDir) {
@@ -1691,8 +2095,12 @@ function onIdle(me, enemy, game) {
     }
     var closeAimed = shotSetupAt(px, py, 0, 5);
     var closeOneTurnAimed = !closeAimed && shotSetupAt(px, py, 1, 2);
-    if (shotSetupAt(px, py, 0, 7) || closeAimed || closeOneTurnAimed || overloadDangerAt(px, py)) {
+    var closeVolleyThreat = closeVolleyThreatDirectionAt(px, py, 4);
+    if (shotSetupAt(px, py, 0, 7) || closeAimed || closeOneTurnAimed ||
+      overloadDangerAt(px, py) || closeVolleyThreat) {
+      if (trySkillTrapTempoShot()) return true;
       if (shieldCoversImmediateAction() && tryShieldedGunlinePressure()) return true;
+      if (closeVolleyThreat && tryCommittedLaneEscape(4)) return true;
       if (closeAimed) {
         if (castShield()) return true;
         if (tryCommittedLaneEscape(2)) return true;
@@ -1818,6 +2226,7 @@ function onIdle(me, enemy, game) {
   function scoreDodgeDirection(d, panic) {
     var n = add(myPos, delta(d));
     if (!safeCell(n[0], n[1], true)) return -99999;
+    if (!panic && enemyLaneThreatDirectionAt(n[0], n[1], 0, 16)) return -99999;
     var score = 100 - turnCost(dir, d) * 12;
     if (d === dir) score += 6;
     if (game.star) score -= roughDistToStar(n) * (panic ? 2 : 5);
@@ -1896,6 +2305,7 @@ function onIdle(me, enemy, game) {
     var want = dirTo(myPos, game.star);
     var n = add(myPos, delta(want));
     if (safeCell(n[0], n[1], true)) {
+      if (boostedMoveWouldLeaveStarRoute(want)) return false;
       say("star", ["星星我先收下", "抢星节奏起飞", "这颗星有内味了"], 6);
       return moveDir(want);
     }
@@ -1934,6 +2344,7 @@ function onIdle(me, enemy, game) {
     if (!game.star || dist(px, py, game.star[0], game.star[1]) !== 1) return false;
     var want = dirTo(myPos, game.star);
     if (safeCell(game.star[0], game.star[1], false)) {
+      if (boostedMoveWouldLeaveStarRoute(want)) return false;
       say("star", ["星星我先收下", "抢星节奏起飞", "这颗星有内味了"], 6);
       return moveDir(want);
     }
@@ -1985,10 +2396,52 @@ function onIdle(me, enemy, game) {
     return losFrom(x, y, dirTo([x, y], point), point[0], point[1]);
   }
 
+  function starGrassControlTarget(target) {
+    return !!(target && game.star && tile(target[0], target[1]) === "o" &&
+      grassControlsPoint(target[0], target[1], game.star));
+  }
+
+  function sayStarControl(grassControl, gap) {
+    if (grassControl) {
+      return say("grass-control", ["先占草线", "草位控住再说", "这个草能卡线"], gap);
+    }
+    return say("star-control", ["先占星线", "卡住星点", "不追,控星"], gap);
+  }
+
   function grassPressureAt(x, y) {
     if (game.star && grassControlsPoint(x, y, game.star)) return true;
     if (!enemyTank || enemyShielded()) return false;
     return canShootFrom([x, y], [ex, ey]);
+  }
+
+  function tryLeadGrassPressureMove() {
+    if (!enemyTank || enemyShielded() || !fireReady()) return false;
+    if (currentHardDanger() || projectileDangerAt(px, py) || ownBombDangerAt(px, py, 4)) return false;
+
+    var best = null, bestScore = -99999;
+    var baseStarGap = game.star ? roughDistToStar(myPos) : 99;
+    for (var axis = 0; axis < 2; axis++) {
+      for (var offset = -4; offset <= 4; offset++) {
+        var x = axis === 0 ? ex : px + offset;
+        var y = axis === 0 ? py + offset : ey;
+        if (x === px && y === py) continue;
+        if (!open(x, y) || !safeCell(x, y, true)) continue;
+        if (dist(x, y, ex, ey) <= 2) continue;
+        if (!canShootFrom([x, y], [ex, ey])) continue;
+        var info = pathInfo(myPos, [x, y], true) || pathInfo(myPos, [x, y], false);
+        if (!info || !info.first || info.dist > 4) continue;
+        var score = 120 - info.dist * 24 - turnCost(dir, info.first) * 8 - dist(x, y, ex, ey) * 2;
+        if (tile(x, y) === "o") score += 10;
+        if (game.star) score -= Math.max(0, roughDistToStar([x, y]) - baseStarGap) * 8;
+        if (score > bestScore) {
+          bestScore = score;
+          best = info.first;
+        }
+      }
+    }
+    if (!best || bestScore < 20) return false;
+    say("lead-grass", ["草位别空等,先压线", "领先草线开火", "优势位给压力"], 6);
+    return moveDir(best);
   }
 
   function cheapGrassCandidateScore(x, y, baseStarGap) {
@@ -2068,6 +2521,11 @@ function onIdle(me, enemy, game) {
   function tryStrategicGrassControl() {
     if (currentHardDanger() || projectileDangerAt(px, py) || ownBombDangerAt(px, py, 4)) return false;
     if (!game.star && (!enemyTank || enemyShielded())) return false;
+    if (game.star) {
+      var stableRoute = etaToStarFrom(myPos, dir, true);
+      if (stableRoute.info && stableRoute.eta <= 3 &&
+        starPickupSafe(game.star) && !starUnderPressure(game.star)) return false;
+    }
 
     var baseStarGap = game.star ? roughDistToStar(myPos) : 99;
     var best = null, bestScore = -99999;
@@ -2100,6 +2558,17 @@ function onIdle(me, enemy, game) {
   function tryLeadGrassControl() {
     if (!leadControlNeeded()) return false;
     if (safeCell(px, py, true) && tile(px, py) === "o") {
+      if (enemyTank && !enemyShielded() && fireReady() && canShootFrom(myPos, [ex, ey])) {
+        var shootDir = dirTo(myPos, [ex, ey]);
+        if (dir === shootDir) return fireIfSafe();
+        if (turnCost(dir, shootDir) <= 1 && !projectileDangerAt(px, py) && !ownBombDangerAt(px, py, 4)) {
+          say("lead-grass", ["草位别空等,先压线", "领先草线开火", "优势位给压力"], 6);
+          me.turn(turnSide(dir, shootDir));
+          return true;
+        }
+      }
+      if ((_stuck >= 2 || frame >= 80) && tryLeadGrassPressureMove()) return true;
+      if ((_stuck >= 4 || frame >= 92) && enemyTank && !enemyShielded() && !canShootFrom(myPos, [ex, ey])) return false;
       say("lead-grass", ["领先进草控线", "别急,草里等他", "优势位先拿住"], 7);
       return true;
     }
@@ -2172,6 +2641,7 @@ function onIdle(me, enemy, game) {
     if (game.star && dist(px, py, game.star[0], game.star[1]) === 1) return false;
     if (enemyTank) {
       var gap = dist(px, py, ex, ey);
+      if (gap <= 4 && skillTrapOpponentActive() && scoreMargin() >= 0) return false;
       if (gap <= 2 && !canShootFrom(myPos, [ex, ey])) {
         _lastBombAt = frame;
         _ownBombX = px;
@@ -2201,6 +2671,7 @@ function onIdle(me, enemy, game) {
     if (!info || !info.first) return false;
     var n = add(myPos, delta(info.first));
     if (safeCell(n[0], n[1], true)) {
+      if (boostedMoveWouldLeaveStarRoute(info.first)) return false;
       if (game.star && pathDist(myPos, game.star) <= 4) {
         say("star", ["星星我先收下", "抢星节奏起飞", "这颗星有内味了"], 6);
       }
@@ -2250,6 +2721,7 @@ function onIdle(me, enemy, game) {
       var d = dirs[i];
       var n = add(myPos, delta(d));
       if (!safeCell(n[0], n[1], true)) continue;
+      if (enemyLaneThreatDirectionAt(n[0], n[1], 0, 16)) continue;
       var score = positionalValue(n) - turnCost(dir, d) * 8;
       if (d === dir) score += 2;
       if (game.star) score -= roughDistToStar(n) * 2;
@@ -2281,7 +2753,7 @@ function onIdle(me, enemy, game) {
 
   function patrol() {
     var fwd = add(myPos, delta(dir));
-    if (safeCell(fwd[0], fwd[1], true)) {
+    if (safeCell(fwd[0], fwd[1], true) && !enemyLaneThreatDirectionAt(fwd[0], fwd[1], 0, 16)) {
       me.go();
       return true;
     }
@@ -2325,6 +2797,7 @@ function onIdle(me, enemy, game) {
       adjacentStar: strategyModule("L3", "adjacent-star", tryAdjacentStar),
       grassCamperHold: strategyModule("L4", "grass-camper-hold", tryGrassCamperHold),
       leadGrassControl: strategyModule("L4", "lead-grass-control", tryLeadGrassControl),
+      strategicGrassControl: strategyModule("L4", "strategic-grass-control", tryStrategicGrassControl),
       starInterception: strategyModule("L4", "star-interception", tryStarInterception),
       earlyLanePressure: strategyModule("L5", "early-lane-pressure", tryEarlyLanePressure),
       starLanePressure: strategyModule("L5", "star-lane-pressure", tryStarLanePressure),
@@ -2346,8 +2819,11 @@ function onIdle(me, enemy, game) {
       skillTrapLaneReset: strategyModule("L1", "skill-trap-lane-reset", trySkillTrapLaneReset),
       postShieldReset: strategyModule("L1", "post-shield-reset", tryPostShieldResetGuard),
       gunlineFrameEconomy: strategyModule("L1", "gunline-frame-economy", tryGunlineFrameEconomyGuard),
+      boostConfirmedShot: strategyModule("L2", "boost-confirmed-shot", tryBoostConfirmedShot),
       boostStarTempo: strategyModule("L2", "boost-star-tempo", tryBoostStarTempo),
+      lateReachableStar: strategyModule("L2", "late-reachable-star", tryLateReachableStarPickup),
       boostStarControl: strategyModule("L2", "boost-star-control", tryBoostStarControlPosition),
+      boostTempoPressure: strategyModule("L2", "boost-tempo-pressure", tryBoostTempoPressure),
       starTempoArbiter: strategyModule("L2", "star-tempo-arbiter", tryShieldStarTempoArbiter),
       shieldedGunlinePressure: strategyModule("L3", "shielded-gunline-pressure", tryShieldedGunlinePressure),
       shieldCounterPressure: strategyModule("L3", "shield-counter-pressure", tryShieldCounterPressure),
@@ -2365,7 +2841,10 @@ function onIdle(me, enemy, game) {
       shield.skillTrapLaneReset,
       shield.postShieldReset,
       shield.gunlineFrameEconomy,
+      shield.boostConfirmedShot,
       shield.boostStarTempo,
+      shield.lateReachableStar,
+      shield.boostTempoPressure,
       shield.boostStarControl,
       shield.starTempoArbiter,
       base.immediateShot,
@@ -2376,6 +2855,7 @@ function onIdle(me, enemy, game) {
       base.adjacentStar,
       base.grassCamperHold,
       base.leadGrassControl,
+      base.strategicGrassControl,
       base.starInterception,
       base.earlyLanePressure,
       base.starLanePressure,
