@@ -16,50 +16,18 @@ Goal mode: train shield-main / tank 4839 `500` / boost toward a stable 2600-poin
 
 ## Current Hypothesis
 
-Live shield-main is codeVersion 52 at rankScore 1153, Platinum I, after publishing the boost initiative pressure refactor. The current bounded axis is to convert boost into clear shots, safe side pressure lanes, and hard bullet-lane exits before far-star or empty control drift, while preserving safe close stars, valuable boost star routes, and nearby grass star-control.
+Live shield-main is codeVersion 61 at rankScore 1451, Diamond I. v60 diagnosis failed: user samples plus a bounded real run showed boost casts and boost turns were not converting into free-turn shots or star tempo. v61 is a clean boost-only behavior tree reset. It removes the old shield/boost mixed priority stack and only allows boost for aligned valuable star routes or explicit gunline creation.
 
 ## Protected Behaviors
 
-- Keep safe immediate star pickup when no hard danger exists.
-- Preserve safe adjacent star pickup before ordinary fire, grass, interception, or pressure movement.
-- Do not cast boost while a current bullet lane is urgent.
-- Do not cast boost while stun or reverse control can turn acceleration into wrong-way movement.
-- Boost may be used for valuable safe mid or long folded star routes, especially against mobile opponents or when not leading.
-- When direct star race is already lost, boost may be spent to reach a star-control or pressure position instead of continuing a blind star chase.
-- Do not spend boost-control on stable closer or near-star routes that can already be won without acceleration.
-- Do not spend boost on short routes that would skip or overshoot the star.
-- Do not spend boost on wall-capped opening star routes whose first boosted segment ends at an edge wall before reaching the star.
-- Do not spend opening boost on a long folded route when a non-mobile opponent has a direct comparable star race.
-- Do not cast late boost for an unreachable final star that cannot be collected before the round ends.
-- Do not hard-veto valuable folded star routes purely because of route shape; route traces may guide scoring and overshoot guards only.
-- When boosted next to a star, hold or turn for a controlled pickup instead of double-stepping through it.
-- After boost expires next to a star, collect it before replanning away unless a real bullet, bomb, overload, hidden shooter, hard block, or point-blank enemy pickup makes the tile unsafe.
-- Do not reverse-walk into a stun-controlled star pin while stunned or reversed.
-- Boost star-control must yield to an adjacent collectible star.
-- Boost star-control may favor safe grass stations when they control the current star line, especially in contested star lanes.
-- Do not let boost star-control override urgent bullet danger.
-- Occupied boost star-control lines should convert into real pressure fire when the enemy gunline is clear.
-- Boost confirmed clear shots should fire before far-star value drift while safe adjacent stars remain protected.
-- Boost initiative should fire, turn to a clear gunline, or cast boost toward a safe side pressure lane before far-star drift when no safe near-star or valuable star-control action exists.
-- Boost initiative must yield to safe close stars, valuable boost star routes, and nearby grass positions that control the current star line.
-- Do not scan or cast boost for late side-pressure lanes while safely ahead without a star.
-- Boost tempo lead should convert into early or mid/late pressure before ordinary far-star walking when no safe nearby star is available.
-- Late reachable stars should be collected before wall-only star-line fire.
-- Recent boost tempo must not keep holding an unsafe star line after it has gone stale without fire pressure.
-- Boost-tempo pressure and non-panic fallback movement must not step into an enemy long lane that is already aimed.
-- When leading by two or more stars, boost-tempo pressure must not step into a two-turn enemy long lane.
-- Boost skill must treat close enemy firing lanes and overload offset lanes as hard danger before value movement.
-- Active enemy overload frames exposed through remaining-frame state are hard offset danger before star or pressure actions.
-- Opaque active enemy bullets still preserve the enemy's current gunline as hard danger; do not chase a star along that lane.
-- Hard danger still outranks stars, grass, pressure fire, bombs, and ordinary pathing.
-- Same-row or same-column gunline decisions should be resolved by frame cost before star chasing or turning in place.
-- Against stun or cloak skill traps, clear close pressure shots may outrank lane escape only when no current bullet or bomb hard danger exists and our shot frame is no slower than the enemy aim frame.
-- Do not idle in grass unless it controls a star line or pressure lane.
-- Lead grass control should fire from a safe pressure lane instead of holding empty tempo.
-- Stale lead grass control should release to pressure or value pathing instead of holding empty tempo.
-- Strategic grass control may outrank ordinary star pathing only when the grass controls a star line or pressure lane, and must stay bounded by safe adjacent star pickup.
-- Patrol must not fire dirt unless it opens the current star route.
-- Visual speech may add flavor, but it must not change action selection.
+- Visible bullet danger must be handled before clear shots, boost casts, or star movement.
+- Close same-row or same-column gunlines must counterfire or exit before wandering.
+- Adjacent safe stars must be collected before boost, pressure, or patrol actions.
+- Boost must not be cast when the tank is not already facing a useful star or gunline route.
+- Boost may be cast for an aligned valuable star route, but not for a close star that can be walked to.
+- Active boost should create value through same-frame turn plus fire or go plus free turn toward a gunline.
+- Boosted near-star control must avoid overshooting a one-step star.
+- The shield-main candidate must stay boost-only and must not reintroduce shield-pressure branches.
 
 ## Verification
 

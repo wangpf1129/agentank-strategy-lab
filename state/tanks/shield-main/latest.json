@@ -5,21 +5,21 @@
   "skillType": "boost",
   "activeSource": "active/shield-main.js",
   "baselineSource": "active/shield-main.js",
-  "lastKnownRankScore": 1153,
-  "lastKnownTier": "platinum",
+  "lastKnownRankScore": 1451,
+  "lastKnownTier": "diamond",
   "lastKnownRankDivision": 1,
-  "lastKnownPublicRank": 673,
-  "lastUpdatedAt": "2026-07-08T09:12:00Z",
-  "lastKnownCodeVersion": 52,
-  "lastKnownCodeHash": "a1c420d9e4ebc67f35df146ebf1e16df43de13954eaec67e35ee15c3029a039d",
+  "lastKnownPublicRank": null,
+  "lastUpdatedAt": "2026-07-09T06:56:09Z",
+  "lastKnownCodeVersion": 61,
+  "lastKnownCodeHash": "451dd8d4aad04ea8a585930430a11254b4c44755c9dd8d3d8aee4b4cc7f1ecad",
   "lastKnownRecord": {
-    "wins": 734,
-    "losses": 705,
+    "wins": 883,
+    "losses": 849,
     "draws": 0,
     "placementMatches": 10
   },
   "lastObservation": {
-    "runPath": "/tmp/agentank-runs/snapshots-shield-v52-publish/shield-main/tank.json",
-    "summary": "Shield-main / tank 4839 `500` boost initiative pressure refactor published as codeVersion 52 / codeHash a1c420d9e4ebc67f35df146ebf1e16df43de13954eaec67e35ee15c3029a039d. Live snapshot after publish confirms rankScore 1153, Platinum I, public rank 673/4434, record 734-705-0. Publish gates rerun before release: npm run check passed, focused shield-main tests passed 124/124, .env simulation passed 9/9 at /tmp/agentank-runs/simulations/2026-07-08T09-10-50-516Z, and shield-main dry-run passed at /tmp/agentank-runs/shield-main/challenge-runs/2026-07-08T09-11-29-296Z.json. No real challenge-run was executed."
+    "runPath": "/tmp/agentank-runs/snapshots-shield-v61-boost-reset-publish/shield-main/tank.json",
+    "summary": "Published shield-main v61 boost-only behavior tree reset. Gates passed before publish: npm run check, focused shield-main tests 10/10, node --check lab/scripts/analyze-boost-tactics.mjs, npm run test:lab, git diff --check, server simulation 9/9 at /tmp/agentank-runs/simulations/2026-07-09T06-55-13-194Z, and dry-run /tmp/agentank-runs/shield-main/challenge-runs/2026-07-09T06-55-42-486Z.json. Publish returned codeHash 451dd8d4aad04ea8a585930430a11254b4c44755c9dd8d3d8aee4b4cc7f1ecad. Snapshot confirmed codeVersion 61, skillType boost, rankScore 1451, Diamond I, record 883-849-0."
   }
 }
