@@ -19,9 +19,26 @@
   "boundedAxes": [
     {
       "id": "boost-reset-hazard",
-      "purpose": "Keep visible bullets and close gunlines ahead of value movement without reintroducing shield-specific logic.",
+      "purpose": "Keep visible bullets, long bullet lanes, and reply-capable gunlines ahead of value movement without reintroducing shield-specific logic.",
       "requiredTests": [
         "v61 handles future bullet danger before taking a clear shot",
+        "v62 immediately goes out of a current bullet lane when already aligned",
+        "v64 exits a reply-capable same-row gunline before value movement",
+        "v64 refuses to step into a long bullet lane while chasing a star",
+        "v64 does not boost-step into a reply-capable edge gunline for star value",
+        "v64 treats a recently seen hidden enemy line as reply-capable",
+        "v64 commits to a selected bullet-lane exit instead of oscillating",
+        "v64 still fires an aimed same-line trade when no line exit exists",
+        "v65 refuses to step onto the current enemy bullet tile",
+        "v65 drives out of a same-frame muzzle hit instead of turning",
+        "v65 does not step into a same-frame close muzzle lane",
+        "v68 takes an adjacent safe star instead of fleeing a distant one-turn gunline",
+        "v68 fires an aimed close reply lane before generic gunline exit",
+        "v69 refuses a star on a remembered grass shooter line",
+        "v69 exits a remembered shooter row before value actions",
+        "v70 takes an urgent bullet-lane exit over future reply-line caution",
+        "v70 treats visible overload bullets as urgent lane danger",
+        "v69 does not pressure-step into a close one-turn reply lane",
         "v61 close gunline counterfires before wandering"
       ]
     },
@@ -33,6 +50,7 @@
         "v61 does not cast boost when not facing a useful route",
         "v61 casts boost only for an aligned valuable star route",
         "v61 does not cast boost for a close star it can walk to",
+        "v65 waits a few opening frames before far-star boost",
         "v61 boosted near-star control turns instead of overshooting sideways"
       ]
     },
@@ -41,7 +59,9 @@
       "purpose": "Convert active boost into immediate attack value: same-frame turn-fire or go-plus-free-turn gunline creation.",
       "requiredTests": [
         "v61 uses active boost same-frame turn fire on a clear lane",
-        "v61 uses active boost move plus free turn to create a gunline"
+        "v61 uses active boost move plus free turn to create a gunline",
+        "v63 uses active boost free turn then go toward a valuable star route",
+        "v69 uses active boost go-turn-fire for a back shot"
       ]
     },
     {
@@ -54,11 +74,22 @@
   ],
   "protectedBehaviors": [
     "Visible bullet danger must be handled before clear shots, boost casts, or star movement.",
+    "Current bullet danger should prefer an immediately executable go exit before turn-only escape.",
+    "Long bullet lanes and reply-capable gunlines must force a safe line exit or an aimed trade before value movement.",
+    "Star and fallback value movement must not step into a reply-capable gunline before the shot exists.",
+    "Recently seen hidden enemy lanes must still count as reply-capable for short value movement.",
+    "Bullet-lane exits must commit briefly to the selected perpendicular move instead of recalculating into turn oscillation.",
+    "Current enemy bullet positions must count as occupied danger, not only future projected positions.",
+    "Active enemy bullet danger must include visible bullets, not only enemy.bullet.",
+    "Urgent bullet-lane exits may ignore future reply-line caution when the alternative is being hit by the active bullet.",
+    "Recent enemy bullets must expose fixed grass or hidden shooter lanes before value movement.",
+    "Same-frame close muzzle shots must force an immediately executable go exit or an already-aimed trade before turn-only actions.",
     "Close same-row or same-column gunlines must counterfire or exit before wandering.",
     "Adjacent safe stars must be collected before boost, pressure, or patrol actions.",
+    "Opening far-star boost must wait a few frames for board observation unless the route is already proven valuable.",
     "Boost must not be cast when the tank is not already facing a useful star or gunline route.",
     "Boost may be cast for an aligned valuable star route, but not for a close star that can be walked to.",
-    "Active boost should create value through same-frame turn plus fire or go plus free turn toward a gunline.",
+    "Active boost should create value through same-frame turn plus fire, go plus free turn toward a gunline, free turn plus go toward a valuable star route, or go plus free turn plus fire into a back shot.",
     "Boosted near-star control must avoid overshooting a one-step star.",
     "The shield-main candidate must stay boost-only and must not reintroduce shield-pressure branches."
   ],

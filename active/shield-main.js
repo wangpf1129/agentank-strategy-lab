@@ -3,6 +3,9 @@ var _lastEX = -1, _lastEY = -1, _lastEDir = null, _lastSeen = -99;
 var _lastStarX = -1, _lastStarY = -1, _myStars = 0, _enemyStars = 0;
 var _lastBoostAt = -99, _lastSpeakAt = -99, _lastSpeakTag = "", _speakCount = 0;
 var _lastMoveIntent = null, _lastIntentFrame = -99;
+var _hazardExitDir = null, _hazardExitFrame = -99;
+var _justAteStarAt = -99;
+var _shotLineX = -1, _shotLineY = -1, _shotLineDir = null, _shotLineAt = -99;
 
 function onIdle(me, enemy, game) {
   var myPos = me.tank.position;
@@ -33,7 +36,7 @@ function onIdle(me, enemy, game) {
   }
 
   if (_lastStarX >= 0 && (!game.star || game.star[0] !== _lastStarX || game.star[1] !== _lastStarY)) {
-    if (px === _lastStarX && py === _lastStarY) _myStars++;
+    if (px === _lastStarX && py === _lastStarY) { _myStars++; _justAteStarAt = frame; }
     else if (enemyTank && ex === _lastStarX && ey === _lastStarY) _enemyStars++;
     _lastStarX = -1;
     _lastStarY = -1;
@@ -162,6 +165,14 @@ function onIdle(me, enemy, game) {
     return true;
   }
 
+  function boostLandingFor(dirName) {
+    var step = delta(dirName);
+    var one = [px + step[0], py + step[1]];
+    var two = [px + step[0] * 2, py + step[1] * 2];
+    if (!open(one[0], one[1]) || !open(two[0], two[1])) return null;
+    return two;
+  }
+
   function clearLaneFrom(sx, sy, facing, tx, ty) {
     if (!facing || !dv[facing]) return false;
     var step = dv[facing];
@@ -201,29 +212,185 @@ function onIdle(me, enemy, game) {
     return { dir: want, aimed: eDir === want, gap: dist(ex, ey, x, y) };
   }
 
-  function visibleBulletDangerAt(x, y, framesAhead) {
-    var bullet = enemy && enemy.bullet;
-    if (!bullet || !bullet.position || !bullet.direction) return false;
+  function enemyDebuffed() {
+    var s = enemy && enemy.status;
+    return !!(s && (s.frozen || s.stunned || s.fireLocked));
+  }
+
+  function enemyGunlineDirectionAt(x, y, maxCells) {
+    if (!enemyTank || enemyDebuffed() || activeEnemyBullets().length) return null;
+    if (x !== ex && y !== ey) return null;
+    var want = ex === x ? (y < ey ? "up" : "down") : (x < ex ? "left" : "right");
+    var gap = dist(ex, ey, x, y);
+    if (gap <= 0 || gap > (maxCells || 11)) return null;
+    if (!clearLaneFrom(ex, ey, want, x, y)) return null;
+    var grace = gap <= 3 ? 2 : 1;
+    return turnCost(eDir, want) <= grace ? want : null;
+  }
+
+  function rememberedGunlineDirectionAt(x, y, maxCells) {
+    if (enemyTank || _lastEX < 0 || frame - _lastSeen > 12 || activeEnemyBullets().length) return null;
+    if (x !== _lastEX && y !== _lastEY) return null;
+    var want = _lastEX === x ? (y < _lastEY ? "up" : "down") : (x < _lastEX ? "left" : "right");
+    var gap = dist(_lastEX, _lastEY, x, y);
+    if (gap <= 0 || gap > (maxCells || 11)) return null;
+    if (!clearLaneFrom(_lastEX, _lastEY, want, x, y)) return null;
+    var grace = gap <= 3 ? 2 : 1;
+    return turnCost(_lastEDir || want, want) <= grace ? want : null;
+  }
+
+  function replyGunlineDirectionAt(x, y, maxCells) {
+    return enemyGunlineDirectionAt(x, y, maxCells) || rememberedGunlineDirectionAt(x, y, maxCells);
+  }
+
+  function isOwnBullet(bullet) {
+    if (!bullet || !me.tank) return false;
+    return !!((bullet.ownerTankId && bullet.ownerTankId === me.tank.id) ||
+      (bullet.tank && bullet.tank.id && bullet.tank.id === me.tank.id));
+  }
+
+  function activeEnemyBullets() {
+    var bullets = [];
+    if (enemy && enemy.bullet && !isOwnBullet(enemy.bullet)) bullets.push(enemy.bullet);
+    var visible = game.visibleBullets || [];
+    for (var i = 0; i < visible.length; i++) {
+      if (!isOwnBullet(visible[i])) bullets.push(visible[i]);
+    }
+    return bullets;
+  }
+
+  function rememberShotFromBullet(bullet) {
+    if (!bullet || !bullet.position || !bullet.direction || !dv[bullet.direction]) return false;
+    if (isOwnBullet(bullet)) return false;
     var step = delta(bullet.direction);
-    var bx = bullet.position[0], by = bullet.position[1];
-    for (var f = 0; f <= framesAhead; f++) {
-      for (var s = 0; s < 2; s++) {
+    var sx = -1, sy = -1;
+    if (bullet.tank && bullet.tank.position) {
+      sx = bullet.tank.position[0];
+      sy = bullet.tank.position[1];
+    } else if (enemyTank && clearLaneFrom(ex, ey, bullet.direction, bullet.position[0], bullet.position[1])) {
+      sx = ex;
+      sy = ey;
+    } else {
+      sx = bullet.position[0] - step[0];
+      sy = bullet.position[1] - step[1];
+    }
+    if (!open(sx, sy)) {
+      sx = bullet.position[0];
+      sy = bullet.position[1];
+    }
+    if (!open(sx, sy)) return false;
+    _shotLineX = sx;
+    _shotLineY = sy;
+    _shotLineDir = bullet.direction;
+    _shotLineAt = frame;
+    return true;
+  }
+
+  function refreshShotLineMemory() {
+    var bullets = activeEnemyBullets();
+    for (var i = 0; i < bullets.length; i++) {
+      rememberShotFromBullet(bullets[i]);
+    }
+  }
+
+  function rememberedShotDirectionAt(x, y) {
+    if (_shotLineX < 0 || !_shotLineDir || frame - _shotLineAt > 18) return null;
+    if (x !== _shotLineX && y !== _shotLineY) return null;
+    var gap = dist(_shotLineX, _shotLineY, x, y);
+    if (gap <= 0 || gap > 12) return null;
+    return clearLaneFrom(_shotLineX, _shotLineY, _shotLineDir, x, y) ? _shotLineDir : null;
+  }
+
+  function enemyBulletStepsTo(x, y, framesAhead) {
+    var bullets = activeEnemyBullets();
+    var best = 999;
+    for (var i = 0; i < bullets.length; i++) {
+      var bullet = bullets[i];
+      if (!bullet || !bullet.position || !bullet.direction) continue;
+      var step = delta(bullet.direction);
+      var bx = bullet.position[0], by = bullet.position[1];
+      if (bx === x && by === y) best = Math.min(best, 0);
+      var maxSteps = (framesAhead + 1) * 2;
+      for (var s = 1; s <= maxSteps; s++) {
         bx += step[0];
         by += step[1];
         if (!open(bx, by)) break;
-        if (bx === x && by === y) return true;
+        if (bx === x && by === y) {
+          best = Math.min(best, s);
+          break;
+        }
       }
     }
-    return false;
+    return best;
+  }
+
+  function visibleBulletDangerAt(x, y, framesAhead) {
+    return enemyBulletStepsTo(x, y, framesAhead) < 999;
+  }
+
+  function sameFrameShotThreatAt(x, y) {
+    if (activeEnemyBullets().length) return null;
+    if (enemyTank && !enemyDebuffed() && (x === ex || y === ey)) {
+      var want = ex === x ? (y < ey ? "up" : "down") : (x < ex ? "left" : "right");
+      var gap = dist(ex, ey, x, y);
+      if (gap > 0 && gap <= 2 && eDir === want && clearLaneFrom(ex, ey, want, x, y)) {
+        return { dir: want, gap: gap };
+      }
+    }
+    if (!enemyTank && _lastEX >= 0 && frame - _lastSeen <= 8 && (x === _lastEX || y === _lastEY)) {
+      var remembered = _lastEX === x ? (y < _lastEY ? "up" : "down") : (x < _lastEX ? "left" : "right");
+      var rememberedGap = dist(_lastEX, _lastEY, x, y);
+      if (rememberedGap > 0 && rememberedGap <= 2 &&
+        turnCost(_lastEDir || remembered, remembered) <= 1 &&
+        clearLaneFrom(_lastEX, _lastEY, remembered, x, y)) {
+        return { dir: remembered, gap: rememberedGap };
+      }
+    }
+    return null;
+  }
+
+  function longBulletLaneDirectionAt(x, y, maxCells) {
+    var bullets = activeEnemyBullets();
+    for (var i = 0; i < bullets.length; i++) {
+      var bullet = bullets[i];
+      if (!bullet || !bullet.position || !bullet.direction || !dv[bullet.direction]) continue;
+      var step = delta(bullet.direction);
+      var bx = bullet.position[0], by = bullet.position[1];
+      for (var s = 0; s <= (maxCells || 10); s++) {
+        if (bx === x && by === y) return bullet.direction;
+        bx += step[0];
+        by += step[1];
+        if (!open(bx, by)) break;
+      }
+    }
+    return null;
+  }
+
+  function leavesLane(moveDirName, laneDir) {
+    if (!moveDirName || !laneDir) return false;
+    if (laneDir === "left" || laneDir === "right") return moveDirName === "up" || moveDirName === "down";
+    return moveDirName === "left" || moveDirName === "right";
+  }
+
+  function poorGunlineAt(x, y) {
+    return !!(longBulletLaneDirectionAt(x, y, 12) || rememberedShotDirectionAt(x, y) || replyGunlineDirectionAt(x, y, 11));
   }
 
   function cellSafe(x, y, strict) {
     if (!open(x, y)) return false;
     if (visibleBulletDangerAt(x, y, 2)) return false;
+    if (sameFrameShotThreatAt(x, y)) return false;
+    if (longBulletLaneDirectionAt(x, y, 12)) return false;
+    if (rememberedShotDirectionAt(x, y)) return false;
+    if (strict && poorGunlineAt(x, y)) return false;
     var threat = enemyLaneTo(x, y);
     if (threat && threat.aimed && threat.gap <= (strict ? 7 : 4)) return false;
     if (enemyTank && dist(x, y, ex, ey) <= 1 && !clearShotReadyAt(x, y)) return false;
     return true;
+  }
+
+  function valueStepSafe(x, y, strict) {
+    return cellSafe(x, y, strict || !!replyGunlineDirectionAt(x, y, 11));
   }
 
   function clearShotReadyAt(x, y) {
@@ -254,8 +421,50 @@ function onIdle(me, enemy, game) {
     return commandTurnToward(want);
   }
 
+  function boostTurnGo(want, tag, target) {
+    if (!boosted() || reversedControl() || turnCost(dir, want) !== 1) return false;
+    var landing = boostLandingFor(want);
+    if (!landing || !cellSafe(landing[0], landing[1], true)) return false;
+    if (target && dist(landing[0], landing[1], target[0], target[1]) >= dist(px, py, target[0], target[1])) return false;
+    _lastMoveIntent = want;
+    _lastIntentFrame = frame;
+    commandTurnToward(want);
+    me.go();
+    say(tag || "boost-turn-go", ["turn-go"], 3);
+    return true;
+  }
+
+  function boostGoTurn(face, tag) {
+    if (!boosted() || reversedControl() || turnCost(dir, face) > 1) return false;
+    _lastMoveIntent = actualGoDir();
+    _lastIntentFrame = frame;
+    me.go();
+    if (dir !== face) commandTurnToward(face);
+    say(tag || "boost-go-turn", ["go-turn"], 3);
+    return true;
+  }
+
+  function boostGoTurnFire(face, tag) {
+    if (!boosted() || reversedControl() || !fireReady() || turnCost(dir, face) > 1) return false;
+    var landing = boostLandingFor(actualGoDir());
+    if (!landing || !cellSafe(landing[0], landing[1], false)) return false;
+    if (laneDirFromTo(landing[0], landing[1], ex, ey) !== face) return false;
+    _lastMoveIntent = actualGoDir();
+    _lastIntentFrame = frame;
+    me.go();
+    if (dir !== face) commandTurnToward(face);
+    say(tag || "boost-go-turn-fire", ["go-turn-fire"], 3);
+    me.fire();
+    return true;
+  }
+
   function safeExitFromLane(threatDir) {
     var preferred = threatDir === "left" || threatDir === "right" ? ["up", "down", oppositeDir(threatDir)] : ["left", "right", oppositeDir(threatDir)];
+    var goNow = actualGoDir();
+    if (preferred.indexOf(goNow) >= 0) {
+      var ahead = add(myPos, delta(goNow));
+      if (cellSafe(ahead[0], ahead[1], true)) return goNow;
+    }
     for (var i = 0; i < preferred.length; i++) {
       var d = preferred[i];
       var p = add(myPos, delta(d));
@@ -264,8 +473,84 @@ function onIdle(me, enemy, game) {
     return null;
   }
 
+  function lineExitSafe(moveDirName, laneDir, urgent) {
+    if (!leavesLane(moveDirName, laneDir)) return false;
+    var p = add(myPos, delta(moveDirName));
+    return urgent ? urgentStepSafe(p[0], p[1]) : cellSafe(p[0], p[1], true);
+  }
+
+  function chooseLineExit(laneDir, urgent) {
+    var goNow = actualGoDir();
+    if (lineExitSafe(goNow, laneDir, urgent)) return goNow;
+    var best = null, bestScore = -999;
+    for (var i = 0; i < dirs.length; i++) {
+      var d = dirs[i];
+      if (!lineExitSafe(d, laneDir, urgent)) continue;
+      var p = add(myPos, delta(d));
+      var score = 50 - turnCost(actualGoDir(), d) * 8;
+      if (game.star) score -= dist(p[0], p[1], game.star[0], game.star[1]);
+      if (enemyTank) score += Math.min(6, dist(p[0], p[1], ex, ey));
+      if (score > bestScore) {
+        bestScore = score;
+        best = d;
+      }
+    }
+    return best;
+  }
+
+  function committedLineExit(laneDir, urgent) {
+    if (!_hazardExitDir || frame - _hazardExitFrame > 2) return null;
+    return lineExitSafe(_hazardExitDir, laneDir, urgent) ? _hazardExitDir : null;
+  }
+
+  function rememberLineExit(dirName) {
+    _hazardExitDir = dirName;
+    _hazardExitFrame = frame;
+    return dirName;
+  }
+
+  function urgentStepSafe(x, y) {
+    if (!open(x, y)) return false;
+    if (visibleBulletDangerAt(x, y, 1)) return false;
+    if (sameFrameShotThreatAt(x, y)) return false;
+    if (enemyTank && dist(x, y, ex, ey) <= 1 && !clearShotReadyAt(x, y)) return false;
+    return true;
+  }
+
+  function tryImmediateShotEscape() {
+    var shot = sameFrameShotThreatAt(px, py);
+    if (!shot) return false;
+    var goNow = actualGoDir();
+    var ahead = add(myPos, delta(goNow));
+    if (urgentStepSafe(ahead[0], ahead[1])) return moveDir(goNow, "shot-go-exit");
+
+    var want = shotDirToEnemy();
+    if (want && fireReady() && dir === want) return fireOrFace(want, "shot-trade");
+
+    for (var i = 0; i < dirs.length; i++) {
+      var d = dirs[i];
+      if (!boosted() || reversedControl() || turnCost(dir, d) !== 1) continue;
+      var p = add(myPos, delta(d));
+      if (!urgentStepSafe(p[0], p[1])) continue;
+      commandTurnToward(d);
+      me.go();
+      say("boost-shot-exit", ["turn-go"], 3);
+      return true;
+    }
+
+    return commandTurnToward(oppositeDir(shot.dir));
+  }
+
   function tryBulletEscape() {
     if (!visibleBulletDangerAt(px, py, 1)) return false;
+    var bulletLane = longBulletLaneDirectionAt(px, py, 12);
+    if (bulletLane) {
+      var laneExit = committedLineExit(bulletLane, true) || chooseLineExit(bulletLane, true);
+      if (laneExit) return moveDir(rememberLineExit(laneExit), "bullet-line-exit");
+    }
+    var goNow = actualGoDir();
+    var ahead = add(myPos, delta(goNow));
+    if (cellSafe(ahead[0], ahead[1], true)) return moveDir(goNow, "bullet-go-exit");
     for (var i = 0; i < dirs.length; i++) {
       var d = dirs[i];
       var p = add(myPos, delta(d));
@@ -276,19 +561,41 @@ function onIdle(me, enemy, game) {
     return commandTurnToward(oppositeDir(dir));
   }
 
+  function tryGunlineEscape() {
+    var bulletLane = longBulletLaneDirectionAt(px, py, 12);
+    var threatDir = bulletLane || rememberedShotDirectionAt(px, py) || replyGunlineDirectionAt(px, py, 11);
+    if (!threatDir) return false;
+
+    var want = shotDirToEnemy();
+    if (!bulletLane && want && fireReady() && boosted()) return false;
+    if (!bulletLane && want && fireReady() && dir === want &&
+      dist(px, py, ex, ey) <= 5 && !visibleBulletDangerAt(px, py, 1)) {
+      return fireOrFace(want, "gunline-counter");
+    }
+
+    var exit = committedLineExit(threatDir, !!bulletLane) || chooseLineExit(threatDir, !!bulletLane);
+    if (exit) return moveDir(rememberLineExit(exit), bulletLane ? "bullet-line-exit" : "gunline-exit");
+
+    if (want && fireReady()) return fireOrFace(want, bulletLane ? "bullet-line-trade" : "gunline-trade");
+    return false;
+  }
+
   function tryCloseGunline() {
     if (!enemyTank) return false;
     var threat = enemyLaneTo(px, py);
-    var close = dist(px, py, ex, ey) <= 2;
+    var close = dist(px, py, ex, ey) <= 3;
     if (!threat && !close) return false;
     var want = shotDirToEnemy();
     if (boosted() && want && fireReady()) return false;
-    if (want && fireReady() && (dir === want || boosted() || close || threat.aimed)) {
+    if (want && fireReady() && (dir === want || boosted())) {
       return fireOrFace(want, "duel-shot");
     }
     if (threat && (threat.aimed || threat.gap <= 5)) {
       var exit = safeExitFromLane(threat.dir);
       if (exit) return moveDir(exit, "lane-exit");
+    }
+    if (want && fireReady() && (close || threat.aimed)) {
+      return fireOrFace(want, "duel-shot");
     }
     if (want && fireReady()) return fireOrFace(want, "duel-face");
     return false;
@@ -296,20 +603,29 @@ function onIdle(me, enemy, game) {
 
   function tryBoostSnapShot() {
     if (!boosted() || !enemyTank || !fireReady()) return false;
-    if (visibleBulletDangerAt(px, py, 1)) return false;
     var want = shotDirToEnemy();
     if (!want) return false;
     var gap = dist(px, py, ex, ey);
-    if (gap < 2 || gap > 9) return false;
+    if (gap < 1 || gap > 8) return false;
+    if (visibleBulletDangerAt(px, py, 1)) return false;
     return fireOrFace(want, "boost-snap");
   }
 
+  function tryAggressiveFire() {
+    if (!boosted() || !enemyTank || !fireReady()) return false;
+    if (visibleBulletDangerAt(px, py, 1)) return false;
+    if (sameFrameShotThreatAt(px, py)) return false;
+    var want = shotDirToEnemy();
+    if (!want) return false;
+    var gap = dist(px, py, ex, ey);
+    if (gap < 1 || gap > 8) return false;
+    if (longBulletLaneDirectionAt(px, py, 10)) return false;
+    if (replyGunlineDirectionAt(px, py, 5)) return false;
+    return fireOrFace(want, "aggressive-fire");
+  }
+
   function boostLanding() {
-    var step = delta(actualGoDir());
-    var one = [px + step[0], py + step[1]];
-    var two = [px + step[0] * 2, py + step[1] * 2];
-    if (!open(one[0], one[1]) || !open(two[0], two[1])) return null;
-    return two;
+    return boostLandingFor(actualGoDir());
   }
 
   function tryActiveBoostGunlineLanding() {
@@ -318,15 +634,26 @@ function onIdle(me, enemy, game) {
       return false;
     }
     var landing = boostLanding();
-    if (!landing || !cellSafe(landing[0], landing[1], true)) return false;
+    if (!landing || !cellSafe(landing[0], landing[1], false)) return false;
     var face = laneDirFromTo(landing[0], landing[1], ex, ey);
     if (!face || turnCost(dir, face) > 1) return false;
-    _lastMoveIntent = actualGoDir();
-    _lastIntentFrame = frame;
-    me.go();
-    commandTurnToward(face);
-    say("boost-cut", ["boost-cut"], 3);
-    return true;
+    return boostGoTurn(face, "boost-cut");
+  }
+
+  function tryActiveBoostBackshot() {
+    if (!boosted() || !enemyTank || !fireReady()) return false;
+    if (visibleBulletDangerAt(px, py, 1) || sameFrameShotThreatAt(px, py)) return false;
+    if (game.star && dist(px, py, game.star[0], game.star[1]) <= 1 && cellSafe(game.star[0], game.star[1], false)) {
+      return false;
+    }
+    var landing = boostLanding();
+    if (!landing || !cellSafe(landing[0], landing[1], false)) return false;
+    var face = laneDirFromTo(landing[0], landing[1], ex, ey);
+    if (!face || turnCost(dir, face) > 1) return false;
+    var gap = dist(landing[0], landing[1], ex, ey);
+    if (gap < 1 || gap > 8) return false;
+    if (eDir && face !== eDir) return false;
+    return boostGoTurnFire(face, "boost-backshot");
   }
 
   function takeAdjacentStar() {
@@ -373,7 +700,7 @@ function onIdle(me, enemy, game) {
     var step = delta(dirName);
     var one = [px + step[0], py + step[1]];
     var two = [px + step[0] * 2, py + step[1] * 2];
-    if (!cellSafe(one[0], one[1], false) || !cellSafe(two[0], two[1], true)) return false;
+    if (!valueStepSafe(one[0], one[1], false) || !valueStepSafe(two[0], two[1], true)) return false;
     if (!target) return true;
     return dist(two[0], two[1], target[0], target[1]) < dist(px, py, target[0], target[1]);
   }
@@ -384,6 +711,7 @@ function onIdle(me, enemy, game) {
     if (!info || !info.first) return false;
     if (info.dist <= 3) return false;
     if (!boostReady()) return false;
+    if (frame < 4) return false;
     if (actualGoDir() !== info.first) return moveDir(info.first, "star-face");
     if (!canBoostAlong(info.first, game.star)) return false;
     return castBoost("boost-star");
@@ -393,7 +721,10 @@ function onIdle(me, enemy, game) {
     if (!game.star || !boosted()) return false;
     var info = pathInfo(myPos, game.star);
     if (!info || !info.first) return false;
+    var next = add(myPos, delta(info.first));
+    if (!valueStepSafe(next[0], next[1], info.dist > 2)) return false;
     if (info.dist <= 2) return moveDir(info.first, "boost-star-step");
+    if (boostTurnGo(info.first, "boost-turn-go", game.star)) return true;
     if (canBoostAlong(info.first, game.star)) return moveDir(info.first, "boost-star-go");
     return moveDir(info.first, "boost-star-face");
   }
@@ -403,7 +734,7 @@ function onIdle(me, enemy, game) {
     var info = pathInfo(myPos, game.star);
     if (!info || !info.first) return false;
     var next = add(myPos, delta(info.first));
-    if (!cellSafe(next[0], next[1], info.dist > 3)) return false;
+    if (!valueStepSafe(next[0], next[1], info.dist > 3)) return false;
     return moveDir(info.first, "star-path");
   }
 
@@ -426,6 +757,7 @@ function onIdle(me, enemy, game) {
       var d = dirs[i];
       var p = add(myPos, delta(d));
       if (!cellSafe(p[0], p[1], false)) continue;
+      if (!valueStepSafe(p[0], p[1], true)) continue;
       var face = laneDirFromTo(p[0], p[1], ex, ey);
       var score = (face ? 20 : 0) - dist(p[0], p[1], ex, ey);
       if (game.star) score -= Math.max(0, dist(p[0], p[1], game.star[0], game.star[1]) - 6);
@@ -444,11 +776,26 @@ function onIdle(me, enemy, game) {
       for (var i = 0; i < dirs.length; i++) {
         var d = dirs[(i + frame) % dirs.length];
         var p = add(myPos, delta(d));
-        if (cellSafe(p[0], p[1], false)) return moveDir(d, "unstick");
+        if (cellSafe(p[0], p[1], true)) return moveDir(d, "unstick");
       }
     }
     var info = pathInfo(myPos, target);
-    if (info && info.first) return moveDir(info.first, "center");
+    if (info && info.first) {
+      var next = add(myPos, delta(info.first));
+      if (cellSafe(next[0], next[1], true)) return moveDir(info.first, "center");
+    }
+    var best = null, bestScore = 999;
+    for (var j = 0; j < dirs.length; j++) {
+      var dirName = dirs[(j + frame) % dirs.length];
+      var cell = add(myPos, delta(dirName));
+      if (!cellSafe(cell[0], cell[1], true)) continue;
+      var score = dist(cell[0], cell[1], target[0], target[1]) + turnCost(actualGoDir(), dirName);
+      if (score < bestScore) {
+        bestScore = score;
+        best = dirName;
+      }
+    }
+    if (best) return moveDir(best, "safe-center");
     return moveDir(dirs[frame % 4], "patrol");
   }
 
@@ -463,15 +810,19 @@ function onIdle(me, enemy, game) {
   function buildStrategyTree() {
     return selector("boost-root", [
       selector("survive", [
+        behavior("same-frame-shot-escape", tryImmediateShotEscape),
         behavior("bullet-escape", tryBulletEscape),
+        behavior("gunline-escape", tryGunlineEscape),
         behavior("close-gunline", tryCloseGunline),
       ]),
       selector("assault", [
         behavior("boost-snap-shot", tryBoostSnapShot),
+        behavior("aggressive-fire", tryAggressiveFire),
         behavior("immediate-fire", function () {
           var want = shotDirToEnemy();
           return want && fireReady() ? fireOrFace(want, "clear-fire") : false;
         }),
+        behavior("active-boost-backshot", tryActiveBoostBackshot),
         behavior("active-boost-gunline-landing", tryActiveBoostGunlineLanding),
       ]),
       selector("star", [
@@ -498,5 +849,6 @@ function onIdle(me, enemy, game) {
     return false;
   }
 
+  refreshShotLineMemory();
   runNode(buildStrategyTree());
 }

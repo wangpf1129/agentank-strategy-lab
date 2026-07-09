@@ -5,21 +5,21 @@
   "skillType": "boost",
   "activeSource": "active/shield-main.js",
   "baselineSource": "active/shield-main.js",
-  "lastKnownRankScore": 1451,
-  "lastKnownTier": "diamond",
-  "lastKnownRankDivision": 1,
+  "lastKnownRankScore": 1551,
+  "lastKnownTier": "master",
+  "lastKnownRankDivision": 3,
   "lastKnownPublicRank": null,
-  "lastUpdatedAt": "2026-07-09T06:56:09Z",
-  "lastKnownCodeVersion": 61,
-  "lastKnownCodeHash": "451dd8d4aad04ea8a585930430a11254b4c44755c9dd8d3d8aee4b4cc7f1ecad",
+  "lastUpdatedAt": "2026-07-09T11:39:37Z",
+  "lastKnownCodeVersion": 70,
+  "lastKnownCodeHash": "aa77fdb800cae301719b2037ce09c91f4a6e1aeabdd2ed4bdfd1de40497c8dd3",
   "lastKnownRecord": {
-    "wins": 883,
-    "losses": 849,
+    "wins": 995,
+    "losses": 969,
     "draws": 0,
     "placementMatches": 10
   },
   "lastObservation": {
-    "runPath": "/tmp/agentank-runs/snapshots-shield-v61-boost-reset-publish/shield-main/tank.json",
-    "summary": "Published shield-main v61 boost-only behavior tree reset. Gates passed before publish: npm run check, focused shield-main tests 10/10, node --check lab/scripts/analyze-boost-tactics.mjs, npm run test:lab, git diff --check, server simulation 9/9 at /tmp/agentank-runs/simulations/2026-07-09T06-55-13-194Z, and dry-run /tmp/agentank-runs/shield-main/challenge-runs/2026-07-09T06-55-42-486Z.json. Publish returned codeHash 451dd8d4aad04ea8a585930430a11254b4c44755c9dd8d3d8aee4b4cc7f1ecad. Snapshot confirmed codeVersion 61, skillType boost, rankScore 1451, Diamond I, record 883-849-0."
+    "runPath": "/tmp/agentank-runs/snapshots-shield-v70-publish/shield-main/tank.json",
+    "summary": "Published shield-main v70 with codeHash aa77fdb800cae301719b2037ce09c91f4a6e1aeabdd2ed4bdfd1de40497c8dd3 after a Champion I top-50 sample. Real15 run /tmp/agentank-runs/shield-main/real15-v69-champion-top50/challenge-runs/2026-07-09T11-30-33-764Z.json finished 4W/11L, run score 1547 -> 1564, against public score-rank top-15 Champion I targets. Review found repeated active visible-bullet lane deaths and low pressure: batch score 36.8/100, fix-no-pressure-loss 11, fix-no-value-created 11, risk-passive-fire 11. v70 includes game.visibleBullets in active enemy bullet danger and lets urgent bullet-lane exits use the immediately executable safe step over future reply-line caution. Gates passed: focused shield-main tests 30/30, npm run test:lab, npm run check, git diff --check, server simulation 9/9 at /tmp/agentank-runs/simulations/2026-07-09T11-38-37-005Z, and shield-main dry-run /tmp/agentank-runs/shield-main/challenge-runs/2026-07-09T11-39-08-976Z.json. Publish snapshot confirmed codeVersion 70, rankScore 1551, Master III, record 995-969-0, needsFix=false."
   }
 }
